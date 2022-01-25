@@ -6,6 +6,9 @@ jobs:
   devops:
     name: Test - Unit & Integration & SonarCloud Scan
     runs-on: ubuntu-latest # macos-latest macos-11 windows-2019 ubuntu-20.04
+    defaults:
+      run:
+        working-directory: readit-backend
     steps:
       - uses: actions/checkout@v2
         with: { fetch-depth: 0 }
