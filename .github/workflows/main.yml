@@ -35,6 +35,7 @@ jobs:
          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Deploy Heroku
+        if: github.ref == 'refs/heads/master'
         uses: akhileshns/heroku-deploy@v3.6.8 # This is the action
         with:
           heroku_email: "isabel.d.m@outlook.com"
