@@ -42,3 +42,18 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "ri-readit-app" #Must be unique in Heroku
 
+
+  Client:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: readit-frontend
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+
+
+
+
