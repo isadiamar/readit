@@ -7,13 +7,24 @@ import {MatIconModule} from "@angular/material/icon";
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
+import { WelcomeInfoComponent } from './welcome-info/welcome-info.component';
+import { RegisterComponent } from './register/register.component';
+import {LoginComponent} from "./login/login.component";
+import {LoginFormComponent} from "./login-form/login-form.component";
+import {RegisterFormComponent} from "./register-form/register-form.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    LoginFormComponent,
+    WelcomeInfoComponent,
+    RegisterComponent,
+    RegisterFormComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +32,11 @@ import { LoginComponent } from './login/login.component';
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
