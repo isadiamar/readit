@@ -1,0 +1,70 @@
+
+.presentation{
+  margin: 5rem 0 2rem auto;
+  width: 42rem;
+}
+.title{
+  margin-bottom: 3rem;
+}
+.cdk-overlay-backdrop{
+  margin-bottom: 2rem;
+}
+.presentation h1, .presentation p{
+  font-family: 'Quantico', sans-serif;
+  text-align: justify;
+
+}
+.presentation h1{
+  font-size: 35px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.content{
+  line-height: 2;
+  margin-bottom: 3rem;
+}
+
+.containers{
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+}
+.info{
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.info p{
+  text-align: center;
+  font-family: Quicksand, serif;
+  font-weight: bold;
+  font-size: 12px;
+  padding: 1rem;
+}
+
+.blue{
+  background: #0F89DB;
+  border: 2px solid #0F89DB;
+}
+
+.yellow{
+  background: #FFC100;
+  border: 2px solid #FFC100;
+}
+
+.purple{
+  background: #D675EF;
+  border: 2px solid #B462C9;
+}
+
+.green{
+  background: #05E3A4;
+  border: 2px solid #03C18B;
+}
+.circle{
+  width: 5rem;
+  height: 5rem;
+  border-radius: 50%;
+}

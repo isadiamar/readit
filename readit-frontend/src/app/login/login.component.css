@@ -1,0 +1,11 @@
+.welcome{
+  display: flex;
+  align-items: center;
+}
+.welcomeInfo, .login{
+  margin:  auto;
+}
+
+.welcomeInfo{
+  margin-top: 1rem;
+}
