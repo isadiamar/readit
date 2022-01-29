@@ -1,0 +1,6 @@
+<section class="welcome">
+  <app-welcome-info class="welcomeInfo"></app-welcome-info>
+  <app-login-form *ngIf="message=='login'" class="login"></app-login-form>
+  <app-register-form *ngIf="message == 'signup'" class="register"></app-register-form>
+</section>
+

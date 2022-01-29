@@ -1,37 +1,42 @@
-.presentation{
+.presentation {
   width: 45rem;
 }
-.title{
+
+.title {
   margin-bottom: 3rem;
 }
-.cdk-overlay-backdrop{
+
+.cdk-overlay-backdrop {
   margin-bottom: 2rem;
 }
-.presentation h1, .presentation .content{
+
+.presentation h1, .presentation .content {
   font-family: 'Quantico', sans-serif;
   text-align: justify;
   margin-left: 2rem;
 
 }
-.presentation h1{
+
+.presentation h1 {
   font-size: 2.5rem;
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 3px;
 }
 
-.content{
+.content {
   line-height: 2;
   margin-bottom: 5rem;
 }
 
-.containers{
+.containers {
   display: flex;
   align-items: center;
   justify-items: center;
   justify-content: center;
 }
-.info{
+
+.info {
   width: 8rem;
   height: 10rem;
   display: flex;
@@ -41,7 +46,7 @@
   padding: 1rem;
 }
 
-.info p{
+.info p {
   text-align: center;
   font-family: Quantico, serif;
   font-weight: 700;
@@ -49,26 +54,27 @@
   padding: 0.5rem;
 }
 
-.blue{
+.blue {
   background: #0F89DB;
   border: 2px solid #0F89DB;
 }
 
-.yellow{
+.yellow {
   background: #FFC100;
   border: 2px solid #FFC100;
 }
 
-.purple{
+.purple {
   background: #D675EF;
   border: 2px solid #B462C9;
 }
 
-.green{
+.green {
   background: #05E3A4;
   border: 2px solid #03C18B;
 }
-.circle{
+
+.circle {
   width: 5rem;
   height: 5rem;
   border-radius: 50%;

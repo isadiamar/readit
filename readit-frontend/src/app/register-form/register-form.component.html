@@ -4,38 +4,38 @@
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Username</mat-label>
-        <input formControlName="username" matInput placeholder="username" type="text" required>
+        <input formControlName="username" matInput placeholder="username" required type="text">
       </mat-form-field>
     </div>
 
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input formControlName="email" matInput placeholder="email@email.com" type="email" required>
+        <input formControlName="email" matInput placeholder="email@email.com" required type="email">
       </mat-form-field>
     </div>
 
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input formControlName="password" matInput placeholder="password" type="password" required>
+        <input formControlName="password" matInput placeholder="password" required type="password">
       </mat-form-field>
     </div>
 
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Repeat password</mat-label>
-        <input formControlName="confirmPassword" matInput placeholder="password" type="password" required>
+        <input formControlName="confirmPassword" matInput placeholder="password" required type="password">
       </mat-form-field>
     </div>
 
     <div class="actions">
-      <button [disabled]="submitDisabled" (click)="submit()" type="button">
+      <button (click)="submit()" [disabled]="submitDisabled" type="button">
         Sign up
       </button>
     </div>
     <div class="formLink">
-      <a (click)="changeForm()">Have already an account? Log here</a>
+      <a (click)="newMessage('login')">Have already an account? Log here</a>
     </div>
   </form>
 

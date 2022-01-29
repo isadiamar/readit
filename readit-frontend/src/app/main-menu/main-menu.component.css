@@ -1,0 +1,41 @@
+.menu {
+  height: 5.5rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+}
+
+.logo {
+  margin-top: -1rem;
+  margin-left: 2rem;;
+  height: 8rem;
+}
+
+.wrappedGeneral {
+  display: flex;
+}
+
+.general {
+  align-self: center;
+  margin-left: 1.5rem;
+}
+
+.general button {
+  margin-right: 0.5rem;
+  font-family: "Roboto", serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.user {
+  align-self: center;
+  margin-right: 4rem;
+}
+
+.user button {
+  margin-right: 0.5rem;
+  font-family: "Roboto", serif;
+  font-size: 14px;
+  font-weight: bold;
+}

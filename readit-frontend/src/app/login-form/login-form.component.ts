@@ -1,6 +1,8 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
+import {Subscription} from "rxjs";
+import {WelcomeService} from "../shared/services/data.service";
 
 
 @Component({
@@ -8,18 +10,18 @@ import {MatSnackBar} from "@angular/material/snack-bar";
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent implements OnInit, OnDestroy{
   loginForm: FormGroup;
-  submitDisabled:boolean = true;
-
-  @Output() changeFormEvent = new EventEmitter<null>();
-
+  submitDisabled: boolean = true;
+  message:string;
+  subscription: Subscription;
 
   constructor(
-    private formBuilder:FormBuilder,
-    private _snackBar:MatSnackBar,
-
-  ) { }
+    private formBuilder: FormBuilder,
+    private _snackBar: MatSnackBar,
+    public data: WelcomeService
+  ) {
+  }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -27,17 +29,22 @@ export class LoginFormComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.minLength(6)])
     });
 
-    this.loginForm.valueChanges.subscribe(_=>{
+    this.loginForm.valueChanges.subscribe(_ => {
       this.checkDisabled();
     });
+    this.subscription = this.data.currentMessage.subscribe(message => this.message = message)
 
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 
   checkDisabled(): void {
     let email = this.loginForm.controls['email'].value;
     let password = this.loginForm.controls['password'].value;
-    this.submitDisabled = email === '' || password === '' ;
+    this.submitDisabled = email === '' || password === '';
   }
 
   submit() {
@@ -59,7 +66,8 @@ export class LoginFormComponent implements OnInit {
     })
   }
 
-  changeForm(){
-    this.changeFormEvent.emit();
+  newMessage(message: string) {
+    this.data.changeMessage(message);
+
   }
 }

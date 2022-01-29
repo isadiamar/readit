@@ -1,22 +1,24 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Subscription} from "rxjs";
+import {WelcomeService} from "../shared/services/data.service";
 
 @Component({
   selector: 'app-register-form',
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css']
 })
-export class RegisterFormComponent implements OnInit {
+export class RegisterFormComponent implements OnInit, OnDestroy{
   registerForm: FormGroup;
-  submitDisabled:boolean = true;
-
-  @Output() changeFormEvent = new EventEmitter<null>();
-
+  submitDisabled: boolean = true;
+  message:string;
+  subscription: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
     private _snackBar: MatSnackBar,
+    public data: WelcomeService
   ) {
   }
 
@@ -31,8 +33,15 @@ export class RegisterFormComponent implements OnInit {
     this.registerForm.valueChanges.subscribe(_ => {
       this.checkDisabled()
     });
+
+    this.subscription = this.data.currentMessage.subscribe(message => this.message = message)
+
   }
 
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+
+  }
 
   checkDisabled(): void {
     let username = this.registerForm.controls['username'].value;
@@ -70,7 +79,9 @@ export class RegisterFormComponent implements OnInit {
     })
   }
 
-  changeForm(){
-    this.changeFormEvent.emit();
+
+  newMessage(message: string) {
+    this.data.changeMessage(message);
+
   }
 }

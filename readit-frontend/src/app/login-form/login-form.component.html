@@ -1,4 +1,4 @@
-<section class = "auth">
+<section class="auth">
 
   <h1>Welcome back!</h1>
   <h2>It's good to see you</h2>
@@ -7,14 +7,14 @@
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input  formControlName="email" matInput placeholder="email@email.com" type="email" required>
+        <input formControlName="email" matInput placeholder="email@email.com" required type="email">
       </mat-form-field>
     </div>
 
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input  formControlName="password" matInput placeholder="password" type="password" required>
+        <input formControlName="password" matInput placeholder="password" required type="password">
       </mat-form-field>
     </div>
 
@@ -24,7 +24,7 @@
       </button>
     </div>
     <div class="formLink">
-      <a (click)="changeForm()">Not register? Do it here</a>
+      <a (click)="newMessage('signup')">Not register? Do it here</a>
     </div>
   </form>
 </section>

@@ -1,0 +1,37 @@
+<nav class="menu">
+  <div class="wrappedGeneral">
+    <img alt="logo" class="logo" src="assets/logoApp.png">
+    <div class="general">
+      <button mat-button>READ</button>
+      <button mat-button>GENRES</button>
+      <button mat-button>POPULAR</button>
+      <button mat-button>COMMUNITY</button>
+    </div>
+  </div>
+  <div class="user">
+    <button [matMenuTriggerFor]="write" mat-button>WRITE
+      <mat-icon>keyboard_arrow_down</mat-icon>
+    </button>
+    <mat-menu #write="matMenu">
+      <button mat-menu-item>
+        <mat-icon>add</mat-icon>
+        Create a new history
+      </button>
+      <button mat-menu-item>
+        <mat-icon>folder_open</mat-icon>
+        My stories
+      </button>
+    </mat-menu>
+    <button [matMenuTriggerFor]="user" mat-button>USER</button>
+    <mat-menu #user="matMenu">
+      <button mat-menu-item>
+        <mat-icon>face</mat-icon>
+        Account
+      </button>
+      <button mat-menu-item>
+        <mat-icon>power_settings_new</mat-icon>
+        Log out
+      </button>
+    </mat-menu>
+  </div>
+</nav>
