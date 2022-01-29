@@ -17,6 +17,7 @@ import {LoginFormComponent} from "./login-form/login-form.component";
 import {RegisterFormComponent} from "./register-form/register-form.component";
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { WelcomeMenuComponent } from './welcome-menu/welcome-menu.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     WelcomeInfoComponent,
     RegisterFormComponent,
     MainMenuComponent,
-    WelcomeComponent
+    WelcomeComponent,
+    WelcomeMenuComponent
   ],
   imports: [
     BrowserModule,

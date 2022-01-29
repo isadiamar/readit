@@ -8,8 +8,8 @@ const routes: Routes = [
   {path: 'welcome', component:WelcomeComponent},
   {path:'loginForm', component:LoginFormComponent},
   {path: 'registerForm', component:RegisterFormComponent},
-  {path: '', redirectTo: '/welcome', pathMatch: 'full'}
-
+  {path: '', redirectTo: '/welcome', pathMatch: 'full'},
+  {path: '**', redirectTo: '/welcome', pathMatch: 'full'}
 ];
 
 @NgModule({
