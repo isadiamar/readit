@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
@@ -12,9 +11,12 @@ export class RegisterFormComponent implements OnInit {
   registerForm: FormGroup;
   submitDisabled:boolean = true;
 
+  @Output() changeFormEvent = new EventEmitter<null>();
+
+
   constructor(
     private formBuilder: FormBuilder,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
   ) {
   }
 
@@ -28,8 +30,9 @@ export class RegisterFormComponent implements OnInit {
 
     this.registerForm.valueChanges.subscribe(_ => {
       this.checkDisabled()
-    })
+    });
   }
+
 
   checkDisabled(): void {
     let username = this.registerForm.controls['username'].value;
@@ -65,5 +68,9 @@ export class RegisterFormComponent implements OnInit {
     Object.keys(this.registerForm.controls).forEach(key => {
       this.registerForm.get(key)?.setErrors(null);
     })
+  }
+
+  changeForm(){
+    this.changeFormEvent.emit();
   }
 }

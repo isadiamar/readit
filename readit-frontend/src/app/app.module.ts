@@ -13,19 +13,19 @@ import {MatInputModule} from "@angular/material/input";
 import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 
 import { WelcomeInfoComponent } from './welcome-info/welcome-info.component';
-import {LoginComponent} from "./login/login.component";
 import {LoginFormComponent} from "./login-form/login-form.component";
 import {RegisterFormComponent} from "./register-form/register-form.component";
-import {RegisterComponent} from "./register/register.component";
+import { MainMenuComponent } from './main-menu/main-menu.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
     LoginFormComponent,
     WelcomeInfoComponent,
     RegisterFormComponent,
-    RegisterComponent
+    MainMenuComponent,
+    WelcomeComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +38,7 @@ import {RegisterComponent} from "./register/register.component";
     MatInputModule,
     ReactiveFormsModule,
     FormsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

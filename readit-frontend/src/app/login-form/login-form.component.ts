@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
+
 
 @Component({
   selector: 'app-login-form',
@@ -11,9 +12,13 @@ export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
   submitDisabled:boolean = true;
 
+  @Output() changeFormEvent = new EventEmitter<null>();
+
+
   constructor(
     private formBuilder:FormBuilder,
-    private _snackBar:MatSnackBar
+    private _snackBar:MatSnackBar,
+
   ) { }
 
   ngOnInit(): void {
@@ -24,8 +29,10 @@ export class LoginFormComponent implements OnInit {
 
     this.loginForm.valueChanges.subscribe(_=>{
       this.checkDisabled();
-    })
+    });
+
   }
+
 
   checkDisabled(): void {
     let email = this.loginForm.controls['email'].value;
@@ -50,5 +57,9 @@ export class LoginFormComponent implements OnInit {
     Object.keys(this.loginForm.controls).forEach(key => {
       this.loginForm.get(key)?.setErrors(null);
     })
+  }
+
+  changeForm(){
+    this.changeFormEvent.emit();
   }
 }
