@@ -1,42 +1,42 @@
 <section class="auth">
   <h1>Sign up here</h1>
-
-  <form>
+  <form [formGroup]="registerForm">
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Username</mat-label>
-        <input matInput placeholder="username" required>
+        <input formControlName="username" matInput placeholder="username" type="text" required>
       </mat-form-field>
     </div>
 
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input matInput placeholder="email@email.com" required>
+        <input formControlName="email" matInput placeholder="email@email.com" type="email" required>
       </mat-form-field>
     </div>
 
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input matInput placeholder="password" required>
+        <input formControlName="password" matInput placeholder="password" type="password" required>
       </mat-form-field>
     </div>
 
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Repeat password</mat-label>
-        <input matInput placeholder="password" required>
+        <input formControlName="confirmPassword" matInput placeholder="password" type="password" required>
       </mat-form-field>
     </div>
 
     <div class="actions">
-      <button class="toogle" type="button">
+      <button [disabled]="submitDisabled" (click)="submit()" type="button">
         Sign up
       </button>
     </div>
     <div class="formLink">
-      <a>Not register? Do it here</a>
+      <a>Have already an account? Log here</a>
     </div>
   </form>
+
 </section>

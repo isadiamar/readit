@@ -5,17 +5,18 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatIconModule} from "@angular/material/icon";
 import { AppRoutingModule } from './app-routing.module';
+import {MatSnackBarModule} from "@angular/material/snack-bar";
 
 import { AppComponent } from './app.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {FormsModule,ReactiveFormsModule} from "@angular/forms";
 
 import { WelcomeInfoComponent } from './welcome-info/welcome-info.component';
-import { RegisterComponent } from './register/register.component';
 import {LoginComponent} from "./login/login.component";
 import {LoginFormComponent} from "./login-form/login-form.component";
 import {RegisterFormComponent} from "./register-form/register-form.component";
+import {RegisterComponent} from "./register/register.component";
 
 @NgModule({
   declarations: [
@@ -23,8 +24,8 @@ import {RegisterFormComponent} from "./register-form/register-form.component";
     LoginComponent,
     LoginFormComponent,
     WelcomeInfoComponent,
-    RegisterComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -35,10 +36,11 @@ import {RegisterFormComponent} from "./register-form/register-form.component";
     AppRoutingModule,
     MatFormFieldModule,
     MatInputModule,
+    ReactiveFormsModule,
     FormsModule,
-    ReactiveFormsModule
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

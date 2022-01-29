@@ -9,7 +9,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component:RegisterComponent},
   {path:'loginForm', component:LoginFormComponent},
-  {path: 'registerForm', component:RegisterFormComponent}
+  {path: 'registerForm', component:RegisterFormComponent},
 
 ];
 

@@ -1,7 +1,5 @@
-
 .presentation{
-  margin: 5rem 0 2rem auto;
-  width: 42rem;
+  width: 45rem;
 }
 .title{
   margin-bottom: 3rem;
@@ -9,20 +7,22 @@
 .cdk-overlay-backdrop{
   margin-bottom: 2rem;
 }
-.presentation h1, .presentation p{
+.presentation h1, .presentation .content{
   font-family: 'Quantico', sans-serif;
   text-align: justify;
+  margin-left: 2rem;
 
 }
 .presentation h1{
-  font-size: 35px;
+  font-size: 2.5rem;
+  line-height: 1;
   text-transform: uppercase;
   letter-spacing: 3px;
 }
 
 .content{
   line-height: 2;
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
 }
 
 .containers{
@@ -32,16 +32,21 @@
   justify-content: center;
 }
 .info{
-  margin: 1rem;
+  width: 8rem;
+  height: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 1rem;
   padding: 1rem;
 }
 
 .info p{
   text-align: center;
-  font-family: Quicksand, serif;
-  font-weight: bold;
-  font-size: 12px;
-  padding: 1rem;
+  font-family: Quantico, serif;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.5rem;
 }
 
 .blue{
