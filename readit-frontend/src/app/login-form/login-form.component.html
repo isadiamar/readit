@@ -3,28 +3,28 @@
   <h1>Welcome back!</h1>
   <h2>It's good to see you</h2>
 
-  <form >
+  <form [formGroup]="loginForm">
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input  matInput placeholder="email@email.com" required>
+        <input  formControlName="email" matInput placeholder="email@email.com" type="email" required>
       </mat-form-field>
     </div>
 
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input  matInput placeholder="password" required>
+        <input  formControlName="password" matInput placeholder="password" type="password" required>
       </mat-form-field>
     </div>
 
     <div class="actions">
-      <button  class="toogle" type="button">
+      <button (click)="submit()" [disabled]="submitDisabled" type="button">
         Log in
       </button>
     </div>
     <div class="formLink">
-      <a>Not register? Do it here</a>
+      <a routerLink="/register">Not register? Do it here</a>
     </div>
   </form>
 </section>
