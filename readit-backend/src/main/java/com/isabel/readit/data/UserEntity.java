@@ -1,6 +1,8 @@
 package com.isabel.readit.data;
 
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -23,7 +25,7 @@ public class UserEntity {
         this.id = id;
         this.nickname = nickname;
         this.email = email;
-        this.password = password;
+        setPassword(password);
     }
 
     public String getId() {
@@ -55,7 +57,9 @@ public class UserEntity {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        this.password = passwordEncoder.encode(password);
     }
 
     @Override

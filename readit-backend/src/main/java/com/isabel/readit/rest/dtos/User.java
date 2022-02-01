@@ -1,7 +1,12 @@
-package com.isabel.readit.rest;
+package com.isabel.readit.rest.dtos;
 
 import com.isabel.readit.data.UserEntity;
 import org.springframework.beans.BeanUtils;
+
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+import java.security.SecureRandom;
+import java.security.spec.KeySpec;
 
 public class User {
 
@@ -49,10 +54,12 @@ public class User {
     }
 
     public String getPassword() {
+
         return password;
     }
 
     public void setPassword(String password) {
+
         this.password = password;
     }
 
