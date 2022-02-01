@@ -1,4 +1,4 @@
-package com.isabel.readit.rest;
+package com.isabel.readit.rest.dtos;
 
 import com.isabel.readit.data.UserEntity;
 import org.springframework.beans.BeanUtils;
@@ -10,9 +10,10 @@ public class User {
     private String email;
     private String password;
 
-    public User(){
+    public User() {
         //empty for framework
     }
+
     public User(String id, String nickname, String email, String password) {
         this.id = id;
         this.nickname = nickname;
@@ -20,7 +21,7 @@ public class User {
         this.password = password;
     }
 
-    public User(UserEntity userEntity){
+    public User(UserEntity userEntity) {
         BeanUtils.copyProperties(userEntity, this);
     }
 
@@ -49,10 +50,12 @@ public class User {
     }
 
     public String getPassword() {
+
         return password;
     }
 
     public void setPassword(String password) {
+
         this.password = password;
     }
 
