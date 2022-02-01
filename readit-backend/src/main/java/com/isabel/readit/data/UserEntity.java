@@ -4,7 +4,6 @@ package com.isabel.readit.data;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Entity
 @Table(name = "users")

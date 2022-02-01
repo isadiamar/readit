@@ -15,9 +15,10 @@ public class User {
     private String email;
     private String password;
 
-    public User(){
+    public User() {
         //empty for framework
     }
+
     public User(String id, String nickname, String email, String password) {
         this.id = id;
         this.nickname = nickname;
@@ -25,7 +26,7 @@ public class User {
         this.password = password;
     }
 
-    public User(UserEntity userEntity){
+    public User(UserEntity userEntity) {
         BeanUtils.copyProperties(userEntity, this);
     }
 
