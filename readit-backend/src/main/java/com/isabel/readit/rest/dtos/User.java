@@ -5,7 +5,7 @@ import org.springframework.beans.BeanUtils;
 
 public class User {
 
-    private String id;
+    private Integer id;
     private String nickname;
     private String email;
     private String password;
@@ -14,22 +14,16 @@ public class User {
         //empty for framework
     }
 
-    public User(String nickname, String email, String password) {
-        this.id = getId();
-        this.nickname = nickname;
-        this.email = email;
-        this.password = password;
-    }
 
     public User(UserEntity userEntity) {
         BeanUtils.copyProperties(userEntity, this);
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
