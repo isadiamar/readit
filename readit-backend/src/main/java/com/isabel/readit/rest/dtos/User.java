@@ -14,8 +14,8 @@ public class User {
         //empty for framework
     }
 
-    public User(String id, String nickname, String email, String password) {
-        this.id = id;
+    public User(String nickname, String email, String password) {
+        this.id = getId();
         this.nickname = nickname;
         this.email = email;
         this.password = password;
