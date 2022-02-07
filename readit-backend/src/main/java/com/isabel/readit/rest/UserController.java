@@ -6,6 +6,7 @@ import com.isabel.readit.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -35,7 +36,13 @@ public class UserController {
 
     @GetMapping
     public List<User> getAllUsers(){
-        return this.userService.getAllUsers();
+        List<UserEntity>userEntityList = this.userService.getAllUsers();
+        List<User> userList = new ArrayList<User>();
+
+        for (UserEntity userEntity : userEntityList) {
+            userList.add(new User(userEntity));
+        }
+        return userList;
     }
 
 }

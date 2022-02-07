@@ -6,6 +6,7 @@ import com.isabel.readit.rest.dtos.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,7 @@ public class UserService {
         return this.userRepository.save(user);
     }
 
-    public List<User> getAllUsers() {
-        return this.userRepository.findAll().stream().map(UserEntity::toUser).collect(Collectors.toList());
+    public List<UserEntity> getAllUsers() {
+        return new ArrayList<>(this.userRepository.findAll());
     }
 }
