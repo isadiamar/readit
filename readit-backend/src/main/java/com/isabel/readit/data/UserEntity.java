@@ -2,6 +2,7 @@ package com.isabel.readit.data;
 
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,7 +21,7 @@ public class UserEntity {
     }
 
     public UserEntity(String nickname, String email, String password) {
-        this.id=getId();
+        this.id = getId();
         this.nickname = nickname;
         this.email = email;
         setPassword(password);

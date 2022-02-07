@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("users")
-public class UserController{
+public class UserController {
     static final String USERS = "/users";
-    
+
     @Autowired
     UserService userService;
 
