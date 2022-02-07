@@ -2,7 +2,6 @@ package com.isabel.readit.data;
 
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import javax.persistence.*;
 
 @Entity
@@ -11,7 +10,7 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Integer id;
     private String nickname;
     private String email;
     private String password;
@@ -20,18 +19,18 @@ public class UserEntity {
         //empty for framework
     }
 
-    public UserEntity(String id, String nickname, String email, String password) {
-        this.id = id;
+    public UserEntity(String nickname, String email, String password) {
+        this.id=getId();
         this.nickname = nickname;
         this.email = email;
         setPassword(password);
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

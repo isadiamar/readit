@@ -11,16 +11,15 @@ class UserTest {
 
     @Test
     void testGetSetId() {
-        User user = new User("1", "Maria", "maria@email.com", "maria123");
-        assertEquals("1", user.getId());
+        User user = new User(new UserEntity("Maria", "maria@email.com", "maria123"));
 
-        user.setId("10");
-        assertEquals("10", user.getId());
+        user.setId(10);
+        assertEquals(10, user.getId());
     }
 
     @Test
     void testGetSetNickname() {
-        User user = new User("2", "Pedro", "pedro@email.com", "pedro123");
+        User user = new User( new UserEntity("Pedro", "pedro@email.com", "pedro123"));
 
         assertEquals("Pedro", user.getNickname());
 
@@ -30,7 +29,7 @@ class UserTest {
 
     @Test
     void testGetSetEmail() {
-        User user = new User("3", "Alvaro", "alvaro@email.com", "alvaro123");
+        User user = new User( new UserEntity("Alvaro", "alvaro@email.com", "alvaro123"));
 
         assertEquals("alvaro@email.com", user.getEmail());
 
@@ -40,7 +39,7 @@ class UserTest {
 
     @Test
     void testGetSetPassword() {
-        UserEntity userEntity = new UserEntity("3", "Alvaro", "alvaro@email.com", "alvaro123");
+        UserEntity userEntity = new UserEntity( "Alvaro", "alvaro@email.com", "alvaro123");
         User user = new User(userEntity);
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -51,7 +50,8 @@ class UserTest {
 
     @Test
     void testToString(){
-        User user = new User("3", "Alvaro", "alvaro@email.com", "alvaro123");
+        UserEntity userEntity = new UserEntity( "Alvaro", "alvaro@email.com", "alvaro123");
+        User user = new User(userEntity);
 
         String userString = "User{" +
                 "id='" + user.getId() + '\'' +
