@@ -50,22 +50,6 @@ public class UserControllerTest {
                 .andExpect(status().isOk());
     }
 
-    @Test
-    void testCreate400() throws Exception {
-        UserEntity userEntity = new UserEntity("", "laura@email.com", "laurapassword");
-        Mockito.when(userService.create(any(UserEntity.class))).thenReturn(userEntity);
-
-        Map<String,Object> body = new HashMap<>();
-        body.put("nickname","aa");
-        body.put("email","email@test.com");
-        body.put("password","aa");
-
-        mockMvc.perform(post("/users")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(body)))
-                .andExpect(status().isBadRequest());
-    }
-
 
     //Utils
     public static String asJsonString(final Object obj) {

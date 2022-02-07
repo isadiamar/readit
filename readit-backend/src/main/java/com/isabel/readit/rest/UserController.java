@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("users")
 public class UserController{
     static final String USERS = "/users";
-
+    
     @Autowired
-    private UserService userService;
+    UserService userService;
 
     @GetMapping("/hello")
     public String helloWorld() {
