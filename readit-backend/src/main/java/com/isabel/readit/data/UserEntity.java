@@ -1,6 +1,8 @@
 package com.isabel.readit.data;
 
 
+import com.isabel.readit.rest.dtos.User;
+import org.springframework.beans.BeanUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
@@ -25,6 +27,12 @@ public class UserEntity {
         this.nickname = nickname;
         this.email = email;
         setPassword(password);
+    }
+
+    public  User toUser() {
+        User user = new User();
+        BeanUtils.copyProperties(this, user);
+        return user;
     }
 
     public Integer getId() {
@@ -70,4 +78,5 @@ public class UserEntity {
                 ", password='" + password + '\'' +
                 '}';
     }
+
 }

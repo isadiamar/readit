@@ -6,8 +6,10 @@ import com.isabel.readit.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("users")
+@RequestMapping(UserController.USERS)
 public class UserController {
     static final String USERS = "/users";
 
@@ -31,5 +33,9 @@ public class UserController {
         return new User(this.userService.create(userEntity));
     }
 
+    @GetMapping
+    public List<User> getAllUsers(){
+        return this.userService.getAllUsers();
+    }
 
 }

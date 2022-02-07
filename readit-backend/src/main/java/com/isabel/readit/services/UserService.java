@@ -2,8 +2,12 @@ package com.isabel.readit.services;
 
 import com.isabel.readit.data.UserEntity;
 import com.isabel.readit.data.UserRepository;
+import com.isabel.readit.rest.dtos.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -18,4 +22,7 @@ public class UserService {
         return this.userRepository.save(user);
     }
 
+    public List<User> getAllUsers() {
+        return this.userRepository.findAll().stream().map(UserEntity::toUser).collect(Collectors.toList());
+    }
 }
