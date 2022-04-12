@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {WelcomeService} from "../shared/services/data.service";
+import {WelcomeService} from "../../shared/services/data.service";
 
 @Component({
   selector: 'app-welcome',
@@ -8,7 +8,7 @@ import {WelcomeService} from "../shared/services/data.service";
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent implements OnInit, OnDestroy {
-  message:string;
+  message: string;
   subscription: Subscription;
 
   constructor(public data: WelcomeService) {

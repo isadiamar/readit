@@ -1,8 +1,8 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Subscription} from "rxjs";
-import {WelcomeService} from "../shared/services/data.service";
+import {WelcomeService} from "../../shared/services/data.service";
 
 
 @Component({
@@ -10,10 +10,10 @@ import {WelcomeService} from "../shared/services/data.service";
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
-export class LoginFormComponent implements OnInit, OnDestroy{
+export class LoginFormComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   submitDisabled: boolean = true;
-  message:string;
+  message: string;
   subscription: Subscription;
 
   constructor(
