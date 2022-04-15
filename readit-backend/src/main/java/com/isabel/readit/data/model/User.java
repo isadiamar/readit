@@ -23,5 +23,7 @@ public class User {
     private String nickname;
     private String email;
     private String password;
+    private String confirmPassword;
+    private String description;
 
 }

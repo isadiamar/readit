@@ -7,15 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class UserDtoTest {
 
     @Test
-    void testGetSetId() {
-        User user = User.builder().nickname("Maria").email("maria@email.com").password("maria123").build();
-        UserDto userDto = new UserDto(user);
-
-        userDto.setId(10);
-        assertEquals(10, userDto.getId());
-    }
-
-    @Test
     void testGetSetNickname() {
         User user = User.builder().nickname("Maria").email("maria@email.com").password("maria123").build();
         UserDto userDto = new UserDto(user);

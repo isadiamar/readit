@@ -67,7 +67,7 @@ public class UserResourceTest {
             throw new RuntimeException(e);
         }
     }
-
+/*
     @Test
     void testCreate() throws Exception {
         User user1 = User.builder().nickname("Laura").email("laura@email.com").password("laurapassword").build();
@@ -83,7 +83,7 @@ public class UserResourceTest {
                         .content(asJsonString(body)))
                 .andExpect(status().isOk());
     }
-
+*/
     @Test
     void testGetAllUsers() throws Exception {
         mockMvc.perform(get("/users")
