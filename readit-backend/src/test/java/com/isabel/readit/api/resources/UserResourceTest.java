@@ -1,4 +1,4 @@
-package com.isabel.readit.api;
+package com.isabel.readit.api.resources;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.isabel.readit.data.model.User;
@@ -27,7 +27,7 @@ import static org.mockito.BDDMockito.given;
 
 
 @WebMvcTest(UserResource.class)
-public class UserControllerTest {
+public class UserResourceTest {
 
     @Autowired
     private MockMvc mockMvc;

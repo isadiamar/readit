@@ -1,4 +1,4 @@
-package com.isabel.readit.api;
+package com.isabel.readit.api.resources;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
@@ -20,5 +20,5 @@ import java.lang.annotation.Target;
 @AutoConfigureWebTestClient
 @TestPropertySource(locations = "classpath:test.properties")
 @ActiveProfiles("dev")
-public @interface RestTestConfig {
+public @interface ApiTestConfig {
 }
