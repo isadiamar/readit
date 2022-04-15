@@ -1,9 +1,9 @@
-package com.isabel.readit.rest;
+package com.isabel.readit.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.isabel.readit.data.UserEntity;
-import com.isabel.readit.data.UserRepository;
-import com.isabel.readit.rest.dtos.User;
+import com.isabel.readit.data.model.User;
+import com.isabel.readit.data.daos.UserRepository;
+import com.isabel.readit.api.resources.UserResource;
 import com.isabel.readit.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,12 +22,11 @@ import java.util.Map;
 import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.mockito.BDDMockito.given;
 
 
-@WebMvcTest(UserController.class)
+@WebMvcTest(UserResource.class)
 public class UserControllerTest {
 
     @Autowired
@@ -44,12 +42,12 @@ public class UserControllerTest {
     @BeforeEach
     void setUp()
     {
-        List<UserEntity> userList = new ArrayList<UserEntity>();
+        List<User> userList = new ArrayList<>();
 
-        UserEntity user1 = new UserEntity("Laura", "laura@email.com", "laurapassword");
-        UserEntity user2 = new UserEntity("Pepe", "pepe@email.com", "pepepassword");
-        UserEntity user3 = new UserEntity("Ramón", "ramos@email.com", "ramospassword");
-        UserEntity user4 = new UserEntity("Sofía", "sofia@email.com", "sorapassword");
+        User user1 = User.builder().nickname("Laura").email("laura@email.com").password("laurapassword").build();
+        User user2 =User.builder().nickname("Pepe").email("pepe@email.com").password("pepepassword").build();
+        User user3 = User.builder().nickname("Mia").email("mia@email.com").password("miapassword").build();
+        User user4 = User.builder().nickname("Lolo").email("lolo@email.com").password("lolopassword").build();
 
         userList.add(user1);
         userList.add(user2);
@@ -72,8 +70,8 @@ public class UserControllerTest {
 
     @Test
     void testCreate() throws Exception {
-        UserEntity userEntity = new UserEntity("Laura", "laura@email.com", "laurapassword");
-        Mockito.when(userService.create(any(UserEntity.class))).thenReturn(userEntity);
+        User user1 = User.builder().nickname("Laura").email("laura@email.com").password("laurapassword").build();
+        Mockito.when(userService.create(any(User.class))).thenReturn(user1);
 
         Map<String, Object> body = new HashMap<>();
         body.put("nickname", "aa");
@@ -93,8 +91,14 @@ public class UserControllerTest {
                 .andExpect(status().isOk())
                 .andReturn().getResponse();
 
+    }
 
+    @Test
+    void testGetUserByEmail() throws Exception {
+        User user1 = User.builder().nickname("Laura").email("laura@email.com").password("laurapassword").build();
 
+        mockMvc.perform(get("/users/{email}", user1.getEmail()))
+                .andExpect(status().isOk()).andReturn();
     }
 
 }

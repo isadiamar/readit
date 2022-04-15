@@ -18,7 +18,7 @@ export class ReaditComponent implements OnInit {
 
   private checkCurrentRoute() {
     setTimeout(() => {
-      this.isMainMenu = window.location.pathname != '/welcome' && window.location.pathname != '/loginForm';
+      this.isMainMenu = window.location.pathname != '/welcome';
       this.isWelcomeMenu = window.location.pathname == '/welcome';
     }, 0.5);
   }

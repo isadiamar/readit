@@ -5,6 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 
 import {AppComponent} from './app.component';
 import {ReaditModule} from "./readit/readit.module";
+import {CoreModule} from "./core/core.module";
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import {ReaditModule} from "./readit/readit.module";
     BrowserAnimationsModule,
     AppRoutingModule,
     ReaditModule,
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

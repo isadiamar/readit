@@ -1,4 +1,4 @@
-package com.isabel.readit.configuration;
+package com.isabel.readit.configurations;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

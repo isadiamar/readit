@@ -10,7 +10,7 @@ import {MainMenuComponent} from "./main-menu/main-menu.component";
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {WelcomeMenuComponent} from "./welcome-menu/welcome-menu.component";
 
-import {WelcomeService} from "../shared/services/data.service";
+import {WelcomeService} from "./shared/services/data.service";
 import {ReaditComponent} from "./readit.component";
 
 
