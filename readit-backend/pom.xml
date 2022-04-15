@@ -27,7 +27,6 @@
         <maven-failsafe-plugin.version>2.21.0</maven-failsafe-plugin.version>
         <junit-platform-surefire-provider-version>1.2.0</junit-platform-surefire-provider-version>
 
-
     </properties>
     <dependencies>
         <dependency>
@@ -65,6 +64,11 @@
             <artifactId>java-jwt</artifactId>
             <version>${jwt.version}</version>
         </dependency>
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
         <!--===== TEST ===== -->
         <!-- Spring Test -->
         <dependency>
@@ -79,11 +83,17 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!-- Lombok -->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-models</artifactId>
+            <version>2.1.11</version>
         </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>2.1.11</version>
+        </dependency>
+
     </dependencies>
     <build>
         <plugins>

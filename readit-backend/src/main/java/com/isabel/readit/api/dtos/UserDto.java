@@ -7,17 +7,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.BeanUtils;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 @Data
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
 public class UserDto {
-
-    private Integer id;
+    @NotNull
+    @NotBlank
     private String nickname;
+    @NotNull
+    @NotBlank
     private String email;
     private String password;
-
+    private String confirmPassword;
 
     public UserDto(User user) {
         BeanUtils.copyProperties(user, this);
