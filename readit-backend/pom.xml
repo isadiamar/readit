@@ -23,7 +23,7 @@
         <!-- various -->
         <jwt.version>3.18.2</jwt.version>
         <!-- Maven. integration test -->
-        <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>2.21.0</maven-failsafe-plugin.version>
         <junit-platform-surefire-provider-version>1.2.0</junit-platform-surefire-provider-version>
 
