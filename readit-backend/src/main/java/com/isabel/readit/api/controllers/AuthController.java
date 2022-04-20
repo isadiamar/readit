@@ -18,7 +18,6 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-
     @PostMapping("/register")
     public TokenDto register(@RequestBody UserDto userDto) {
         User user = User.builder()
