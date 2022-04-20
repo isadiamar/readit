@@ -1,13 +1,11 @@
-package com.isabel.readit.api.resources;
+package com.isabel.readit.api.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.isabel.readit.data.model.User;
 import com.isabel.readit.data.daos.UserRepository;
-import com.isabel.readit.api.resources.UserResource;
 import com.isabel.readit.services.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -15,9 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -26,7 +22,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.mockito.BDDMockito.given;
 
 
-@WebMvcTest(UserResource.class)
+@WebMvcTest(UserController.class)
 public class UserResourceTest {
 
     @Autowired
