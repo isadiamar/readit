@@ -79,10 +79,10 @@ public class UserResourceTest {
                         .content(asJsonString(body)))
                 .andExpect(status().isOk());
     }
-*/
+
     @Test
     void testGetAllUsers() throws Exception {
-        mockMvc.perform(get("/users")
+        mockMvc.perform(get("api/private/user")
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andReturn().getResponse();
@@ -96,5 +96,5 @@ public class UserResourceTest {
         mockMvc.perform(get("/users/{email}", user1.getEmail()))
                 .andExpect(status().isOk()).andReturn();
     }
-
+*/
 }

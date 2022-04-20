@@ -7,6 +7,7 @@ import com.isabel.readit.data.model.User;
 import com.isabel.readit.services.exceptions.BadRequestException;
 import com.isabel.readit.services.exceptions.ForbiddenException;
 import com.isabel.readit.services.security.JWTService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
@@ -26,6 +27,7 @@ public class AuthService {
     private PasswordEncoder passwordEncoder;
     private JWTService jwtService;
 
+    @Autowired
     public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, JWTService jwtService) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
