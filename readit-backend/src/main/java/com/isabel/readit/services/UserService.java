@@ -15,12 +15,10 @@ import java.util.Optional;
 @Service
 public class UserService {
     private final UserRepository userRepository;
-    private final JwtService jwtService;
 
     @Autowired
-    public UserService(UserRepository userRepository, JwtService jwtService) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.jwtService = jwtService;
     }
 
     public User create(User user) {
@@ -32,10 +30,6 @@ public class UserService {
         }
     }
 
-    public Optional<String> login(String email) {
-        return this.userRepository.findByEmail(email)
-                .map(user -> jwtService.createToken(user.getEmail(), user.getNickname()));
-    }
 
     public List<User> getAllUsers() {
         return new ArrayList<>(this.userRepository.findAll());

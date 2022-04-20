@@ -1,4 +1,4 @@
-package com.isabel.readit.api.resources;
+package com.isabel.readit.api.controllers;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
