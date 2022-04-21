@@ -28,7 +28,6 @@ public class UserDto {
         BeanUtils.copyProperties(user, this);
     }
 
-
 }
 
 

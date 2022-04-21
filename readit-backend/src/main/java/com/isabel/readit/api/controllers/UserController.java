@@ -18,7 +18,6 @@ import java.util.List;
 public class UserController {
     static final String USERS = "/api/private/user";
     static final String EMAIL = "/{email}";
-    public static final String TOKEN = "/token";
 
     private final UserService userService;
 
