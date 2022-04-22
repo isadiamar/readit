@@ -2,7 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Subscription} from "rxjs";
-import {WelcomeService} from "../shared/services/data.service";
+import {WelcomeService} from "../../../shared/services/data.service";
+import {AuthService} from "../../../../core/auth.service";
+import {RegisterDto} from "../../../../core/register.model";
 
 @Component({
   selector: 'app-register-form',
@@ -17,8 +19,8 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
-    private _snackBar: MatSnackBar,
-    public data: WelcomeService
+    public data: WelcomeService,
+    public authService:AuthService
   ) {
   }
 
@@ -40,7 +42,6 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-
   }
 
   checkDisabled(): void {
@@ -62,14 +63,21 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
   submit() {
     this.validatePassword();
     if (this.registerForm.valid) {
-      let message = 'User created succesfully';
-      let action = 'close'
-      this._snackBar.open(message, action, {
-        duration: 1000
+      let registerDto:RegisterDto = this.createUser();
+      this.authService.register(registerDto).subscribe(res => {
+        console.log(res);
       });
-
       this.clearFields()
     }
+  }
+
+  createUser():RegisterDto{
+    let username = this.registerForm.controls['username'].value;
+    let email = this.registerForm.controls['email'].value;
+    let password = this.registerForm.controls['password'].value;
+    let confirmPassword = this.registerForm.controls['confirmPassword'].value;
+
+    return {nickname: username, email: email, password: password, confirmPassword: confirmPassword};
   }
 
   clearFields() {
@@ -79,9 +87,7 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     })
   }
 
-
   newMessage(message: string) {
     this.data.changeMessage(message);
-
   }
 }

@@ -14,8 +14,6 @@
   color: #D44171;
   font-weight: bolder;
   cursor: pointer;
-
-
 }
 
 .auth .formLink {
@@ -36,7 +34,6 @@
 .auth h1 {
   margin-top: 1rem;
   font-size: 30px;
-
 }
 
 .auth h2 {
@@ -66,7 +63,6 @@ mat-form-field {
   background-color: #D44171;
   border-radius: 5px;
   padding: 1rem 2.5rem;
-
 }
 
 .actions button:hover {
