@@ -2,9 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Subscription} from "rxjs";
-import {WelcomeService} from "../shared/services/data.service";
-import {AuthService} from "../../core/auth.service";
-import {RegisterDto} from "../../core/register.model";
+import {WelcomeService} from "../../../shared/services/data.service";
+import {AuthService} from "../../../../core/auth.service";
+import {RegisterDto} from "../../../../core/register.model";
 
 @Component({
   selector: 'app-register-form',
@@ -19,7 +19,6 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
-    private _snackBar: MatSnackBar,
     public data: WelcomeService,
     public authService:AuthService
   ) {

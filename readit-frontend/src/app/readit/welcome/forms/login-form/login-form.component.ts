@@ -2,7 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Subscription} from "rxjs";
-import {WelcomeService} from "../shared/services/data.service";
+import {WelcomeService} from "../../../shared/services/data.service";
+import {AuthService} from "../../../../core/auth.service";
 
 
 @Component({
@@ -18,8 +19,8 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
-    private _snackBar: MatSnackBar,
-    public data: WelcomeService
+    public data: WelcomeService,
+    public authService:AuthService
   ) {
   }
 
@@ -49,11 +50,9 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
   submit() {
     if (this.loginForm.valid) {
-      let message = 'Logged succesfully';
-      let action = 'close'
-      this._snackBar.open(message, action, {
-        duration: 1000
-      });
+      let email = this.loginForm.controls['email'].value;
+      let password = this.loginForm.controls['password'].value;
+      this.authService.login(email, password).subscribe(res => console.log(res));
 
       this.clearFields()
     }

@@ -22,6 +22,7 @@ export class AuthService{
 
   login(email: string, password: string): Observable<Token> {
     return this.httpService
+      .successful()
       .post(AuthService.REST_BACK + AuthService.LOGIN, {email, password});
   }
 
