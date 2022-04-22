@@ -19,10 +19,9 @@
     </div>
 
     <div class="actions">
-      <button (click)="submit()" [disabled]="submitDisabled" type="button">
-        Log in
-      </button>
+      <button mat-flat-button color="accent" (click)="submit()" [disabled]="submitDisabled">Log in</button>
     </div>
+
     <div class="formLink">
       <a (click)="newMessage('signup')">Not register? Do it here</a>
     </div>

@@ -45,7 +45,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   checkDisabled(): void {
     let email = this.loginForm.controls['email'].value;
     let password = this.loginForm.controls['password'].value;
-    this.submitDisabled = email === '' || password === '';
+    this.submitDisabled = email === '' || password === '' || !this.loginForm.valid;
   }
 
   submit() {
