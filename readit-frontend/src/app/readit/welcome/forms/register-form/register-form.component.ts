@@ -37,7 +37,6 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     });
 
     this.subscription = this.data.currentMessage.subscribe(message => this.message = message)
-
   }
 
   ngOnDestroy(): void {
@@ -49,7 +48,7 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     let email = this.registerForm.controls['email'].value;
     let password = this.registerForm.controls['password'].value;
     let confirmPassword = this.registerForm.controls['confirmPassword'].value;
-    this.submitDisabled = username === '' || email === '' || password === '' || confirmPassword === '';
+    this.submitDisabled = username === '' || email === '' || password === '' || confirmPassword === '' || this.registerForm.invalid;
   }
 
   validatePassword(): void {

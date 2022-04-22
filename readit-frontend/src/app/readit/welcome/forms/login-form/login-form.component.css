@@ -58,30 +58,11 @@ mat-form-field {
   margin-bottom: 1rem;
   cursor: pointer;
   font: inherit;
-  color: white;
-  border: 2px solid #D44171;
-  background-color: #D44171;
   border-radius: 5px;
   padding: 1rem 2.5rem;
+
 }
 
-.actions button:hover {
-  background-color: #d2225d;
-  border-color: #D44171;
-}
-
-.actions .toggle {
-  margin-top: 1rem;
-  background-color: transparent;
-  color: #D44171;
-  border: none;
-  padding: 0.15rem 1.5rem;
-}
-
-.actions .toggle:hover {
-  background-color: transparent;
-  color: #d76288;
-}
 
 mat-form-field {
   width: 80%;

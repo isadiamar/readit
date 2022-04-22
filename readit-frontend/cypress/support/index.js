@@ -16,5 +16,22 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 
-// Alternatively you can use CommonJS syntax:
-// require('./commands')
+beforeEach(()=>{
+
+  _setupDefaultApiResponses();
+
+  cy.visit("/")
+})
+
+function _setupDefaultApiResponses(){
+
+  // LOGIN
+  cy.intercept('POST', Cypress.env("API_URL") + '/auth/login', {
+    statusCode: 200,
+  })
+
+  // SIGNUP
+  cy.intercept('POST', Cypress.env("API_URL") + '/auth/register', {
+    statusCode: 200,
+  })
+}
