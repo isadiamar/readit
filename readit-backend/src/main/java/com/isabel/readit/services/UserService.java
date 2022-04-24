@@ -1,6 +1,6 @@
 package com.isabel.readit.services;
 
-import com.isabel.readit.api.dtos.UserDto;
+import com.isabel.readit.api.dtos.RegisterDto;
 import com.isabel.readit.data.model.User;
 import com.isabel.readit.data.daos.UserRepository;
 import com.isabel.readit.services.exceptions.BadRequestException;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -35,7 +34,7 @@ public class UserService {
         return new ArrayList<>(this.userRepository.findAll());
     }
 
-    public UserDto getUserByEmail(String email) {
+    public RegisterDto getUserByEmail(String email) {
 /*
         return this.userRepository
                 .findByEmail(email)
@@ -45,7 +44,7 @@ public class UserService {
                 .orElseThrow(() -> new NotFoundException("User email: " + email))
                 .toUser();*/
 
-        return new UserDto();
+        return new RegisterDto();
     }
 
 

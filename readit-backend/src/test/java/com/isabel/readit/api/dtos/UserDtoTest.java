@@ -9,7 +9,7 @@ class UserDtoTest {
     @Test
     void testGetSetNickname() {
         User user = User.builder().nickname("Maria").email("maria@email.com").password("maria123").build();
-        UserDto userDto = new UserDto(user);
+        RegisterDto userDto = new RegisterDto(user);
 
         assertEquals("Maria", userDto.getNickname());
 
@@ -20,7 +20,7 @@ class UserDtoTest {
     @Test
     void testGetSetEmail() {
         User user = User.builder().nickname("Maria").email("maria@email.com").password("maria123").build();
-        UserDto userDto = new UserDto(user);
+        RegisterDto userDto = new RegisterDto(user);
 
         assertEquals("maria@email.com", userDto.getEmail());
 

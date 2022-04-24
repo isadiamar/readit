@@ -1,6 +1,6 @@
 package com.isabel.readit.api.controllers;
 
-import com.isabel.readit.api.dtos.UserDto;
+import com.isabel.readit.api.dtos.RegisterDto;
 import com.isabel.readit.data.model.User;
 import com.isabel.readit.services.UserService;
 import com.isabel.readit.services.security.JWTService;
@@ -30,18 +30,18 @@ public class UserController {
     private JWTService jwtService;
 
     @GetMapping
-    public List<UserDto> getAllUsers(){
+    public List<RegisterDto> getAllUsers(){
         List<User>userEntityList = this.userService.getAllUsers();
-        List<UserDto> userList = new ArrayList<>();
+        List<RegisterDto> userList = new ArrayList<>();
 
         for (User userEntity : userEntityList) {
-            userList.add(new UserDto(userEntity));
+            userList.add(new RegisterDto(userEntity));
         }
         return userList;
     }
 
     @GetMapping(EMAIL)
-    public UserDto getUserByEmail(@PathVariable String email){
+    public RegisterDto getUserByEmail(@PathVariable String email){
         return this.userService.getUserByEmail(email);
     }
 
