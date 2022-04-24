@@ -12,6 +12,17 @@ describe('RegisterForm Test', ()=>{
     cy.get('h1').contains('Sign up here').should('exist')
   })
 
+  it("Submit button should be disabled when inputs are empty", ()=>{
+    cy.get("button").contains('Sign up').parent().should('be.disabled')
+  })
+
+  it("Submit button should be disabled when email format is wrong", ()=>{
+    _fillInputsValid()
+    let emailInput = _getInput(1)
+    emailInput.clear().type('badEmail@bad')
+    cy.get("button").contains('Sign up').parent().should('be.disabled')
+  })
+
   it('Should give server error when email is in use', () => {
     cy.intercept('POST', Cypress.env("API_URL") + '/auth/register', {
       statusCode: 400,
