@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.isabel.readit.data.model.User;
 import com.isabel.readit.data.daos.UserRepository;
 import com.isabel.readit.services.UserService;
+import com.isabel.readit.services.security.JWTService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,13 @@ import static org.mockito.BDDMockito.given;
 
 
 @WebMvcTest(UserController.class)
-public class UserResourceTest {
+public class UserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    private JWTService jwtService;
 
     @MockBean
     private UserService userService;
@@ -35,25 +39,6 @@ public class UserResourceTest {
     private UserRepository userRepository;
 
 
-    @BeforeEach
-    void setUp()
-    {
-        List<User> userList = new ArrayList<>();
-
-        User user1 = User.builder().nickname("Laura").email("laura@email.com").password("laurapassword").build();
-        User user2 =User.builder().nickname("Pepe").email("pepe@email.com").password("pepepassword").build();
-        User user3 = User.builder().nickname("Mia").email("mia@email.com").password("miapassword").build();
-        User user4 = User.builder().nickname("Lolo").email("lolo@email.com").password("lolopassword").build();
-
-        userList.add(user1);
-        userList.add(user2);
-        userList.add(user3);
-        userList.add(user4);
-
-        given(this.userService.getAllUsers()).willReturn(userList);
-        given(this.userService.create(user1)).willReturn(user1);
-
-    }
 
     //Utils
     public static String asJsonString(final Object obj) {
@@ -63,22 +48,7 @@ public class UserResourceTest {
             throw new RuntimeException(e);
         }
     }
-/*
-    @Test
-    void testCreate() throws Exception {
-        User user1 = User.builder().nickname("Laura").email("laura@email.com").password("laurapassword").build();
-        Mockito.when(userService.create(any(User.class))).thenReturn(user1);
 
-        Map<String, Object> body = new HashMap<>();
-        body.put("nickname", "aa");
-        body.put("email", "email@test.com");
-        body.put("password", "aa");
-
-        mockMvc.perform(post("/users")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(asJsonString(body)))
-                .andExpect(status().isOk());
-    }
 
     @Test
     void testGetAllUsers() throws Exception {
@@ -91,10 +61,9 @@ public class UserResourceTest {
 
     @Test
     void testGetUserByEmail() throws Exception {
-        User user1 = User.builder().nickname("Laura").email("laura@email.com").password("laurapassword").build();
 
-        mockMvc.perform(get("/users/{email}", user1.getEmail()))
+        mockMvc.perform(get("api/private/user/{email}", "c1@email.com"))
                 .andExpect(status().isOk()).andReturn();
     }
-*/
+
 }

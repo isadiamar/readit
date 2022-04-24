@@ -10,6 +10,16 @@ describe('LoginForm Test', () =>{
     cy.get('h1').contains('Welcome back!').should('exist')
   })
 
+  it("Submit button should be disabled when inputs are empty", ()=>{
+    cy.get("button").contains('Log in').parent().should('be.disabled')
+  })
+
+  it("Submit button should be disabled when email format is wrong", ()=>{
+    _fillInputsValid()
+    let emailInput = _getInput(0)
+    emailInput.clear().type('badEmail@bad')
+    cy.get("button").contains('Log in').parent().should('be.disabled')
+  })
 
   it('Should give server error when email dont exists', () => {
     cy.intercept('POST',  Cypress.env("API_URL") + '/auth/login', {
