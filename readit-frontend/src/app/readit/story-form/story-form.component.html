@@ -1,0 +1,91 @@
+<app-story-header></app-story-header>
+<section class="wrapForm">
+  <form>
+    <div class="left">
+      <div class="vertical cover" (click)="uploadFile.click()">
+        <p class="title">Story cover image</p>
+        <button mat-raised-button color="accent">Choose File</button>
+        <input #uploadFile (change)="upload($event)" type='file' style="display:none"/>
+      </div>
+      <div class="vertical">
+        <p class="title">Color</p>
+        <mat-form-field appearance="outline">
+          <mat-label>Color</mat-label>
+          <input matInput type="color"/>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="right">
+      <p class="title">Title</p>
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput type="text">
+      </mat-form-field>
+      <p class="title">Description</p>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea matInput></textarea>
+      </mat-form-field>
+      <div class="horizontal">
+        <div class="vertical first">
+          <p class="title">Genre 1</p>
+          <mat-form-field appearance="outline">
+            <mat-label>Genre 1</mat-label>
+            <mat-select>
+              <mat-option value="romance">Romance</mat-option>
+              <mat-option value="sol">Slice of life</mat-option>
+              <mat-option value="drama">Drama</mat-option>
+              <mat-option value="horror">Horror</mat-option>
+              <mat-option value="fantasy">Fantasy</mat-option>
+              <mat-option value="comedy">Comedy</mat-option>
+              <mat-option value="historical">Historical</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="vertical">
+          <p class="title">Genre 2</p>
+          <mat-form-field appearance="outline">
+            <mat-label>Genre 2</mat-label>
+            <mat-select>
+              <mat-option value="romance">Romance</mat-option>
+              <mat-option value="sol">Slice of life</mat-option>
+              <mat-option value="drama">Drama</mat-option>
+              <mat-option value="horror">Horror</mat-option>
+              <mat-option value="fantasy">Fantasy</mat-option>
+              <mat-option value="comedy">Comedy</mat-option>
+              <mat-option value="historical">Historical</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="horizontal">
+        <div class="vertical first">
+          <p class="title">Privacy</p>
+          <mat-form-field appearance="outline">
+            <mat-label>Privacy</mat-label>
+            <mat-select>
+              <mat-option value="private">Private</mat-option>
+              <mat-option value="public">Public</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="vertical">
+          <p class="title">Status</p>
+          <mat-form-field appearance="outline">
+            <mat-label>Status</mat-label>
+            <mat-select>
+              <mat-option value="complete">Complete</mat-option>
+              <mat-option value="progress">In Progress</mat-option>
+              <mat-option value="dropped">Dropped</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="actions">
+        <button mat-flat-button color="accent">Create</button>
+      </div>
+    </div>
+
+  </form>
+
+</section>

@@ -1,9 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {WelcomeComponent} from "./welcome/welcome.component";
-import {LoginFormComponent} from "./welcome/forms/login-form/login-form.component";
-import {RegisterFormComponent} from "./welcome/forms/register-form/register-form.component";
 import {ReaditComponent} from "./readit.component";
+import {StoryFormComponent} from "./story-form/story-form.component";
 
 
 const routes: Routes = [
@@ -12,7 +11,7 @@ const routes: Routes = [
     component: ReaditComponent,
     children: [
       {path: 'welcome', component: WelcomeComponent},
-      {path: 'loginForm', component: LoginFormComponent},
+      {path: 'myStories/new', component: StoryFormComponent},
     ]
   }
 
