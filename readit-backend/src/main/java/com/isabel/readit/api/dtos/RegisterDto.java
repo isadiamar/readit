@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
-public class UserDto {
+public class RegisterDto {
     @NotNull
     @NotBlank
     private String nickname;
@@ -22,10 +22,12 @@ public class UserDto {
     @NotBlank
     private String email;
     private String password;
-    private String description;
+    private String confirmPassword;
 
-    public UserDto(User user) {
+    public RegisterDto(User user) {
         BeanUtils.copyProperties(user, this);
     }
 
 }
+
+

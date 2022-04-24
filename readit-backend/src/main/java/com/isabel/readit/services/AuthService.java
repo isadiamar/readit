@@ -54,7 +54,7 @@ public class AuthService {
         User user = userRepository.findByEmail(loginDto.getEmail()).orElseThrow(() -> new ForbiddenException("Email or password are wrong"));
 
         if(!passwordEncoder.matches(loginDto.getPassword(), user.getPassword())) {
-            throw new ForbiddenException("Email o contraseña incorrecto");
+            throw new ForbiddenException("Email or password are wrong");
         }
 
         res.setToken(jwtService.jwtCreateToken(user.getEmail()));

@@ -2,7 +2,7 @@ package com.isabel.readit.api.controllers;
 
 import com.isabel.readit.api.dtos.LoginDto;
 import com.isabel.readit.api.dtos.TokenDto;
-import com.isabel.readit.api.dtos.UserDto;
+import com.isabel.readit.api.dtos.RegisterDto;
 import com.isabel.readit.data.model.User;
 import com.isabel.readit.services.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +18,12 @@ public class AuthController {
     private AuthService authService;
 
     @PostMapping("/register")
-    public TokenDto register(@RequestBody UserDto userDto) {
+    public TokenDto register(@RequestBody RegisterDto registerDto) {
         User user = User.builder()
-                .nickname(userDto.getNickname())
-                .email(userDto.getEmail())
-                .password(userDto.getPassword())
-                .confirmPassword(userDto.getConfirmPassword())
+                .nickname(registerDto.getNickname())
+                .email(registerDto.getEmail())
+                .password(registerDto.getPassword())
+                .confirmPassword(registerDto.getConfirmPassword())
                 .build();
 
         return authService.register(user);
