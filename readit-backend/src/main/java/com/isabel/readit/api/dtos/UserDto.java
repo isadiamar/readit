@@ -15,6 +15,8 @@ import javax.validation.constraints.NotNull;
 @Builder
 @AllArgsConstructor
 public class UserDto {
+    @NotBlank
+    private String id;
     @NotNull
     @NotBlank
     private String nickname;
