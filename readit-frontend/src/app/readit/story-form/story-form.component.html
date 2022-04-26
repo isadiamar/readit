@@ -1,17 +1,18 @@
 <app-story-header></app-story-header>
 <section class="wrapForm">
-  <form>
+  <form [formGroup]="formNewStory">
     <div class="left">
-      <div class="vertical cover" (click)="uploadFile.click()">
+      <div class="vertical cover" >
         <p class="title">Story cover image</p>
-        <button mat-raised-button color="accent">Choose File</button>
-        <input #uploadFile (change)="upload($event)" type='file' style="display:none"/>
+        <button mat-raised-button color="accent" (click)="uploadFile.click()" >Choose File</button>
+        <input formControlName="cover" #uploadFile (change)="upload($event)" type='file' style="display:none" accept = "image/jpeg, image/png"/>
+        <p class="subtitle">{{selectedFile}}</p>
       </div>
       <div class="vertical">
         <p class="title">Color</p>
         <mat-form-field appearance="outline">
           <mat-label>Color</mat-label>
-          <input matInput type="color"/>
+          <input formControlName="color" matInput type="color"/>
         </mat-form-field>
       </div>
     </div>
@@ -19,19 +20,19 @@
       <p class="title">Title</p>
       <mat-form-field appearance="outline">
         <mat-label>Title</mat-label>
-        <input matInput type="text">
+        <input formControlName="title" matInput type="text">
       </mat-form-field>
       <p class="title">Description</p>
       <mat-form-field appearance="outline">
         <mat-label>Description</mat-label>
-        <textarea matInput></textarea>
+        <textarea formControlName="description" matInput></textarea>
       </mat-form-field>
       <div class="horizontal">
         <div class="vertical first">
           <p class="title">Genre 1</p>
           <mat-form-field appearance="outline">
             <mat-label>Genre 1</mat-label>
-            <mat-select>
+            <mat-select [formControl]="genre1Control">
               <mat-option value="romance">Romance</mat-option>
               <mat-option value="sol">Slice of life</mat-option>
               <mat-option value="drama">Drama</mat-option>
@@ -46,7 +47,7 @@
           <p class="title">Genre 2</p>
           <mat-form-field appearance="outline">
             <mat-label>Genre 2</mat-label>
-            <mat-select>
+            <mat-select [formControl]="genre2Control">
               <mat-option value="romance">Romance</mat-option>
               <mat-option value="sol">Slice of life</mat-option>
               <mat-option value="drama">Drama</mat-option>
@@ -63,9 +64,9 @@
           <p class="title">Privacy</p>
           <mat-form-field appearance="outline">
             <mat-label>Privacy</mat-label>
-            <mat-select>
-              <mat-option value="private">Private</mat-option>
+            <mat-select [formControl]="privacyControl">
               <mat-option value="public">Public</mat-option>
+              <mat-option value="private">Private</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -73,16 +74,16 @@
           <p class="title">Status</p>
           <mat-form-field appearance="outline">
             <mat-label>Status</mat-label>
-            <mat-select>
-              <mat-option value="complete">Complete</mat-option>
+            <mat-select [formControl]="statusControl">
               <mat-option value="progress">In Progress</mat-option>
+              <mat-option value="complete">Complete</mat-option>
               <mat-option value="dropped">Dropped</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
       </div>
       <div class="actions">
-        <button mat-flat-button color="accent">Create</button>
+        <button mat-flat-button color="accent" (click)="submit()">Create</button>
       </div>
     </div>
 
