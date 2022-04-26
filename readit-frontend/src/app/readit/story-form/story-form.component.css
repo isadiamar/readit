@@ -81,6 +81,10 @@ form{
   background-color: #14AF23;
 }
 
+.disabled{
+  background-color: rgba(0,0,0,.12) !important;
+}
+
 .subtitle{
   margin-top: .5rem;
   font-size: 14px;

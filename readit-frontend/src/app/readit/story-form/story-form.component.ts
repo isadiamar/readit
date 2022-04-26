@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-story-form',
@@ -9,15 +9,19 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 export class StoryFormComponent implements OnInit {
   formNewStory: FormGroup;
   selectedFile:string = "";
+  submitDisabled:boolean = true;
   genre1Control= new FormControl('romance');
   genre2Control= new FormControl('romance');
   privacyControl = new FormControl('public');
   statusControl = new FormControl('progress');
 
-  constructor(fb:FormBuilder) {
-    this.formNewStory = fb.group({
-      title: new FormControl(''),
-      description: new FormControl(''),
+  constructor(private formBuilder:FormBuilder) {
+  }
+
+  ngOnInit(): void {
+    this.formNewStory = this.formBuilder.group({
+      title: new FormControl('', [Validators.minLength(3)]),
+      description: new FormControl('', [Validators.minLength(15)]),
       genre1 : this.genre1Control,
       genre2 : this.genre2Control,
       privacy:this.privacyControl,
@@ -25,16 +29,22 @@ export class StoryFormComponent implements OnInit {
       color: new FormControl(''),
       cover: new FormControl('')
     })
-  }
 
-  ngOnInit(): void {
+    this.formNewStory.valueChanges.subscribe(_ => this.checkDisabled())
   }
 
   upload(event:Event){
-    console.log(event);
+    console.log(this.submitDisabled);
     let pathName:String = this.formNewStory.controls['cover'].value
     const arrPath = pathName.split("\\");
     this.selectedFile = arrPath[arrPath.length - 1];
+  }
+
+  checkDisabled(): void {
+    let title = this.formNewStory.controls['title'].value;
+    let description = this.formNewStory.controls['description'].value;
+
+    this.submitDisabled = title === '' || description === '' || this.formNewStory.invalid ;
   }
 
   submit() {
