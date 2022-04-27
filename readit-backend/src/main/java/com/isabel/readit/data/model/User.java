@@ -29,6 +29,7 @@ public class User {
     private String password;
     private String confirmPassword;
     private String description;
+
     @OneToMany(mappedBy = "user")
     private List<Story> storyList;
 

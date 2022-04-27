@@ -3,6 +3,7 @@ package com.isabel.readit.data.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 @Builder
@@ -19,10 +20,9 @@ public class Story{
     private Integer id;
     private String title;
     private String description;
-    private List<Genre> genreList;
-    @Enumerated(EnumType.STRING)
+    private Genre genre1;
+    private Genre genre2;
     private Status status;
-    @Enumerated(EnumType.STRING)
     private Privacy privacy;
     @Lob
     @Basic(fetch = FetchType.LAZY)

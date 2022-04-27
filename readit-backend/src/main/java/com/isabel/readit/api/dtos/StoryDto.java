@@ -17,18 +17,15 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 public class StoryDto {
-    @NotBlank
-    private String id;
+    private Integer id;
     @NotBlank
     private String title;
     @NotBlank
     String description;
-    List<Genre> genreList;
+    private Genre genre1;
+    private Genre genre2;
     private Status status;
     private Privacy privacy;
     private byte[] storyCover;
     private String color;
-    private User user;
-
-
 }

@@ -20,14 +20,13 @@ public class UserController {
     static final String EMAIL = "/{email}";
 
     private final UserService userService;
+    private final JWTService jwtService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, JWTService jwtService) {
         this.userService = userService;
+        this.jwtService = jwtService;
     }
-
-    @Autowired
-    private JWTService jwtService;
 
     @GetMapping
     public List<RegisterDto> getAllUsers(){
