@@ -1,10 +1,8 @@
 import {RegisterDto} from "./register.model";
 import {HttpService} from "./http.service";
-import {Router} from "@angular/router";
 import {map, Observable} from "rxjs";
 import {Injectable} from "@angular/core";
 import {Token} from "../readit/shared/models/token.model";
-import {User} from "./User";
 
 @Injectable({
   providedIn: 'root',
