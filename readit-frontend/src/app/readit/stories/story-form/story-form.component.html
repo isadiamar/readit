@@ -32,14 +32,8 @@
           <p class="title">Genre 1</p>
           <mat-form-field appearance="outline">
             <mat-label>Genre 1</mat-label>
-            <mat-select [formControl]="genre1Control">
-              <mat-option value="romance">Romance</mat-option>
-              <mat-option value="sol">Slice of life</mat-option>
-              <mat-option value="drama">Drama</mat-option>
-              <mat-option value="horror">Horror</mat-option>
-              <mat-option value="fantasy">Fantasy</mat-option>
-              <mat-option value="comedy">Comedy</mat-option>
-              <mat-option value="historical">Historical</mat-option>
+            <mat-select [formControlName]="'genre1'">
+              <mat-option *ngFor="let genre of genres | enumToArray" [value]="genre[0]">{{genre[1]}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -47,14 +41,8 @@
           <p class="title">Genre 2</p>
           <mat-form-field appearance="outline">
             <mat-label>Genre 2</mat-label>
-            <mat-select [formControl]="genre2Control">
-              <mat-option value="romance">Romance</mat-option>
-              <mat-option value="sol">Slice of life</mat-option>
-              <mat-option value="drama">Drama</mat-option>
-              <mat-option value="horror">Horror</mat-option>
-              <mat-option value="fantasy">Fantasy</mat-option>
-              <mat-option value="comedy">Comedy</mat-option>
-              <mat-option value="historical">Historical</mat-option>
+            <mat-select [formControlName]="'genre2'">
+              <mat-option *ngFor="let genre of genres | enumToArray" [value]="genre[0]">{{genre[1]}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -64,9 +52,8 @@
           <p class="title">Privacy</p>
           <mat-form-field appearance="outline">
             <mat-label>Privacy</mat-label>
-            <mat-select [formControl]="privacyControl">
-              <mat-option value="public">Public</mat-option>
-              <mat-option value="private">Private</mat-option>
+            <mat-select [formControlName]="'privacy'">
+              <mat-option *ngFor="let privacy of privacies | enumToArray" [value]="privacy[0]">{{privacy[1]}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -74,10 +61,8 @@
           <p class="title">Status</p>
           <mat-form-field appearance="outline">
             <mat-label>Status</mat-label>
-            <mat-select [formControl]="statusControl">
-              <mat-option value="progress">In Progress</mat-option>
-              <mat-option value="complete">Complete</mat-option>
-              <mat-option value="dropped">Dropped</mat-option>
+            <mat-select [formControlName]="'status'">
+              <mat-option *ngFor="let state of status | enumToArray" [value]="state[0]">{{state[1]}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
