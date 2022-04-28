@@ -5,6 +5,7 @@ import {Subscription} from "rxjs";
 import {WelcomeService} from "../../../shared/services/data.service";
 import {AuthService} from "../../../../core/auth.service";
 import {RegisterDto} from "../../../../core/register.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register-form',
@@ -19,8 +20,9 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
-    public data: WelcomeService,
-    public authService:AuthService
+    private data: WelcomeService,
+    private authService:AuthService,
+    private router:Router
   ) {
   }
 
@@ -63,9 +65,11 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     this.validatePassword();
     if (this.registerForm.valid) {
       let registerDto:RegisterDto = this.createUser();
-      this.authService.register(registerDto).subscribe(res => {
-        console.log(res);
-      });
+      this.authService.register(registerDto).subscribe(
+        next => console.log(next),
+        error => console.log(error),
+        ()=> this.router.navigate(["myStories/new"])
+      );
       this.clearFields()
     }
   }

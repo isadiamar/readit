@@ -1,9 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {MatSnackBar} from "@angular/material/snack-bar";
-import {Subscription} from "rxjs";
+import {catchError, of, Subscription} from "rxjs";
 import {WelcomeService} from "../../../shared/services/data.service";
 import {AuthService} from "../../../../core/auth.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -19,8 +20,9 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
-    public data: WelcomeService,
-    public authService:AuthService
+    private data: WelcomeService,
+    private authService:AuthService,
+    private router:Router,
   ) {
   }
 
@@ -52,9 +54,11 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     if (this.loginForm.valid) {
       let email = this.loginForm.controls['email'].value;
       let password = this.loginForm.controls['password'].value;
-      this.authService.login(email, password).subscribe(res => console.log(res));
-
-      this.clearFields()
+      this.authService.login(email, password).subscribe(
+        next => console.log(next),
+          error => console.log(error),
+          ()=> this.router.navigate(["myStories/new"])
+        )
     }
   }
 
