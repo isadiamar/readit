@@ -14,7 +14,6 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.web.reactive.server.WebTestClient;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -66,19 +65,19 @@ public class AuthServiceTest {
 
     @Test
     void testRegisterOk(){
-        User user = User.builder().nickname("c1").email("c1@email.com").password("c123h2").confirmPassword("c123h2").build();
+        RegisterDto registerDto = RegisterDto.builder().nickname("c1").email("c1@email.com").password("c123h2").confirmPassword("c123h2").build();
 
-        TokenDto tokenDto = this.authService.register(user);
+        TokenDto tokenDto = this.authService.register(registerDto);
         assertNotNull(tokenDto);
     }
 
     @Test
     void testRegisterEmailInUse(){
-        User user = User.builder().nickname("exception").email("user1@test.com").password("c123h2").confirmPassword("c123h2").build();
+        RegisterDto registerDto = RegisterDto.builder().nickname("exception").email("user1@test.com").password("c123h2").confirmPassword("c123h2").build();
 
         BadRequestException thrown = assertThrows(
                 BadRequestException.class,
-                () -> this.authService.register(user),
+                () -> this.authService.register(registerDto),
                 "Expected authService.register() to throw, but it didn't"
         );
         assertTrue(thrown.getMessage().contains("Invalid data input"));
@@ -87,10 +86,10 @@ public class AuthServiceTest {
 
     @Test
     void testRegisterConfirmedPasswordIncorrect(){
-        User user = User.builder().nickname("c2").email("c2@email.com").password("goodPassword!").confirmPassword("badPasss").build();
+        RegisterDto registerDto = RegisterDto.builder().nickname("c2").email("c2@email.com").password("goodPassword!").confirmPassword("badPasss").build();
         BadRequestException thrown = assertThrows(
                 BadRequestException.class,
-                () -> this.authService.register(user),
+                () -> this.authService.register(registerDto),
                 "Expected authService.register() to throw, but it didn't"
         );
         assertTrue(thrown.getMessage().contains("Invalid data input"));

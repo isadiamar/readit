@@ -1,6 +1,7 @@
 package com.isabel.readit.services;
 
 import com.isabel.readit.api.dtos.LoginDto;
+import com.isabel.readit.api.dtos.RegisterDto;
 import com.isabel.readit.api.dtos.TokenDto;
 import com.isabel.readit.data.daos.UserRepository;
 import com.isabel.readit.data.model.User;
@@ -34,12 +35,17 @@ public class AuthService {
         this.jwtService = jwtService;
     }
 
-    public TokenDto register(User user) {
+    public TokenDto register(RegisterDto registerDto) {
         TokenDto res = new TokenDto();
 
-        if(!Objects.equals(user.getPassword(), user.getConfirmPassword()) || userRepository.findByEmail(user.getEmail()).isPresent()){
+        if(!Objects.equals(registerDto.getPassword(), registerDto.getConfirmPassword()) || userRepository.findByEmail(registerDto.getEmail()).isPresent()){
             throw new BadRequestException("Invalid data input");
         }else {
+            User user = User.builder()
+                    .nickname(registerDto.getNickname())
+                    .email(registerDto.getEmail())
+                    .password(registerDto.getPassword())
+                    .build();
             String encodedPass = passwordEncoder.encode(user.getPassword());
             user.setPassword(encodedPass);
             user = userRepository.save(user);
