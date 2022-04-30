@@ -1,10 +1,8 @@
 package com.isabel.readit.data.model;
 
 import lombok.*;
-
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.List;
+import java.io.File;
 
 @Builder
 @Getter
@@ -24,9 +22,7 @@ public class Story{
     private Genre genre2;
     private Status status;
     private Privacy privacy;
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    private byte[] storyCover;
+    private File storyCover;
     private String color;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)

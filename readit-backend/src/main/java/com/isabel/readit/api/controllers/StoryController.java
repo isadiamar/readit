@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-
 @RestController
 @RequestMapping(StoryController.STORIES)
 public class StoryController {
@@ -22,8 +20,8 @@ public class StoryController {
     private JWTService jwtService;
 
     @PostMapping("/new")
-    public StoryDto create(@RequestBody StoryDto storyDto){
-        String email = this.jwtService.getTokenEmailFromContext();
-        return this.storyService.create(storyDto, email);
-    }
+        public StoryDto create (@RequestBody StoryDto storyDto){
+            String email = this.jwtService.getTokenEmailFromContext();
+            return this.storyService.create(storyDto, email);
+        }
 }
