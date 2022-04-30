@@ -2,11 +2,11 @@
 <section class="wrapForm">
   <form [formGroup]="formNewStory">
     <div class="left">
-      <div class="vertical cover" >
+      <div class="vertical cover">
         <p class="title">Story cover image</p>
+        <img *ngIf = "imageFile" class="preview-image" [src]="imageFile ? imageFile.link : 'localhost/image.png'">
         <button mat-raised-button color="accent" (click)="uploadFile.click()" >Choose File</button>
-        <input formControlName="cover" #uploadFile (change)="upload($event)" type='file' style="display:none" accept = "image/jpeg, image/png"/>
-        <p class="subtitle">{{selectedFile}}</p>
+        <input #uploadFile (change)="upload($event)" type='file' style="display:none" accept = "image/jpeg, image/png"/>
       </div>
       <div class="vertical">
         <p class="title">Color</p>

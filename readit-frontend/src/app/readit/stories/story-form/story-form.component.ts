@@ -14,11 +14,12 @@ import {Utils} from "../../shared/utils/Utils";
 })
 export class StoryFormComponent implements OnInit {
   formNewStory: FormGroup;
-  selectedFile:string = "";
   submitDisabled:boolean = true;
+  imageFile: {link: string, file: any, name: string};
   genres = Genre;
   status =  Status;
   privacies =  Privacy;
+  filedata:any;
 
   constructor(
     private formBuilder:FormBuilder,
@@ -35,16 +36,26 @@ export class StoryFormComponent implements OnInit {
       privacy: new FormControl(Utils.getEnumKeyByValue(Privacy, Privacy.PUBLIC)),
       status: new FormControl(Utils.getEnumKeyByValue(Status, Status.IN_PROGRESS)),
       color: new FormControl(''),
-      cover: new FormControl('')
     })
 
     this.formNewStory.valueChanges.subscribe(_ => this.checkDisabled())
   }
 
-  upload(event:Event){
-    let pathName:String = this.formNewStory.controls['cover'].value
-    const arrPath = pathName.split("\\");
-    this.selectedFile = arrPath[arrPath.length - 1];
+  upload(event:any){
+    this.filedata = event.target.files;
+
+    if (this.filedata && this.filedata[0]) {
+      const reader = new FileReader();
+
+      reader.onload = (_event: any) => {
+        this.imageFile = {
+          link: _event.target.result,
+          file: event.target.files[0],
+          name: event.target.files[0].name
+        };
+      };
+      reader.readAsDataURL(this.filedata[0]);
+    }
   }
 
   checkDisabled(): void {
@@ -57,6 +68,7 @@ export class StoryFormComponent implements OnInit {
   submit() {
     if(this.formNewStory.valid){
       let story:Story = this.createStory();
+      console.log(story)
       this.storyService.create(story).subscribe(res => {
         console.log(res);
       });
@@ -66,6 +78,9 @@ export class StoryFormComponent implements OnInit {
 
   clearFields() {
     this.formNewStory.reset();
+    Object.keys(this.formNewStory.controls).forEach(key => {
+      this.formNewStory.get(key)?.setErrors(null);
+    })
   }
 
   private createStory():Story {
@@ -76,7 +91,7 @@ export class StoryFormComponent implements OnInit {
     let privacy = this.formNewStory.controls['privacy'].value;
     let status =  this.formNewStory.controls['status'].value;
     let color =  this.formNewStory.controls['color'].value;
-    let cover =  this.formNewStory.controls['cover'].value;
+    let cover =  this.filedata[0];
 
     return {title, description, genre1, genre2, privacy, status, color, cover}
   }
