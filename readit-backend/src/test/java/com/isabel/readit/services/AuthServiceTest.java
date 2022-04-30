@@ -5,7 +5,6 @@ import com.isabel.readit.api.dtos.RegisterDto;
 import com.isabel.readit.api.dtos.TokenDto;
 import com.isabel.readit.data.daos.UserRepository;
 import com.isabel.readit.data.model.User;
-import com.isabel.readit.services.AuthService;
 import com.isabel.readit.services.exceptions.BadRequestException;
 import com.isabel.readit.services.exceptions.ForbiddenException;
 import org.junit.jupiter.api.BeforeAll;
@@ -39,7 +38,6 @@ public class AuthServiceTest {
         user1.setEmail("user1@test.com");
         user1.setPassword(passwordEncoder.encode("Password"));
         userRepository.save(user1);
-
     }
 
     @Test

@@ -29,7 +29,7 @@ public class User {
     private String password;
     private String description;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Story> storyList;
 
     public void addStoryToList(Story story){
