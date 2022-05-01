@@ -11,6 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -48,7 +49,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
        JWTAuthorizationFilter jwtAuthorizationFilter = new JWTAuthorizationFilter();
        jwtAuthorizationFilter.setJwtService(jwtService);
 
-       http.csrf().disable().cors().and()
+       http
+               .csrf()
+               .disable()
+               .cors().and()
                .addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
                .authorizeRequests()
                .antMatchers("/api/private/**").authenticated()
