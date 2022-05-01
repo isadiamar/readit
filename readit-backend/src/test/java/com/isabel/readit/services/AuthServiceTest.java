@@ -5,7 +5,6 @@ import com.isabel.readit.api.dtos.RegisterDto;
 import com.isabel.readit.api.dtos.TokenDto;
 import com.isabel.readit.data.daos.UserRepository;
 import com.isabel.readit.data.model.User;
-import com.isabel.readit.services.AuthService;
 import com.isabel.readit.services.exceptions.BadRequestException;
 import com.isabel.readit.services.exceptions.ForbiddenException;
 import org.junit.jupiter.api.BeforeAll;
@@ -14,7 +13,6 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.test.web.reactive.server.WebTestClient;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -40,7 +38,6 @@ public class AuthServiceTest {
         user1.setEmail("user1@test.com");
         user1.setPassword(passwordEncoder.encode("Password"));
         userRepository.save(user1);
-
     }
 
     @Test
@@ -66,19 +63,19 @@ public class AuthServiceTest {
 
     @Test
     void testRegisterOk(){
-        User user = User.builder().nickname("c1").email("c1@email.com").password("c123h2").confirmPassword("c123h2").build();
+        RegisterDto registerDto = RegisterDto.builder().nickname("c1").email("c1@email.com").password("c123h2").confirmPassword("c123h2").build();
 
-        TokenDto tokenDto = this.authService.register(user);
+        TokenDto tokenDto = this.authService.register(registerDto);
         assertNotNull(tokenDto);
     }
 
     @Test
     void testRegisterEmailInUse(){
-        User user = User.builder().nickname("exception").email("user1@test.com").password("c123h2").confirmPassword("c123h2").build();
+        RegisterDto registerDto = RegisterDto.builder().nickname("exception").email("user1@test.com").password("c123h2").confirmPassword("c123h2").build();
 
         BadRequestException thrown = assertThrows(
                 BadRequestException.class,
-                () -> this.authService.register(user),
+                () -> this.authService.register(registerDto),
                 "Expected authService.register() to throw, but it didn't"
         );
         assertTrue(thrown.getMessage().contains("Invalid data input"));
@@ -87,10 +84,10 @@ public class AuthServiceTest {
 
     @Test
     void testRegisterConfirmedPasswordIncorrect(){
-        User user = User.builder().nickname("c2").email("c2@email.com").password("goodPassword!").confirmPassword("badPasss").build();
+        RegisterDto registerDto = RegisterDto.builder().nickname("c2").email("c2@email.com").password("goodPassword!").confirmPassword("badPasss").build();
         BadRequestException thrown = assertThrows(
                 BadRequestException.class,
-                () -> this.authService.register(user),
+                () -> this.authService.register(registerDto),
                 "Expected authService.register() to throw, but it didn't"
         );
         assertTrue(thrown.getMessage().contains("Invalid data input"));

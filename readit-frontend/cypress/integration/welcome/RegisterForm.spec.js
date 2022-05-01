@@ -35,6 +35,12 @@ describe('RegisterForm Test', ()=>{
     _clickSubmitButton()
     _assertTextExists('Invalid data input')
   })
+
+  it ('Should REGISTER', ()=>{
+    _fillInputsValid()
+    _clickSubmitButton()
+    _assertTextExists('USER')
+  })
 })
 
 

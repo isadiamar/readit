@@ -20,16 +20,6 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User create(User user) {
-
-        if (!Objects.equals(user.getPassword(), user.getConfirmPassword())){
-            throw new BadRequestException("Password and confirm password should be the same");
-        }else{
-            return this.userRepository.save(user);
-        }
-    }
-
-
     public List<User> getAllUsers() {
         return new ArrayList<>(this.userRepository.findAll());
     }

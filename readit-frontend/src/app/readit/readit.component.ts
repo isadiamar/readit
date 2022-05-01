@@ -1,25 +1,29 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {NavigationEnd, Route, Router} from "@angular/router";
+import {filter, Subscription} from "rxjs";
 
 @Component({
   templateUrl: 'readit.component.html',
   styleUrls: ['readit.component.css'],
 })
 
-export class ReaditComponent implements OnInit {
+export class ReaditComponent implements OnDestroy {
   isMainMenu: boolean;
   isWelcomeMenu: boolean;
+  routeChange: Subscription;
 
-  constructor() {
+  constructor(private router: Router) {
+    this.routeChange = this.router.events
+      .pipe(
+        filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+      )
+      .subscribe(event => {
+        this.isMainMenu = event.url != '/welcome';
+        this.isWelcomeMenu = event.url == '/welcome';
+      });
   }
 
-  ngOnInit() {
-    this.checkCurrentRoute();
-  }
-
-  private checkCurrentRoute() {
-    setTimeout(() => {
-      this.isMainMenu = window.location.pathname != '/welcome';
-      this.isWelcomeMenu = window.location.pathname == '/welcome';
-    }, 0.5);
+  ngOnDestroy() {
+    this.routeChange.unsubscribe();
   }
 }

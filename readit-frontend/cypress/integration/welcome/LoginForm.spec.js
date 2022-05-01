@@ -47,6 +47,12 @@ describe('LoginForm Test', () =>{
     _assertTextExists('Email or password are wrong')
   })
 
+  it ('Should login', ()=>{
+    _fillInputsValid()
+    _clickSubmitButton()
+    _assertTextExists('USER')
+  })
+
 })
 
 function _getInput(inputNumber){

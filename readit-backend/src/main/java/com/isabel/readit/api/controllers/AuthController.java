@@ -19,14 +19,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public TokenDto register(@RequestBody RegisterDto registerDto) {
-        User user = User.builder()
-                .nickname(registerDto.getNickname())
-                .email(registerDto.getEmail())
-                .password(registerDto.getPassword())
-                .confirmPassword(registerDto.getConfirmPassword())
-                .build();
-
-        return authService.register(user);
+        return authService.register(registerDto);
     }
 
     @PostMapping("/login")

@@ -12,6 +12,7 @@ import {WelcomeMenuComponent} from "./welcome/components/welcome-menu/welcome-me
 
 import {WelcomeService} from "./shared/services/data.service";
 import {ReaditComponent} from "./readit.component";
+import { StoryFormComponent } from './stories/story-form/story-form.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {ReaditComponent} from "./readit.component";
     RegisterFormComponent,
     MainMenuComponent,
     WelcomeComponent,
-    WelcomeMenuComponent
+    WelcomeMenuComponent,
+    StoryFormComponent,
   ],
   entryComponents: [],
   imports: [

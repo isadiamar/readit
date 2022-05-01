@@ -6,6 +6,7 @@ import lombok.*;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Builder
 @Getter
@@ -26,7 +27,16 @@ public class User {
     private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-    private String confirmPassword;
     private String description;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private List<Story> storyList;
+
+    public void addStoryToList(Story story){
+        storyList.add(story);
+    }
+
+    public void removeStoryFromList(Story story){
+        storyList.remove(story);
+    }
 }

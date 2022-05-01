@@ -1,0 +1,77 @@
+<app-story-header></app-story-header>
+<section class="wrapForm">
+  <form [formGroup]="formNewStory">
+    <div class="left">
+      <div class="vertical cover">
+        <p class="title">Story cover image</p>
+        <img *ngIf = "imageFile" class="preview-image" [src]="imageFile ? imageFile.link : 'localhost/image.png'">
+        <button mat-raised-button color="accent" (click)="uploadFile.click()" >Choose File</button>
+        <input #uploadFile (change)="upload($event)" type='file' style="display:none" accept = "image/jpeg, image/png"/>
+      </div>
+      <div class="vertical">
+        <p class="title">Color</p>
+        <mat-form-field appearance="outline">
+          <mat-label>Color</mat-label>
+          <input formControlName="color" matInput type="color"/>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="right">
+      <p class="title">Title</p>
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input formControlName="title" matInput type="text">
+      </mat-form-field>
+      <p class="title">Description</p>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <textarea formControlName="description" matInput></textarea>
+      </mat-form-field>
+      <div class="horizontal">
+        <div class="vertical first">
+          <p class="title">Genre 1</p>
+          <mat-form-field appearance="outline">
+            <mat-label>Genre 1</mat-label>
+            <mat-select [formControlName]="'genre1'">
+              <mat-option *ngFor="let genre of genres | enumToArray" [value]="genre[0]">{{genre[1]}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="vertical">
+          <p class="title">Genre 2</p>
+          <mat-form-field appearance="outline">
+            <mat-label>Genre 2</mat-label>
+            <mat-select [formControlName]="'genre2'">
+              <mat-option *ngFor="let genre of genres | enumToArray" [value]="genre[0]">{{genre[1]}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="horizontal">
+        <div class="vertical first">
+          <p class="title">Privacy</p>
+          <mat-form-field appearance="outline">
+            <mat-label>Privacy</mat-label>
+            <mat-select [formControlName]="'privacy'">
+              <mat-option *ngFor="let privacy of privacies | enumToArray" [value]="privacy[0]">{{privacy[1]}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="vertical">
+          <p class="title">Status</p>
+          <mat-form-field appearance="outline">
+            <mat-label>Status</mat-label>
+            <mat-select [formControlName]="'status'">
+              <mat-option *ngFor="let state of status | enumToArray" [value]="state[0]">{{state[1]}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="actions">
+        <button mat-flat-button color="accent" (click)="submit()" [disabled] = "submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' ">Create</button>
+      </div>
+    </div>
+
+  </form>
+
+</section>
