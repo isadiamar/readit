@@ -33,7 +33,7 @@ export class StoryFormComponent implements OnInit {
   ngOnInit(): void {
     this.formNewStory = this.formBuilder.group({
       title: new FormControl('', [Validators.minLength(3)]),
-      description: new FormControl('', [Validators.minLength(15), Validators.maxLength(1000)]),
+      description: new FormControl('', [Validators.minLength(15)]),
       genre1 : new FormControl(Utils.getEnumKeyByValue(Genre, Genre.ROMANCE)),
       genre2 : new FormControl(Utils.getEnumKeyByValue(Genre, Genre.COMEDY)),
       privacy: new FormControl(Utils.getEnumKeyByValue(Privacy, Privacy.PUBLIC)),

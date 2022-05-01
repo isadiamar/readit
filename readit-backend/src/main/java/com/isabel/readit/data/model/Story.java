@@ -26,6 +26,7 @@ public class Story{
     private String title;
     @NotBlank
     @NotNull
+    @Column(length = 1000)
     private String description;
     private Genre genre1;
     private Genre genre2;
