@@ -96,7 +96,8 @@ export class StoryFormComponent implements OnInit {
     let privacy = this.formNewStory.controls['privacy'].value;
     let status =  this.formNewStory.controls['status'].value;
     let color =  this.formNewStory.controls['color'].value;
-    let cover =  this.filedata[0];
+    let cover;
+    (this.filedata) ? cover = this.filedata[0] : undefined
 
     return {title, description, genre1, genre2, privacy, status, color, cover}
   }
