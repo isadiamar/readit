@@ -37,4 +37,10 @@ public class StoryService {
         storyDto.setId(story.getId());
         return storyDto;
     }
+
+    public StoryDto get(Integer id) {
+       Story story = this.storyRepository.findById(id)
+                .orElseThrow(() -> new ForbiddenException("Story not found"));
+       return story.toStoryDto();
+    }
 }
