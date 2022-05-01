@@ -6,6 +6,7 @@ import {Genre} from "../../shared/models/genre.enum";
 import {Status} from "../../shared/models/status.enum";
 import {Privacy} from "../../shared/models/privacy.enum";
 import {Utils} from "../../shared/utils/Utils";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-story-form',
@@ -20,17 +21,19 @@ export class StoryFormComponent implements OnInit {
   status =  Status;
   privacies =  Privacy;
   filedata:any;
+  private id: number | undefined;
 
   constructor(
     private formBuilder:FormBuilder,
     public storyService:StoryService,
+    private router:Router
     ) {
   }
 
   ngOnInit(): void {
     this.formNewStory = this.formBuilder.group({
       title: new FormControl('', [Validators.minLength(3)]),
-      description: new FormControl('', [Validators.minLength(15)]),
+      description: new FormControl('', [Validators.minLength(15), Validators.maxLength(1000)]),
       genre1 : new FormControl(Utils.getEnumKeyByValue(Genre, Genre.ROMANCE)),
       genre2 : new FormControl(Utils.getEnumKeyByValue(Genre, Genre.COMEDY)),
       privacy: new FormControl(Utils.getEnumKeyByValue(Privacy, Privacy.PUBLIC)),
@@ -69,9 +72,11 @@ export class StoryFormComponent implements OnInit {
     if(this.formNewStory.valid){
       let story:Story = this.createStory();
       console.log(story)
-      this.storyService.create(story).subscribe(res => {
-        console.log(res);
-      });
+      this.storyService.create(story).subscribe(
+        next => this.id = next.id,
+          error => this.clearFields(),
+          ()=> this.router.navigate(["stories/" + this.id])
+      );
       this.clearFields()
     }
   }

@@ -3,6 +3,7 @@ import {Privacy} from "./privacy.enum";
 import {Genre} from "./genre.enum";
 
 export interface Story{
+  id?: number;
   title: string;
   description: string;
   genre1:Genre;

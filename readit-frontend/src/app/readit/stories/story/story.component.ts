@@ -17,7 +17,7 @@ export class StoryComponent implements OnInit {
   constructor(private storyService:StoryService) { }
 
   ngOnInit(): void {
-    this.storyService.get().subscribe(res =>{
+    this.storyService.get(1).subscribe(res =>{
       this.title = res.title
       this.description = res.description
       this.color = res.color ? res.color : "#51c96a"

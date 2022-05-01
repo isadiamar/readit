@@ -13,9 +13,8 @@ const routes: Routes = [
     component: ReaditComponent,
     children: [
       {path: 'welcome', component: WelcomeComponent },
-      {path: 'myStories/new', component: StoryFormComponent,canActivate:[AuthGuardService] },
+      {path: 'stories/new', component: StoryFormComponent,canActivate:[AuthGuardService] },
       {path: 'stories/:id', component:StoryComponent, canActivate:[AuthGuardService]}
-
     ]
   }
 

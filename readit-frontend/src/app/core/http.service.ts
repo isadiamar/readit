@@ -51,6 +51,31 @@ export class HttpService{
       );
   }
 
+  get(endpoint: string): Observable<any> {
+    return this.http
+      .get(endpoint, this.createOptions())
+      .pipe(
+        map(response => this.extractData(response)),
+        catchError(error => this.handleError(error))
+      );
+  }
+
+  put(endpoint: string, body?: object): Observable<any> {
+    return this.http
+      .put(endpoint, body, this.createOptions())
+      .pipe(
+        map(response => this.extractData(response)),
+        catchError(error => this.handleError(error))
+      );
+  }
+
+  delete(endpoint: string): Observable<any> {
+    return this.http
+      .delete(endpoint, this.createOptions())
+      .pipe(
+        map(response => this.extractData(response)),
+        catchError(error => this.handleError(error)));
+  }
 
   header(key: string, value: string): HttpService {
     if (value != null) {
