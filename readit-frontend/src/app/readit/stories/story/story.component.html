@@ -1,0 +1,41 @@
+<div class = "wrap">
+  <div class="story">
+    <div class="header" [ngStyle]="{'background-color': color}">
+        <div class="favorite">
+          <mat-icon *ngIf="!isFavorite" (click)="setFavorite()">favorite_border</mat-icon>
+          <mat-icon *ngIf="isFavorite" (click)="setFavorite()">favorite</mat-icon>
+          <div class="likes">
+            <p>2.000</p>
+          </div>
+        </div>
+    </div>
+    <div class="episodes">
+      <mat-list>
+        <mat-list-item>Item 1</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Item 2</mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item>Item 3</mat-list-item>
+      </mat-list>
+    </div>
+  </div>
+
+  <div class="story-info">
+    <div class="status">
+      <p>Status: {{status}}</p>
+    </div>
+    <div class="info">
+      <p class="title">{{title}}</p>
+      <div class="cover" >
+        <img src="assets/cover-story.png" alt="cover">
+      </div>
+      <p class="author">Author</p>
+      <div class="description">
+        <p>{{description}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

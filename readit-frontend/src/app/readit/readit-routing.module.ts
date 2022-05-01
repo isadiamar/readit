@@ -4,6 +4,7 @@ import {WelcomeComponent} from "./welcome/welcome.component";
 import {ReaditComponent} from "./readit.component";
 import {StoryFormComponent} from "./stories/story-form/story-form.component";
 import {AuthGuardService} from "../core/authGuard.service";
+import {StoryComponent} from "./stories/story/story.component";
 
 
 const routes: Routes = [
@@ -13,6 +14,8 @@ const routes: Routes = [
     children: [
       {path: 'welcome', component: WelcomeComponent },
       {path: 'myStories/new', component: StoryFormComponent,canActivate:[AuthGuardService] },
+      {path: 'stories/:id', component:StoryComponent, canActivate:[AuthGuardService]}
+
     ]
   }
 
