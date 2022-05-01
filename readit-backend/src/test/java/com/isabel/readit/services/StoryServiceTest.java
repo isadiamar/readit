@@ -4,6 +4,7 @@ import com.isabel.readit.api.dtos.StoryDto;
 import com.isabel.readit.data.daos.StoryRepository;
 import com.isabel.readit.data.daos.UserRepository;
 import com.isabel.readit.data.model.*;
+import com.isabel.readit.services.exceptions.ForbiddenException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -62,5 +63,30 @@ public class StoryServiceTest {
         assertEquals("This is just a description", newUser.getStoryList().get(0).getDescription());
     }
 
+    @Test
+    void testCreateNotFound(){
+        User user = new User();
+        user.setEmail("notExists@test.com");
+        user.setPassword(passwordEncoder.encode("Password"));
+
+        StoryDto storyDto = StoryDto.builder()
+                .title("Title")
+                .description("This is just a description")
+                .color("#FFFFFF")
+                .genre1(Genre.COMEDY)
+                .genre2(Genre.DRAMA)
+                .status(Status.DROPPED)
+                .privacy(Privacy.PRIVATE)
+                .build();
+
+        ForbiddenException thrown = assertThrows(
+                ForbiddenException.class,
+                () -> this.storyService.create(storyDto, user.getEmail()),
+                "Expected storyService.create() to throw, but it didn't"
+        );
+
+        assertTrue(thrown.getMessage().contains("Forbidden Exception: User not found"));
+
+    }
 
 }
