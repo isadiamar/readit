@@ -4,7 +4,6 @@ package com.isabel.readit.data.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
-
 import javax.persistence.*;
 import java.util.List;
 

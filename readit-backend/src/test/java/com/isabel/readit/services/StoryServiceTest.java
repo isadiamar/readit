@@ -3,7 +3,10 @@ package com.isabel.readit.services;
 import com.isabel.readit.api.dtos.StoryDto;
 import com.isabel.readit.data.daos.StoryRepository;
 import com.isabel.readit.data.daos.UserRepository;
-import com.isabel.readit.data.model.*;
+import com.isabel.readit.data.model.Genre;
+import com.isabel.readit.data.model.Privacy;
+import com.isabel.readit.data.model.Status;
+import com.isabel.readit.data.model.User;
 import com.isabel.readit.services.exceptions.ForbiddenException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -11,12 +14,13 @@ import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class StoryServiceTest {
+class StoryServiceTest {
 
     private UserRepository userRepository;
     private StoryRepository storyRepository;
