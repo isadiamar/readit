@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
     private final String HEADER = "Authorization";
-    private final String PREFIX = "Bearer ";
+    private static final String PREFIX = "Bearer ";
 
     private JWTService jwtService;
 

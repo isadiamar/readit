@@ -39,11 +39,6 @@ public class UserController {
         return userList;
     }
 
-    @GetMapping(EMAIL)
-    public RegisterDto getUserByEmail(@PathVariable String email){
-        return this.userService.getUserByEmail(email);
-    }
-
     @GetMapping("/test")
     public String test() {
         return jwtService.getTokenEmailFromContext();
