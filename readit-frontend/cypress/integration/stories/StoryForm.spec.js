@@ -24,7 +24,7 @@ describe('LoginForm Test', () => {
   it("Should create Story", ()=>{
     _fillInputsValid()
     cy.get("button").contains('Create').click()
-    _assertTextExists('Item')
+
   })
 })
 
@@ -52,6 +52,6 @@ function _fillInputsValid(){
   _getSelect(2).click().get('mat-option').first().click()
   _getSelect(3).click().get('mat-option').first().click()
   cy.get('input[type=color]')
-    .invoke('val', '#d77c79')
-    .trigger('change')
+    .invoke('val', '#b38ff3')
+    .trigger('change').click()
 }

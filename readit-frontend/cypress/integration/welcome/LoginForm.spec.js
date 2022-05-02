@@ -60,8 +60,8 @@ function _getInput(inputNumber){
 }
 
 function _fillInputsValid() {
-  _getInput(0).clear().type('user2@email.com') // Email
-  _getInput(1).clear().type('password') // Password
+  _getInput(0).clear().type('user@user.com') // Email
+  _getInput(1).clear().type('uSer*Password1') // Password
 }
 
 function _clickSubmitButton() {

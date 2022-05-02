@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Status} from "../../shared/models/status.enum";
 import {StoryService} from "../../shared/services/story.service";
-import {map, Observable} from "rxjs";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
