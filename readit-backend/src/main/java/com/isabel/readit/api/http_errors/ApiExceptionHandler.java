@@ -2,7 +2,6 @@ package com.isabel.readit.api.http_errors;
 
 
 import com.isabel.readit.services.exceptions.BadRequestException;
-import com.isabel.readit.services.exceptions.ConflictException;
 import com.isabel.readit.services.exceptions.ForbiddenException;
 import com.isabel.readit.services.exceptions.NotFoundException;
 import org.apache.logging.log4j.LogManager;
@@ -45,16 +44,6 @@ public class ApiExceptionHandler {
     public ErrorMessage badRequest(Exception exception) {
         return new ErrorMessage(exception, HttpStatus.BAD_REQUEST.value());
     }
-
-    @ResponseStatus(HttpStatus.CONFLICT)
-    @ExceptionHandler({
-            ConflictException.class
-    })
-    @ResponseBody
-    public ErrorMessage conflict(Exception exception) {
-        return new ErrorMessage(exception, HttpStatus.CONFLICT.value());
-    }
-
 
     @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler({
