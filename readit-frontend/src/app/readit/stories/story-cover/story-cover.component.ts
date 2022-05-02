@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {StoryService} from "../../shared/services/story.service";
 import {Story} from "../../shared/models/story.model";
-import {Observable, of} from "rxjs";
 
 @Component({
   selector: 'app-story-cover',

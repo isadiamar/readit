@@ -1,4 +1,4 @@
-<div class="stories" *ngFor="let story of stories">
+<div class="stories" *ngFor="let story of stories; let last = last">
   <mat-divider></mat-divider>
   <div class="list">
     <div class="img">
@@ -11,13 +11,13 @@
     </div>
     <div class="actions">
       <div class="group">
-        <p class="subtitle">Editar</p>
-        <p class="subtitle">New Chapter</p>
-        <p class="subtitle">Delete</p>
+        <button mat-button type="button" class="subtitle">Editar</button>
+        <button mat-button type="button"  class="subtitle">New Chapter</button>
+        <button mat-button type="button"  class="subtitle">Delete</button>
       </div>
     </div>
   </div>
-  <mat-divider></mat-divider>
+  <mat-divider *ngIf="last"></mat-divider>
 </div>
 
 
