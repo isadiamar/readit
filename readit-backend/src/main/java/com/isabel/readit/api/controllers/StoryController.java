@@ -6,11 +6,13 @@ import com.isabel.readit.services.security.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping(StoryController.STORIES)
 public class StoryController {
-    static final String STORIES = "/api/private/story";
+    static final String STORIES = "/api/private/stories";
 
     @Autowired
     private StoryService storyService;
@@ -28,4 +30,8 @@ public class StoryController {
         return this.storyService.get(id);
     }
 
+    @GetMapping()
+    public List<StoryDto> getAll(){
+        return this.storyService.getAll();
+    }
 }

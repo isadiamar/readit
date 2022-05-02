@@ -10,6 +10,9 @@ import com.isabel.readit.services.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class StoryService {
     private StoryRepository storyRepository;
@@ -44,5 +47,10 @@ public class StoryService {
        Story story = this.storyRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Story not found"));
        return story.toStoryDto();
+    }
+
+    public List<StoryDto> getAll() {
+        return this.storyRepository.findAll().stream()
+                .map(Story::toStoryDto).collect(Collectors.toList());
     }
 }
