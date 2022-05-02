@@ -20,6 +20,7 @@ beforeEach(()=>{
 
   _setupDefaultApiResponses();
 
+  localStorage.clear();
   cy.visit("/")
 })
 
@@ -28,10 +29,14 @@ function _setupDefaultApiResponses(){
   // LOGIN
   cy.intercept('POST', Cypress.env("API_URL") + '/auth/login', {
     statusCode: 200,
+    fixture: 'auth.json'
   })
 
   // SIGNUP
   cy.intercept('POST', Cypress.env("API_URL") + '/auth/register', {
     statusCode: 200,
+    fixture: 'auth.json'
   })
+
+
 }
