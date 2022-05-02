@@ -72,8 +72,8 @@ class StoryServiceTest {
         this.storyService.create(storyDto, user.getEmail());
 
         User newUser = this.userRepository.findByEmail(user.getEmail()).get();
-        assertEquals(1,newUser.getStoryList().size());
-        assertEquals("This is just a description", newUser.getStoryList().get(0).getDescription());
+        assertEquals(2,newUser.getStoryList().size());
+        assertEquals("This is just a description", newUser.getStoryList().get(1).getDescription());
     }
 
     @Test
