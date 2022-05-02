@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpService} from "../../../core/http.service";
 import {Story} from "../models/story.model";
-import {Observable} from "rxjs";
+import {Observable, of} from "rxjs";
 import {EndPoints} from "../../../shared/end-points";
 
 @Injectable({
@@ -16,5 +16,11 @@ export class StoryService{
     return this.httpService
       .successful()
       .post(EndPoints.STORIES + '/new', {...story})
+  }
+
+  get(id:number):Observable<Story>{
+    return this.httpService
+      .successful()
+      .get(EndPoints.STORIES + '/' + id);
   }
 }

@@ -1,6 +1,7 @@
 package com.isabel.readit.api.controllers;
 
 import com.isabel.readit.api.dtos.RegisterDto;
+import com.isabel.readit.api.dtos.UserDto;
 import com.isabel.readit.data.model.User;
 import com.isabel.readit.services.UserService;
 import com.isabel.readit.services.security.JWTService;
@@ -29,12 +30,12 @@ public class UserController {
     }
 
     @GetMapping
-    public List<RegisterDto> getAllUsers(){
+    public List<UserDto> getAllUsers(){
         List<User>userEntityList = this.userService.getAllUsers();
-        List<RegisterDto> userList = new ArrayList<>();
+        List<UserDto> userList = new ArrayList<>();
 
         for (User userEntity : userEntityList) {
-            userList.add(new RegisterDto(userEntity));
+            userList.add(new UserDto(userEntity));
         }
         return userList;
     }

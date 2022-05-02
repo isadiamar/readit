@@ -13,6 +13,7 @@ import {WelcomeMenuComponent} from "./welcome/components/welcome-menu/welcome-me
 import {WelcomeService} from "./shared/services/data.service";
 import {ReaditComponent} from "./readit.component";
 import { StoryFormComponent } from './stories/story-form/story-form.component';
+import { StoryComponent } from './stories/story/story.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { StoryFormComponent } from './stories/story-form/story-form.component';
     WelcomeComponent,
     WelcomeMenuComponent,
     StoryFormComponent,
+    StoryComponent,
   ],
   entryComponents: [],
   imports: [

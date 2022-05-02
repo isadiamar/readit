@@ -3,10 +3,7 @@ package com.isabel.readit.services;
 import com.isabel.readit.api.dtos.StoryDto;
 import com.isabel.readit.data.daos.StoryRepository;
 import com.isabel.readit.data.daos.UserRepository;
-import com.isabel.readit.data.model.Genre;
-import com.isabel.readit.data.model.Privacy;
-import com.isabel.readit.data.model.Status;
-import com.isabel.readit.data.model.User;
+import com.isabel.readit.data.model.*;
 import com.isabel.readit.services.exceptions.ForbiddenException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -42,6 +39,18 @@ class StoryServiceTest {
         user.setEmail("user@test.com");
         user.setPassword(passwordEncoder.encode("Password"));
         userRepository.save(user);
+
+        StoryDto storyDto = StoryDto.builder()
+                .title("Story Title")
+                .description("Story description")
+                .color("#FFFFFF")
+                .genre1(Genre.COMEDY)
+                .genre2(Genre.FANTASY)
+                .status(Status.DROPPED)
+                .privacy(Privacy.PUBLIC)
+                .build();
+
+        this.storyService.create(storyDto, user.getEmail());
     }
 
     @Test
@@ -63,8 +72,8 @@ class StoryServiceTest {
         this.storyService.create(storyDto, user.getEmail());
 
         User newUser = this.userRepository.findByEmail(user.getEmail()).get();
-        assertEquals(1,newUser.getStoryList().size());
-        assertEquals("This is just a description", newUser.getStoryList().get(0).getDescription());
+        assertEquals(2,newUser.getStoryList().size());
+        assertEquals("This is just a description", newUser.getStoryList().get(1).getDescription());
     }
 
     @Test
@@ -91,6 +100,26 @@ class StoryServiceTest {
 
         assertTrue(thrown.getMessage().contains("Forbidden Exception: User not found"));
 
+    }
+
+    @Test
+    void testGetOk(){
+        StoryDto story = this.storyService.get(1);
+        assertEquals("Story Title", story.getTitle());
+        assertEquals(Genre.FANTASY, story.getGenre2());
+        assertEquals(Privacy.PUBLIC, story.getPrivacy());
+    }
+
+    @Test
+    void testGetNotFound(){
+
+        ForbiddenException thrown = assertThrows(
+                ForbiddenException.class,
+                () -> this.storyService.get(45624),
+                "Expected storyService.get() to throw, but it didn't"
+        );
+
+        assertTrue(thrown.getMessage().contains("Forbidden Exception: Story not found"));
     }
 
 }

@@ -1,6 +1,5 @@
 beforeEach(()=>{
-  _fillInputsValidLogin()
-  _clickSubmitButtonLogin()
+  cy.login()
 })
 
 describe('LoginForm Test', () => {
@@ -21,6 +20,12 @@ describe('LoginForm Test', () => {
     description.clear().type('Not valid')
     cy.get("button").contains('Create').parent().should('be.disabled')
   })
+
+  it("Should create Story", ()=>{
+    _fillInputsValid()
+    cy.get("button").contains('Create').click()
+
+  })
 })
 
 function _getInput(inputNumber){
@@ -35,24 +40,18 @@ function _getSelect(selectNumber){
   return cy.get('mat-select').eq(selectNumber);
 }
 
-function _fillInputsValidLogin() {
-  _getInput(0).clear().type('user2@email.com') // Email
-  _getInput(1).clear().type('password') // Password
-}
-
-function _clickSubmitButtonLogin() {
-  cy.get("button").contains("Log in").click();
-}
-
 function _assertTextExists(text) {
   cy.contains(text).should('exist')
 }
 
 function _fillInputsValid(){
   _getInput(2).clear().type('Title');
-  _getTextarea(0).clear().type('This is a description. And it is working')
+  _getTextarea(0).eq(0).clear().type('This is a description. And it is working')
   _getSelect(0).click().get('mat-option').contains('Romance').click()
   _getSelect(1).click().get('mat-option').contains('Horror').click()
   _getSelect(2).click().get('mat-option').first().click()
   _getSelect(3).click().get('mat-option').first().click()
+  cy.get('input[type=color]')
+    .invoke('val', '#b38ff3')
+    .trigger('change').click()
 }

@@ -1,6 +1,8 @@
 package com.isabel.readit.data.model;
 
+import com.isabel.readit.api.dtos.StoryDto;
 import lombok.*;
+import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -24,6 +26,7 @@ public class Story{
     private String title;
     @NotBlank
     @NotNull
+    @Column(length = 1000)
     private String description;
     private Genre genre1;
     private Genre genre2;
@@ -34,5 +37,11 @@ public class Story{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    public StoryDto toStoryDto(){
+        StoryDto storyDto = new StoryDto();
+        BeanUtils.copyProperties(this, storyDto);
+        return storyDto;
+    }
 
 }

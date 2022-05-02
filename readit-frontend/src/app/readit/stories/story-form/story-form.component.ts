@@ -6,6 +6,7 @@ import {Genre} from "../../shared/models/genre.enum";
 import {Status} from "../../shared/models/status.enum";
 import {Privacy} from "../../shared/models/privacy.enum";
 import {Utils} from "../../shared/utils/Utils";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-story-form',
@@ -20,10 +21,12 @@ export class StoryFormComponent implements OnInit {
   status =  Status;
   privacies =  Privacy;
   filedata:any;
+  private id: number | undefined;
 
   constructor(
     private formBuilder:FormBuilder,
     public storyService:StoryService,
+    private router:Router
     ) {
   }
 
@@ -69,9 +72,11 @@ export class StoryFormComponent implements OnInit {
     if(this.formNewStory.valid){
       let story:Story = this.createStory();
       console.log(story)
-      this.storyService.create(story).subscribe(res => {
-        console.log(res);
-      });
+      this.storyService.create(story).subscribe(
+        next => this.id = next.id,
+          error => this.clearFields(),
+          ()=> this.router.navigate(["stories/" + this.id])
+      );
       this.clearFields()
     }
   }
@@ -91,7 +96,8 @@ export class StoryFormComponent implements OnInit {
     let privacy = this.formNewStory.controls['privacy'].value;
     let status =  this.formNewStory.controls['status'].value;
     let color =  this.formNewStory.controls['color'].value;
-    let cover =  this.filedata[0];
+    let cover;
+    (this.filedata) ? cover = this.filedata[0] : undefined
 
     return {title, description, genre1, genre2, privacy, status, color, cover}
   }

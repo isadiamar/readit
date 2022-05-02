@@ -19,7 +19,8 @@ import './commands'
 beforeEach(()=>{
 
   _setupDefaultApiResponses();
-
+  cy.viewport(1920, 1080)
+  localStorage.clear();
   cy.visit("/")
 })
 
@@ -33,5 +34,8 @@ function _setupDefaultApiResponses(){
   // SIGNUP
   cy.intercept('POST', Cypress.env("API_URL") + '/auth/register', {
     statusCode: 200,
+    fixture: 'auth.json'
   })
+
+
 }
