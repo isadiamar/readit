@@ -36,6 +36,7 @@ public class StoryService {
                 .build();
         this.storyRepository.save(story);
         storyDto.setId(story.getId());
+        storyDto.setUsername(user.getNickname());
         return storyDto;
     }
 

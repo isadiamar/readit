@@ -119,6 +119,7 @@ class StoryServiceTest {
                 () -> this.storyService.get(45624),
                 "Expected storyService.get() to throw, but it didn't"
         );
+       assertTrue(thrown.getMessage().contains("Not Found Exception. Story not found"));
     }
 
 }

@@ -27,4 +27,5 @@ public class StoryDto {
     private Privacy privacy;
     private File storyCover;
     private String color;
+    private String username;
 }
