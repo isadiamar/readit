@@ -1,13 +1,11 @@
 package com.isabel.readit.api.controllers;
 
-import com.isabel.readit.api.dtos.RegisterDto;
 import com.isabel.readit.api.dtos.UserDto;
 import com.isabel.readit.data.model.User;
 import com.isabel.readit.services.UserService;
 import com.isabel.readit.services.security.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

@@ -58,4 +58,8 @@ public class StoryService {
                 .filter(story -> story.getUser().getEmail().equals(email))
                 .map(Story::toStoryDto).collect(Collectors.toList());
     }
+
+    public void delete(Integer id) {
+         this.storyRepository.deleteById(id);
+    }
 }

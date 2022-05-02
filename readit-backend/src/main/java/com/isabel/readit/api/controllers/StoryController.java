@@ -34,4 +34,9 @@ public class StoryController {
     public List<StoryDto> getAllById(){
         return this.storyService.getAll();
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Integer id){
+         this.storyService.delete(id);
+    }
 }
