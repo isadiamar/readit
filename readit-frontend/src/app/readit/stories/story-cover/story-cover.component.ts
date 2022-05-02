@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {StoryService} from "../../shared/services/story.service";
+import {Story} from "../../shared/models/story.model";
+import {Observable, of} from "rxjs";
 
 @Component({
   selector: 'app-story-cover',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoryCoverComponent implements OnInit {
 
-  constructor() { }
+  storyModel:Story;
+  stories: Story[] = [];
+
+  title:string;
+  constructor(private storyService:StoryService) { }
 
   ngOnInit(): void {
+    this.storyService.getAll().forEach(res => this.stories = res)
+    console.log(this.stories)
+
   }
 
 }

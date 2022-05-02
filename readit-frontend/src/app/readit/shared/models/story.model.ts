@@ -12,4 +12,5 @@ export interface Story{
   status:Status;
   cover?:File;
   color?:string;
+  username?:string;
 }

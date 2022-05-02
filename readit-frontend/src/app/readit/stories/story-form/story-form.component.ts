@@ -71,7 +71,6 @@ export class StoryFormComponent implements OnInit {
   submit() {
     if(this.formNewStory.valid){
       let story:Story = this.createStory();
-      console.log(story)
       this.storyService.create(story).subscribe(
         next => this.id = next.id,
           error => this.clearFields(),

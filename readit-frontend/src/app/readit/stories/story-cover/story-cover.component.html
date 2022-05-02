@@ -1,13 +1,13 @@
-<div class="stories">
+<div class="stories" *ngFor="let story of stories">
   <mat-divider></mat-divider>
   <div class="list">
     <div class="img">
       <img src="../../../../assets/img/cover-story.png" alt="cover">
     </div>
     <div class="info">
-        <p class="subtitle">Romance</p>
-        <p class = 'normal'>Lady Marmalade</p>
-        <p class="small">Author</p>
+        <p class="subtitle">{{story.genre1}}</p>
+        <p class ='normal'>{{story.title}}</p>
+        <p class="small">{{story.username}}</p>
     </div>
     <div class="actions">
       <div class="group">
