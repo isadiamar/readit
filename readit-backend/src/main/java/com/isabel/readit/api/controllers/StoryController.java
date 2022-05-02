@@ -31,7 +31,7 @@ public class StoryController {
     }
 
     @GetMapping()
-    public List<StoryDto> getAll(){
+    public List<StoryDto> getAllById(){
         return this.storyService.getAll();
     }
 }

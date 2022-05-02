@@ -15,6 +15,7 @@ export class StoryComponent implements OnInit {
   color:string;
   status:Status;
   id:string;
+  author:string | undefined
 
   constructor(private storyService:StoryService, private route: ActivatedRoute) { }
 
@@ -25,6 +26,7 @@ export class StoryComponent implements OnInit {
       this.description = res.description
       this.color = res.color ? res.color : "#51c96a"
       this.status = res.status
+      this.author = res.username
     })
   }
 

@@ -7,6 +7,7 @@ import com.isabel.readit.data.model.Story;
 import com.isabel.readit.data.model.User;
 import com.isabel.readit.services.exceptions.ForbiddenException;
 import com.isabel.readit.services.exceptions.NotFoundException;
+import com.isabel.readit.services.security.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +18,13 @@ import java.util.stream.Collectors;
 public class StoryService {
     private StoryRepository storyRepository;
     private UserRepository userRepository;
+    private JWTService jwtService;
 
     @Autowired
-    public StoryService(UserRepository userRepository, StoryRepository storyRepository) {
+    public StoryService(UserRepository userRepository, StoryRepository storyRepository, JWTService jwtService) {
         this.userRepository = userRepository;
         this.storyRepository = storyRepository;
+        this.jwtService = jwtService;
     }
 
     public StoryDto create(StoryDto storyDto, String email) {
@@ -50,7 +53,9 @@ public class StoryService {
     }
 
     public List<StoryDto> getAll() {
+        String email = jwtService.getTokenEmailFromContext();
         return this.storyRepository.findAll().stream()
+                .filter(story -> story.getUser().getEmail().equals(email))
                 .map(Story::toStoryDto).collect(Collectors.toList());
     }
 }

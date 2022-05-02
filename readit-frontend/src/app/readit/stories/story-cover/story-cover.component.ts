@@ -17,8 +17,6 @@ export class StoryCoverComponent implements OnInit {
 
   ngOnInit(): void {
     this.storyService.getAll().forEach(res => this.stories = res)
-    console.log(this.stories)
-
   }
 
 }
