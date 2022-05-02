@@ -50,7 +50,7 @@ public class AuthService {
     public TokenDto login(LoginDto loginDto) {
         TokenDto res = new TokenDto();
 
-        User user = userRepository.findByEmail(loginDto.getEmail()).orElseThrow(() -> new ForbiddenException("Email or password are wrong"));
+        User user = userRepository.findByEmail(loginDto.getEmail()).orElseThrow(() -> new BadRequestException("Email or password are wrong"));
 
         if(!passwordEncoder.matches(loginDto.getPassword(), user.getPassword())) {
             throw new ForbiddenException("Email or password are wrong");

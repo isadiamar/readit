@@ -52,13 +52,13 @@ class AuthServiceTest {
     @Test
     void testLoginBadEmail() {
         LoginDto loginDto = LoginDto.builder().email("user100@test.com").password("Password").build();
-        ForbiddenException thrown = assertThrows(
-                ForbiddenException.class,
+        BadRequestException thrown = assertThrows(
+                BadRequestException.class,
                 () -> this.authService.login(loginDto),
                 "Expected authService.login() to throw, but it didn't"
         );
 
-        assertTrue(thrown.getMessage().contains("Forbidden Exception: Email or password are wrong"));
+        assertTrue(thrown.getMessage().contains("Bad Request Exception: Email or password are wrong"));
     }
 
     @Test

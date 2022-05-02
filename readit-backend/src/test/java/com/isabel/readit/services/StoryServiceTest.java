@@ -5,6 +5,7 @@ import com.isabel.readit.data.daos.StoryRepository;
 import com.isabel.readit.data.daos.UserRepository;
 import com.isabel.readit.data.model.*;
 import com.isabel.readit.services.exceptions.ForbiddenException;
+import com.isabel.readit.services.exceptions.NotFoundException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -113,13 +114,11 @@ class StoryServiceTest {
     @Test
     void testGetNotFound(){
 
-        ForbiddenException thrown = assertThrows(
-                ForbiddenException.class,
+        NotFoundException thrown = assertThrows(
+                NotFoundException.class,
                 () -> this.storyService.get(45624),
                 "Expected storyService.get() to throw, but it didn't"
         );
-
-        assertTrue(thrown.getMessage().contains("Forbidden Exception: Story not found"));
     }
 
 }

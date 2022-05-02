@@ -6,6 +6,7 @@ import com.isabel.readit.data.daos.UserRepository;
 import com.isabel.readit.data.model.Story;
 import com.isabel.readit.data.model.User;
 import com.isabel.readit.services.exceptions.ForbiddenException;
+import com.isabel.readit.services.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +41,7 @@ public class StoryService {
 
     public StoryDto get(Integer id) {
        Story story = this.storyRepository.findById(id)
-                .orElseThrow(() -> new ForbiddenException("Story not found"));
+                .orElseThrow(() -> new NotFoundException("Story not found"));
        return story.toStoryDto();
     }
 }
