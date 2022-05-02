@@ -39,6 +39,7 @@
 }
 
 .likes {
+  font-family: Lato, sans-serif;
   height: 100%;
   display: flex;
   align-items: end;
@@ -78,7 +79,7 @@
 .cover{
   display: flex;
   width: 90%;
-  height: 40%;
+  height: 50%;
   align-items: center;
   justify-content: center;
   border: 1px solid #E5E5E5;
@@ -101,6 +102,7 @@
 }
 
 .author{
+  font-family: Lato, sans-serif;
   margin-top: .5rem;
   font-size: 12px;
   color: #989696;
