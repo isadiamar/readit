@@ -5,6 +5,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from "./material.module";
 import {EnumToArrayPipe} from "./pipes/enumToArray";
 import {StoryHeaderComponent} from "./components/story-header/story-header.component";
+import {ConfirmationDialogComponent} from "./components/confirmation-dialog/confirmation-dialog.component";
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import {StoryHeaderComponent} from "./components/story-header/story-header.compo
   declarations: [
     EnumToArrayPipe,
     StoryHeaderComponent,
+    ConfirmationDialogComponent,
 
   ],
   exports: [
@@ -23,7 +25,8 @@ import {StoryHeaderComponent} from "./components/story-header/story-header.compo
     MaterialModule,
     ReactiveFormsModule,
     EnumToArrayPipe,
-    StoryHeaderComponent
+    StoryHeaderComponent,
+    ConfirmationDialogComponent,
   ],
 
   entryComponents: []
