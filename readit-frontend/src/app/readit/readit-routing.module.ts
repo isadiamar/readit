@@ -15,8 +15,9 @@ const routes: Routes = [
     children: [
       {path: 'welcome', component: WelcomeComponent },
       {path: 'stories/new', component: StoryFormComponent,canActivate:[AuthGuardService] },
+      {path:'stories/edit/:id', component:StoryFormComponent, canActivate:[AuthGuardService]},
       {path: 'stories/:id', component:StoryComponent, canActivate:[AuthGuardService]},
-      {path: 'myStories', component: StoryCoverComponent, canActivate:[AuthGuardService]}
+      {path: 'myStories', component: StoryCoverComponent, canActivate:[AuthGuardService]},
     ]
   }
 ];
