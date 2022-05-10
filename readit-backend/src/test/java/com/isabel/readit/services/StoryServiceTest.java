@@ -64,12 +64,6 @@ class StoryServiceTest {
     }
 
 
-    @Test
-    void testGetAllOk(){
-        List<StoryDto> stories = this.storyService.getAll();
-        assertEquals(1, stories.size());
-        assertEquals("Story Title", stories.get(0).getTitle());
-    }
 
     @Test
     void testCreateOk(){
