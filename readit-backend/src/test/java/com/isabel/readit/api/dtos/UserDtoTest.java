@@ -41,5 +41,17 @@ class UserDtoTest {
         assertEquals("description updated", userDto.getDescription());
     }
 
+    @Test
+    void testConstructorNotArg(){
+        UserDto user = new UserDto();
+        user.setEmail("hola@email");
+        assertEquals("hola@email", user.getEmail());
+    }
+
+    @Test
+    void testConstructorAllArg(){
+        UserDto user = new UserDto("12", "nickname", "email@email.com", "password", "description" );
+        assertEquals("nickname", user.getNickname());
+    }
 }
 
