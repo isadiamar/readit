@@ -1,6 +1,8 @@
 package com.isabel.readit.services;
 
+import com.isabel.readit.api.dtos.LoginDto;
 import com.isabel.readit.api.dtos.StoryDto;
+import com.isabel.readit.api.dtos.TokenDto;
 import com.isabel.readit.data.daos.StoryRepository;
 import com.isabel.readit.data.daos.UserRepository;
 import com.isabel.readit.data.model.Genre;
@@ -9,12 +11,15 @@ import com.isabel.readit.data.model.Status;
 import com.isabel.readit.data.model.User;
 import com.isabel.readit.services.exceptions.ForbiddenException;
 import com.isabel.readit.services.exceptions.NotFoundException;
+import com.isabel.readit.services.security.JWTService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,14 +32,15 @@ class StoryServiceTest {
     private StoryRepository storyRepository;
     private PasswordEncoder passwordEncoder;
     private StoryService storyService;
-
+    private AuthService authService;
 
     @Autowired
-    private StoryServiceTest(UserRepository userRepository, StoryRepository storyRepository, PasswordEncoder passwordEncoder, StoryService storyService){
+    private StoryServiceTest(UserRepository userRepository, StoryRepository storyRepository, PasswordEncoder passwordEncoder, StoryService storyService, AuthService authService) {
         this.storyRepository = storyRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.storyService = storyService;
+        this.authService = authService;
     }
 
     @BeforeAll
@@ -56,6 +62,7 @@ class StoryServiceTest {
 
         this.storyService.create(storyDto, user.getEmail());
     }
+
 
     @Test
     void testCreateOk(){
