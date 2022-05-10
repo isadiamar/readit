@@ -3,7 +3,10 @@ package com.isabel.readit.services;
 import com.isabel.readit.api.dtos.StoryDto;
 import com.isabel.readit.data.daos.StoryRepository;
 import com.isabel.readit.data.daos.UserRepository;
-import com.isabel.readit.data.model.*;
+import com.isabel.readit.data.model.Genre;
+import com.isabel.readit.data.model.Privacy;
+import com.isabel.readit.data.model.Status;
+import com.isabel.readit.data.model.User;
 import com.isabel.readit.services.exceptions.ForbiddenException;
 import com.isabel.readit.services.exceptions.NotFoundException;
 import org.junit.jupiter.api.BeforeAll;
@@ -169,5 +172,22 @@ class StoryServiceTest {
 
     }
 
-
+    @Test
+    void testUpdateNotFound(){
+        StoryDto storyDto = StoryDto.builder()
+                .title("Title")
+                .description("This is just a description")
+                .color("#FFFFFF")
+                .genre1(Genre.COMEDY)
+                .genre2(Genre.DRAMA)
+                .status(Status.DROPPED)
+                .privacy(Privacy.PRIVATE)
+                .build();
+        NotFoundException thrown = assertThrows(
+                NotFoundException.class,
+                () -> this.storyService.update(3456, storyDto),
+                "Expected storyService.update() to throw, but it didn't"
+        );
+        assertTrue(thrown.getMessage().contains("Not Found Exception. Story not found"));
+    }
 }

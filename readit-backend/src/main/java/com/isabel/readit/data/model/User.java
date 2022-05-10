@@ -10,7 +10,6 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -31,11 +30,4 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<Story> storyList;
 
-    public void addStoryToList(Story story){
-        storyList.add(story);
-    }
-
-    public void removeStoryFromList(Story story){
-        storyList.remove(story);
-    }
 }

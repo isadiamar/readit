@@ -3,15 +3,12 @@ package com.isabel.readit.api.dtos;
 import com.isabel.readit.data.model.Genre;
 import com.isabel.readit.data.model.Privacy;
 import com.isabel.readit.data.model.Status;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.validation.constraints.NotBlank;
-import java.io.File;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
