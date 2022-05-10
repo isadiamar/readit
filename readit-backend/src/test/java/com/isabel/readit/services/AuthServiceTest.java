@@ -6,7 +6,6 @@ import com.isabel.readit.api.dtos.TokenDto;
 import com.isabel.readit.data.daos.UserRepository;
 import com.isabel.readit.data.model.User;
 import com.isabel.readit.services.exceptions.BadRequestException;
-import com.isabel.readit.services.exceptions.ForbiddenException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

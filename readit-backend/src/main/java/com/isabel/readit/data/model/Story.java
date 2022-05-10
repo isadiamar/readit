@@ -7,7 +7,6 @@ import org.springframework.beans.BeanUtils;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.io.File;
 import java.util.Objects;
 
 @Builder
