@@ -16,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -55,6 +57,13 @@ class StoryServiceTest {
                 .build();
 
         this.storyService.create(storyDto, user.getEmail());
+    }
+
+    @Test
+    void testGetAllOk(){
+        List<StoryDto> stories = this.storyService.getAll();
+        assertEquals(1, stories.size());
+        assertEquals("Story Title", stories.get(0).getTitle());
     }
 
     @Test
