@@ -25,6 +25,7 @@ public class StoryDto {
     private Genre genre2;
     private Status status;
     private Privacy privacy;
-    private File storyCover;
+    private String cover;
     private String color;
+    private String username;
 }

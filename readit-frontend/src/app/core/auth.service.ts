@@ -34,7 +34,19 @@ export class AuthService{
   }
 
   isAuthenticated():boolean{
+    let res = false;
     const token = localStorage.getItem("token");
-    return token !== null && token !== undefined && token!=='';
+
+    if ((token !== null && token !== undefined && token!=='')) {
+      const expireAt = JSON.parse(window.atob(token.split('.')[1])).exp
+      if (expireAt <= (Date.now() / 1000)) {
+        localStorage.removeItem("token");
+        res = false;
+      } else {
+        res = true;
+      }
+    }
+
+    return res;
   }
 }

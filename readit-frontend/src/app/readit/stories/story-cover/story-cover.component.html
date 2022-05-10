@@ -1,0 +1,23 @@
+<div class="stories" *ngFor="let story of stories; let last = last;">
+  <mat-divider></mat-divider>
+  <div class="list">
+    <div class="img">
+      <img src="../../../../assets/img/cover-story.png" alt="cover">
+    </div>
+    <div class="info" >
+        <p class="subtitle">{{story.genre1}}</p>
+        <p class ='normal'>{{story.title}}</p>
+        <p class="small">{{story.username}}</p>
+    </div>
+    <div class="actions">
+      <div class="group" >
+        <button id="update" mat-button type="button" class="subtitle" (click)="open(story.id!)">Open</button>
+        <button id="add" mat-button type="button"  class="subtitle">New Chapter</button>
+        <button id="delete" mat-button type="button"  class="subtitle" (click)="delete(story.id!)">Delete</button>
+      </div>
+    </div>
+  </div>
+  <mat-divider *ngIf="last"></mat-divider>
+</div>
+
+

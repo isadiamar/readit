@@ -119,6 +119,55 @@ class StoryServiceTest {
                 () -> this.storyService.get(45624),
                 "Expected storyService.get() to throw, but it didn't"
         );
+       assertTrue(thrown.getMessage().contains("Not Found Exception. Story not found"));
     }
+
+    @Test
+    void testDeleteOk(){
+        this.storyService.delete(1);
+        NotFoundException thrown = assertThrows(
+                NotFoundException.class,
+                () -> this.storyService.get(1),
+                "Expected storyService.get() to throw, but it didn't"
+        );
+        assertTrue(thrown.getMessage().contains("Not Found Exception. Story not found"));
+        User user = this.userRepository.findByEmail("user@test.com").get();
+        assertEquals(1,user.getStoryList().size());
+    }
+
+    @Test
+    void testUpdateOk(){
+        StoryDto storyDtoNew = StoryDto.builder()
+                .title("newStory")
+                .description("This is just a new description")
+                .color("#FFFFFF")
+                .genre1(Genre.COMEDY)
+                .genre2(Genre.HISTORICAL)
+                .status(Status.IN_PROGRESS)
+                .privacy(Privacy.PUBLIC)
+                .build();
+
+        StoryDto newStory = this.storyService.create(storyDtoNew, "user@test.com");
+        assertEquals("newStory", newStory.getTitle());
+        assertEquals(Genre.COMEDY,  newStory.getGenre1());
+
+        StoryDto storyDtoUpdated = StoryDto.builder()
+                .id(newStory.getId())
+                .title("UpdateStory")
+                .description("This is just an updated description")
+                .color("#FFFFFF")
+                .genre1(Genre.FANTASY)
+                .genre2(Genre.SLICE_OF_LIFE)
+                .status(Status.COMPLETE)
+                .privacy(Privacy.PUBLIC)
+                .build();
+
+        StoryDto updatedStory = this.storyService.update(newStory.getId(), storyDtoUpdated);
+        assertEquals("UpdateStory", updatedStory.getTitle());
+        assertEquals(Genre.FANTASY,  updatedStory.getGenre1());
+        assertEquals(newStory.getId(), updatedStory.getId());
+
+    }
+
 
 }

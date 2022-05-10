@@ -10,6 +10,7 @@ export interface Story{
   genre2:Genre;
   privacy:Privacy;
   status:Status;
-  cover?:File;
+  cover?:string;
   color?:string;
+  username?:string;
 }

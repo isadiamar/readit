@@ -1,0 +1,40 @@
+import { Component, OnInit } from '@angular/core';
+import {StoryService} from "../../shared/services/story.service";
+import {Story} from "../../shared/models/story.model";
+import {MatDialog} from "@angular/material/dialog";
+import {ConfirmationDialogComponent} from "../../../shared/components/confirmation-dialog/confirmation-dialog.component";
+import {Router} from "@angular/router";
+import {Status} from "../../shared/models/status.enum";
+import {Genre} from "../../shared/models/genre.enum";
+import {Utils} from "../../shared/utils/Utils";
+
+@Component({
+  selector: 'app-story-cover',
+  templateUrl: './story-cover.component.html',
+  styleUrls: ['./story-cover.component.css']
+})
+export class StoryCoverComponent implements OnInit {
+
+  storyModel:Story;
+  stories: Story[] = [];
+  constructor(private storyService:StoryService, private dialog: MatDialog, private route:Router) { }
+
+  ngOnInit(): void {
+    this.storyService.getAll().subscribe(res =>{
+        this.stories = res;
+        this.stories.forEach(story=>{
+          // @ts-ignore
+          story.genre1 = Genre[story.genre1]
+        })
+      })
+
+  }
+
+  delete(id: number) {
+      this.dialog.open(ConfirmationDialogComponent, {data: {id:id}});
+  }
+
+  open(id:number) {
+      this.route.navigate(['stories/' + id]);
+  }
+}

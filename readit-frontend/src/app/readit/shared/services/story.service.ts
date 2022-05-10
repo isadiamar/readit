@@ -3,6 +3,9 @@ import {HttpService} from "../../../core/http.service";
 import {Story} from "../models/story.model";
 import {Observable, of} from "rxjs";
 import {EndPoints} from "../../../shared/end-points";
+import {Genre} from "../models/genre.enum";
+import {Privacy} from "../models/privacy.enum";
+import {Status} from "../models/status.enum";
 
 @Injectable({
   providedIn: 'root',
@@ -23,4 +26,22 @@ export class StoryService{
       .successful()
       .get(EndPoints.STORIES + '/' + id);
   }
+
+  getAll():Observable<Story[]>{
+    return this.httpService
+      .get(EndPoints.STORIES);
+  }
+
+  delete(id:number):Observable<void>{
+    return this.httpService
+      .successful()
+      .delete(EndPoints.STORIES + '/' + id);
+  }
+
+  update(story:Story):Observable<Story>{
+   return this.httpService
+     .successful()
+     .put(EndPoints.STORIES + '/' + story.id, {...story})
+  }
 }
+

@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.File;
+import java.util.Objects;
 
 @Builder
 @Getter
@@ -32,15 +33,19 @@ public class Story{
     private Genre genre2;
     private Status status;
     private Privacy privacy;
-    private File storyCover;
+    @Column(columnDefinition = "text")
+    private String cover;
     private String color;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     public StoryDto toStoryDto(){
         StoryDto storyDto = new StoryDto();
         BeanUtils.copyProperties(this, storyDto);
+        if(Objects.nonNull(this.getUser())){
+            storyDto.setUsername(this.getUser().getNickname());
+        }
         return storyDto;
     }
 

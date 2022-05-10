@@ -1,6 +1,12 @@
 <div class = "wrap">
   <div class="story">
     <div class="header" [ngStyle]="{'background-color': color}">
+      <div class="genres header-info">
+        <p>{{genre1}}</p>
+        <p>|</p>
+        <p>{{genre2}}</p>
+      </div>
+
         <div class="favorite">
           <mat-icon *ngIf="!isFavorite" (click)="setFavorite()">favorite_border</mat-icon>
           <mat-icon *ngIf="isFavorite" (click)="setFavorite()">favorite</mat-icon>
@@ -22,14 +28,15 @@
 
   <div class="story-info">
     <div class="status">
+      <p (click)="update()"><a>Edit</a></p>
       <p>Status: {{status}}</p>
     </div>
     <div class="info">
       <p class="title">{{title}}</p>
       <div class="cover" >
-        <img src="assets/cover-story.png" alt="cover">
+        <img [src]="cover" alt="cover">
       </div>
-      <p class="author">Author</p>
+      <p class="author">{{author}}</p>
       <div class="description">
         <p>{{description}}</p>
       </div>
