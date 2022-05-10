@@ -16,11 +16,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class StoryFormComponent implements OnInit {
   formNewStory: FormGroup;
   submitDisabled: boolean = true;
-  imageFile: { link: string, file: any, name: string };
   genres = Genre;
   status = Status;
   privacies = Privacy;
-  filedata: any;
+  image: string;
   id: number | undefined;
   pathId: string | null;
 
@@ -33,19 +32,20 @@ export class StoryFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.createForm(
+      '',
+      '',
+      Utils.getEnumKeyByValue(Genre, Genre.ROMANCE),
+      Utils.getEnumKeyByValue(Genre, Genre.COMEDY),
+      Utils.getEnumKeyByValue(Privacy, Privacy.PUBLIC),
+      Utils.getEnumKeyByValue(Status, Status.IN_PROGRESS),
+      '')
+
     this.pathId = this.activeRoute.snapshot.paramMap.get('id');
     if (this.pathId) {
       this.storyService.get(+this.pathId).subscribe(res => {
         this.createForm(res.title, res.description, res.genre1, res.genre2, res.privacy, res.status, res.color)
       })
-    } else {
-      this.createForm('',
-        '',
-        Utils.getEnumKeyByValue(Genre, Genre.ROMANCE),
-        Utils.getEnumKeyByValue(Genre, Genre.COMEDY),
-        Utils.getEnumKeyByValue(Privacy, Privacy.PUBLIC),
-        Utils.getEnumKeyByValue(Status, Status.IN_PROGRESS),
-        '')
     }
   }
 
@@ -57,25 +57,20 @@ export class StoryFormComponent implements OnInit {
       genre2: new FormControl(genre2),
       privacy: new FormControl(privacy),
       status: new FormControl(status),
-      color: new FormControl(''),
+      color: new FormControl(color),
     })
     this.formNewStory.valueChanges.subscribe(_ => this.checkDisabled())
   }
 
   upload(event: any) {
-    this.filedata = event.target.files;
-
-    if (this.filedata && this.filedata[0]) {
+    const filedata = event.target.files;
+    if (filedata && filedata[0]) {
       const reader = new FileReader();
 
       reader.onload = (_event: any) => {
-        this.imageFile = {
-          link: _event.target.result,
-          file: event.target.files[0],
-          name: event.target.files[0].name
-        };
+        this.image = _event.target.result;
       };
-      reader.readAsDataURL(this.filedata[0]);
+      reader.readAsDataURL(filedata[0]);
     }
   }
 
@@ -116,7 +111,7 @@ export class StoryFormComponent implements OnInit {
     let status = this.formNewStory.controls['status'].value;
     let color = this.formNewStory.controls['color'].value;
     let cover;
-    (this.filedata) ? cover = this.filedata[0] : undefined
+    (this.image) ? cover = this.image : undefined
 
     return {id, title, description, genre1, genre2, privacy, status, color, cover}
   }
@@ -124,6 +119,7 @@ export class StoryFormComponent implements OnInit {
   edit() {
     if (this.formNewStory.valid) {
       let story: Story = this.createStory();
+      console.log(story)
       this.storyService.update(story).subscribe(
         next => this.id = next.id,
         error => this.clearFields(),

@@ -4,6 +4,9 @@ import {Story} from "../../shared/models/story.model";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationDialogComponent} from "../../../shared/components/confirmation-dialog/confirmation-dialog.component";
 import {Router} from "@angular/router";
+import {Status} from "../../shared/models/status.enum";
+import {Genre} from "../../shared/models/genre.enum";
+import {Utils} from "../../shared/utils/Utils";
 
 @Component({
   selector: 'app-story-cover',
@@ -14,23 +17,24 @@ export class StoryCoverComponent implements OnInit {
 
   storyModel:Story;
   stories: Story[] = [];
-
-  title:string;
   constructor(private storyService:StoryService, private dialog: MatDialog, private route:Router) { }
 
   ngOnInit(): void {
-    this.storyService.getAll().forEach(res => this.stories = res).then(r => console.log('Success Load') )
+    this.storyService.getAll().subscribe(res =>{
+        this.stories = res;
+        this.stories.forEach(story=>{
+          // @ts-ignore
+          story.genre1 = Genre[story.genre1]
+        })
+      })
+
   }
 
-  delete(id: number | undefined) {
-    if (id){
+  delete(id: number) {
       this.dialog.open(ConfirmationDialogComponent, {data: {id:id}});
-    }
   }
 
-  update(id:number | undefined) {
-    if (id) {
-      this.route.navigate(['stories/edit/'+ id]).then(r => console.log(r));
-    }
+  open(id:number) {
+      this.route.navigate(['stories/' + id]);
   }
 }

@@ -4,7 +4,7 @@ import {StoryService} from "../../../readit/shared/services/story.service";
 
 @Component({
   selector: 'app-confirmation-dialog',
-  templateUrl: './confirmation-dialog.component.html'
+  templateUrl: './confirmation-dialog.component.html',
 })
 export class ConfirmationDialogComponent{
 

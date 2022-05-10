@@ -4,15 +4,15 @@
     <div class="left">
       <div class="vertical cover">
         <p class="title">Story cover image</p>
-        <img *ngIf = "imageFile" class="preview-image" [src]="imageFile ? imageFile.link : 'localhost/image.png'">
+        <img *ngIf="image" class="preview-image" [src]="image">
         <button mat-raised-button color="accent" (click)="uploadFile.click()" >Choose File</button>
-        <input #uploadFile (change)="upload($event)" type='file' style="display:none" accept = "image/jpeg, image/png"/>
+        <input #uploadFile (change)="upload($event)" type='file' style="display:none" accept = "image/jpeg, image/png, image/jpg"/>
       </div>
       <div class="vertical">
         <p class="title">Color</p>
         <mat-form-field appearance="outline">
           <mat-label>Color</mat-label>
-          <input formControlName="color" matInput type="color"/>
+          <input formControlName="color" matInput type="color" value="color"/>
         </mat-form-field>
       </div>
     </div>

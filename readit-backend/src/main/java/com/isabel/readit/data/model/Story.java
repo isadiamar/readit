@@ -33,7 +33,8 @@ public class Story{
     private Genre genre2;
     private Status status;
     private Privacy privacy;
-    private File storyCover;
+    @Column(columnDefinition = "text")
+    private String cover;
     private String color;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)

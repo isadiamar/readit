@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "title": "Test Title",
+  "description": "This is a description for a test",
+  "genre1": "ROMANCE",
+  "genre2":"COMEDY",
+  "privacy":"PRIVATE",
+  "status":"COMPLETE",
+  "color":"#139086",
+  "username": "user"
+}
+

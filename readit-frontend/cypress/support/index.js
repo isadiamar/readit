@@ -21,7 +21,7 @@ beforeEach(()=>{
   _setupDefaultApiResponses();
   cy.viewport(1920, 1080)
   localStorage.clear();
-  cy.visit("/")
+  cy.visit("/welcome")
 })
 
 function _setupDefaultApiResponses(){
@@ -29,6 +29,7 @@ function _setupDefaultApiResponses(){
   // LOGIN
   cy.intercept('POST', Cypress.env("API_URL") + '/auth/login', {
     statusCode: 200,
+    fixture: 'auth.json'
   })
 
   // SIGNUP
@@ -37,5 +38,32 @@ function _setupDefaultApiResponses(){
     fixture: 'auth.json'
   })
 
+  //CREATE STORIES
+  cy.intercept('POST', Cypress.env("API_URL") + '/private/stories/new', {
+    statusCode: 200,
+    fixture:'story.json'
+  })
 
+  //GET STORY
+  cy.intercept('GET', Cypress.env("API_URL") + '/private/stories/*', {
+    statusCode: 200,
+    fixture:'story.json'
+  })
+
+  //GET ALL STORIES
+  cy.intercept('GET', Cypress.env("API_URL") + '/private/stories', {
+    statusCode: 200,
+    fixture:'stories.json'
+  })
+
+  //DELETE STORY
+  cy.intercept('DELETE', Cypress.env("API_URL") + '/private/stories/*', {
+    statusCode: 200
+  })
+
+  //UPDATE STORY
+  cy.intercept('PUT', Cypress.env("API_URL") + '/private/stories/*', {
+    statusCode: 200,
+    fixture:'story.json'
+  })
 }

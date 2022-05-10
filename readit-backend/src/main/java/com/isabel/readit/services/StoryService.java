@@ -1,5 +1,6 @@
 package com.isabel.readit.services;
 
+import com.fasterxml.jackson.databind.util.BeanUtil;
 import com.isabel.readit.api.dtos.StoryDto;
 import com.isabel.readit.data.daos.StoryRepository;
 import com.isabel.readit.data.daos.UserRepository;
@@ -8,6 +9,7 @@ import com.isabel.readit.data.model.User;
 import com.isabel.readit.services.exceptions.ForbiddenException;
 import com.isabel.readit.services.exceptions.NotFoundException;
 import com.isabel.readit.services.security.JWTService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +39,7 @@ public class StoryService {
                 .privacy(storyDto.getPrivacy())
                 .status(storyDto.getStatus())
                 .color(storyDto.getColor())
-                .storyCover(storyDto.getStoryCover())
+                .cover(storyDto.getCover())
                 .user(user)
                 .build();
         this.storyRepository.save(story);
@@ -61,5 +63,17 @@ public class StoryService {
 
     public void delete(Integer id) {
          this.storyRepository.deleteById(id);
+    }
+
+    public StoryDto update(Integer id, StoryDto storyDto) {
+        Story story = this.storyRepository.findById(id)
+                .map(storyEntity -> {
+                    BeanUtils.copyProperties(storyDto, storyEntity);
+                    return storyEntity;
+                }).orElseThrow(() -> new NotFoundException("Story not found"));
+
+         story.setId(storyDto.getId());
+        this.storyRepository.save(story);
+        return story.toStoryDto();
     }
 }

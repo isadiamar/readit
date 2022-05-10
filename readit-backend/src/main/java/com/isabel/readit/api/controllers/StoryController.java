@@ -6,6 +6,7 @@ import com.isabel.readit.services.security.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -38,5 +39,10 @@ public class StoryController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id){
          this.storyService.delete(id);
+    }
+
+    @PutMapping("/{id}")
+    public StoryDto update(@PathVariable Integer id, @Valid @RequestBody StoryDto storyDto){
+        return this.storyService.update(id, storyDto);
     }
 }

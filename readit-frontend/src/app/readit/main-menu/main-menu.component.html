@@ -13,11 +13,11 @@
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
     <mat-menu #write="matMenu">
-      <button mat-menu-item>
+      <button mat-menu-item (click)="redirect('/stories/new')">
         <mat-icon>add</mat-icon>
-        Create a new history
+        Create a new story
       </button>
-      <button mat-menu-item>
+      <button  mat-menu-item (click)="redirect('/myStories')">
         <mat-icon>folder_open</mat-icon>
         My stories
       </button>
