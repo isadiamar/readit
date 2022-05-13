@@ -45,4 +45,5 @@ public class StoryController {
     public StoryDto update(@PathVariable Integer id, @Valid @RequestBody StoryDto storyDto){
         return this.storyService.update(id, storyDto);
     }
+
 }
