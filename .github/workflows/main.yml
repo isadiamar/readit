@@ -57,8 +57,8 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
          working-directory: ./readit-frontend
-         build: ng build
-         start: ng serve
+         build: npm build
+         start: npm start
          wait-on: 'http://localhost:4200'
          wait-on-timeout: 120
         timeout-minutes: 15
