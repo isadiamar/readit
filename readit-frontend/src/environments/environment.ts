@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  REST_CORE:'http://localhost:8081'
+  REST_CORE:'http://localhost:8080'
 };
 
 /*
