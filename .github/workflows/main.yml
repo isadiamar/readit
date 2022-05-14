@@ -53,15 +53,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-       - name: Test Cypress
-         uses: cypress-io/github-action@v2
-         with:
-          working-directory: ./readit-frontend
-          build: ng build
-          start: ng serve
-          wait-on: 'http://localhost:4200'
-          wait-on-timeout: 120
-         timeout-minutes: 15
+      - name: Test Cypress
+        uses: cypress-io/github-action@v2
+        with:
+         working-directory: ./readit-frontend
+         build: ng build
+         start: ng serve
+         wait-on: 'http://localhost:4200'
+         wait-on-timeout: 120
+        timeout-minutes: 15
 
 
 
