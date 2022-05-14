@@ -3,22 +3,22 @@ import {HttpService} from "./http.service";
 import {map, Observable} from "rxjs";
 import {Injectable} from "@angular/core";
 import {Token} from "../readit/shared/models/token.model";
+import {EndPoints} from "../shared/end-points";
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService{
 
-  static REST_BACK = "http://localhost:8080";
-  static LOGIN = "/api/auth/login";
-  static REGISTER="/api/auth/register";
+  static LOGIN = "/auth/login";
+  static REGISTER="/auth/register";
 
   constructor(private httpService: HttpService) {}
 
   login(email: string, password: string): Observable<Token> {
     return this.httpService
       .successful()
-      .post(AuthService.REST_BACK + AuthService.LOGIN, {email, password}).pipe(map(res => {
+      .post(EndPoints.PUBLIC + AuthService.LOGIN, {email, password}).pipe(map(res => {
         localStorage.setItem('token', res.token);
         return res;
       }))
@@ -27,7 +27,7 @@ export class AuthService{
   register(user:RegisterDto): Observable<Token> {
     return this.httpService
       .successful()
-      .post(AuthService.REST_BACK + AuthService.REGISTER, {...user}).pipe(map(res => {
+      .post(EndPoints.PUBLIC + AuthService.REGISTER, {...user}).pipe(map(res => {
         localStorage.setItem('token', res.token);
         return res;
       }));

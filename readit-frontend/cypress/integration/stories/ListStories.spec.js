@@ -8,6 +8,7 @@ describe('ListStories Test', ()=> {
     })
 
     cy.login()
+    cy.wait(500)
     cy.navigateToStories('My stories')
 
     _assertTextExists('Edit')
