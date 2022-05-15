@@ -53,14 +53,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Test Cypress
-            uses: cypress-io/github-action@v2
-            with:
-              working-directory: ./readit-frontend
-              build: npm run build
-              start: npm start
-              wait-on: 'http://localhost:4200'
-              wait-on-timeout: 120
-            timeout-minutes: 15
+        uses: cypress-io/github-action@v2
+        with:
+            working-directory: ./readit-frontend
+            build: npm run build
+            start: npm start
+            wait-on: 'http://localhost:4200'
+            wait-on-timeout: 120
+        timeout-minutes: 15
 
 
 
