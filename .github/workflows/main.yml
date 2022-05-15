@@ -35,7 +35,7 @@ jobs:
          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Deploy Heroku
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         uses: akhileshns/heroku-deploy@v3.6.8 # This is the action
         with:
           heroku_email: "isabel.d.m@outlook.com"
@@ -52,7 +52,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
+      - name: Test Cypress
+            uses: cypress-io/github-action@v2
+            with:
+              working-directory: ./readit-frontend
+              build: npm run build
+              start: npm start
+              wait-on: 'http://localhost:4200'
+              wait-on-timeout: 120
+            timeout-minutes: 15
 
 
 
