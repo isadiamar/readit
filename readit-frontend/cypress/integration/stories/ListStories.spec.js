@@ -11,10 +11,9 @@ describe('ListStories Test', ()=> {
     cy.wait(500)
     cy.navigateToStories('My stories')
 
-    _assertTextExists('Edit')
+    _assertTextExists('Open')
     _assertTextExists('New Chapter')
     _assertTextExists('Delete')
-    _assertTextExists('user')
   });
 
 });

@@ -1,5 +1,7 @@
 beforeEach(()=>{
   cy.login()
+  cy.wait(500)
+
 
   //CREATE STORIES
   cy.intercept('POST', Cypress.env("API_URL") + '/private/stories/new', {
@@ -13,6 +15,8 @@ describe('StoryTest',()=>{
     cy.navigateToStories('Create a new story')
 
     cy.completeStoryForm()
+
+    cy.wait(500)
 
     //GET STORY
     cy.intercept('GET', Cypress.env("API_URL") + '/private/stories/*', {

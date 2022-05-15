@@ -15,7 +15,6 @@ import {ReaditComponent} from "./readit.component";
 import { StoryFormComponent } from './stories/story-form/story-form.component';
 import { StoryComponent } from './stories/story/story.component';
 import { StoryCoverComponent } from './stories/story-cover/story-cover.component';
-import { ConfirmationDialogComponent } from '../shared/components/confirmation-dialog/confirmation-dialog.component';
 
 
 @NgModule({

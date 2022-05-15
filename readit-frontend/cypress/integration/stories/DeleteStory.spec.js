@@ -7,11 +7,13 @@ beforeEach(() => {
 
   //Navigate
   cy.login()
+  cy.wait(500)
+  cy.navigateToStories('My stories')
+
 })
 
 describe("Delete Story Test", ()=> {
   it('Should Delete Story', () => {
-    cy.navigateToStories('My stories')
 
     // DELETE STORY REQUEST
     cy.intercept('DELETE', Cypress.env("API_URL") + '/private/stories/*', (req) => {
@@ -34,7 +36,6 @@ describe("Delete Story Test", ()=> {
   })
 
   it('Should Not Delete Story',  () =>{
-    cy.navigateToStories('My stories')
 
     // DELETE STORY REQUEST
     cy.intercept('DELETE', Cypress.env("API_URL") + '/private/stories/*', (req) => {

@@ -1,23 +1,21 @@
 beforeEach(()=>{
   cy.login()
+  cy.wait(500)
+  cy.navigateToStories('Create a new story')
 })
 
 describe('LoginForm Test', () => {
   it("Should load", () => {
-    cy.navigateToStories('Create a new story')
     _assertTextExists('USER')
   });
 
   it("Submit button should be disabled when title is less than three letters", ()=>{
-    cy.navigateToStories('Create a new story')
-    _fillInputsValid()
     let titleInput = _getInput(2)
     titleInput.clear().type('no')
     cy.get("button").contains('Create').parent().should('be.disabled')
   })
 
   it("Submit button should be disabled when description is less than 15 letters", ()=>{
-    cy.navigateToStories('Create a new story')
     _fillInputsValid()
     let description = _getTextarea(0)
     description.clear().type('Not valid')
@@ -25,7 +23,6 @@ describe('LoginForm Test', () => {
   })
 
   it("Should create Story", ()=>{
-    cy.navigateToStories('Create a new story')
     _fillInputsValid()
     cy.get("button").contains('Create').click()
 

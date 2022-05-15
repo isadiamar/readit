@@ -7,19 +7,23 @@ beforeEach(() => {
 
   //Navigate
   cy.login()
+  cy.wait(500)
   cy.navigateToStories("My stories")
+  cy.get("button").contains("Open").click();
+  cy.intercept('GET', Cypress.env("API_URL") + '/private/stories/*', (req) => {
+    req.reply({statusCode: 200, fixture: 'story.json'})
+  });
 
+  cy.get('a').contains("Edit").click()
+  cy.wait(500)
 })
 
 
 describe("Update Story Test", ()=> {
   it('Should Open Story', () => {
 
-    cy.intercept('GET', Cypress.env("API_URL") + '/private/stories/*', (req) => {
-      req.reply({statusCode: 200, fixture: 'story.json'})
-    });
 
-    cy.get("button[id = 'update']").eq(0).click();
+
     cy.get('input[id=title]').clear().type("Test Edited Title")
 
     cy.get("button").contains('Edit').parent().should('be.enabled')
@@ -28,11 +32,6 @@ describe("Update Story Test", ()=> {
 
   it('Should Update Story', () => {
 
-    cy.intercept('GET', Cypress.env("API_URL") + '/private/stories/*', (req) => {
-      req.reply({statusCode: 200, fixture: 'story.json'})
-    });
-
-    cy.get("button[id = 'update']").eq(0).click();
     cy.get('input[id=title]').clear().type("Test Edited Title")
     cy.get('mat-select').eq(0).click().get('mat-option').contains('Horror').click()
 
@@ -41,6 +40,7 @@ describe("Update Story Test", ()=> {
     });
 
     cy.get("button").contains('Edit').click()
+    cy.wait(500)
     _assertTextExists("Test Edited Title")
   })
 

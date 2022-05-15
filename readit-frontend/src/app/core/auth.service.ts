@@ -38,7 +38,7 @@ export class AuthService{
     const token = localStorage.getItem("token");
 
     if ((token !== null && token !== undefined && token!=='')) {
-      const expireAt = JSON.parse(window.atob(token.split('.')[1])).exp
+      const expireAt = JSON.parse(window.atob(token.split('.')[1])).exp;
       if (expireAt <= (Date.now() / 1000)) {
         localStorage.removeItem("token");
         res = false;
