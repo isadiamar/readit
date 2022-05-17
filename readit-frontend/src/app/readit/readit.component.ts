@@ -1,5 +1,5 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
-import {NavigationEnd, Route, Router} from "@angular/router";
+import {Component, OnDestroy} from "@angular/core";
+import {NavigationEnd, Router} from "@angular/router";
 import {filter, Subscription} from "rxjs";
 
 @Component({

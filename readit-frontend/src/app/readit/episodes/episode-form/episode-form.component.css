@@ -1,0 +1,120 @@
+.wrap{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background: #F4F4F4;
+  align-items: center;
+  align-content: center;
+}
+
+form{
+  display: flex;
+  width: 70%;
+  flex-direction: row;
+  align-content: space-between;
+  justify-content: space-evenly;
+  margin-top: 2rem;
+}
+
+:host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: #FFFFFF !important;
+  border-radius: 5px;
+  border: 1px solid #989696;
+}
+
+.column{
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.title{
+  font-weight: bold;
+  text-transform: uppercase;
+  font-family: Roboto,sans-serif;
+  letter-spacing: 1px;
+  margin-left: 5px;
+}
+
+.input-title{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.input-pdf{
+  width: 90%;
+}
+
+.input-file{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+}
+
+.input-file  button{
+  cursor: pointer;
+  font: inherit;
+  width: 25%;
+  padding: 0.5rem 0.5rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 12px;
+  background-color: #C4C4C4;
+  border: 1px solid #989696;
+}
+
+.drag-file{
+  height: 10rem;
+  margin-top: 1rem;
+  border: 1px solid #989696;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.drag-file >p{
+  color: #858383;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent{
+  background-color: #14AF23;
+}
+
+.preview-button{
+  display: flex;
+  justify-content: end;
+}
+
+.preview-button button{
+  margin-top: 1rem;
+  width: 25%;
+}
+
+.actions {
+  margin-top: 2rem;
+  display: flex;
+  align-items: start;
+}
+
+.actions button {
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: 1px;
+  border-radius: 15px;
+  padding: 0.8rem 3rem;
+  margin-top: 1rem;
+}
+
+.disabled{
+  background-color: rgba(0,0,0,.12) !important;
+}

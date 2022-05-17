@@ -70,7 +70,6 @@
       <div class="actions">
         <button *ngIf = "!pathId" mat-flat-button color="accent" (click)="submit()" [disabled] = "submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' ">Create</button>
         <button *ngIf="pathId" mat-flat-button color="accent" (click)="edit()" [disabled] = "submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' ">Edit</button>
-
       </div>
     </div>
 

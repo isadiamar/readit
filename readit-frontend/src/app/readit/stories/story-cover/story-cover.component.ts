@@ -4,9 +4,7 @@ import {Story} from "../../shared/models/story.model";
 import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationDialogComponent} from "../../../shared/components/confirmation-dialog/confirmation-dialog.component";
 import {Router} from "@angular/router";
-import {Status} from "../../shared/models/status.enum";
 import {Genre} from "../../shared/models/genre.enum";
-import {Utils} from "../../shared/utils/Utils";
 
 @Component({
   selector: 'app-story-cover',
@@ -36,5 +34,9 @@ export class StoryCoverComponent implements OnInit {
 
   open(id:number) {
       this.route.navigate(['stories/' + id]);
+  }
+
+  redirect() {
+    this.route.navigate(['episodes/new'])
   }
 }

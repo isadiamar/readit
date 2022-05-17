@@ -1,0 +1,33 @@
+<app-story-header></app-story-header>
+<section class="wrap">
+  <form  [formGroup]="formNewEpisode">
+    <div class="column">
+      <div class="input-title">
+        <p class="title">Title</p>
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input id = "title" formControlName="title" matInput type="text">
+        </mat-form-field>
+      </div>
+      <div class="input-pdf">
+        <p class="title">Upload chapter</p>
+        <div class="input-file">
+          <button (click)="file.click()">Search in your PC </button>
+          <input  #file (change)="handleFileInput($event)" type="file"  accept=".pdf" style="display: none" >
+          <button >Delete</button>
+        </div>
+        <div class="drag-file" appDnd (fileDropped)="onFileDropped($event)">
+          <input type="file" #fileDropRef id="fileDropRef" (change)="handleFileInput($event)" />
+          <p>{{this.fileToUpload? 'Loaded: ' + this.file_name: 'drag file here'}}</p>
+        </div>
+      <div class="preview-button">
+        <button mat-flat-button color = "accent" (click)="uploadFile()">Preview</button>
+        <div *ngIf = "showFile">{{fileToUpload}}</div>
+      </div>
+      </div>
+      <div class="actions">
+        <button mat-flat-button color="accent" [disabled] = "submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' " (click)="submit()">POST EPISODE</button>
+      </div>
+    </div>
+  </form>
+</section>

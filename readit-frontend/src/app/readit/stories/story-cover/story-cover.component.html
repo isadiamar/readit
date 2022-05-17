@@ -12,7 +12,7 @@
     <div class="actions">
       <div class="group" >
         <button id="update" mat-button type="button" class="subtitle" (click)="open(story.id!)">Open</button>
-        <button id="add" mat-button type="button"  class="subtitle">New Chapter</button>
+        <button id="add" mat-button type="button"  class="subtitle" (click)="redirect()">New Chapter</button>
         <button id="delete" mat-button type="button"  class="subtitle" (click)="delete(story.id!)">Delete</button>
       </div>
     </div>
