@@ -19,6 +19,7 @@ import { EpisodeFormComponent } from './episodes/episode-form/episode-form.compo
 import {StoryService} from "./shared/services/story.service";
 import { EpisodeComponent } from './episodes/episode/episode.component';
 import {PdfViewerModule} from "ng2-pdf-viewer";
+import { ProgressBarComponent } from '../shared/components/progress-bar/progress-bar.component';
 
 
 @NgModule({

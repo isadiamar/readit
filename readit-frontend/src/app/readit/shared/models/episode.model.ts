@@ -3,4 +3,5 @@ export interface Episode{
   title: string,
   pdf:string,
   date?: Date,
+  story_id:number
 }

@@ -9,22 +9,29 @@
           <input id = "title" formControlName="title" matInput type="text">
         </mat-form-field>
       </div>
-      <div class="input-pdf">
-        <p class="title">Upload chapter</p>
-        <div class="input-file">
-          <button (click)="file.click()">Search in your PC </button>
-          <input  #file (change)="handleFileInput($event)" type="file"  accept=".pdf" style="display: none" >
-          <button >Delete</button>
+      <p class="title" style="margin-top: 1rem;">Upload Chapter</p>
+      <div class="container" appDnd (fileDropped)="onFileDropped($event)">
+        <input type="file" #fileDropRef id="fileDropRef"  (change)="fileBrowseHandler($event)" />
+        <p>Drag and drop file here</p>
+        <p>or</p>
+        <label for="fileDropRef">Browse for file</label>
+        <div *ngIf="this.file" class="files">
+          <div class="single-file" >
+            <img src="assets/img/book.svg" width="45px" alt="file">
+            <div class="info">
+              <h4 class="name">
+                {{file?.name }}
+              </h4>
+              <p class="size">
+                {{ formatBytes(file?.size) }}
+              </p>
+              <app-progress-bar [progress]="file?.progress"></app-progress-bar>
+            </div>
+            <img src="assets/img/close.svg" class="delete" width="20px" alt="file" (click)="deleteFile()">
+          </div>
         </div>
-        <div class="drag-file" appDnd (fileDropped)="onFileDropped($event)">
-          <input type="file" #fileDropRef id="fileDropRef" (change)="handleFileInput($event)" />
-          <p>{{this.fileToUpload? 'Loaded: ' + this.file_name: 'drag file here'}}</p>
-        </div>
-      <div class="preview-button">
-        <button mat-flat-button color = "accent" (click)="uploadFile()">Preview</button>
-        <div *ngIf = "showFile">{{fileToUpload}}</div>
       </div>
-      </div>
+
       <div class="actions">
         <button mat-flat-button color="accent" [disabled] = "submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' " (click)="submit()">POST EPISODE</button>
       </div>

@@ -5,4 +5,5 @@ export class EndPoints{
   static PUBLIC = EndPoints.BASE;
   static PRIVATE = EndPoints.BASE + '/private';
   static STORIES = EndPoints.PRIVATE + '/stories';
+  static EPISODES = EndPoints.PRIVATE + '/episodes';
 }

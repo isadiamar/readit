@@ -7,6 +7,7 @@ import org.springframework.beans.BeanUtils;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 import java.util.Objects;
 
 @Builder
@@ -38,6 +39,9 @@ public class Story{
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+    @OneToMany(mappedBy = "story", fetch = FetchType.EAGER)
+    private List<Episode> episodeList;
 
     public StoryDto toStoryDto(){
         StoryDto storyDto = new StoryDto();

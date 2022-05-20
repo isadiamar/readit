@@ -8,6 +8,7 @@ import {StoryHeaderComponent} from "./components/story-header/story-header.compo
 import {ConfirmationDialogComponent} from "./components/confirmation-dialog/confirmation-dialog.component";
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import {DndDirective} from "./directives/dnd/dnd.directive";
+import {ProgressBarComponent} from "./components/progress-bar/progress-bar.component";
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import {DndDirective} from "./directives/dnd/dnd.directive";
     StoryHeaderComponent,
     ConfirmationDialogComponent,
     DndDirective,
+    ProgressBarComponent,
   ],
   exports: [
     CommonModule,
@@ -31,6 +33,7 @@ import {DndDirective} from "./directives/dnd/dnd.directive";
     StoryHeaderComponent,
     ConfirmationDialogComponent,
     DndDirective,
+    ProgressBarComponent,
   ],
 
   entryComponents: []

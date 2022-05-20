@@ -25,7 +25,6 @@ export class StoryCoverComponent implements OnInit {
           story.genre1 = Genre[story.genre1]
         })
       })
-
   }
 
   delete(id: number) {
@@ -36,7 +35,7 @@ export class StoryCoverComponent implements OnInit {
       this.route.navigate(['stories/' + id]);
   }
 
-  redirect() {
-    this.route.navigate(['episodes/new'])
+  redirect(id:number) {
+    this.route.navigate(['stories/' + id + '/episodes/new'])
   }
 }
