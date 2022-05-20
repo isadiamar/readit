@@ -1,11 +1,8 @@
 import {Injectable} from "@angular/core";
 import {HttpService} from "../../../core/http.service";
 import {Story} from "../models/story.model";
-import {Observable, of} from "rxjs";
+import {Observable} from "rxjs";
 import {EndPoints} from "../../../shared/end-points";
-import {Genre} from "../models/genre.enum";
-import {Privacy} from "../models/privacy.enum";
-import {Status} from "../models/status.enum";
 
 @Injectable({
   providedIn: 'root',

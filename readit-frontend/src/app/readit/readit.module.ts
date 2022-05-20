@@ -15,6 +15,11 @@ import {ReaditComponent} from "./readit.component";
 import { StoryFormComponent } from './stories/story-form/story-form.component';
 import { StoryComponent } from './stories/story/story.component';
 import { StoryCoverComponent } from './stories/story-cover/story-cover.component';
+import { EpisodeFormComponent } from './episodes/episode-form/episode-form.component';
+import {StoryService} from "./shared/services/story.service";
+import { EpisodeComponent } from './episodes/episode/episode.component';
+import {PdfViewerModule} from "ng2-pdf-viewer";
+import { ProgressBarComponent } from '../shared/components/progress-bar/progress-bar.component';
 
 
 @NgModule({
@@ -29,14 +34,17 @@ import { StoryCoverComponent } from './stories/story-cover/story-cover.component
     StoryFormComponent,
     StoryComponent,
     StoryCoverComponent,
+    EpisodeFormComponent,
+    EpisodeComponent,
   ],
   entryComponents: [],
   imports: [
     SharedModule,
     ReaditRoutingModule,
+    PdfViewerModule,
   ],
 
-  providers: [WelcomeService],
+  providers: [WelcomeService, StoryService],
 })
 
 export class ReaditModule {

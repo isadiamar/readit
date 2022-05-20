@@ -45,6 +45,5 @@ export class StoryComponent implements OnInit {
 
   update() {
     this.router.navigate(['stories/edit/'+ +this.id]).then(r => console.log(r));
-
   }
 }

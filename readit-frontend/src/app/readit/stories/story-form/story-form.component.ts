@@ -93,6 +93,21 @@ export class StoryFormComponent implements OnInit {
     }
   }
 
+
+  edit() {
+    if (this.formNewStory.valid) {
+      let story: Story = this.createStory();
+      console.log(story)
+      this.storyService.update(story).subscribe(
+        next => this.id = next.id,
+        error => this.clearFields(),
+        () => this.router.navigate(["stories/" + this.id])
+      );
+      this.clearFields()
+    }
+  }
+
+
   clearFields() {
     this.formNewStory.reset();
     Object.keys(this.formNewStory.controls).forEach(key => {
@@ -114,18 +129,5 @@ export class StoryFormComponent implements OnInit {
     (this.image) ? cover = this.image : undefined
 
     return {id, title, description, genre1, genre2, privacy, status, color, cover}
-  }
-
-  edit() {
-    if (this.formNewStory.valid) {
-      let story: Story = this.createStory();
-      console.log(story)
-      this.storyService.update(story).subscribe(
-        next => this.id = next.id,
-        error => this.clearFields(),
-        () => this.router.navigate(["stories/" + this.id])
-      );
-      this.clearFields()
-    }
   }
 }

@@ -16,11 +16,6 @@ describe('ReaditComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'readit-frontend'`, () => {
-    const fixture = TestBed.createComponent(ReaditComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('readit-frontend');
-  });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(ReaditComponent);
