@@ -62,7 +62,7 @@ export class EpisodeFormComponent implements OnInit {
       return {
         title:this.formNewEpisode.controls['title'].value,
         pdf:this.pdf,
-        story_id:+this.pathId,
+        storyId:+this.pathId,
       }
   }
 

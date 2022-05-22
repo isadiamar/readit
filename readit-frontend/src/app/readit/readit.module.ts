@@ -20,6 +20,7 @@ import {StoryService} from "./shared/services/story.service";
 import { EpisodeComponent } from './episodes/episode/episode.component';
 import {PdfViewerModule} from "ng2-pdf-viewer";
 import { ProgressBarComponent } from '../shared/components/progress-bar/progress-bar.component';
+import { EpisodeCoverComponent } from './episodes/episode-cover/episode-cover.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { ProgressBarComponent } from '../shared/components/progress-bar/progress
     StoryCoverComponent,
     EpisodeFormComponent,
     EpisodeComponent,
+    EpisodeCoverComponent,
   ],
   entryComponents: [],
   imports: [

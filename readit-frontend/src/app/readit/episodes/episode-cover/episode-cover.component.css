@@ -1,0 +1,85 @@
+.stories{
+  display: flex;
+  flex-direction: column;
+}
+.stories mat-list-item{
+  height: 5rem;
+  width: 100%;
+}
+
+.episode-item{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around ;
+}
+
+.align-start{
+  height: 100%;
+  width: 65%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.align-start p{
+  margin-left: 1rem;
+}
+
+.img{
+  display: flex;
+  width: 25%;
+  height: 90%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.img>img{
+  width: 80%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.align-end{
+  height: 100%;
+  width: 35%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-left: 2rem;
+}
+
+
+.date-info p{
+  margin-top: .5rem;
+}
+
+.subtitle{
+  font-family: Mako, sans-serif;
+  font-size: 13px;
+  color:#989696;
+}
+
+.normal{
+  margin-top: .5rem;
+  font-family: Lato, sans-serif;
+  font-size: 14px;
+}
+
+.number_episode{
+  margin-left:3rem;
+  font-weight: bold;
+  font-family: Lato,sans-serif;
+}
+
+.tools{
+  margin-left: 2rem;
+  color:#39BA46;
+}
+
+.tools mat-icon{
+  font-size: 1rem;
+}
