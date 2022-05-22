@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {EpisodeService} from "../../shared/services/episode.service";
 import {ActivatedRoute, Router} from "@angular/router";
 
+
 @Component({
   selector: 'app-episode-form',
   templateUrl: './episode-form.component.html',
@@ -31,7 +32,6 @@ export class EpisodeFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.pathId = this.activeRoute.snapshot.paramMap.get('id')!;
-    console.log(this.pathId)
 
     this.formNewEpisode = this.formBuilder.group({
       title: new FormControl("", [Validators.minLength(3)])
@@ -48,6 +48,7 @@ export class EpisodeFormComponent implements OnInit {
   submit() {
     if (this.formNewEpisode.valid) {
       let episode: Episode = this.createEpisode();
+      console.log( episode)
       this.episodeService.create(episode).subscribe(
         next => this.id = next.id,
         error => this.clearFields(),
@@ -58,19 +59,11 @@ export class EpisodeFormComponent implements OnInit {
   }
 
   createEpisode():Episode{
-    if(this.file){
-      const reader = new FileReader();
-
-      reader.onload = (_event: any) => {
-        this.pdf = _event.target.result;
-      };
-      reader.readAsDataURL(this.file);
-    }
-    return {
-      title:this.formNewEpisode.controls['title'].value,
-      pdf:this.pdf,
-      story_id:+this.pathId,
-    }
+      return {
+        title:this.formNewEpisode.controls['title'].value,
+        pdf:this.pdf,
+        story_id:+this.pathId,
+      }
   }
 
   clearFields() {
@@ -82,6 +75,7 @@ export class EpisodeFormComponent implements OnInit {
 
   onFileDropped($event: any) {
     this.file = $event[0];
+    console.log(this.file)
     this.prepareFilesList(this.file);
   }
 
@@ -102,6 +96,12 @@ export class EpisodeFormComponent implements OnInit {
   }
 
   prepareFilesList(file: any) {
+    const reader = new FileReader();
+    reader.onload = (_event: any) => {
+      this.pdf = _event.target.result;
+    };
+    reader.readAsDataURL(this.file);
+
     this.checkDisabled()
     file.progress = 0;
 

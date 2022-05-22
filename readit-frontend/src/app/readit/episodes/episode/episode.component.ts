@@ -10,7 +10,7 @@ import {StoryService} from "../../shared/services/story.service";
   styleUrls: ['./episode.component.css']
 })
 export class EpisodeComponent implements OnInit {
-  pdfSrc = ""
+  pdfSrc:string;
   story_id:string;
   episode_id:string;
 
@@ -25,12 +25,12 @@ export class EpisodeComponent implements OnInit {
   ngOnInit(): void {
     this.story_id = this.activeRoute.snapshot.paramMap.get('story_id')!;
     this.episode_id = this.activeRoute.snapshot.paramMap.get('episode_id')!;
-
+  console.log('ep', this.episode_id)
     this.storyService.get(+this.story_id).subscribe(res =>{
       this.story_name = res.title
     })
     this.episodeService.get(+this.story_id, +this.episode_id).subscribe(res =>{
-     this.pdfSrc = res.pdf;
+     this.pdfSrc = res.pdf ? res.pdf : "";
      this.episode_name = res.title;
     })
   }
