@@ -21,7 +21,8 @@ const routes: Routes = [
       {path: 'stories/dashboard', component: StoryCoverComponent, canActivate:[AuthGuardService]},
       {path: 'stories/:id', component:StoryComponent, canActivate:[AuthGuardService]},
       {path:'stories/:id/episodes/new', component:EpisodeFormComponent, canActivate:[AuthGuardService]},
-      {path: 'stories/:story_id/episodes/:episode_id', component:EpisodeComponent, canActivate:[AuthGuardService]}
+      {path: 'stories/:story_id/episodes/:episode_id', component:EpisodeComponent, canActivate:[AuthGuardService]},
+      {path:'stories/:story_id/episodes/edit/:episode_id', component:EpisodeFormComponent, canActivate:[AuthGuardService]}
     ]
   }
 ];

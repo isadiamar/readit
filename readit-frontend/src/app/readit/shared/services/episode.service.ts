@@ -25,5 +25,13 @@ export class EpisodeService {
       .get(EndPoints.EPISODES +'/' + episode_id + '/from/' + story_id)
   }
 
+  getAll(story_id:number):Observable<Episode[]>{
+    return this.httpService
+      .get(EndPoints.EPISODES + '?storyId=' + story_id)
+  }
 
+  delete(story_id:number, episode_id: number):Observable<void> {
+    return this.httpService
+      .delete(EndPoints.EPISODES + '?storyId=' + story_id + '&'+ 'episodeId=' + episode_id)
+  }
 }

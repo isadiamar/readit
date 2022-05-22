@@ -33,6 +33,7 @@ public class Episode {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "story_id", nullable = false)
     private Story story;
+    private Integer numberEpisode;
 
     public EpisodeDto toEpisodeDto(){
         EpisodeDto episodeDto = new EpisodeDto();

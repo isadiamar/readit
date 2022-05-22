@@ -9,4 +9,6 @@ import java.util.Optional;
 
 public interface EpisodeRepository extends JpaRepository<Episode, Integer> {
     Optional<Episode> findByStoryAndId(Story story, Integer id);
+
+    void deleteByStoryAndId(Story story, Integer id);
 }

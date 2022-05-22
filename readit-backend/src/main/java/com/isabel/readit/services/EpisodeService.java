@@ -9,10 +9,13 @@ import com.isabel.readit.services.exceptions.ForbiddenException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.util.Optional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class EpisodeService {
 
 
@@ -29,10 +32,14 @@ public class EpisodeService {
                 .title(episodeDto.getTitle())
                 .pdf(episodeDto.getPdf())
                 .date(LocalDate.now())
+                .numberEpisode(story.getEpisodeList().size() + 1)
                 .story(story)
                 .build();
 
+        story.getEpisodeList().add(episode);
         this.episodeRepository.save(episode);
+        this.storyRepository.save(story);
+
         episodeDto.setId(episode.getId());
         return episodeDto;
     }
@@ -40,10 +47,16 @@ public class EpisodeService {
     public EpisodeDto get(Integer storyId, Integer episodeId) {
         Story story = this.storyRepository.findById(storyId).orElseThrow(() -> new ForbiddenException("Story not found"));
 
-        Optional<Episode> episode = this.episodeRepository.findByStoryAndId(story, episodeId);
+        return this.episodeRepository.findByStoryAndId(story, episodeId).map(Episode::toEpisodeDto).get();
+    }
 
-        EpisodeDto episodeDto =  episode.get().toEpisodeDto();
-        episodeDto.setNumberEpisode(story.getEpisodeList().size() + 1);
-        return episodeDto;
+    public List<EpisodeDto> getAll(Integer storyId) {
+        Story story = this.storyRepository.findById(storyId).orElseThrow(() -> new ForbiddenException("Story not found"));
+        return story.getEpisodeList().stream().map(Episode::toEpisodeDto).collect(Collectors.toList());
+    }
+
+    public void delete(Integer storyId, Integer episodeId) {
+        Story story = this.storyRepository.findById(storyId).orElseThrow(() -> new ForbiddenException("Story not found"));
+        this.episodeRepository.deleteByStoryAndId(story, episodeId);
     }
 }
