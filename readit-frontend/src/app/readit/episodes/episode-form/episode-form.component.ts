@@ -3,8 +3,6 @@ import {Episode} from "../../shared/models/episode.model";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {EpisodeService} from "../../shared/services/episode.service";
 import {ActivatedRoute, Router} from "@angular/router";
-import {Story} from "../../shared/models/story.model";
-
 
 @Component({
   selector: 'app-episode-form',
@@ -32,18 +30,23 @@ export class EpisodeFormComponent implements OnInit {
     private router:Router
   ) { }
 
-  ngOnInit(): void {
-    if (this.search("new")){
+  async ngOnInit() {
+     if (this.search("new")){
+       console.log("Estoy en crear episodio")
       this.storyId = this.activeRoute.snapshot.paramMap.get('id')!;
-      this.createForm("");
+       console.log("storyId", this.storyId)
+       this.createForm("");
+       console.log("form", this.formNewEpisode)
       this.create = true
     }else{
-      this.storyId = this.activeRoute.snapshot.paramMap.get('story_id')!;
+       console.log("Estoy en editar episodio")
+       this.storyId = this.activeRoute.snapshot.paramMap.get('story_id')!;
       this.episodeId = this.activeRoute.snapshot.paramMap.get('episode_id')!;
+      console.log("storyId", this.storyId, "episodeId", this.episodeId)
       this.episodeService.get(+this.storyId, +this.episodeId).subscribe(res=>{
         this.createForm(res.title)
       })
-      this.create = false
+       this.create = false
     }
   }
 
@@ -75,6 +78,7 @@ export class EpisodeFormComponent implements OnInit {
 
   createEpisode():Episode{
       return {
+        id:(this.create)? undefined : +this.episodeId,
         title:this.formNewEpisode.controls['title'].value,
         pdf:this.pdf,
         storyId:+this.storyId,
@@ -152,12 +156,13 @@ export class EpisodeFormComponent implements OnInit {
 
   edit() {
     if (this.formNewEpisode.valid) {
+      console.log('Editar form' + this.formNewEpisode)
       let episode: Episode = this.createEpisode();
-      console.log(episode)
+      console.log('Episodio creado en editar:', episode)
       this.episodeService.update(+this.storyId,episode).subscribe(
         next => this.id = next.id,
         error => this.clearFields(),
-        () => this.router.navigate(["stories/" + this.storyId + '/episodes/'+ this.episodeId])
+        () => this.router.navigate(["stories/" + this.storyId + '/episodes/'+ this.id])
       );
       this.clearFields()
     }

@@ -39,4 +39,9 @@ public class EpisodeController {
     public void delete(@RequestParam Integer storyId, @RequestParam Integer episodeId){
          this.episodeService.delete(storyId, episodeId);
     }
+
+    @PutMapping
+    public EpisodeDto update(@RequestParam Integer storyId, @RequestParam Integer episodeId, @RequestBody EpisodeDto episodeDto){
+        return this.episodeService.update(storyId, episodeId, episodeDto);
+    }
 }
