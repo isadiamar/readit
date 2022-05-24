@@ -1,5 +1,5 @@
 <mat-list class="stories" *ngFor="let episode of episodes">
-  <mat-list-item>
+  <mat-list-item class="hover" (click)="open(episode.id!)">
     <div class="episode-item">
       <div class="align-start">
         <div class="img">

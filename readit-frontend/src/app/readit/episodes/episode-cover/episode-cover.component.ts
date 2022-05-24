@@ -34,7 +34,10 @@ export class EpisodeCoverComponent implements OnInit {
   }
 
   delete(id:number) {
-    console.log('deleteId'+ id)
     this.dialog.open(ConfirmationDialogComponent, {data: {storyId:+this.pathId, episodeId:id, type:'episode'}});
+  }
+
+  open(id:number) {
+    this.episodeService.get(+this.pathId, id).subscribe(()=> this.router.navigate(['stories/'+this.pathId+'/episodes/'+ id]));
   }
 }

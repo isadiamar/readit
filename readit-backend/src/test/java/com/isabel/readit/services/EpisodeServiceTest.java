@@ -99,6 +99,24 @@ public class EpisodeServiceTest {
         );
 
         assertTrue(thrown.getMessage().contains("Forbidden Exception: Story not found"));
+    }
 
+    @Test
+    void testGetOk(){
+        EpisodeDto episodeDto1 = this.episodeService.get(1,1);
+        assertEquals("Episodio", episodeDto1.getTitle());
+
+        EpisodeDto episodeDto2 = this.episodeService.get(1,2);
+        assertEquals("Title", episodeDto2.getTitle());
+    }
+
+    @Test
+    void testGetForbidden(){
+        ForbiddenException thrown = assertThrows(
+                ForbiddenException.class,
+                () -> this.episodeService.get(45624, 1),
+                "Expected storyService.get() to throw, but it didn't"
+        );
+        assertTrue(thrown.getMessage().contains("Forbidden Exception: Story not found"));
     }
 }
