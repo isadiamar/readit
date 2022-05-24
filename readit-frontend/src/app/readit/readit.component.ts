@@ -14,18 +14,15 @@ export class ReaditComponent implements OnDestroy {
   episode_condition:string;
 
   constructor(private router: Router, private activatedRoute:ActivatedRoute) {
-    let story_id = this.activatedRoute.snapshot.paramMap.get('story_id');
-     let episode_id = this.activatedRoute.snapshot.paramMap.get('episode_id');
-
-    this.checkRoute(story_id, episode_id);
-
     this.routeChange = this.router.events
       .pipe(
         filter((event): event is NavigationEnd => event instanceof NavigationEnd)
       )
       .subscribe(event => {
-        this.isMainMenu = event.url != '/welcome' && event.url != '/stories/1/episodes/1';
-        this.isWelcomeMenu = event.url == '/welcome';
+        const isEpisodeViewing = event.url.includes('stories') && event.url.includes('episodes')&& !event.url.includes('edit') && !event.url.includes('new');
+
+        this.isMainMenu = event.url != '/welcome' && event.url != '/' && !isEpisodeViewing;
+        this.isWelcomeMenu = event.url == '/welcome' || event.url === '/';
       });
   }
 

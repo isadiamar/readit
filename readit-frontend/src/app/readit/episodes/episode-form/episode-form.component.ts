@@ -27,10 +27,12 @@ export class EpisodeFormComponent implements OnInit {
     private formBuilder: FormBuilder,
     private episodeService: EpisodeService,
     private activeRoute:ActivatedRoute,
-    private router:Router
-  ) { }
+    private router:Router,
+  ) {
+    this.createForm("")
+  }
 
-  async ngOnInit() {
+   ngOnInit() {
      if (this.search("new")){
        console.log("Estoy en crear episodio")
       this.storyId = this.activeRoute.snapshot.paramMap.get('id')!;
@@ -44,7 +46,7 @@ export class EpisodeFormComponent implements OnInit {
       this.episodeId = this.activeRoute.snapshot.paramMap.get('episode_id')!;
       console.log("storyId", this.storyId, "episodeId", this.episodeId)
       this.episodeService.get(+this.storyId, +this.episodeId).subscribe(res=>{
-        this.createForm(res.title)
+
       })
        this.create = false
     }
