@@ -67,6 +67,7 @@ public class EpisodeService {
         Episode episode = this.episodeRepository.findByStoryAndId(story,episodeId)
                .map(episodeEntity -> {
                    episodeDto.setId(episodeEntity.getId());
+                   episodeDto.setDate(LocalDate.now());
                    BeanUtils.copyProperties(episodeDto, episodeEntity);
                    return episodeEntity;
                }).orElseThrow(() -> new NotFoundException("Episode not found"));

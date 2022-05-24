@@ -14,15 +14,19 @@ export class EpisodeFormComponent implements OnInit {
 
   formNewEpisode: FormGroup;
   submitDisabled: boolean = true;
+
   fileToUpload:string;
   showFile:boolean = false;
-  id: number | undefined;
   file_name: string;
+
+  id: number | undefined;
   file: any;
   pdf: any;
   storyId:string;
   episodeId:string;
   create:boolean;
+  episode:Episode;
+
   constructor(
     private formBuilder: FormBuilder,
     private episodeService: EpisodeService,
@@ -34,19 +38,15 @@ export class EpisodeFormComponent implements OnInit {
 
    ngOnInit() {
      if (this.search("new")){
-       console.log("Estoy en crear episodio")
       this.storyId = this.activeRoute.snapshot.paramMap.get('id')!;
-       console.log("storyId", this.storyId)
        this.createForm("");
-       console.log("form", this.formNewEpisode)
       this.create = true
     }else{
-       console.log("Estoy en editar episodio")
        this.storyId = this.activeRoute.snapshot.paramMap.get('story_id')!;
       this.episodeId = this.activeRoute.snapshot.paramMap.get('episode_id')!;
-      console.log("storyId", this.storyId, "episodeId", this.episodeId)
       this.episodeService.get(+this.storyId, +this.episodeId).subscribe(res=>{
-
+        this.createForm(res.title)
+        this.episode = res;
       })
        this.create = false
     }
@@ -84,6 +84,7 @@ export class EpisodeFormComponent implements OnInit {
         title:this.formNewEpisode.controls['title'].value,
         pdf:this.pdf,
         storyId:+this.storyId,
+        numberEpisode: (this.create)? undefined : this.episode.numberEpisode
       }
   }
 
@@ -158,9 +159,7 @@ export class EpisodeFormComponent implements OnInit {
 
   edit() {
     if (this.formNewEpisode.valid) {
-      console.log('Editar form' + this.formNewEpisode)
       let episode: Episode = this.createEpisode();
-      console.log('Episodio creado en editar:', episode)
       this.episodeService.update(+this.storyId,episode).subscribe(
         next => this.id = next.id,
         error => this.clearFields(),
