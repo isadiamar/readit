@@ -1,7 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {catchError, of, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import {WelcomeService} from "../../../shared/services/data.service";
 import {AuthService} from "../../../../core/auth.service";
 import {Router} from "@angular/router";

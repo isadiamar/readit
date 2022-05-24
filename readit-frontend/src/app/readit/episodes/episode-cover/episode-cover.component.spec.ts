@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { EpisodeCoverComponent } from './episode-cover.component';
+import {EpisodeCoverComponent} from './episode-cover.component';
 
 describe('EpisodeCoverComponent', () => {
   let component: EpisodeCoverComponent;

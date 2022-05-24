@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { StoryFormComponent } from './story-form.component';
+import {StoryFormComponent} from './story-form.component';
 
 describe('StoryFormComponent', () => {
   let component: StoryFormComponent;

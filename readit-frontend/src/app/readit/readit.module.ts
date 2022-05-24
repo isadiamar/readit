@@ -12,15 +12,14 @@ import {WelcomeMenuComponent} from "./welcome/components/welcome-menu/welcome-me
 
 import {WelcomeService} from "./shared/services/data.service";
 import {ReaditComponent} from "./readit.component";
-import { StoryFormComponent } from './stories/story-form/story-form.component';
-import { StoryComponent } from './stories/story/story.component';
-import { StoryCoverComponent } from './stories/story-cover/story-cover.component';
-import { EpisodeFormComponent } from './episodes/episode-form/episode-form.component';
+import {StoryFormComponent} from './stories/story-form/story-form.component';
+import {StoryComponent} from './stories/story/story.component';
+import {StoryCoverComponent} from './stories/story-cover/story-cover.component';
+import {EpisodeFormComponent} from './episodes/episode-form/episode-form.component';
 import {StoryService} from "./shared/services/story.service";
-import { EpisodeComponent } from './episodes/episode/episode.component';
+import {EpisodeComponent} from './episodes/episode/episode.component';
 import {PdfViewerModule} from "ng2-pdf-viewer";
-import { ProgressBarComponent } from '../shared/components/progress-bar/progress-bar.component';
-import { EpisodeCoverComponent } from './episodes/episode-cover/episode-cover.component';
+import {EpisodeCoverComponent} from './episodes/episode-cover/episode-cover.component';
 
 
 @NgModule({

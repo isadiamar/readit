@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpService} from "../../../core/http.service";
-import {Observable, of} from "rxjs";
+import {Observable} from "rxjs";
 import {Episode} from "../models/episode.model";
 import {EndPoints} from "../../../shared/end-points";
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Status} from "../../shared/models/status.enum";
 import {StoryService} from "../../shared/services/story.service";
 import {ActivatedRoute, Router} from "@angular/router";
