@@ -3,6 +3,7 @@ import {Episode} from "../../shared/models/episode.model";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {EpisodeService} from "../../shared/services/episode.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {Story} from "../../shared/models/story.model";
 
 
 @Component({
@@ -21,8 +22,9 @@ export class EpisodeFormComponent implements OnInit {
   file_name: string;
   file: any;
   pdf: any;
-  pathId:string;
-
+  storyId:string;
+  episodeId:string;
+  create:boolean;
   constructor(
     private formBuilder: FormBuilder,
     private episodeService: EpisodeService,
@@ -31,18 +33,31 @@ export class EpisodeFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.pathId = this.activeRoute.snapshot.paramMap.get('id')!;
-
-    this.formNewEpisode = this.formBuilder.group({
-      title: new FormControl("", [Validators.minLength(3)])
-    });
-    this.formNewEpisode.valueChanges.subscribe(_ => this.checkDisabled())
+    if (this.search("new")){
+      this.storyId = this.activeRoute.snapshot.paramMap.get('id')!;
+      this.createForm("");
+      this.create = true
+    }else{
+      this.storyId = this.activeRoute.snapshot.paramMap.get('story_id')!;
+      this.episodeId = this.activeRoute.snapshot.paramMap.get('episode_id')!;
+      this.episodeService.get(+this.storyId, +this.episodeId).subscribe(res=>{
+        this.createForm(res.title)
+      })
+      this.create = false
+    }
   }
 
   private checkDisabled() {
     let title = this.formNewEpisode.controls['title'].value;
 
     this.submitDisabled = !title || this.formNewEpisode.invalid || !this.file;
+  }
+
+  createForm(title:string){
+    this.formNewEpisode = this.formBuilder.group({
+      title: new FormControl(title, [Validators.minLength(3)]),
+    });
+    this.formNewEpisode.valueChanges.subscribe(_ => this.checkDisabled())
   }
 
   submit() {
@@ -52,7 +67,7 @@ export class EpisodeFormComponent implements OnInit {
       this.episodeService.create(episode).subscribe(
         next => this.id = next.id,
         error => this.clearFields(),
-        ()=> this.router.navigate(['stories/'+this.pathId+'/episodes/'+ this.id])
+        ()=> this.router.navigate(['stories/'+this.storyId+'/episodes/'+ this.id])
       )
       this.clearFields()
     }
@@ -62,7 +77,7 @@ export class EpisodeFormComponent implements OnInit {
       return {
         title:this.formNewEpisode.controls['title'].value,
         pdf:this.pdf,
-        storyId:+this.pathId,
+        storyId:+this.storyId,
       }
   }
 
@@ -129,5 +144,22 @@ export class EpisodeFormComponent implements OnInit {
   deleteFile() {
       this.file = null;
       this.checkDisabled()
+  }
+
+  search(word:string):boolean{
+    return window.location.toString().includes(word)
+  }
+
+  edit() {
+    if (this.formNewEpisode.valid) {
+      let episode: Episode = this.createEpisode();
+      console.log(episode)
+      this.episodeService.update(+this.storyId,episode).subscribe(
+        next => this.id = next.id,
+        error => this.clearFields(),
+        () => this.router.navigate(["stories/" + this.storyId + '/episodes/'+ this.episodeId])
+      );
+      this.clearFields()
+    }
   }
 }

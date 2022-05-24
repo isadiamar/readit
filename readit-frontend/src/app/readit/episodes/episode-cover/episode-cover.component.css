@@ -83,4 +83,5 @@
 
 .tools mat-icon{
   font-size: 1rem;
+  cursor: pointer;
 }

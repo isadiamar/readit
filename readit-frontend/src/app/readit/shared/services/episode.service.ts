@@ -9,9 +9,7 @@ import {EndPoints} from "../../../shared/end-points";
 })
 export class EpisodeService {
 
-  constructor(private httpService: HttpService) {
-
-  }
+  constructor(private httpService: HttpService) {}
 
   create(episode:Episode):Observable<Episode>{
     return this.httpService
@@ -34,4 +32,9 @@ export class EpisodeService {
     return this.httpService
       .delete(EndPoints.EPISODES + '?storyId=' + story_id + '&'+ 'episodeId=' + episode_id)
   }
-}
+
+  update(storyId:number, episode:Episode):Observable<Episode>{
+    return this.httpService
+      .successful()
+      .put(EndPoints.EPISODES + '?storyId=' + storyId + '&'+ 'episodeId=' + episode.id,  {...episode})
+  }}
