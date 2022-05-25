@@ -49,7 +49,8 @@ public class EpisodeService {
     public EpisodeDto get(Integer storyId, Integer episodeId) {
         Story story = this.storyRepository.findById(storyId).orElseThrow(() -> new ForbiddenException("Story not found"));
 
-        return this.episodeRepository.findByStoryAndId(story, episodeId).map(Episode::toEpisodeDto).get();
+        return this.episodeRepository.findByStoryAndId(story, episodeId).map(Episode::toEpisodeDto)
+                .orElseThrow(()-> new ForbiddenException(("Episode not found")));
     }
 
     public List<EpisodeDto> getAll(Integer storyId) {

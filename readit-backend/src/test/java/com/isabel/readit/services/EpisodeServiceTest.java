@@ -7,12 +7,15 @@ import com.isabel.readit.data.daos.StoryRepository;
 import com.isabel.readit.data.daos.UserRepository;
 import com.isabel.readit.data.model.*;
 import com.isabel.readit.services.exceptions.ForbiddenException;
+import com.isabel.readit.services.exceptions.NotFoundException;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -118,5 +121,79 @@ public class EpisodeServiceTest {
                 "Expected storyService.get() to throw, but it didn't"
         );
         assertTrue(thrown.getMessage().contains("Forbidden Exception: Story not found"));
+    }
+
+    @Test
+    void testGetAllOk(){
+        List<EpisodeDto> episodes = this.episodeService.getAll(1);
+        assertEquals(2, episodes.size());
+        assertEquals("Episodio", episodes.get(0).getTitle());
+        assertEquals("Title", episodes.get(1).getTitle());
+    }
+
+    @Test
+    void testGetAllForbidden(){
+        ForbiddenException thrown = assertThrows(
+                ForbiddenException.class,
+                () -> this.episodeService.getAll(45624),
+                "Expected episodeService.getAll() to throw, but it didn't"
+        );
+        assertTrue(thrown.getMessage().contains("Forbidden Exception: Story not found"));
+    }
+
+    @Test
+    void testDeleteOk(){
+        this.episodeService.delete(1, 1);
+        ForbiddenException thrown = assertThrows(
+                ForbiddenException.class,
+                () -> this.episodeService.get(1,1),
+                "Expected episodeService.get() to throw, but it didn't"
+        );
+        assertTrue(thrown.getMessage().contains("Forbidden Exception: Episode not found"));
+    }
+
+    @Test
+    void testUpdate(){
+        EpisodeDto episodeDtoNotEdited = EpisodeDto.builder()
+                .title("Not edited")
+                .pdf("pdf")
+                .storyId(1)
+                .build();
+
+        this.episodeService.create(episodeDtoNotEdited);
+
+        EpisodeDto episodeDtoEdited = EpisodeDto.builder()
+                .title("Edited")
+                .pdf("pdf")
+                .storyId(1)
+                .build();
+
+        EpisodeDto episodeDto = this.episodeService.update(1,3,episodeDtoEdited);
+        assertEquals("Edited", episodeDto.getTitle());
+        assertEquals("Not edited", episodeDtoNotEdited.getTitle());
+    }
+
+    @Test
+    void testUpdateNotFound(){
+        EpisodeDto episodeDtoNotEdited = EpisodeDto.builder()
+                .title("Not edited")
+                .pdf("pdf")
+                .storyId(1)
+                .build();
+
+        ForbiddenException thrown_story = assertThrows(
+                ForbiddenException.class,
+                () -> this.episodeService.update(123,1,episodeDtoNotEdited),
+                "Expected episodeService.update() to throw, but it didn't"
+        );
+        assertTrue(thrown_story.getMessage().contains("Forbidden Exception: Story not found"));
+
+        NotFoundException thrown = assertThrows(
+                NotFoundException.class,
+                () -> this.episodeService.update(1,2354, episodeDtoNotEdited),
+                "Expected episodeService.update() to throw, but it didn't"
+        );
+        assertTrue(thrown.getMessage().contains("Not Found Exception. Episode not found"));
+
     }
 }
