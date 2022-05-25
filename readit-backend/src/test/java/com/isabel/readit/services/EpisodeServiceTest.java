@@ -25,21 +25,17 @@ public class EpisodeServiceTest {
 
     private UserRepository userRepository;
     private StoryRepository storyRepository;
-    private EpisodeRepository episodeRepository;
     private PasswordEncoder passwordEncoder;
     private StoryService storyService;
-    private AuthService authService;
     private EpisodeService episodeService;
 
     @Autowired
     private EpisodeServiceTest(UserRepository userRepository, StoryRepository storyRepository, PasswordEncoder passwordEncoder,
-                               StoryService storyService, AuthService authService, EpisodeService episodeService, EpisodeRepository episodeRepository) {
+                               StoryService storyService, EpisodeService episodeService) {
         this.storyRepository = storyRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.storyService = storyService;
-        this.authService = authService;
-        this.episodeRepository = episodeRepository;
         this.episodeService = episodeService;
     }
 
@@ -71,7 +67,7 @@ public class EpisodeServiceTest {
     }
 
     @Test
-    void testCreateOk(){
+    void testCreateOk() {
         EpisodeDto episodeDto = EpisodeDto.builder()
                 .title("Title")
                 .pdf("pdf")
@@ -81,14 +77,14 @@ public class EpisodeServiceTest {
         this.episodeService.create(episodeDto);
 
         Story story = this.storyRepository.findById(1).get();
-        assertEquals(2,story.getEpisodeList().size());
+        assertEquals(2, story.getEpisodeList().size());
         assertEquals("Episodio", story.getEpisodeList().get(0).getTitle());
         assertEquals("Title", story.getEpisodeList().get(1).getTitle());
 
     }
 
     @Test
-    void testCreateNotFound(){
+    void testCreateNotFound() {
         EpisodeDto episodeDto = EpisodeDto.builder()
                 .title("Title")
                 .pdf("pdf")
@@ -105,16 +101,16 @@ public class EpisodeServiceTest {
     }
 
     @Test
-    void testGetOk(){
-        EpisodeDto episodeDto1 = this.episodeService.get(1,1);
+    void testGetOk() {
+        EpisodeDto episodeDto1 = this.episodeService.get(1, 1);
         assertEquals("Episodio", episodeDto1.getTitle());
 
-        EpisodeDto episodeDto2 = this.episodeService.get(1,2);
+        EpisodeDto episodeDto2 = this.episodeService.get(1, 2);
         assertEquals("Title", episodeDto2.getTitle());
     }
 
     @Test
-    void testGetForbidden(){
+    void testGetForbidden() {
         ForbiddenException thrown = assertThrows(
                 ForbiddenException.class,
                 () -> this.episodeService.get(45624, 1),
@@ -124,7 +120,7 @@ public class EpisodeServiceTest {
     }
 
     @Test
-    void testGetAllOk(){
+    void testGetAllOk() {
         List<EpisodeDto> episodes = this.episodeService.getAll(1);
         assertEquals(2, episodes.size());
         assertEquals("Episodio", episodes.get(0).getTitle());
@@ -132,7 +128,7 @@ public class EpisodeServiceTest {
     }
 
     @Test
-    void testGetAllForbidden(){
+    void testGetAllForbidden() {
         ForbiddenException thrown = assertThrows(
                 ForbiddenException.class,
                 () -> this.episodeService.getAll(45624),
@@ -142,18 +138,18 @@ public class EpisodeServiceTest {
     }
 
     @Test
-    void testDeleteOk(){
+    void testDeleteOk() {
         this.episodeService.delete(1, 1);
         ForbiddenException thrown = assertThrows(
                 ForbiddenException.class,
-                () -> this.episodeService.get(1,1),
+                () -> this.episodeService.get(1, 1),
                 "Expected episodeService.get() to throw, but it didn't"
         );
         assertTrue(thrown.getMessage().contains("Forbidden Exception: Episode not found"));
     }
 
     @Test
-    void testUpdate(){
+    void testUpdate() {
         EpisodeDto episodeDtoNotEdited = EpisodeDto.builder()
                 .title("Not edited")
                 .pdf("pdf")
@@ -168,13 +164,13 @@ public class EpisodeServiceTest {
                 .storyId(1)
                 .build();
 
-        EpisodeDto episodeDto = this.episodeService.update(1,3,episodeDtoEdited);
+        EpisodeDto episodeDto = this.episodeService.update(1, 3, episodeDtoEdited);
         assertEquals("Edited", episodeDto.getTitle());
         assertEquals("Not edited", episodeDtoNotEdited.getTitle());
     }
 
     @Test
-    void testUpdateNotFound(){
+    void testUpdateNotFound() {
         EpisodeDto episodeDtoNotEdited = EpisodeDto.builder()
                 .title("Not edited")
                 .pdf("pdf")
@@ -183,14 +179,14 @@ public class EpisodeServiceTest {
 
         ForbiddenException thrown_story = assertThrows(
                 ForbiddenException.class,
-                () -> this.episodeService.update(123,1,episodeDtoNotEdited),
+                () -> this.episodeService.update(123, 1, episodeDtoNotEdited),
                 "Expected episodeService.update() to throw, but it didn't"
         );
         assertTrue(thrown_story.getMessage().contains("Forbidden Exception: Story not found"));
 
         NotFoundException thrown = assertThrows(
                 NotFoundException.class,
-                () -> this.episodeService.update(1,2354, episodeDtoNotEdited),
+                () -> this.episodeService.update(1, 2354, episodeDtoNotEdited),
                 "Expected episodeService.update() to throw, but it didn't"
         );
         assertTrue(thrown.getMessage().contains("Not Found Exception. Episode not found"));

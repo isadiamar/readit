@@ -4,7 +4,6 @@ import com.isabel.readit.data.model.User;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RegisterDtoTest {
 
@@ -39,19 +38,19 @@ class RegisterDtoTest {
     }
 
     @Test
-    void testConstructor(){
+    void testConstructor() {
         RegisterDto registerDtoNoParameters = new RegisterDto();
         String res = "RegisterDto(nickname=null, email=null, password=null, confirmPassword=null)";
-        assertEquals(res,registerDtoNoParameters.toString());
+        assertEquals(res, registerDtoNoParameters.toString());
 
         RegisterDto registerDtoParameters = new RegisterDto("nickname", "email@email", "password", "password");
         String resPar = "RegisterDto(nickname=nickname, email=email@email, password=password, confirmPassword=password)";
 
-        assertEquals(resPar,registerDtoParameters.toString());
+        assertEquals(resPar, registerDtoParameters.toString());
     }
 
     @Test
-    void testCopyProperties(){
+    void testCopyProperties() {
         User user = User.builder().nickname("nick").email("email").description("description").build();
         RegisterDto register = new RegisterDto(user);
         assertEquals("nick", register.getNickname());

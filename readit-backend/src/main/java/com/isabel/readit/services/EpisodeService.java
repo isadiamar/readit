@@ -50,7 +50,7 @@ public class EpisodeService {
         Story story = this.storyRepository.findById(storyId).orElseThrow(() -> new ForbiddenException("Story not found"));
 
         return this.episodeRepository.findByStoryAndId(story, episodeId).map(Episode::toEpisodeDto)
-                .orElseThrow(()-> new ForbiddenException(("Episode not found")));
+                .orElseThrow(() -> new ForbiddenException(("Episode not found")));
     }
 
     public List<EpisodeDto> getAll(Integer storyId) {
@@ -65,13 +65,13 @@ public class EpisodeService {
 
     public EpisodeDto update(Integer storyId, Integer episodeId, EpisodeDto episodeDto) {
         Story story = this.storyRepository.findById(storyId).orElseThrow(() -> new ForbiddenException("Story not found"));
-        Episode episode = this.episodeRepository.findByStoryAndId(story,episodeId)
-               .map(episodeEntity -> {
-                   episodeDto.setId(episodeEntity.getId());
-                   episodeDto.setDate(LocalDate.now());
-                   BeanUtils.copyProperties(episodeDto, episodeEntity);
-                   return episodeEntity;
-               }).orElseThrow(() -> new NotFoundException("Episode not found"));
+        Episode episode = this.episodeRepository.findByStoryAndId(story, episodeId)
+                .map(episodeEntity -> {
+                    episodeDto.setId(episodeEntity.getId());
+                    episodeDto.setDate(LocalDate.now());
+                    BeanUtils.copyProperties(episodeDto, episodeEntity);
+                    return episodeEntity;
+                }).orElseThrow(() -> new NotFoundException("Episode not found"));
 
         this.episodeRepository.save(episode);
         return episode.toEpisodeDto();

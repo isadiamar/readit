@@ -24,7 +24,7 @@ class AuthServiceTest {
     private UserRepository userRepository;
 
     @Autowired
-    private AuthServiceTest(AuthService authService, PasswordEncoder passwordEncoder, UserRepository userRepository){
+    private AuthServiceTest(AuthService authService, PasswordEncoder passwordEncoder, UserRepository userRepository) {
         this.authService = authService;
         this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
@@ -44,7 +44,7 @@ class AuthServiceTest {
         LoginDto loginDto = new LoginDto();
         loginDto.setEmail("user1@test.com");
         loginDto.setPassword("Password");
-        TokenDto tokenDto =  this.authService.login(loginDto);
+        TokenDto tokenDto = this.authService.login(loginDto);
         assertNotNull(tokenDto);
     }
 
@@ -61,7 +61,7 @@ class AuthServiceTest {
     }
 
     @Test
-    void testRegisterOk(){
+    void testRegisterOk() {
         RegisterDto registerDto = RegisterDto.builder().nickname("c1").email("c1@email.com").password("c123h2").confirmPassword("c123h2").build();
 
         TokenDto tokenDto = this.authService.register(registerDto);
@@ -69,7 +69,7 @@ class AuthServiceTest {
     }
 
     @Test
-    void testRegisterEmailInUse(){
+    void testRegisterEmailInUse() {
         RegisterDto registerDto = RegisterDto.builder().nickname("exception").email("user1@test.com").password("c123h2").confirmPassword("c123h2").build();
 
         BadRequestException thrown = assertThrows(
@@ -82,7 +82,7 @@ class AuthServiceTest {
     }
 
     @Test
-    void testRegisterConfirmedPasswordIncorrect(){
+    void testRegisterConfirmedPasswordIncorrect() {
         RegisterDto registerDto = RegisterDto.builder().nickname("c2").email("c2@email.com").password("goodPassword!").confirmPassword("badPasss").build();
         BadRequestException thrown = assertThrows(
                 BadRequestException.class,

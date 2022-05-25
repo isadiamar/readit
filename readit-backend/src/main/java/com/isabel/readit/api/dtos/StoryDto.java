@@ -13,11 +13,11 @@ import javax.validation.constraints.NotBlank;
 @Builder
 @AllArgsConstructor
 public class StoryDto {
+    @NotBlank
+    String description;
     private Integer id;
     @NotBlank
     private String title;
-    @NotBlank
-    String description;
     private Genre genre1;
     private Genre genre2;
     private Status status;

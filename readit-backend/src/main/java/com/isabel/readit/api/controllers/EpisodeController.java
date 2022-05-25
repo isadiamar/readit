@@ -20,28 +20,28 @@ public class EpisodeController {
 
 
     @PostMapping("/new")
-    public EpisodeDto create (@RequestBody EpisodeDto episodeDto){
+    public EpisodeDto create(@RequestBody EpisodeDto episodeDto) {
 
         return this.episodeService.create(episodeDto);
     }
 
     @GetMapping("/{episodeId}" + "/from/" + "{storyId}")
-    public EpisodeDto get (@PathVariable Integer storyId, @PathVariable Integer episodeId){
-         return this.episodeService.get(storyId,episodeId);
+    public EpisodeDto get(@PathVariable Integer storyId, @PathVariable Integer episodeId) {
+        return this.episodeService.get(storyId, episodeId);
     }
 
     @GetMapping
-    public List<EpisodeDto> get(@RequestParam Integer storyId){
+    public List<EpisodeDto> get(@RequestParam Integer storyId) {
         return this.episodeService.getAll(storyId);
     }
 
     @DeleteMapping
-    public void delete(@RequestParam Integer storyId, @RequestParam Integer episodeId){
-         this.episodeService.delete(storyId, episodeId);
+    public void delete(@RequestParam Integer storyId, @RequestParam Integer episodeId) {
+        this.episodeService.delete(storyId, episodeId);
     }
 
     @PutMapping
-    public EpisodeDto update(@RequestParam Integer storyId, @RequestParam Integer episodeId, @RequestBody EpisodeDto episodeDto){
+    public EpisodeDto update(@RequestParam Integer storyId, @RequestParam Integer episodeId, @RequestBody EpisodeDto episodeDto) {
         return this.episodeService.update(storyId, episodeId, episodeDto);
     }
 }
