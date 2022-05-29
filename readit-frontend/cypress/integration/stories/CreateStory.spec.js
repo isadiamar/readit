@@ -4,7 +4,7 @@ beforeEach(()=>{
   cy.navigateToStories('Create a new story')
 })
 
-describe('LoginForm Test', () => {
+describe('Create Story Test', () => {
   it("Should load", () => {
     _assertTextExists('USER')
   });
@@ -25,7 +25,6 @@ describe('LoginForm Test', () => {
   it("Should create Story", ()=>{
     _fillInputsValid()
     cy.get("button").contains('Create').click()
-
   })
 })
 
