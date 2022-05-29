@@ -24,6 +24,9 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+import 'cypress-file-upload';
+
+
 Cypress.Commands.add('login', () => {
   cy.get('input').eq(0).clear().type('user@user.com')
   cy.get('input').eq(1).clear().type('uSer*Password1')
@@ -48,4 +51,11 @@ Cypress.Commands.add('completeStoryForm',()=>{
 
 Cypress.Commands.add('navigateToStories', (navigate)=>{
   cy.get("button").contains('WRITE').click().get("button").contains(navigate).click();
+})
+
+Cypress.Commands.add('completeEpisodeForm', ()=>{
+    const fixture_pdf = 'lorem-ipsum.pdf';
+    cy.get("input").eq(0).type("Episodio de prueba");
+    cy.get('input[type=file]').attachFile(fixture_pdf);
+    cy.get("button").contains("POST EPISODE").click();
 })

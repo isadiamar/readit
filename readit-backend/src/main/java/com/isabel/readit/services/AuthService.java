@@ -31,9 +31,9 @@ public class AuthService {
     public TokenDto register(RegisterDto registerDto) {
         TokenDto res = new TokenDto();
 
-        if(!Objects.equals(registerDto.getPassword(), registerDto.getConfirmPassword()) || userRepository.findByEmail(registerDto.getEmail()).isPresent()){
+        if (!Objects.equals(registerDto.getPassword(), registerDto.getConfirmPassword()) || userRepository.findByEmail(registerDto.getEmail()).isPresent()) {
             throw new BadRequestException("Invalid data input");
-        }else {
+        } else {
             User user = User.builder()
                     .nickname(registerDto.getNickname())
                     .email(registerDto.getEmail())
@@ -52,7 +52,7 @@ public class AuthService {
 
         User user = userRepository.findByEmail(loginDto.getEmail()).orElseThrow(() -> new BadRequestException("Email or password are wrong"));
 
-        if(!passwordEncoder.matches(loginDto.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(loginDto.getPassword(), user.getPassword())) {
             throw new ForbiddenException("Email or password are wrong");
         }
 

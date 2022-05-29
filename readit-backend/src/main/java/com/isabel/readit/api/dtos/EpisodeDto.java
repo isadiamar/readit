@@ -19,5 +19,6 @@ public class EpisodeDto {
     @NotBlank
     private String pdf;
     @NotNull
-    private Integer story_id;
+    private Integer storyId;
+    private Integer numberEpisode;
 }

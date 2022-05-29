@@ -48,9 +48,9 @@ public class StoryService {
     }
 
     public StoryDto get(Integer id) {
-       Story story = this.storyRepository.findById(id)
+        Story story = this.storyRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Story not found"));
-       return story.toStoryDto();
+        return story.toStoryDto();
     }
 
     public List<StoryDto> getAll() {
@@ -61,7 +61,7 @@ public class StoryService {
     }
 
     public void delete(Integer id) {
-         this.storyRepository.deleteById(id);
+        this.storyRepository.deleteById(id);
     }
 
     public StoryDto update(Integer id, StoryDto storyDto) {
@@ -71,7 +71,7 @@ public class StoryService {
                     return storyEntity;
                 }).orElseThrow(() -> new NotFoundException("Story not found"));
 
-         story.setId(storyDto.getId());
+        story.setId(storyDto.getId());
         this.storyRepository.save(story);
         return story.toStoryDto();
     }

@@ -8,17 +8,8 @@
   padding: 1px;
 }
 
-.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent{
-  background-color: #3BBC48;
-  box-shadow: none;
-}
-.mat-mini-fab{
-  margin-top: 2px;
-  height: 35px;
-  width: 35px;
-}
-
 .wrap{
+  margin-left: 10rem;
   width: 40%;
   display: flex;
 }
@@ -29,15 +20,23 @@
   align-content: space-evenly;
 }
 
-button{
-  font-size: 16px;
-}
-
 .btn p{
   height: 100%;
   align-items: center;
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
   margin-left: 1rem;
   font-weight: bold;
   font-family: Roboto, serif;
+}
+
+.numberCircle {
+  margin-top: .25rem;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  padding: 8px;
+  background: #3BBC48;
+  color: white;
+  text-align: center;
+  font: 16px Arial, sans-serif;
 }

@@ -33,7 +33,8 @@
       </div>
 
       <div class="actions">
-        <button mat-flat-button color="accent" [disabled] = "submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' " (click)="submit()">POST EPISODE</button>
+        <button *ngIf="create" mat-flat-button color="accent" [disabled] = "submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' " (click)="submit()">POST EPISODE</button>
+        <button *ngIf="!create" mat-flat-button color="accent" [disabled] = "submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' " (click)="edit()">EDIT EPISODE</button>
       </div>
     </div>
   </form>

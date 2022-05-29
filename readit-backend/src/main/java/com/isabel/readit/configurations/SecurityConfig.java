@@ -23,19 +23,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private JWTService jwtService;
 
-   @Bean
-    public CorsFilter corsFilter(){
-       UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-       CorsConfiguration config = new CorsConfiguration();
-       config.setAllowCredentials(true);
-       config.addAllowedHeader("*");
-       config.addAllowedOriginPattern("*");
-       config.addAllowedMethod("GET");
-       config.addAllowedMethod("POST");
-       config.addAllowedMethod("PUT");
-       config.addAllowedMethod("DELETE");
-       source.registerCorsConfiguration("/**", config);
-       return new CorsFilter(source);
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowCredentials(true);
+        config.addAllowedHeader("*");
+        config.addAllowedOriginPattern("*");
+        config.addAllowedMethod("GET");
+        config.addAllowedMethod("POST");
+        config.addAllowedMethod("PUT");
+        config.addAllowedMethod("DELETE");
+        source.registerCorsConfiguration("/**", config);
+        return new CorsFilter(source);
     }
 
     @Bean
@@ -44,19 +44,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
-       JWTAuthorizationFilter jwtAuthorizationFilter = new JWTAuthorizationFilter();
-       jwtAuthorizationFilter.setJwtService(jwtService);
+    protected void configure(HttpSecurity http) throws Exception {
+        JWTAuthorizationFilter jwtAuthorizationFilter = new JWTAuthorizationFilter();
+        jwtAuthorizationFilter.setJwtService(jwtService);
 
-       http
-               .csrf()
-               .disable()
-               .cors().and()
-               .addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
-               .authorizeRequests()
-               .antMatchers("/api/private/**").authenticated()
-               .antMatchers("/api/auth/**").permitAll()
-               .anyRequest().permitAll();
+        http
+                .csrf()
+                .disable()
+                .cors().and()
+                .addFilterAfter(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
+                .authorizeRequests()
+                .antMatchers("/api/private/**").authenticated()
+                .antMatchers("/api/auth/**").permitAll()
+                .anyRequest().permitAll();
     }
 
 }

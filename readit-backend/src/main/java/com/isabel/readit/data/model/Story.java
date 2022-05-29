@@ -18,7 +18,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @Entity
 @Table(name = "stories")
-public class Story{
+public class Story {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -43,10 +43,10 @@ public class Story{
     @OneToMany(mappedBy = "story", fetch = FetchType.EAGER)
     private List<Episode> episodeList;
 
-    public StoryDto toStoryDto(){
+    public StoryDto toStoryDto() {
         StoryDto storyDto = new StoryDto();
         BeanUtils.copyProperties(this, storyDto);
-        if(Objects.nonNull(this.getUser())){
+        if (Objects.nonNull(this.getUser())) {
             storyDto.setUsername(this.getUser().getNickname());
         }
         return storyDto;

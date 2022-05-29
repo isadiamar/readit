@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class StoryDtoTest {
 
     @Test
-    void testGetSetTitleAndDescription(){
+    void testGetSetTitleAndDescription() {
         StoryDto storyDto = StoryDto.builder()
                 .title("Title")
                 .description("Description")
@@ -32,7 +32,7 @@ class StoryDtoTest {
     }
 
     @Test
-    void testGetSetGenreAndPrivacyAndStatus(){
+    void testGetSetGenreAndPrivacyAndStatus() {
         StoryDto storyDto = StoryDto.builder()
                 .title("Title")
                 .description("Description")

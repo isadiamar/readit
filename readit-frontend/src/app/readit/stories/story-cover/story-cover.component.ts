@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StoryService} from "../../shared/services/story.service";
 import {Story} from "../../shared/models/story.model";
 import {MatDialog} from "@angular/material/dialog";
@@ -13,8 +13,8 @@ import {Genre} from "../../shared/models/genre.enum";
 })
 export class StoryCoverComponent implements OnInit {
 
-  storyModel:Story;
   stories: Story[] = [];
+
   constructor(private storyService:StoryService, private dialog: MatDialog, private route:Router) { }
 
   ngOnInit(): void {
@@ -28,7 +28,7 @@ export class StoryCoverComponent implements OnInit {
   }
 
   delete(id: number) {
-      this.dialog.open(ConfirmationDialogComponent, {data: {id:id}});
+      this.dialog.open(ConfirmationDialogComponent, {data: {storyId:id, type:'story'}});
   }
 
   open(id:number) {

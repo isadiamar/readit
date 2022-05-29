@@ -1,8 +1,6 @@
 package com.isabel.readit.services;
 
-import com.isabel.readit.api.dtos.LoginDto;
 import com.isabel.readit.api.dtos.StoryDto;
-import com.isabel.readit.api.dtos.TokenDto;
 import com.isabel.readit.data.daos.StoryRepository;
 import com.isabel.readit.data.daos.UserRepository;
 import com.isabel.readit.data.model.Genre;
@@ -11,15 +9,12 @@ import com.isabel.readit.data.model.Status;
 import com.isabel.readit.data.model.User;
 import com.isabel.readit.services.exceptions.ForbiddenException;
 import com.isabel.readit.services.exceptions.NotFoundException;
-import com.isabel.readit.services.security.JWTService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -64,9 +59,8 @@ class StoryServiceTest {
     }
 
 
-
     @Test
-    void testCreateOk(){
+    void testCreateOk() {
         User user = new User();
         user.setEmail("user@test.com");
         user.setPassword(passwordEncoder.encode("Password"));
@@ -84,12 +78,12 @@ class StoryServiceTest {
         this.storyService.create(storyDto, user.getEmail());
 
         User newUser = this.userRepository.findByEmail(user.getEmail()).get();
-        assertEquals(2,newUser.getStoryList().size());
+        assertEquals(2, newUser.getStoryList().size());
         assertEquals("This is just a description", newUser.getStoryList().get(1).getDescription());
     }
 
     @Test
-    void testCreateNotFound(){
+    void testCreateNotFound() {
         User user = new User();
         user.setEmail("notExists@test.com");
         user.setPassword(passwordEncoder.encode("Password"));
@@ -115,7 +109,7 @@ class StoryServiceTest {
     }
 
     @Test
-    void testGetOk(){
+    void testGetOk() {
         StoryDto story = this.storyService.get(1);
         assertEquals("Story Title", story.getTitle());
         assertEquals(Genre.FANTASY, story.getGenre2());
@@ -123,18 +117,18 @@ class StoryServiceTest {
     }
 
     @Test
-    void testGetNotFound(){
+    void testGetNotFound() {
 
         NotFoundException thrown = assertThrows(
                 NotFoundException.class,
                 () -> this.storyService.get(45624),
                 "Expected storyService.get() to throw, but it didn't"
         );
-       assertTrue(thrown.getMessage().contains("Not Found Exception. Story not found"));
+        assertTrue(thrown.getMessage().contains("Not Found Exception. Story not found"));
     }
 
     @Test
-    void testDeleteOk(){
+    void testDeleteOk() {
         this.storyService.delete(1);
         NotFoundException thrown = assertThrows(
                 NotFoundException.class,
@@ -143,11 +137,11 @@ class StoryServiceTest {
         );
         assertTrue(thrown.getMessage().contains("Not Found Exception. Story not found"));
         User user = this.userRepository.findByEmail("user@test.com").get();
-        assertEquals(1,user.getStoryList().size());
+        assertEquals(1, user.getStoryList().size());
     }
 
     @Test
-    void testUpdateOk(){
+    void testUpdateOk() {
         StoryDto storyDtoNew = StoryDto.builder()
                 .title("newStory")
                 .description("This is just a new description")
@@ -160,7 +154,7 @@ class StoryServiceTest {
 
         StoryDto newStory = this.storyService.create(storyDtoNew, "user@test.com");
         assertEquals("newStory", newStory.getTitle());
-        assertEquals(Genre.COMEDY,  newStory.getGenre1());
+        assertEquals(Genre.COMEDY, newStory.getGenre1());
 
         StoryDto storyDtoUpdated = StoryDto.builder()
                 .id(newStory.getId())
@@ -175,13 +169,13 @@ class StoryServiceTest {
 
         StoryDto updatedStory = this.storyService.update(newStory.getId(), storyDtoUpdated);
         assertEquals("UpdateStory", updatedStory.getTitle());
-        assertEquals(Genre.FANTASY,  updatedStory.getGenre1());
+        assertEquals(Genre.FANTASY, updatedStory.getGenre1());
         assertEquals(newStory.getId(), updatedStory.getId());
 
     }
 
     @Test
-    void testUpdateNotFound(){
+    void testUpdateNotFound() {
         StoryDto storyDto = StoryDto.builder()
                 .title("Title")
                 .description("This is just a description")

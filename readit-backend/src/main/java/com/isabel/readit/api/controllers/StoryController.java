@@ -21,28 +21,28 @@ public class StoryController {
     private JWTService jwtService;
 
     @PostMapping("/new")
-    public StoryDto create (@RequestBody StoryDto storyDto){
+    public StoryDto create(@RequestBody StoryDto storyDto) {
         String email = this.jwtService.getTokenEmailFromContext();
         return this.storyService.create(storyDto, email);
     }
 
     @GetMapping("/{id}")
-    public StoryDto get(@PathVariable Integer id){
+    public StoryDto get(@PathVariable Integer id) {
         return this.storyService.get(id);
     }
 
     @GetMapping()
-    public List<StoryDto> getAllById(){
+    public List<StoryDto> getAllById() {
         return this.storyService.getAll();
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id){
-         this.storyService.delete(id);
+    public void delete(@PathVariable Integer id) {
+        this.storyService.delete(id);
     }
 
     @PutMapping("/{id}")
-    public StoryDto update(@PathVariable Integer id, @Valid @RequestBody StoryDto storyDto){
+    public StoryDto update(@PathVariable Integer id, @Valid @RequestBody StoryDto storyDto) {
         return this.storyService.update(id, storyDto);
     }
 

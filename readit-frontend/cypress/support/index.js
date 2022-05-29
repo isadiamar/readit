@@ -66,4 +66,28 @@ function _setupDefaultApiResponses(){
     statusCode: 200,
     fixture:'story.json'
   })
+
+  //CREATE EPISODE
+  cy.intercept('POST', Cypress.env("API_URL") + '/private/episodes/new', {
+    statusCode:200,
+    fixture:'episode.json'
+  })
+
+  //GET EPISODE
+  cy.intercept('GET', Cypress.env("API_URL") + '/private/episodes/*/from/*', {
+    statusCode:200,
+    fixture:'episode.json'
+  })
+
+  //GET ALL EPISODES
+  cy.intercept('GET', Cypress.env("API_URL") + '/private/episodes?storyId=*',{
+    statusCode:200,
+    fixture:'episodes.json'
+  })
+
+  //DELETE EPISODE
+  cy.intercept('DELETE', Cypress.env("API_URL") + '/private/episodes?storyId=*&episode_id=*',{
+    statusCode:200
+  })
+
 }

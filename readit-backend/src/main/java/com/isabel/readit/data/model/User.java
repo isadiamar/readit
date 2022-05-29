@@ -20,9 +20,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(unique=true)
+    @Column(unique = true)
     private String nickname;
-    @Column(unique=true)
+    @Column(unique = true)
     private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;

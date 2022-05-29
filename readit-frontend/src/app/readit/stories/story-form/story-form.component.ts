@@ -29,7 +29,14 @@ export class StoryFormComponent implements OnInit {
     private router: Router,
     private activeRoute: ActivatedRoute
   ) {
-  }
+    this.createForm(
+      '',
+      '',
+      Utils.getEnumKeyByValue(Genre, Genre.ROMANCE),
+      Utils.getEnumKeyByValue(Genre, Genre.COMEDY),
+      Utils.getEnumKeyByValue(Privacy, Privacy.PUBLIC),
+      Utils.getEnumKeyByValue(Status, Status.IN_PROGRESS),
+      '')  }
 
   ngOnInit(): void {
     this.createForm(

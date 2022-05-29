@@ -16,9 +16,8 @@ import java.util.stream.Stream;
 
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
-    private final String HEADER = "Authorization";
     private static final String PREFIX = "Bearer ";
-
+    private final String HEADER = "Authorization";
     private JWTService jwtService;
 
     public void setJwtService(JWTService jwtService) {
@@ -30,13 +29,13 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
         String token = getJWTTokenFromRequest(request);
-         if (!token.isEmpty() && jwtService.jwtVerifyToken(token)){
-             String email = jwtService.getEmailFromToken(token);
-             setUpAuthentication(email);
-         }else{
-             SecurityContextHolder.clearContext();
-         }
-         filterChain.doFilter(request,response);
+        if (!token.isEmpty() && jwtService.jwtVerifyToken(token)) {
+            String email = jwtService.getEmailFromToken(token);
+            setUpAuthentication(email);
+        } else {
+            SecurityContextHolder.clearContext();
+        }
+        filterChain.doFilter(request, response);
     }
 
     private void setUpAuthentication(String email) {
@@ -47,7 +46,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
 
     private String getJWTTokenFromRequest(HttpServletRequest request) {
         String authHeader = request.getHeader(HEADER);
-        if (authHeader == null || !authHeader.startsWith(PREFIX)){
+        if (authHeader == null || !authHeader.startsWith(PREFIX)) {
             return "";
         }
         return request.getHeader(HEADER).replace(PREFIX, "").trim();

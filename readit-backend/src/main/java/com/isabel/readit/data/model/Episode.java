@@ -1,7 +1,6 @@
 package com.isabel.readit.data.model;
 
 import com.isabel.readit.api.dtos.EpisodeDto;
-import com.isabel.readit.api.dtos.StoryDto;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
 
@@ -33,12 +32,13 @@ public class Episode {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "story_id", nullable = false)
     private Story story;
+    private Integer numberEpisode;
 
-    public EpisodeDto toEpisodeDto(){
+    public EpisodeDto toEpisodeDto() {
         EpisodeDto episodeDto = new EpisodeDto();
         BeanUtils.copyProperties(this, episodeDto);
-        if(Objects.nonNull(this.getStory())){
-            episodeDto.setStory_id(this.getStory().getId());
+        if (Objects.nonNull(this.getStory())) {
+            episodeDto.setStoryId(this.getStory().getId());
         }
         return episodeDto;
     }

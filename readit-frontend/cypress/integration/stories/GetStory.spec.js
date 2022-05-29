@@ -2,7 +2,6 @@ beforeEach(()=>{
   cy.login()
   cy.wait(500)
 
-
   //CREATE STORIES
   cy.intercept('POST', Cypress.env("API_URL") + '/private/stories/new', {
     statusCode: 200,

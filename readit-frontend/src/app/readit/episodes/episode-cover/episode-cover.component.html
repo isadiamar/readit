@@ -1,0 +1,21 @@
+<mat-list class="stories" *ngFor="let episode of episodes">
+  <mat-list-item class="hover" (click)="open(episode.id!)">
+    <div class="episode-item">
+      <div class="align-start">
+        <div class="img">
+          <img src={{cover}} alt="cover">
+        </div>
+        <p class ="normal">{{episode.title}}</p>
+      </div>
+      <div class="align-end">
+        <p class="subtitle">{{episode.date}}</p>
+        <p class="number_episode">{{episode.numberEpisode}}</p>
+      </div>
+    </div>
+    <div class="tools" *ngIf="a">
+      <mat-icon (click)="update(episode.id!)">edit</mat-icon>
+      <mat-icon (click)="delete(episode.id!)">delete</mat-icon>
+    </div>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+</mat-list>

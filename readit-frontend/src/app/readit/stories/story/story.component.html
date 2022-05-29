@@ -6,7 +6,6 @@
         <p>|</p>
         <p>{{genre2}}</p>
       </div>
-
         <div class="favorite">
           <mat-icon *ngIf="!isFavorite" (click)="setFavorite()">favorite_border</mat-icon>
           <mat-icon *ngIf="isFavorite" (click)="setFavorite()">favorite</mat-icon>
@@ -16,16 +15,9 @@
         </div>
     </div>
     <div class="episodes">
-      <mat-list>
-        <mat-list-item>Item 1</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Item 2</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Item 3</mat-list-item>
-      </mat-list>
+      <app-episode-cover [cover] = cover></app-episode-cover>
     </div>
   </div>
-
   <div class="story-info">
     <div class="status">
       <p (click)="update()"><a>Edit</a></p>
