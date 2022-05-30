@@ -1,14 +1,12 @@
 package com.isabel.readit.services;
 
 import com.isabel.readit.api.dtos.EpisodeDto;
-import com.isabel.readit.api.dtos.StoryDto;
 import com.isabel.readit.data.daos.EpisodeRepository;
 import com.isabel.readit.data.daos.StoryRepository;
 import com.isabel.readit.data.daos.UserRepository;
 import com.isabel.readit.data.model.*;
 import com.isabel.readit.services.exceptions.ForbiddenException;
 import com.isabel.readit.services.exceptions.NotFoundException;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,58 +26,35 @@ public class EpisodeServiceTest {
     private PasswordEncoder passwordEncoder;
     private StoryService storyService;
     private EpisodeService episodeService;
+    private EpisodeRepository episodeRepository;
 
     @Autowired
     private EpisodeServiceTest(UserRepository userRepository, StoryRepository storyRepository, PasswordEncoder passwordEncoder,
-                               StoryService storyService, EpisodeService episodeService) {
+                               StoryService storyService, EpisodeService episodeService, EpisodeRepository episodeRepository) {
         this.storyRepository = storyRepository;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.storyService = storyService;
         this.episodeService = episodeService;
+        this.episodeRepository = episodeRepository;
     }
 
-    @BeforeAll
-    void beforeAll() {
-        User user = new User();
-        user.setEmail("user@test.com");
-        user.setPassword(passwordEncoder.encode("Password"));
-        userRepository.save(user);
-
-        StoryDto storyDto = StoryDto.builder()
-                .title("Story Title")
-                .description("Story description")
-                .color("#FFFFFF")
-                .genre1(Genre.COMEDY)
-                .genre2(Genre.FANTASY)
-                .status(Status.DROPPED)
-                .privacy(Privacy.PUBLIC)
-                .build();
-
-        StoryDto story = this.storyService.create(storyDto, user.getEmail());
-
-        EpisodeDto episodeDto = EpisodeDto.builder()
-                .title("Episodio")
-                .pdf("pdf")
-                .storyId(story.getId())
-                .build();
-        this.episodeService.create(episodeDto);
-    }
 
     @Test
     void testCreateOk() {
+        Story story = storyRepository.findByTitle("Title1").get();
         EpisodeDto episodeDto = EpisodeDto.builder()
                 .title("Title")
                 .pdf("pdf")
-                .storyId(1)
+                .storyId(story.getId())
                 .build();
 
         this.episodeService.create(episodeDto);
-
-        Story story = this.storyRepository.findById(1).get();
-        assertEquals(2, story.getEpisodeList().size());
-        assertEquals("Episodio", story.getEpisodeList().get(0).getTitle());
-        assertEquals("Title", story.getEpisodeList().get(1).getTitle());
+        story = storyRepository.findByTitle("Title1").get();
+        assertEquals(3, story.getEpisodeList().size());
+        assertEquals("title1", story.getEpisodeList().get(0).getTitle());
+        assertEquals("title2", story.getEpisodeList().get(1).getTitle());
+        assertEquals("Title", story.getEpisodeList().get(2).getTitle());
 
     }
 
@@ -102,11 +77,16 @@ public class EpisodeServiceTest {
 
     @Test
     void testGetOk() {
-        EpisodeDto episodeDto1 = this.episodeService.get(1, 1);
-        assertEquals("Episodio", episodeDto1.getTitle());
+        Story story = storyRepository.findByTitle("Title1").get();
+        Episode episode = episodeRepository.findByStoryAndTitle(story, "title1").get();
 
-        EpisodeDto episodeDto2 = this.episodeService.get(1, 2);
-        assertEquals("Title", episodeDto2.getTitle());
+        EpisodeDto episodeDto1 = this.episodeService.get(story.getId(), episode.getId());
+        assertEquals("title1", episodeDto1.getTitle());
+
+        Episode episode2 = episodeRepository.findByStoryAndTitle(story, "title2").get();
+
+        EpisodeDto episodeDto2 = this.episodeService.get(story.getId(), episode2.getId());
+        assertEquals("title2", episodeDto2.getTitle());
     }
 
     @Test
@@ -121,10 +101,13 @@ public class EpisodeServiceTest {
 
     @Test
     void testGetAllOk() {
-        List<EpisodeDto> episodes = this.episodeService.getAll(1);
-        assertEquals(2, episodes.size());
-        assertEquals("Episodio", episodes.get(0).getTitle());
-        assertEquals("Title", episodes.get(1).getTitle());
+
+        Story story = storyRepository.findByTitle("Title1").get();
+        List<EpisodeDto> episodes = this.episodeService.getAll(story.getId());
+        assertEquals(3, episodes.size());
+        assertEquals("title1", episodes.get(0).getTitle());
+        assertEquals("title2", episodes.get(1).getTitle());
+        assertEquals("Title", episodes.get(2).getTitle());
     }
 
     @Test
@@ -139,10 +122,14 @@ public class EpisodeServiceTest {
 
     @Test
     void testDeleteOk() {
-        this.episodeService.delete(1, 1);
+        Story story = storyRepository.findByTitle("Title1").get();
+        Episode episode = episodeRepository.findByStoryAndTitle(story, "title1").get();
+
+        this.episodeService.delete(story.getId(), episode.getId());
+
         ForbiddenException thrown = assertThrows(
                 ForbiddenException.class,
-                () -> this.episodeService.get(1, 1),
+                () -> this.episodeService.get(story.getId(), episode.getId()),
                 "Expected episodeService.get() to throw, but it didn't"
         );
         assertTrue(thrown.getMessage().contains("Forbidden Exception: Episode not found"));
@@ -150,10 +137,12 @@ public class EpisodeServiceTest {
 
     @Test
     void testUpdate() {
+        Story story = storyRepository.findByTitle("Title1").get();
+
         EpisodeDto episodeDtoNotEdited = EpisodeDto.builder()
                 .title("Not edited")
                 .pdf("pdf")
-                .storyId(1)
+                .storyId(story.getId())
                 .build();
 
         this.episodeService.create(episodeDtoNotEdited);
@@ -161,32 +150,34 @@ public class EpisodeServiceTest {
         EpisodeDto episodeDtoEdited = EpisodeDto.builder()
                 .title("Edited")
                 .pdf("pdf")
-                .storyId(1)
+                .storyId(story.getId())
                 .build();
 
-        EpisodeDto episodeDto = this.episodeService.update(1, 3, episodeDtoEdited);
+        EpisodeDto episodeDto = this.episodeService.update(story.getId(), episodeDtoNotEdited.getId(), episodeDtoEdited);
         assertEquals("Edited", episodeDto.getTitle());
         assertEquals("Not edited", episodeDtoNotEdited.getTitle());
     }
 
     @Test
     void testUpdateNotFound() {
+        Story story = storyRepository.findByTitle("Title1").get();
+
         EpisodeDto episodeDtoNotEdited = EpisodeDto.builder()
                 .title("Not edited")
                 .pdf("pdf")
-                .storyId(1)
+                .storyId(story.getId())
                 .build();
 
         ForbiddenException thrown_story = assertThrows(
                 ForbiddenException.class,
-                () -> this.episodeService.update(123, 1, episodeDtoNotEdited),
+                () -> this.episodeService.update(123, episodeDtoNotEdited.getId(), episodeDtoNotEdited),
                 "Expected episodeService.update() to throw, but it didn't"
         );
         assertTrue(thrown_story.getMessage().contains("Forbidden Exception: Story not found"));
 
         NotFoundException thrown = assertThrows(
                 NotFoundException.class,
-                () -> this.episodeService.update(1, 2354, episodeDtoNotEdited),
+                () -> this.episodeService.update(story.getId(), 2354, episodeDtoNotEdited),
                 "Expected episodeService.update() to throw, but it didn't"
         );
         assertTrue(thrown.getMessage().contains("Not Found Exception. Episode not found"));

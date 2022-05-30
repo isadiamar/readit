@@ -13,7 +13,6 @@ import java.util.Objects;
 @Builder
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -40,7 +39,7 @@ public class Story {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToMany(mappedBy = "story", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "story", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Episode> episodeList;
 
     public StoryDto toStoryDto() {

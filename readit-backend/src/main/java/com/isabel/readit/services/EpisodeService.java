@@ -48,7 +48,6 @@ public class EpisodeService {
 
     public EpisodeDto get(Integer storyId, Integer episodeId) {
         Story story = this.storyRepository.findById(storyId).orElseThrow(() -> new ForbiddenException("Story not found"));
-
         return this.episodeRepository.findByStoryAndId(story, episodeId).map(Episode::toEpisodeDto)
                 .orElseThrow(() -> new ForbiddenException(("Episode not found")));
     }
@@ -60,7 +59,9 @@ public class EpisodeService {
 
     public void delete(Integer storyId, Integer episodeId) {
         Story story = this.storyRepository.findById(storyId).orElseThrow(() -> new ForbiddenException("Story not found"));
+        story.setEpisodeList(story.getEpisodeList().stream().filter(e -> e.getId() != episodeId).collect(Collectors.toList()));
         this.episodeRepository.deleteByStoryAndId(story, episodeId);
+        this.storyRepository.save(story);
     }
 
     public EpisodeDto update(Integer storyId, Integer episodeId, EpisodeDto episodeDto) {
