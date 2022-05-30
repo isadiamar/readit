@@ -12,10 +12,13 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class StoryService {
     private StoryRepository storyRepository;
     private UserRepository userRepository;
@@ -62,7 +65,7 @@ public class StoryService {
 
     public void delete(Integer id, String email) {
         User user = this.userRepository.findByEmail(email).orElseThrow(() -> new ForbiddenException("User not found"));
-        user.setStoryList(user.getStoryList().stream().filter(story -> story.getId() != id).collect(Collectors.toList()));
+        user.setStoryList(user.getStoryList().stream().filter(story -> !Objects.equals(story.getId(), id)).collect(Collectors.toList()));
         this.storyRepository.deleteById(id);
         this.userRepository.save(user);
     }
