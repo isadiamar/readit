@@ -38,7 +38,8 @@ public class StoryController {
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Integer id) {
-        this.storyService.delete(id);
+        String email = jwtService.getTokenEmailFromContext();
+        this.storyService.delete(id, email);
     }
 
     @PutMapping("/{id}")

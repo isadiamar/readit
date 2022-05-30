@@ -99,6 +99,18 @@ class StoryServiceTest {
         assertTrue(thrown.getMessage().contains("Not Found Exception. Story not found"));
     }
 
+    @Test
+    void testDeleteOk() {
+        Story findStory = this.storyRepository.findByTitle("Title2").get();
+        this.storyService.delete(findStory.getId(), "1@email.com");
+        NotFoundException thrown = assertThrows(
+                NotFoundException.class,
+                () -> this.storyService.get(findStory.getId()),
+                "Expected storyService.get() to throw, but it didn't"
+        );
+        assertTrue(thrown.getMessage().contains("Not Found Exception. Story not found"));
+
+    }
 
     @Test
     void testUpdateOk() {
