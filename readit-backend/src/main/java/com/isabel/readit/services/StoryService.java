@@ -60,8 +60,11 @@ public class StoryService {
                 .map(Story::toStoryDto).collect(Collectors.toList());
     }
 
-    public void delete(Integer id) {
+    public void delete(Integer id, String email) {
+        User user = this.userRepository.findByEmail(email).orElseThrow(() -> new ForbiddenException("User not found"));
+        user.setStoryList(user.getStoryList().stream().filter(story -> story.getId() != id).collect(Collectors.toList()));
         this.storyRepository.deleteById(id);
+        this.userRepository.save(user);
     }
 
     public StoryDto update(Integer id, StoryDto storyDto) {

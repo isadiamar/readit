@@ -3,10 +3,7 @@ package com.isabel.readit.services;
 import com.isabel.readit.api.dtos.StoryDto;
 import com.isabel.readit.data.daos.StoryRepository;
 import com.isabel.readit.data.daos.UserRepository;
-import com.isabel.readit.data.model.Genre;
-import com.isabel.readit.data.model.Privacy;
-import com.isabel.readit.data.model.Status;
-import com.isabel.readit.data.model.User;
+import com.isabel.readit.data.model.*;
 import com.isabel.readit.services.exceptions.ForbiddenException;
 import com.isabel.readit.services.exceptions.NotFoundException;
 import org.junit.jupiter.api.BeforeAll;
@@ -38,32 +35,9 @@ class StoryServiceTest {
         this.authService = authService;
     }
 
-    @BeforeAll
-    void beforeAll() {
-        User user = new User();
-        user.setEmail("user@test.com");
-        user.setPassword(passwordEncoder.encode("Password"));
-        userRepository.save(user);
-
-        StoryDto storyDto = StoryDto.builder()
-                .title("Story Title")
-                .description("Story description")
-                .color("#FFFFFF")
-                .genre1(Genre.COMEDY)
-                .genre2(Genre.FANTASY)
-                .status(Status.DROPPED)
-                .privacy(Privacy.PUBLIC)
-                .build();
-
-        this.storyService.create(storyDto, user.getEmail());
-    }
-
 
     @Test
     void testCreateOk() {
-        User user = new User();
-        user.setEmail("user@test.com");
-        user.setPassword(passwordEncoder.encode("Password"));
 
         StoryDto storyDto = StoryDto.builder()
                 .title("Title")
@@ -75,18 +49,15 @@ class StoryServiceTest {
                 .privacy(Privacy.PRIVATE)
                 .build();
 
-        this.storyService.create(storyDto, user.getEmail());
+        this.storyService.create(storyDto, "1@email.com");
 
-        User newUser = this.userRepository.findByEmail(user.getEmail()).get();
-        assertEquals(2, newUser.getStoryList().size());
-        assertEquals("This is just a description", newUser.getStoryList().get(1).getDescription());
+        User user = this.userRepository.findByEmail("1@email.com").get();
+        assertEquals(3, user.getStoryList().size());
+        assertEquals("This is just a description", user.getStoryList().get(2).getDescription());
     }
 
     @Test
     void testCreateNotFound() {
-        User user = new User();
-        user.setEmail("notExists@test.com");
-        user.setPassword(passwordEncoder.encode("Password"));
 
         StoryDto storyDto = StoryDto.builder()
                 .title("Title")
@@ -100,7 +71,7 @@ class StoryServiceTest {
 
         ForbiddenException thrown = assertThrows(
                 ForbiddenException.class,
-                () -> this.storyService.create(storyDto, user.getEmail()),
+                () -> this.storyService.create(storyDto, "noexists@email.com"),
                 "Expected storyService.create() to throw, but it didn't"
         );
 
@@ -110,10 +81,11 @@ class StoryServiceTest {
 
     @Test
     void testGetOk() {
-        StoryDto story = this.storyService.get(1);
-        assertEquals("Story Title", story.getTitle());
-        assertEquals(Genre.FANTASY, story.getGenre2());
-        assertEquals(Privacy.PUBLIC, story.getPrivacy());
+        Story findStory = this.storyRepository.findByTitle("Title1").get();
+        StoryDto story = this.storyService.get(findStory.getId());
+        assertEquals("Title1", story.getTitle());
+        assertEquals(Genre.COMEDY, story.getGenre2());
+        assertEquals(Privacy.PRIVATE, story.getPrivacy());
     }
 
     @Test
@@ -127,18 +99,6 @@ class StoryServiceTest {
         assertTrue(thrown.getMessage().contains("Not Found Exception. Story not found"));
     }
 
-    @Test
-    void testDeleteOk() {
-        this.storyService.delete(1);
-        NotFoundException thrown = assertThrows(
-                NotFoundException.class,
-                () -> this.storyService.get(1),
-                "Expected storyService.get() to throw, but it didn't"
-        );
-        assertTrue(thrown.getMessage().contains("Not Found Exception. Story not found"));
-        User user = this.userRepository.findByEmail("user@test.com").get();
-        assertEquals(1, user.getStoryList().size());
-    }
 
     @Test
     void testUpdateOk() {
@@ -152,7 +112,7 @@ class StoryServiceTest {
                 .privacy(Privacy.PUBLIC)
                 .build();
 
-        StoryDto newStory = this.storyService.create(storyDtoNew, "user@test.com");
+        StoryDto newStory = this.storyService.create(storyDtoNew, "1@email.com");
         assertEquals("newStory", newStory.getTitle());
         assertEquals(Genre.COMEDY, newStory.getGenre1());
 

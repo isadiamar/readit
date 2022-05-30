@@ -8,6 +8,6 @@ import java.util.Optional;
 
 public interface EpisodeRepository extends JpaRepository<Episode, Integer> {
     Optional<Episode> findByStoryAndId(Story story, Integer id);
-
+    Optional<Episode> findByStoryAndTitle(Story story, String title);
     void deleteByStoryAndId(Story story, Integer id);
 }
