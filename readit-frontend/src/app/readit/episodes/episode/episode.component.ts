@@ -17,6 +17,8 @@ export class EpisodeComponent implements OnInit {
   story_name:string;
   episode_name:string;
 
+  openComments:boolean = false;
+
   constructor(private  episodeService:EpisodeService,
               private storyService:StoryService,
               private activeRoute:ActivatedRoute,
@@ -53,6 +55,7 @@ export class EpisodeComponent implements OnInit {
 
   showComments() {
     console.log('COMMENTS')
+    this.openComments = !this.openComments;
   }
 
   backToStory() {

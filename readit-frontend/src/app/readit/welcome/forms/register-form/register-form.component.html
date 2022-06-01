@@ -4,21 +4,21 @@
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Username</mat-label>
-        <input formControlName="username" matInput placeholder="username" required type="text">
+        <input formControlName="username" matInput placeholder="username" required type="text" ngModel="user">
       </mat-form-field>
     </div>
 
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input formControlName="email" matInput placeholder="email@email.com" required type="email">
+        <input formControlName="email" matInput placeholder="email@email.com" required type="email" ngModel="user@user.com">
       </mat-form-field>
     </div>
 
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input formControlName="password" matInput placeholder="password" required type="password">
+        <input formControlName="password" matInput placeholder="password" required type="password" ngModel="user!Password1">
       </mat-form-field>
     </div>
     <p  class="sub" *ngIf = "errorMsg">The password must be at least eight characters including one uppercase letter, one lowercase letter, and one number or special character.</p>
@@ -26,7 +26,7 @@
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Repeat password</mat-label>
-        <input formControlName="confirmPassword" matInput placeholder="password" required type="password">
+        <input formControlName="confirmPassword" matInput placeholder="password" required type="password" ngModel="user!Password1">
       </mat-form-field>
     </div>
 

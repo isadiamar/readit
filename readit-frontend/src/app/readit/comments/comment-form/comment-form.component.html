@@ -1,0 +1,24 @@
+<div class="wrapper">
+  <mat-card class="card">
+    <mat-card-title class="card-header">
+      <div class="author">
+        <p class="title">Author: </p>
+        <p class="subtitle">user</p>
+      </div>
+      <div class="date">
+        <p class="title">Date:</p>
+        <p class="subtitle">13/05/2021</p>
+      </div>
+    </mat-card-title>
+    <form [formGroup]="commentForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Leave a comment</mat-label>
+        <textarea matInput  formControlName="description" placeholder="Ex. It makes me feel..."></textarea>
+      </mat-form-field>
+    </form>
+    <mat-card-actions class="actions">
+      <button mat-stroked-button color="accent" [disabled]="submitDisabled" (click)="submit()">Send</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+

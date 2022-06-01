@@ -20,6 +20,8 @@ import {StoryService} from "./shared/services/story.service";
 import {EpisodeComponent} from './episodes/episode/episode.component';
 import {PdfViewerModule} from "ng2-pdf-viewer";
 import {EpisodeCoverComponent} from './episodes/episode-cover/episode-cover.component';
+import { CommentFormComponent } from './comments/comment-form/comment-form.component';
+import { CommentComponent } from './comments/comment/comment.component';
 
 
 @NgModule({
@@ -37,6 +39,8 @@ import {EpisodeCoverComponent} from './episodes/episode-cover/episode-cover.comp
     EpisodeFormComponent,
     EpisodeComponent,
     EpisodeCoverComponent,
+    CommentFormComponent,
+    CommentComponent,
   ],
   entryComponents: [],
   imports: [
