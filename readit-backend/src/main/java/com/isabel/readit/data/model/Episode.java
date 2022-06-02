@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 @Builder
@@ -28,10 +29,15 @@ public class Episode {
     private LocalDate date;
     @Column(columnDefinition = "text")
     private String pdf;
+
+    @OneToMany(mappedBy = "episode", fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+    private List<Comment> commentList;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "story_id", nullable = false)
     private Story story;
     private Integer numberEpisode;
+
 
     public EpisodeDto toEpisodeDto() {
         EpisodeDto episodeDto = new EpisodeDto();

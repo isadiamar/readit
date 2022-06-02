@@ -3,11 +3,12 @@ package com.isabel.readit.data.daos;
 import com.isabel.readit.data.model.*;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+@Repository
 public class DatabaseSeederDev {
     private final StoryRepository storyRepository;
     private final UserRepository userRepository;

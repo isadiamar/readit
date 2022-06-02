@@ -20,7 +20,6 @@ import java.util.stream.Collectors;
 @Transactional
 public class EpisodeService {
 
-
     @Autowired
     private StoryRepository storyRepository;
 

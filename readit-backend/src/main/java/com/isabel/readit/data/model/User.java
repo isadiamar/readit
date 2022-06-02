@@ -31,4 +31,7 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
     private List<Story> storyList;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+    private List<Comment> commentList;
+
 }
