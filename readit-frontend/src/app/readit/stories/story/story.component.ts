@@ -3,6 +3,8 @@ import {Status} from "../../shared/models/status.enum";
 import {StoryService} from "../../shared/services/story.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Genre} from "../../shared/models/genre.enum";
+import {AuthService} from "../../../core/auth.service";
+import {Story} from "../../shared/models/story.model";
 
 @Component({
   selector: 'app-story',
@@ -20,11 +22,18 @@ export class StoryComponent implements OnInit {
   cover: string;
   genre1:Genre;
   genre2:Genre;
-  constructor(private storyService:StoryService, private route: ActivatedRoute, private router:Router) { }
+  activeUser:boolean;
+
+  stories: Story[] = [];
+
+  constructor(private storyService:StoryService, private route: ActivatedRoute, private router:Router,  private authService:AuthService ) { }
 
   ngOnInit(): void {
     this.id = <string>this.route.snapshot.paramMap.get('id')
+
     this.storyService.get(+this.id).subscribe(res =>{
+      this.activeUser = this.authService.getAuthenticatedUserId() === res.userId;
+
       this.title = res.title
       this.description = res.description
       this.color = res.color ? res.color : "#51c96a"

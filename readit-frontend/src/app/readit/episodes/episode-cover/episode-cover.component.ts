@@ -4,6 +4,7 @@ import {EpisodeService} from "../../shared/services/episode.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ConfirmationDialogComponent} from "../../../shared/components/confirmation-dialog/confirmation-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {AuthService} from "../../../core/auth.service";
 
 @Component({
   selector: 'app-episode-cover',
@@ -17,14 +18,14 @@ export class EpisodeCoverComponent implements OnInit {
   episodes: Episode[] = [];
   pathId:string;
 
-  constructor(private episodeService:EpisodeService, private activatedRoute:ActivatedRoute, private router:Router, private dialog: MatDialog) {}
+  constructor(private episodeService:EpisodeService, private activatedRoute:ActivatedRoute, private router:Router, private dialog: MatDialog, private authService:AuthService) {}
 
   ngOnInit(): void {
-    this.activeUser = true;
     this.pathId = this.activatedRoute.snapshot.paramMap.get('id')!;
 
     this.episodeService.getAll(+this.pathId).subscribe(res =>{
       this.episodes = res;
+      this.activeUser = this.authService.getAuthenticatedUserId() === this.episodes[0].userId;
     })
   }
 
