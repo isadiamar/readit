@@ -14,7 +14,7 @@ beforeEach(() => {
     req.reply({statusCode: 200, fixture: 'story.json'})
   });
 
-  cy.get('a').contains("Edit").click()
+  cy.get('mat-icon[id = "edit"').click()
   cy.wait(500)
 })
 
