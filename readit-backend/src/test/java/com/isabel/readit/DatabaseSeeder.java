@@ -1,5 +1,6 @@
 package com.isabel.readit;
 
+import com.isabel.readit.data.daos.CommentRepository;
 import com.isabel.readit.data.daos.EpisodeRepository;
 import com.isabel.readit.data.daos.StoryRepository;
 import com.isabel.readit.data.daos.UserRepository;
@@ -14,15 +15,15 @@ public class DatabaseSeeder {
     private final StoryRepository storyRepository;
     private final UserRepository userRepository;
     private final EpisodeRepository episodeRepository;
-
+    private final CommentRepository commentRepository;
 
     @Autowired
-    public DatabaseSeeder(UserRepository userRepository, StoryRepository storyRepository, EpisodeRepository episodeRepository){
+    public DatabaseSeeder(UserRepository userRepository, StoryRepository storyRepository, EpisodeRepository episodeRepository, CommentRepository commentRepository){
         this.storyRepository = storyRepository;
         this.userRepository = userRepository;
         this.episodeRepository = episodeRepository;
+        this.commentRepository = commentRepository;
         this.deleteAllAndInitializeAndSeedDataBase();
-
     }
 
     public void deleteAllAndInitializeAndSeedDataBase() {
@@ -34,6 +35,7 @@ public class DatabaseSeeder {
         this.episodeRepository.deleteAll();
         this.userRepository.deleteAll();
         this.storyRepository.deleteAll();
+        this.commentRepository.deleteAll();
         LogManager.getLogger(this.getClass()).warn("------- Delete All -----------");
     }
 
@@ -79,5 +81,11 @@ public class DatabaseSeeder {
         };
         this.episodeRepository.saveAll(List.of(episodes));
         LogManager.getLogger(this.getClass()).warn("         ------- episodes");
+
+        Comment[]comments = {
+                Comment.builder().description("comment1").episode(episodes[0]).user(users[0]).build(),
+                Comment.builder().description("comment2").episode(episodes[2]).user(users[0]).build(),
+        };
+        this.commentRepository.saveAll(List.of(comments));
     }
 }
