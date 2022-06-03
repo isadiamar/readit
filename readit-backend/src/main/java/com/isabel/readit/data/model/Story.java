@@ -48,7 +48,9 @@ public class Story {
         BeanUtils.copyProperties(this, storyDto);
         if (Objects.nonNull(this.getUser())) {
             storyDto.setUsername(this.getUser().getNickname());
+            storyDto.setUserId(this.getUser().getId());
         }
+
         return storyDto;
     }
 

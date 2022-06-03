@@ -44,7 +44,7 @@ public class AuthService {
             String encodedPass = passwordEncoder.encode(user.getPassword());
             user.setPassword(encodedPass);
             user = userRepository.save(user);
-            res.setToken(jwtService.jwtCreateToken(user.getEmail()));
+            res.setToken(jwtService.jwtCreateToken(user.getEmail(), user.getId()));
         }
         return res;
     }
@@ -58,7 +58,7 @@ public class AuthService {
             throw new ForbiddenException("Email or password are wrong");
         }
 
-        res.setToken(jwtService.jwtCreateToken(user.getEmail()));
+        res.setToken(jwtService.jwtCreateToken(user.getEmail(), user.getId()));
 
         return res;
     }

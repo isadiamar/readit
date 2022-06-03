@@ -5,6 +5,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {ConfirmationDialogComponent} from "../../../shared/components/confirmation-dialog/confirmation-dialog.component";
 import {Router} from "@angular/router";
 import {Genre} from "../../shared/models/genre.enum";
+import {AuthService} from "../../../core/auth.service";
 
 @Component({
   selector: 'app-story-cover',
@@ -14,16 +15,20 @@ import {Genre} from "../../shared/models/genre.enum";
 export class StoryCoverComponent implements OnInit {
 
   stories: Story[] = [];
+  activeUser:boolean;
 
-  constructor(private storyService:StoryService, private dialog: MatDialog, private route:Router) { }
+  constructor(private storyService:StoryService, private dialog: MatDialog, private route:Router, private authService:AuthService ) { }
 
   ngOnInit(): void {
+
+
     this.storyService.getAll().subscribe(res =>{
         this.stories = res;
         this.stories.forEach(story=>{
           // @ts-ignore
           story.genre1 = Genre[story.genre1]
         })
+      this.activeUser = this.authService.getAuthenticatedUserId() === this.stories[0].userId;
       })
   }
 

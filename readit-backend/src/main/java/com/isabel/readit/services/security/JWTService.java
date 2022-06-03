@@ -35,13 +35,13 @@ public class JWTService {
     @Value("${jwt.secret}")
     private String jwtSecret;
 
-    public String jwtCreateToken(String email) {
+    public String jwtCreateToken(String email, Integer userId) {
         Date expiresAt = Date.from(LocalDateTime.now().plusMinutes(Integer.parseInt(jwtExpiration)).atZone(ZoneId.systemDefault()).toInstant());
 
         try {
             Algorithm algorithm = getAlgorithm();
             Builder builder = JWT.create();
-            builder.withSubject(email).withIssuer(jwtIssuer).withIssuedAt(new Date()).withExpiresAt(expiresAt);
+            builder.withSubject(email).withIssuer(jwtIssuer).withIssuedAt(new Date()).withExpiresAt(expiresAt).withClaim("userId", userId);
             return builder.sign(algorithm);
 
         } catch (JWTCreationException | JWTVerificationException | UnsupportedEncodingException exception) {

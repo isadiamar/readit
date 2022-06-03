@@ -13,4 +13,5 @@ export interface Story{
   cover?:string;
   color?:string;
   username?:string;
+  userId?:number;
 }

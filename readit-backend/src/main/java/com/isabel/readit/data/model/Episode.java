@@ -44,6 +44,7 @@ public class Episode {
         BeanUtils.copyProperties(this, episodeDto);
         if (Objects.nonNull(this.getStory())) {
             episodeDto.setStoryId(this.getStory().getId());
+            episodeDto.setUserId(this.getStory().getUser().getId());
         }
         return episodeDto;
     }

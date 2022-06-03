@@ -20,7 +20,7 @@
   </div>
   <div class="story-info">
     <div class="status">
-      <p (click)="update()"><a>Edit</a></p>
+      <mat-icon *ngIf="activeUser" (click)="update()">edit</mat-icon>
       <p>Status: {{status}}</p>
     </div>
     <div class="info">

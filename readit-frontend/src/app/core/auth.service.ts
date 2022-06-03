@@ -49,4 +49,16 @@ export class AuthService{
 
     return res;
   }
+
+  getAuthenticatedUserId(): number {
+    let res = null;
+    const token = localStorage.getItem("token");
+
+    if ((token !== null && token !== undefined && token!=='')) {
+      res = JSON.parse(window.atob(token.split('.')[1])).userId;
+    }
+
+    return res;
+  }
+
 }

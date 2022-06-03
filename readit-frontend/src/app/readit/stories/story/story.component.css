@@ -75,7 +75,7 @@
 .status{
   display: flex;
   align-items: end;
-  justify-content: space-between;
+  justify-content: right;
   height: 3rem;
   border-bottom: 1px solid #E5E5E5;
 }
@@ -86,11 +86,13 @@
   color: #989696;
 }
 
-a{
+.status mat-icon{
   color: #39BA46;
   cursor: pointer;
-
+  font-size: 20px;
+  margin-bottom: .5rem;
 }
+
 a:hover{
   color: #D74D7A;
 }
@@ -166,3 +168,4 @@ a:hover{
   overflow: scroll;
   padding-right: 10px;
 }
+
