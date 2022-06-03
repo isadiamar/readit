@@ -34,14 +34,6 @@ jobs:
          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: Deploy Heroku
-        if: github.ref == 'refs/heads/main'
-        uses: akhileshns/heroku-deploy@v3.6.8 # This is the action
-        with:
-          heroku_email: "isabel.d.m@outlook.com"
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "ri-readit-app" #Must be unique in Heroku
-
 
   Client:
     runs-on: ubuntu-latest
