@@ -21,4 +21,5 @@ public class EpisodeDto {
     @NotNull
     private Integer storyId;
     private Integer numberEpisode;
+    private Integer userId;
 }
