@@ -2,6 +2,7 @@ package com.isabel.readit.api.controllers;
 
 import com.isabel.readit.api.dtos.CommentDto;
 import com.isabel.readit.services.CommentService;
+import com.isabel.readit.services.security.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,10 +15,13 @@ public class CommentController {
 
     @Autowired
     private CommentService commentService;
+    @Autowired
+    private JWTService jwtService;
 
     @PostMapping("/new")
     public CommentDto create(@RequestBody CommentDto commentDto) {
-        return this.commentService.create(commentDto);
+        String email = this.jwtService.getTokenEmailFromContext();
+        return this.commentService.create(commentDto, email);
     }
 
     @GetMapping
