@@ -13,11 +13,13 @@ import com.isabel.readit.services.security.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class CommentService {
     private EpisodeRepository episodeRepository;
     private UserRepository userRepository;
@@ -46,9 +48,7 @@ public class CommentService {
                 .user(user)
                 .build();
 
-        episode.getCommentList().add(comment);
         this.commentRepository.save(comment);
-        this.episodeRepository.save(episode);
 
         commentDto.setId(comment.getId());
         return commentDto;
@@ -57,6 +57,10 @@ public class CommentService {
     public List<CommentDto> getAll(Integer episodeId) {
         Episode episode = this.episodeRepository.findById(episodeId).orElseThrow(() -> new NotFoundException("Episode not found"));
         return episode.getCommentList().stream().map(Comment::toCommentDto).collect(Collectors.toList());
+    }
+
+    public void delete(Integer commentId) {
+        this.commentRepository.deleteById(commentId);
     }
 }
 

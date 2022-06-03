@@ -36,7 +36,7 @@ public class Story {
     private String cover;
     private String color;
 
-    @OneToMany(mappedBy = "story", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "story", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Episode> episodeList;
 
     @ManyToOne(fetch = FetchType.EAGER)

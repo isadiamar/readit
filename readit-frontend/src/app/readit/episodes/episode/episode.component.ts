@@ -41,7 +41,6 @@ export class EpisodeComponent implements OnInit {
   private pdfComponent: PdfViewerComponent;
 
   initLoadCompleted(pdf: PDFDocumentProxy): void {
-    console.log(this.pdfComponent.pdfViewer);
     this.pdfComponent.pdfViewer.scroll.d
   }
 

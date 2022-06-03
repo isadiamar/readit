@@ -30,7 +30,7 @@ public class Episode {
     @Column(columnDefinition = "text")
     private String pdf;
 
-    @OneToMany(mappedBy = "episode", fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "episode", fetch = FetchType.LAZY,  cascade = CascadeType.ALL)
     private List<Comment> commentList;
 
     @ManyToOne(fetch = FetchType.EAGER)

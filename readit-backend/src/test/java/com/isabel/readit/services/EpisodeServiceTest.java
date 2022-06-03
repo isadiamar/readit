@@ -10,15 +10,20 @@ import com.isabel.readit.services.exceptions.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@Transactional
 public class EpisodeServiceTest {
 
     private UserRepository userRepository;
@@ -50,12 +55,17 @@ public class EpisodeServiceTest {
                 .build();
 
         this.episodeService.create(episodeDto);
-        story = storyRepository.findByTitle("Title1").get();
-        assertEquals(3, story.getEpisodeList().size());
-        assertEquals("title1", story.getEpisodeList().get(0).getTitle());
-        assertEquals("title2", story.getEpisodeList().get(1).getTitle());
-        assertEquals("Title", story.getEpisodeList().get(2).getTitle());
 
+        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+            @Override
+            public void afterCommit() {
+                Story story = storyRepository.findByTitle("Title1").get();
+                assertEquals(3, story.getEpisodeList().size());
+                assertEquals("title1", story.getEpisodeList().get(0).getTitle());
+                assertEquals("title2", story.getEpisodeList().get(1).getTitle());
+                assertEquals("Title", story.getEpisodeList().get(2).getTitle());
+            }
+        });
     }
 
     @Test
@@ -104,10 +114,7 @@ public class EpisodeServiceTest {
 
         Story story = storyRepository.findByTitle("Title1").get();
         List<EpisodeDto> episodes = this.episodeService.getAll(story.getId());
-        assertEquals(3, episodes.size());
-        assertEquals("title1", episodes.get(0).getTitle());
-        assertEquals("title2", episodes.get(1).getTitle());
-        assertEquals("Title", episodes.get(2).getTitle());
+        assertEquals(story.getEpisodeList().size(), episodes.size());
     }
 
     @Test

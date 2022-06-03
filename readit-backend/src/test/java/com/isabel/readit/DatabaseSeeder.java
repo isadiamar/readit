@@ -1,22 +1,23 @@
-package com.isabel.readit.data.daos;
+package com.isabel.readit;
 
+import com.isabel.readit.data.daos.EpisodeRepository;
+import com.isabel.readit.data.daos.StoryRepository;
+import com.isabel.readit.data.daos.UserRepository;
 import com.isabel.readit.data.model.*;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Repository
-public class DatabaseSeederDev {
+public class DatabaseSeeder {
     private final StoryRepository storyRepository;
     private final UserRepository userRepository;
     private final EpisodeRepository episodeRepository;
 
 
     @Autowired
-    public DatabaseSeederDev(UserRepository userRepository, StoryRepository storyRepository, EpisodeRepository episodeRepository){
+    public DatabaseSeeder(UserRepository userRepository, StoryRepository storyRepository, EpisodeRepository episodeRepository){
         this.storyRepository = storyRepository;
         this.userRepository = userRepository;
         this.episodeRepository = episodeRepository;

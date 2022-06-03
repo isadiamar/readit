@@ -47,3 +47,16 @@
   word-wrap: break-word;
   width: 100%;
 }
+
+.delete{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-bottom: .5rem;
+}
+
+.delete mat-icon{
+  font-size: 22px ;
+  cursor: pointer;
+}

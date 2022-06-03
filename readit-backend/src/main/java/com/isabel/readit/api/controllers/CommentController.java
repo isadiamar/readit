@@ -2,7 +2,6 @@ package com.isabel.readit.api.controllers;
 
 import com.isabel.readit.api.dtos.CommentDto;
 import com.isabel.readit.services.CommentService;
-import com.isabel.readit.services.security.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,5 +23,10 @@ public class CommentController {
     @GetMapping
     public List<CommentDto> getAll(@RequestParam Integer episodeId){
         return this.commentService.getAll(episodeId);
+    }
+
+    @DeleteMapping
+    public void delete(@RequestParam Integer commentId){
+         this.commentService.delete(commentId);
     }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {CommentService} from "../../shared/services/comment.service";
 import {Comment} from "../../shared/models/comment.model";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-comment-form',
@@ -12,12 +13,15 @@ export class CommentFormComponent implements OnInit {
   commentForm: FormGroup;
   submitDisabled: boolean = true;
 
-  comment: Comment[] = [];
+  episode_id:string;
 
-
-  constructor(  private formBuilder: FormBuilder, private commentService:CommentService) { }
+  constructor(  private formBuilder: FormBuilder, private commentService:CommentService, private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    let storyId = this.activatedRoute.snapshot.paramMap.get('story_id')!;
+
+    this.episode_id = this.activatedRoute.snapshot.paramMap.get('episode_id')!;
+
     this.commentForm = this.formBuilder.group({
       description: new FormControl("", [Validators.minLength(5)]),
     });
@@ -43,7 +47,7 @@ export class CommentFormComponent implements OnInit {
   }
 
   private createComment():Comment {
-    return {username: "sebas", description: "aaaaaaaaaaaaaa", episodeId:5, storyId:25};
+    return {description: this.commentForm.controls['description'].value, episodeId: + this.episode_id};
   }
 
   private clearFields() {

@@ -37,9 +37,7 @@ public class EpisodeService {
                 .story(story)
                 .build();
 
-        story.getEpisodeList().add(episode);
         this.episodeRepository.save(episode);
-        this.storyRepository.save(story);
 
         episodeDto.setId(episode.getId());
         return episodeDto;

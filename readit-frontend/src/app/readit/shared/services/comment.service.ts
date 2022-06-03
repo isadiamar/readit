@@ -1,7 +1,8 @@
 import {Injectable} from "@angular/core";
 import {HttpService} from "../../../core/http.service";
-import {BehaviorSubject, Observable, of, Subject} from "rxjs";
+import { Observable, of, Subject} from "rxjs";
 import {Comment} from "../models/comment.model";
+import {EndPoints} from "../../../shared/end-points";
 
 @Injectable({
   providedIn: 'root',
@@ -15,17 +16,17 @@ export class CommentService {
   }
 
   create(comment: Comment) :Observable<Comment>{
-    return of(comment);
+    return this.httpService
+      .post(EndPoints.COMMENTS + "/new", {...comment})
   }
 
-  getAll():Observable<Comment[]>{
-    return of([{id:2, username: "sebas", description: "aaaaaaaaaaaaaa", episodeId:5, storyId:25},
-      {id:3, username: "xxSus", description: "bbbbbbbbbbbbbbbb", episodeId:5, storyId:25}])
+  getAll(episodeId:number):Observable<Comment[]>{
+    return this.httpService
+      .get(EndPoints.COMMENTS + '?episodeId=' + episodeId)
   }
 
-  getAll2():Observable<Comment[]>{
-    return of([{id:2, username: "sebas", description: "aaaaaaaaaaaaaa", episodeId:5, storyId:25},
-      {id:3, username: "xxSus", description: "bbbbbbbbbbbbbbbb", episodeId:5, storyId:25},
-      {id:4, username: "kov0", description: "isa guapa", episodeId:5, storyId:25}])
+  delete(id: number):Observable<void> {
+      return this.httpService
+        .delete(EndPoints.COMMENTS + '?commentId=' + id)
   }
 }
