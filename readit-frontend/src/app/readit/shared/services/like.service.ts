@@ -25,6 +25,7 @@ export class LikeService {
   }
 
   getAll(storyId: number):Observable<Like> {
-    return of();
+    return this.httpService
+      .get(EndPoints.LIKES + "?storyId=" + storyId)
   }
 }

@@ -34,4 +34,7 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,  cascade = CascadeType.REMOVE)
     private List<Comment> commentList;
 
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,  cascade = CascadeType.REMOVE)
+    private List<Like> likeList;
+
 }

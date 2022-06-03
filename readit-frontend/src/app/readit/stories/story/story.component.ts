@@ -71,8 +71,8 @@ export class StoryComponent implements OnInit {
     let like:Like = this.createLike();
     if (this.isFavorite){
       this.likeService.create(like).subscribe(res => {
-        this.likeService.storyLikesUpdate.next();
         this.likeId = res.id!;
+        this.likeService.storyLikesUpdate.next();
       })
     }else{
       this.likeService.delete(this.likeId).subscribe(_ => this.likeService.storyLikesUpdate.next())
