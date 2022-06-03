@@ -7,4 +7,5 @@ export class EndPoints{
   static STORIES = EndPoints.PRIVATE + '/stories';
   static EPISODES = EndPoints.PRIVATE + '/episodes';
   static COMMENTS = EndPoints.PRIVATE + '/comments';
+  static LIKES = EndPoints.PRIVATE + '/likes';
 }

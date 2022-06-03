@@ -27,7 +27,7 @@ export class EpisodeComponent implements OnInit {
   ngOnInit(): void {
     this.story_id = this.activeRoute.snapshot.paramMap.get('story_id')!;
     this.episode_id = this.activeRoute.snapshot.paramMap.get('episode_id')!;
-  console.log('ep', this.episode_id)
+
     this.storyService.get(+this.story_id).subscribe(res =>{
       this.story_name = res.title
     })

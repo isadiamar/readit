@@ -5,6 +5,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Genre} from "../../shared/models/genre.enum";
 import {AuthService} from "../../../core/auth.service";
 import {Story} from "../../shared/models/story.model";
+import {LikeService} from "../../shared/services/like.service";
+import {Like} from "../../shared/models/like.model";
 
 @Component({
   selector: 'app-story',
@@ -26,7 +28,11 @@ export class StoryComponent implements OnInit {
 
   stories: Story[] = [];
 
-  constructor(private storyService:StoryService, private route: ActivatedRoute, private router:Router,  private authService:AuthService ) { }
+  likes:number;
+  likeId:number;
+
+  constructor(private storyService:StoryService, private route: ActivatedRoute,
+              private router:Router,  private authService:AuthService, private likeService:LikeService) { }
 
   ngOnInit(): void {
     this.id = <string>this.route.snapshot.paramMap.get('id')
@@ -46,13 +52,38 @@ export class StoryComponent implements OnInit {
       // @ts-ignore
       this.genre2 = Genre[res.genre2]
     })
+
+    this.likeService.getAll(+this.id).subscribe(res =>{
+      this.likes = res.numberLikes!
+      }
+    )
+    this.likeService.storyLikesUpdate.subscribe(() => {
+      this.likeService.getAll(+this.id).subscribe(res => {
+        this.likes = res.numberLikes!;
+      });
+    });
+
+
   }
 
   setFavorite() {
     this.isFavorite = !this.isFavorite;
+    let like:Like = this.createLike();
+    if (this.isFavorite){
+      this.likeService.create(like).subscribe(res => {
+        this.likeService.storyLikesUpdate.next();
+        this.likeId = res.id!;
+      })
+    }else{
+      this.likeService.delete(this.likeId).subscribe(_ => this.likeService.storyLikesUpdate.next())
+    }
   }
 
   update() {
     this.router.navigate(['stories/edit/'+ +this.id]).then(r => console.log(r));
+  }
+
+  private createLike(){
+    return {storyId: +this.id}
   }
 }

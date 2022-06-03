@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CommentService} from "../../shared/services/comment.service";
 import {Comment} from "../../shared/models/comment.model";
 import {ActivatedRoute} from "@angular/router";
+import {Subject, Subscription} from "rxjs";
 
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.css']
 })
-export class CommentComponent implements OnInit {
+export class CommentComponent implements OnInit , OnDestroy{
 
   comments:Comment[] = [];
   episode_id:string;
   isActiveUser: boolean = true;
+
+  subscriber:Subscription;
 
   constructor(private commentService:CommentService, private activatedRoute:ActivatedRoute) { }
 
@@ -25,11 +28,15 @@ export class CommentComponent implements OnInit {
       this.comments = comments;
     });
 
-    this.commentService.episodeCommentsUpdate.subscribe(() => {
+    this.subscriber = this.commentService.episodeCommentsUpdate.subscribe(() => {
       this.commentService.getAll(+this.episode_id).subscribe(comments => {
         this.comments = comments;
       });
     });
+  }
+
+  ngOnDestroy() {
+    this.subscriber.unsubscribe();
   }
 
   delete(id:number) {
