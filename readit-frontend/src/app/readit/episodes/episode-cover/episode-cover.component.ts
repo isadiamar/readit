@@ -13,20 +13,19 @@ import {MatDialog} from "@angular/material/dialog";
 export class EpisodeCoverComponent implements OnInit {
 
   @Input() cover:string;
-   a:boolean;
+  activeUser:boolean;
   episodes: Episode[] = [];
   pathId:string;
 
   constructor(private episodeService:EpisodeService, private activatedRoute:ActivatedRoute, private router:Router, private dialog: MatDialog) {}
 
   ngOnInit(): void {
-    this.a = true;
+    this.activeUser = true;
     this.pathId = this.activatedRoute.snapshot.paramMap.get('id')!;
 
     this.episodeService.getAll(+this.pathId).subscribe(res =>{
       this.episodes = res;
     })
-
   }
 
   update(id:number) {

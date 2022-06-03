@@ -1,0 +1,21 @@
+<div class="wrapper" *ngFor="let comment of comments">
+  <mat-card class="card">
+    <div class="delete" *ngIf="isActiveUser" (click)="delete(comment.id!)">
+        <mat-icon >delete_outline</mat-icon>
+    </div>
+    <mat-card-title class="card-header">
+      <div class="author">
+        <p class="title">Author: </p>
+        <p class="subtitle">{{comment.username}}</p>
+      </div>
+      <div class="date">
+        <p class="title">Date:</p>
+        <p class="subtitle">{{comment.date}}</p>
+      </div>
+    </mat-card-title>
+    <mat-card-content class="card-content">
+      <p class="normal">{{comment.description}}</p>
+    </mat-card-content>
+  </mat-card>
+</div>
+

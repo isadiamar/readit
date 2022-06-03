@@ -17,6 +17,8 @@ export class EpisodeComponent implements OnInit {
   story_name:string;
   episode_name:string;
 
+  openComments:boolean = false;
+
   constructor(private  episodeService:EpisodeService,
               private storyService:StoryService,
               private activeRoute:ActivatedRoute,
@@ -39,7 +41,6 @@ export class EpisodeComponent implements OnInit {
   private pdfComponent: PdfViewerComponent;
 
   initLoadCompleted(pdf: PDFDocumentProxy): void {
-    console.log(this.pdfComponent.pdfViewer);
     this.pdfComponent.pdfViewer.scroll.d
   }
 
@@ -53,6 +54,7 @@ export class EpisodeComponent implements OnInit {
 
   showComments() {
     console.log('COMMENTS')
+    this.openComments = !this.openComments;
   }
 
   backToStory() {

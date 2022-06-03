@@ -28,7 +28,10 @@ public class User {
     private String password;
     private String description;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER,  cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,  cascade = CascadeType.REMOVE)
     private List<Story> storyList;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,  cascade = CascadeType.REMOVE)
+    private List<Comment> commentList;
 
 }

@@ -35,12 +35,13 @@ public class Story {
     @Column(columnDefinition = "text")
     private String cover;
     private String color;
+
+    @OneToMany(mappedBy = "story", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<Episode> episodeList;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
-    @OneToMany(mappedBy = "story", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<Episode> episodeList;
 
     public StoryDto toStoryDto() {
         StoryDto storyDto = new StoryDto();

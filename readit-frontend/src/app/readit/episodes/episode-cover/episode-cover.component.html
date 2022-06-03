@@ -12,7 +12,7 @@
         <p class="number_episode">{{episode.numberEpisode}}</p>
       </div>
     </div>
-    <div class="tools" *ngIf="a">
+    <div class="tools" *ngIf="activeUser">
       <mat-icon (click)="update(episode.id!)">edit</mat-icon>
       <mat-icon (click)="delete(episode.id!)">delete</mat-icon>
     </div>

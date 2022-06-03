@@ -4,27 +4,39 @@
       <p class="story-info" (click)="backToStory()">{{story_name}} > {{episode_name}}</p>
       <div class="navigation-buttons center">
         <mat-icon (click)="previousEpisode()">navigate_before</mat-icon>
-        <p>Ch.5</p>
         <mat-icon (click)="nextEpisode()">navigate_next</mat-icon>
       </div>
       <div class="comments center">
-        <mat-icon (click)="showComments()"> chat_bubble</mat-icon>
+        <mat-icon (click)="sidenav.toggle()"> chat_bubble</mat-icon>
       </div>
     </div>
   </div>
-  <div class="pdf-wrapper">
-      <pdf-viewer
-        [src]="pdfSrc"
-        [rotation]="0"
-        [original-size]="false"
-        [fit-to-page]="true"
-        [zoom]="1"
-        [zoom-scale]="'page-width'"
-        [stick-to-page]="false"
-        [external-link-target]="'blank'"
-        [autoresize]="true"
-        (after-load-complete)="initLoadCompleted($event)"
-        style=" height: 100%; width: 100%;"
-      ></pdf-viewer>
-  </div>
+
+  <mat-sidenav-container class="sidenav-container">
+
+    <mat-sidenav #sidenav [mode]="'over'" class="sidenav">
+      <app-comment-form></app-comment-form>
+      <app-comment></app-comment>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="sidenav-content">
+      <div class="pdf-wrapper">
+        <pdf-viewer
+          [src]="pdfSrc"
+          [rotation]="0"
+          [original-size]="false"
+          [fit-to-page]="true"
+          [zoom]="1"
+          [zoom-scale]="'page-width'"
+          [stick-to-page]="false"
+          [external-link-target]="'blank'"
+          [autoresize]="true"
+          (after-load-complete)="initLoadCompleted($event)"
+          style=" height: 100%; width: 100%;"
+        ></pdf-viewer>
+      </div>
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+
 </div>

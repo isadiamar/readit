@@ -15,8 +15,6 @@ public class EpisodeController {
 
     @Autowired
     private EpisodeService episodeService;
-    @Autowired
-    private JWTService jwtService;
 
 
     @PostMapping("/new")
