@@ -36,9 +36,8 @@ public class CommentService {
         this.userRepository = userRepository;
     }
 
-    public CommentDto create(CommentDto commentDto) {
+    public CommentDto create(CommentDto commentDto, String email) {
         Episode episode = this.episodeRepository.findById(commentDto.getEpisodeId()).orElseThrow(() -> new NotFoundException("Episode not found"));
-        String email = this.jwtService.getTokenEmailFromContext();
         User user = this.userRepository.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found"));
 
         Comment comment = Comment.builder()
