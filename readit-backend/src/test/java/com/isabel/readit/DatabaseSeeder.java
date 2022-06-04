@@ -1,9 +1,6 @@
 package com.isabel.readit;
 
-import com.isabel.readit.data.daos.CommentRepository;
-import com.isabel.readit.data.daos.EpisodeRepository;
-import com.isabel.readit.data.daos.StoryRepository;
-import com.isabel.readit.data.daos.UserRepository;
+import com.isabel.readit.data.daos.*;
 import com.isabel.readit.data.model.*;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +13,16 @@ public class DatabaseSeeder {
     private final UserRepository userRepository;
     private final EpisodeRepository episodeRepository;
     private final CommentRepository commentRepository;
+    private final LikeRepository likeRepository;
 
     @Autowired
-    public DatabaseSeeder(UserRepository userRepository, StoryRepository storyRepository, EpisodeRepository episodeRepository, CommentRepository commentRepository){
+    public DatabaseSeeder(UserRepository userRepository, StoryRepository storyRepository, EpisodeRepository episodeRepository,
+                          CommentRepository commentRepository, LikeRepository likeRepository){
         this.storyRepository = storyRepository;
         this.userRepository = userRepository;
         this.episodeRepository = episodeRepository;
         this.commentRepository = commentRepository;
+        this.likeRepository = likeRepository;
         this.deleteAllAndInitializeAndSeedDataBase();
     }
 
@@ -36,6 +36,7 @@ public class DatabaseSeeder {
         this.userRepository.deleteAll();
         this.storyRepository.deleteAll();
         this.commentRepository.deleteAll();
+        this.likeRepository.deleteAll();
         LogManager.getLogger(this.getClass()).warn("------- Delete All -----------");
     }
 
@@ -87,5 +88,14 @@ public class DatabaseSeeder {
                 Comment.builder().description("comment2").episode(episodes[2]).user(users[0]).build(),
         };
         this.commentRepository.saveAll(List.of(comments));
+        LogManager.getLogger(this.getClass()).warn("         ------- comments");
+
+        Like[]likes = {
+                Like.builder().story(stories[0]).user(users[0]).build(),
+                Like.builder().story(stories[1]).user(users[0]).build(),
+        };
+        this.likeRepository.saveAll(List.of(likes));
+        LogManager.getLogger(this.getClass()).warn("         ------- likes");
+
     }
 }

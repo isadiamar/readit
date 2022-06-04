@@ -4,13 +4,13 @@ import com.isabel.readit.api.dtos.EpisodeDto;
 import com.isabel.readit.data.daos.EpisodeRepository;
 import com.isabel.readit.data.daos.StoryRepository;
 import com.isabel.readit.data.daos.UserRepository;
-import com.isabel.readit.data.model.*;
+import com.isabel.readit.data.model.Episode;
+import com.isabel.readit.data.model.Story;
 import com.isabel.readit.services.exceptions.ForbiddenException;
 import com.isabel.readit.services.exceptions.NotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.support.TransactionSynchronizationAdapter;
@@ -26,12 +26,12 @@ import static org.junit.jupiter.api.Assertions.*;
 @Transactional
 public class EpisodeServiceTest {
 
-    private UserRepository userRepository;
-    private StoryRepository storyRepository;
-    private PasswordEncoder passwordEncoder;
-    private StoryService storyService;
-    private EpisodeService episodeService;
-    private EpisodeRepository episodeRepository;
+    private final UserRepository userRepository;
+    private final StoryRepository storyRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final StoryService storyService;
+    private final EpisodeService episodeService;
+    private final EpisodeRepository episodeRepository;
 
     @Autowired
     private EpisodeServiceTest(UserRepository userRepository, StoryRepository storyRepository, PasswordEncoder passwordEncoder,
