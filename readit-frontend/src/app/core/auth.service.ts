@@ -61,4 +61,7 @@ export class AuthService{
     return res;
   }
 
+  logout():void{
+    localStorage.setItem('token',"");
+  }
 }
