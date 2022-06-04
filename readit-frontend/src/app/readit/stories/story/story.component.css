@@ -140,6 +140,8 @@ a:hover{
 .description{
   overflow: auto;
   min-height: 10rem;
+  word-wrap: break-word;
+  width: 100%;
 }
 
 .description > p{
