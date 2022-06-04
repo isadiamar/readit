@@ -3,12 +3,14 @@ package com.isabel.readit.services;
 import com.isabel.readit.api.dtos.CommentDto;
 import com.isabel.readit.data.daos.CommentRepository;
 import com.isabel.readit.data.daos.EpisodeRepository;
+import com.isabel.readit.data.daos.StoryRepository;
 import com.isabel.readit.data.daos.UserRepository;
 import com.isabel.readit.data.model.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.support.TransactionSynchronizationAdapter;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
@@ -21,16 +23,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Transactional
 public class CommentServiceTest {
 
-    @Autowired
-    private EpisodeService episodeService;
-    @Autowired
     private CommentService commentService;
-    @Autowired
     private EpisodeRepository episodeRepository;
-    @Autowired
     private UserRepository userRepository;
-    @Autowired
     private CommentRepository commentRepository;
+
+    @Autowired
+    private CommentServiceTest(UserRepository userRepository,CommentService commentService,
+                                EpisodeRepository episodeRepository, CommentRepository commentRepository) {
+        this.userRepository = userRepository;
+        this.episodeRepository = episodeRepository;
+        this.commentRepository = commentRepository;
+        this.commentService = commentService;
+    }
 
     @Test
     void testCreateOk() {
