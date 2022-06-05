@@ -34,4 +34,9 @@ export class FilterService {
       return this.httpService
         .get(EndPoints.STORIES + "/newness");
     }
+
+    findByPopularity():Observable<Story[]> {
+        return this.httpService
+          .get(EndPoints.STORIES + "/filter/popularity");
+    }
 }

@@ -13,7 +13,8 @@ export class ReadComponent implements OnInit {
   newStories: Story[];
   horrorStories: Story[];
   fantasyStories: Story[];
-  popularGenreStories:Story[]
+  popularGenreStories:Story[];
+  mostLikedStories:Story[];
 
   selectedGenre: Genre;
   genres: Genre[] = [Genre.COMEDY, Genre.ROMANCE, Genre.DRAMA, Genre.HISTORICAL, Genre.HORROR, Genre.SLICE_OF_LIFE, Genre.FANTASY];
@@ -42,6 +43,10 @@ export class ReadComponent implements OnInit {
         console.log(stories.slice(0,3))
         this.popularGenreStories = stories.slice(0,3);
       })
+
+    this.filterService.findByPopularity().subscribe(stories =>{
+      this.mostLikedStories = stories.slice(0,3);
+    })
   }
 
   selectGenre(genre:Genre) {

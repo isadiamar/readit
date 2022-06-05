@@ -60,9 +60,10 @@
     <div class="popular-liked">
       <div class="popularity-title">
         <h3 class="title">More liked</h3>
-        <mat-icon>keyboard_arrow_right</mat-icon>
       </div>
-      <div class="popularity-stories"></div>
+      <div class="popularity-stories" style="margin-top: 2.1rem;">
+        <app-story-cover [storiesInput]="mostLikedStories"></app-story-cover>
+      </div>
     </div>
 
   </section>

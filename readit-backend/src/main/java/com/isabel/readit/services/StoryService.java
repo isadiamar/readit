@@ -113,4 +113,10 @@ public class StoryService {
                 .sorted((s1,s2)-> Integer.compare(s2.getId(), s1.getId()))
                 .map(Story::toStoryDto).collect(Collectors.toList());
     }
+
+    public List<StoryDto> findByPopularity() {
+        return this.storyRepository.findAll().stream()
+                .sorted((s1,s2)-> Integer.compare(s2.getLikeList().size(), s1.getLikeList().size()))
+                .map(Story::toStoryDto).collect(Collectors.toList());
+    }
 }

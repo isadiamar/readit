@@ -68,4 +68,8 @@ public class StoryController {
         return this.storyService.findByNewness();
     }
 
+    @GetMapping("/filter/popularity")
+    public List<StoryDto> findByPopularity(){
+        return this.storyService.findByPopularity();
+    }
 }
