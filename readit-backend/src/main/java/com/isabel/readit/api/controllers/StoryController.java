@@ -1,6 +1,7 @@
 package com.isabel.readit.api.controllers;
 
 import com.isabel.readit.api.dtos.StoryDto;
+import com.isabel.readit.data.model.Genre;
 import com.isabel.readit.services.StoryService;
 import com.isabel.readit.services.security.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,21 @@ public class StoryController {
     @PutMapping("/{id}")
     public StoryDto update(@PathVariable Integer id, @Valid @RequestBody StoryDto storyDto) {
         return this.storyService.update(id, storyDto);
+    }
+
+    @GetMapping("/filter")
+    public List<StoryDto> findByGenre1(@RequestParam String genre){
+        return this.storyService.findByGenre1(genre);
+    }
+
+    @GetMapping("/filter/status")
+    public List<StoryDto> findByGenre1AndStatus(@RequestParam String genre, String status){
+        return this.storyService.findByGenreAndStatus(genre,status);
+    }
+
+    @GetMapping("/sort")
+    public List<StoryDto> sortByGenre1AndPopularity(@RequestParam String genre){
+        return this.storyService.sortByGenre1AndPopularity(genre);
     }
 
 }

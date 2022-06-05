@@ -1,0 +1,14 @@
+<div class="stories">
+  <div class="cover" *ngFor="let story of stories" (click)="open(story)">
+    <div class="img">
+      <img  src = "{{story.cover ? story.cover : '../../../../assets/img/cover-story.png '}}" alt="cover"/>
+      <div class="likes">
+        <mat-icon>favorite</mat-icon>
+        {{story.numberLikes}}
+      </div>
+      <div class="label">
+        <p>{{story.title}}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -22,6 +22,8 @@ import {PdfViewerModule} from "ng2-pdf-viewer";
 import {EpisodeCoverComponent} from './episodes/episode-cover/episode-cover.component';
 import { CommentFormComponent } from './comments/comment-form/comment-form.component';
 import { CommentComponent } from './comments/comment/comment.component';
+import { GenreComponent } from './genres/genres/genre.component';
+import { GenreCoverComponent } from './genres/genre-cover/genre-cover.component';
 
 
 @NgModule({
@@ -41,6 +43,8 @@ import { CommentComponent } from './comments/comment/comment.component';
     EpisodeCoverComponent,
     CommentFormComponent,
     CommentComponent,
+    GenreComponent,
+    GenreCoverComponent,
   ],
   entryComponents: [],
   imports: [

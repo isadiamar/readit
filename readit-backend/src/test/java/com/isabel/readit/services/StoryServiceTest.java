@@ -6,7 +6,6 @@ import com.isabel.readit.data.daos.UserRepository;
 import com.isabel.readit.data.model.*;
 import com.isabel.readit.services.exceptions.ForbiddenException;
 import com.isabel.readit.services.exceptions.NotFoundException;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.transaction.Transactional;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -167,4 +168,37 @@ class StoryServiceTest {
         );
         assertTrue(thrown.getMessage().contains("Not Found Exception. Story not found"));
     }
+
+    @Test
+    void testFilterByGenre(){
+        String romance = Genre.ROMANCE.toString();
+        String comedy = Genre.COMEDY.toString();
+        String historical = Genre.HISTORICAL.toString();
+
+        List<StoryDto> listRomance = this.storyService.findByGenre1(romance);
+        assertEquals(1, listRomance.size());
+
+        List<StoryDto> listComedy = this.storyService.findByGenre1(comedy);
+        assertEquals(0, listComedy.size());
+
+        List<StoryDto> listHistorical = this.storyService.findByGenre1(historical);
+        assertEquals(1, listHistorical.size());
+    }
+
+    @Test
+    void testFilterByGenreAndStatus(){
+        String romance = Genre.ROMANCE.toString();
+        String comedy = Genre.COMEDY.toString();
+        String historical = Genre.HISTORICAL.toString();
+
+        List<StoryDto> listRomance = this.storyService.findByGenreAndStatus(romance, Status.COMPLETE.toString());
+        assertEquals(1, listRomance.size());
+
+        List<StoryDto> listComedy = this.storyService.findByGenreAndStatus(historical, Status.COMPLETE.toString());
+        assertEquals(1, listComedy.size());
+
+        List<StoryDto> listHistorical = this.storyService.findByGenreAndStatus(historical, Status.DROPPED.toString());
+        assertEquals(0, listHistorical.size());
+    }
+
 }

@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Stream;
 
 @Builder
 @Getter
@@ -53,7 +54,9 @@ public class Story {
             storyDto.setUsername(this.getUser().getNickname());
             storyDto.setUserId(this.getUser().getId());
         }
-
+        if (Objects.nonNull(this.getLikeList())) {
+            storyDto.setNumberLikes(this.getLikeList().size());
+        }
         return storyDto;
     }
 
