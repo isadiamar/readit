@@ -14,4 +14,5 @@ export interface Story{
   color?:string;
   username?:string;
   userId?:number;
+  numberLikes?:number;
 }

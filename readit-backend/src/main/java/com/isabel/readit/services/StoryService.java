@@ -3,6 +3,8 @@ package com.isabel.readit.services;
 import com.isabel.readit.api.dtos.StoryDto;
 import com.isabel.readit.data.daos.StoryRepository;
 import com.isabel.readit.data.daos.UserRepository;
+import com.isabel.readit.data.model.Genre;
+import com.isabel.readit.data.model.Status;
 import com.isabel.readit.data.model.Story;
 import com.isabel.readit.data.model.User;
 import com.isabel.readit.services.exceptions.ForbiddenException;
@@ -13,9 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @Transactional
@@ -80,5 +85,28 @@ public class StoryService {
         story.setId(storyDto.getId());
         this.storyRepository.save(story);
         return story.toStoryDto();
+    }
+
+    public List<StoryDto> findByGenre1(String genre) {
+        Genre genreEnum = Genre.valueOf(genre);
+        return this.storyRepository.findAll().stream()
+                .filter(story -> story.getGenre1().equals(genreEnum))
+                .map(Story::toStoryDto).collect(Collectors.toList());
+    }
+
+    public List<StoryDto> findByGenreAndStatus(String genre, String status) {
+        Genre genreEnum = Genre.valueOf(genre);
+        Status statusEnum = Status.valueOf(status);
+        return this.storyRepository.findAll().stream()
+                .filter(story -> story.getGenre1().equals(genreEnum) && story.getStatus().equals(statusEnum))
+                .map(Story::toStoryDto).collect(Collectors.toList());
+    }
+
+    public List<StoryDto> sortByGenre1AndPopularity(String genre){
+        Genre genreEnum = Genre.valueOf(genre);
+        return this.storyRepository.findAll().stream()
+                .filter(story -> story.getGenre1().equals(genreEnum))
+                .sorted((s1,s2)-> Integer.compare(s2.getLikeList().size(), s1.getLikeList().size()))
+                .map(Story::toStoryDto).collect(Collectors.toList());
     }
 }

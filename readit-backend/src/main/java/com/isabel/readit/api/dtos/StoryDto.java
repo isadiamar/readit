@@ -26,4 +26,5 @@ public class StoryDto {
     private String color;
     private String username;
     private Integer userId;
+    private Integer numberLikes;
 }

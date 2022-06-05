@@ -1,0 +1,26 @@
+<section class="wrapForm">
+  <nav class="nav-wrap">
+    <div class="nav">
+      <button *ngFor="let genre of genres" mat-button (click)="searchByGenre(genre)" [ngClass] ="{'selected':(selectedGenre === genre)}">{{genre}}</button>
+      <button mat-flat-button color="accent" [matMenuTriggerFor]="filter">
+        Filter by
+      </button>
+      <mat-menu #filter="matMenu">
+        <button mat-menu-item [mat-menu-trigger-for]="status">Status</button>
+        <button mat-menu-item (click)="sortByPopularity()">Popularity</button>
+      </mat-menu>
+
+      <mat-menu #status = "matMenu">
+        <button mat-menu-item (click)="searchByStatus('Complete')">Complete</button>
+        <button mat-menu-item  (click)="searchByStatus('In Progress')">In progress</button>
+        <button mat-menu-item (click)="searchByStatus('Dropped')">Dropped</button>
+      </mat-menu>
+
+    </div>
+  </nav>
+  <div class="story-wrap">
+    <div class="story-list">
+      <app-genre-cover [stories] = "stories"></app-genre-cover>
+    </div>
+  </div>
+</section>
