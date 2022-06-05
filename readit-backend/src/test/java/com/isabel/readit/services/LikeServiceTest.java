@@ -47,14 +47,14 @@ public class LikeServiceTest {
         LikeDto likeDto = LikeDto.builder().storyId(story.getId()).build();
 
         LikeDto dto = this.likeService.create(likeDto, "test@test");
-        assertEquals(2, story.getLikeList().size());
+        assertEquals(3, story.getLikeList().size());
 
         this.likeService.delete(dto.getId());
         TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
             @Override
             public void afterCommit() {
                 Story story = storyRepository.findByTitle("Title1").get();
-                assertEquals(1, story.getLikeList().size());
+                assertEquals(2, story.getLikeList().size());
             }
         });
     }
@@ -63,7 +63,7 @@ public class LikeServiceTest {
     void testGetAllOk(){
         Story story = storyRepository.findByTitle("Title1").get();
         this.likeService.getAll(story.getId(),"1@email.com");
-        assertEquals(1, story.getLikeList().size());
+        assertEquals(2, story.getLikeList().size());
     }
 
 }

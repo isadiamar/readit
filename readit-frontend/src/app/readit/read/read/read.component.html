@@ -1,0 +1,70 @@
+<div class="wrap">
+  <div class="header">
+    <img alt="logo" src="assets/img/logo.png"/>
+  </div>
+
+  <section class="newness align-center">
+    <h3 class="title">Newness</h3>
+    <div class="newness-stories">
+      <app-genre-cover [stories]="newStories" [title]="true"></app-genre-cover>
+    </div>
+  </section>
+
+  <section class="genres align-center">
+    <h3 class="title">Genres</h3>
+    <div class="story-list">
+      <div class="cover pink">
+        <div class="story-title">
+          <p class="title">Terror</p>
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </div>
+        <div class="description">
+          <p>Don't read while sleeping...</p>
+        </div>
+      </div>
+      <app-genre-cover [stories]="horrorStories" [title]="false" class="stories"></app-genre-cover>
+    </div>
+    <div class="story-list">
+      <div class="cover blue">
+        <div class="story-title">
+          <p class="title">Fantasy</p>
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </div>
+        <div class="description">
+          <p>Ready to find fairies?</p>
+        </div>
+      </div>
+      <app-genre-cover [stories]="fantasyStories" [title]="false" class="stories"></app-genre-cover>
+    </div>
+  </section>
+
+  <section class="popularity align-center">
+    <div class="popular-genre">
+      <div class="popularity-title">
+        <h3 class="title">More popular by genre</h3>
+        <mat-icon>keyboard_arrow_right</mat-icon>
+      </div>
+      <div class="filter">
+        <button mat-flat-button [matMenuTriggerFor]="genresMenu">
+          {{selectedGenre}}
+        </button>
+        <mat-menu #genresMenu="matMenu">
+          <button *ngFor="let genre of genres" mat-menu-item (click)="selectGenre(genre)">{{genre}}</button>
+        </mat-menu>
+      </div>
+      <div class="popularity-stories">
+        <app-story-cover [storiesInput]="popularGenreStories"></app-story-cover>
+      </div>
+    </div>
+
+    <div class="popular-liked">
+      <div class="popularity-title">
+        <h3 class="title">More liked</h3>
+      </div>
+      <div class="popularity-stories" style="margin-top: 2.1rem;">
+        <app-story-cover [storiesInput]="mostLikedStories"></app-story-cover>
+      </div>
+    </div>
+
+  </section>
+</div>

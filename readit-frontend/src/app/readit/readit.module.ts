@@ -24,6 +24,7 @@ import { CommentFormComponent } from './comments/comment-form/comment-form.compo
 import { CommentComponent } from './comments/comment/comment.component';
 import { GenreComponent } from './genres/genres/genre.component';
 import { GenreCoverComponent } from './genres/genre-cover/genre-cover.component';
+import { ReadComponent } from './read/read/read.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { GenreCoverComponent } from './genres/genre-cover/genre-cover.component'
     CommentComponent,
     GenreComponent,
     GenreCoverComponent,
+    ReadComponent,
   ],
   entryComponents: [],
   imports: [

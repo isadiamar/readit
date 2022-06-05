@@ -24,7 +24,6 @@ export class GenreComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedGenre = Genre.ROMANCE
-    console.log(Utils.getEnumKeyByValue(Genre,Genre.ROMANCE))
     this.filterService.findByGenre(Utils.getEnumKeyByValue(Genre,Genre.ROMANCE)).subscribe(stories => {
       this.stories = stories;
     });
