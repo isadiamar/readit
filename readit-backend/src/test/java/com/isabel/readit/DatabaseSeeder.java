@@ -49,6 +49,12 @@ public class DatabaseSeeder {
                         .description("I am 1")
                         .password("Password")
                         .build(),
+                User.builder()
+                        .nickname("2")
+                        .email("2@email.com")
+                        .description("I am 2")
+                        .password("Password")
+                        .build(),
         };
         this.userRepository.saveAll(List.of(users));
         LogManager.getLogger(this.getClass()).warn("         ------- users");
@@ -93,6 +99,7 @@ public class DatabaseSeeder {
         Like[]likes = {
                 Like.builder().story(stories[0]).user(users[0]).build(),
                 Like.builder().story(stories[1]).user(users[0]).build(),
+                Like.builder().story(stories[0]).user(users[1]).build(),
         };
         this.likeRepository.saveAll(List.of(likes));
         LogManager.getLogger(this.getClass()).warn("         ------- likes");

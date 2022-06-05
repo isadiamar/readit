@@ -188,7 +188,6 @@ class StoryServiceTest {
     @Test
     void testFilterByGenreAndStatus(){
         String romance = Genre.ROMANCE.toString();
-        String comedy = Genre.COMEDY.toString();
         String historical = Genre.HISTORICAL.toString();
 
         List<StoryDto> listRomance = this.storyService.findByGenreAndStatus(romance, Status.COMPLETE.toString());
@@ -201,4 +200,23 @@ class StoryServiceTest {
         assertEquals(0, listHistorical.size());
     }
 
+    @Test
+    void testSortByGenre1AndPopularity(){
+        String romance = Genre.ROMANCE.toString();
+
+        List<StoryDto> storyDto = this.storyService.sortByGenre1AndPopularity(romance);
+        assertEquals("Title1", storyDto.get(0).getTitle());
+    }
+
+    @Test
+    void testFindByNewness(){
+        List<StoryDto> storyDto = this.storyService.findByNewness();
+        assertEquals("Title2", storyDto.get(0).getTitle());
+    }
+
+    @Test
+    void testFindByPopularity(){
+        List<StoryDto> storyDto = this.storyService.findByPopularity();
+        assertEquals("Title1", storyDto.get(0).getTitle());
+    }
 }
