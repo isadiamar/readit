@@ -9,7 +9,7 @@
         <p class ='normal'>{{story.title}}</p>
         <p class="small">{{story.username}}</p>
     </div>
-    <div class="actions">
+    <div class="actions" *ngIf="isActiveUser(story)" >
       <div class="group" >
         <button id="update" mat-button type="button" class="subtitle" (click)="open(story.id!)">Open</button>
         <button id="add" mat-button type="button"  class="subtitle" (click)="redirect(story.id!)">New Chapter</button>

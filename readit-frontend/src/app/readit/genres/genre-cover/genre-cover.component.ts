@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 export class GenreCoverComponent implements OnInit {
 
   @Input() stories:Story[];
+  @Input() title:boolean;
   cover:string;
   numberLikes:number;
 

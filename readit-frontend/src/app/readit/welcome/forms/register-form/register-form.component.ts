@@ -71,7 +71,7 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
       this.authService.register(registerDto).subscribe(
         next => console.log("Success"),
         error => this.clearFields(),
-        ()=> this.router.navigate(["stories/new"])
+        ()=> this.router.navigate(["read"])
       );
       this.clearFields()
     }

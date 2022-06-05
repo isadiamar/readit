@@ -29,4 +29,9 @@ export class FilterService {
     return this.httpService
       .get(EndPoints.STORIES + "/sort" + "?genre=" + genre);
     }
+
+    findByNewness():Observable<Story[]> {
+      return this.httpService
+        .get(EndPoints.STORIES + "/newness");
+    }
 }

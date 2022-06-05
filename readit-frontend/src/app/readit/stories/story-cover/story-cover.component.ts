@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {StoryService} from "../../shared/services/story.service";
 import {Story} from "../../shared/models/story.model";
 import {MatDialog} from "@angular/material/dialog";
@@ -15,21 +15,26 @@ import {AuthService} from "../../../core/auth.service";
 export class StoryCoverComponent implements OnInit {
 
   stories: Story[] = [];
-  activeUser:boolean;
+  isInput:boolean;
+
+  @Input() set storiesInput(storiesInput:Story[]){
+    this.stories = storiesInput;
+    this.isInput = true;
+  }
 
   constructor(private storyService:StoryService, private dialog: MatDialog, private route:Router, private authService:AuthService ) { }
 
   ngOnInit(): void {
-
-
-    this.storyService.getAll().subscribe(res =>{
+    if(!this.isInput){
+      this.storyService.getAll().subscribe(res =>{
         this.stories = res;
         this.stories.forEach(story=>{
           // @ts-ignore
           story.genre1 = Genre[story.genre1]
         })
-      this.activeUser = this.authService.getAuthenticatedUserId() === this.stories[0].userId;
       })
+    }
+
   }
 
   delete(id: number) {
@@ -42,5 +47,9 @@ export class StoryCoverComponent implements OnInit {
 
   redirect(id:number) {
     this.route.navigate(['stories/' + id + '/episodes/new'])
+  }
+
+  isActiveUser(story:Story):boolean{
+    return this.authService.getAuthenticatedUserId() === story.userId;
   }
 }

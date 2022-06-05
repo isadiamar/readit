@@ -56,7 +56,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
       this.authService.login(email, password).subscribe(
         next => console.log("Success"),
           error => this.clearFields(),
-          ()=> this.router.navigate(["stories/new"])
+          ()=> this.router.navigate(["read"])
         )
     }
   }

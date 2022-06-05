@@ -9,6 +9,7 @@ import {StoryCoverComponent} from "./stories/story-cover/story-cover.component";
 import {EpisodeFormComponent} from "./episodes/episode-form/episode-form.component";
 import {EpisodeComponent} from "./episodes/episode/episode.component";
 import {GenreComponent} from "./genres/genres/genre.component";
+import {ReadComponent} from "./read/read/read.component";
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
     children: [
       {path: 'welcome', component: WelcomeComponent },
       {path:'genres', component:GenreComponent, canActivate:[AuthGuardService]},
+      {path:'read', component:ReadComponent, canActivate:[AuthGuardService]},
       {path: 'stories/new', component: StoryFormComponent,canActivate:[AuthGuardService] },
       {path:'stories/edit/:id', component:StoryFormComponent, canActivate:[AuthGuardService]},
       {path: 'stories/dashboard', component: StoryCoverComponent, canActivate:[AuthGuardService]},

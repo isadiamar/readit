@@ -63,4 +63,9 @@ public class StoryController {
         return this.storyService.sortByGenre1AndPopularity(genre);
     }
 
+    @GetMapping("/newness")
+    public List<StoryDto> findByNewness(){
+        return this.storyService.findByNewness();
+    }
+
 }

@@ -6,7 +6,7 @@
         <mat-icon>favorite</mat-icon>
         {{story.numberLikes}}
       </div>
-      <div class="label">
+      <div class="label" *ngIf="title">
         <p>{{story.title}}</p>
       </div>
     </div>

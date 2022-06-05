@@ -1,0 +1,157 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  align-content: center;
+  margin-top: 1rem;
+  min-height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 10rem;
+  border-top: 3px solid #D44171;
+  border-bottom: 3px solid #D44171;
+}
+
+.title {
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.newness {
+  height: 20rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.genres {
+  height: 28rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #F4F4F4;
+}
+
+.genres h3 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.align-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.story-list {
+  width: 70%;
+  height: 100%;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+}
+
+.cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 98%;
+  width: 10rem;
+  margin-right: 2rem;
+}
+
+.cover p {
+  color: white;
+  font-family: Mako, sans-serif;
+}
+
+.pink {
+  background-color: #E12495;
+}
+
+.blue {
+  background-color: #4167EE;
+}
+
+.story-title {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  height: 40%;
+  justify-content: space-between;
+}
+
+.story-title p {
+  margin-top: .5rem;
+}
+
+.story-title mat-icon {
+  color: white;
+}
+
+.description {
+  width: 80%;
+  height: 60%;
+  display: flex;
+  align-items: center;
+  word-break: break-word;
+}
+
+.stories {
+  height: 100%;
+  width: 80%;
+}
+
+.newness-stories {
+  width: 70%;
+}
+
+.newness > h3 {
+  margin-top: -2rem;
+  margin-bottom: 2rem;
+}
+
+.popularity {
+  display: flex;
+  justify-content: space-between;
+  height: 25rem;
+  width: 70%;
+}
+
+.popular-genre, .popular-liked {
+  margin-top: 2rem;
+  height: 100%;
+  width: 45%;
+}
+
+.popularity-title {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  height: 20%;
+}
+
+.popularity-title h3 {
+  margin-top: 1rem;
+  margin-right: 1rem;
+}
+
+.popularity-stories {
+  height: 80%;
+  width: 100%;
+}
+
+.filter{
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
