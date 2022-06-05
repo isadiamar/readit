@@ -54,7 +54,9 @@ public class Story {
             storyDto.setUsername(this.getUser().getNickname());
             storyDto.setUserId(this.getUser().getId());
         }
-        storyDto.setNumberLikes(likeList.size());
+        if (Objects.nonNull(this.getLikeList())) {
+            storyDto.setNumberLikes(this.getLikeList().size());
+        }
         return storyDto;
     }
 
