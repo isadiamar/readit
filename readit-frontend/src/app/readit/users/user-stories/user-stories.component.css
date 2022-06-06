@@ -3,12 +3,18 @@
 }
 
 .title-div{
-  cursor: pointer;
   display: flex;
   align-items: center;
   height: 15%;
   flex-direction: row;
   margin-left: .5rem;
+}
+.cursor{
+  cursor: pointer;
+}
+
+.no-cursor{
+  cursor: auto;
 }
 
 .title-div h3{

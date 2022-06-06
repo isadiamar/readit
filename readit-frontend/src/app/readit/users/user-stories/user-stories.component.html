@@ -1,7 +1,7 @@
 <div class="mystories">
-  <div class="title-div" (click)="sendMessage()">
+  <div class="title-div" (click)="sendMessage()" [ngClass]="isDashboard ? 'no-cursor' : 'cursor'">
     <h3 class="title">My Stories</h3>
-    <mat-icon>keyboard_arrow_right</mat-icon>
+    <mat-icon *ngIf="!isDashboard">keyboard_arrow_right</mat-icon>
   </div>
   <div class="story-list" style="margin-top: 2.1rem">
     <app-story-cover [storiesInput]="showUserStories"></app-story-cover>

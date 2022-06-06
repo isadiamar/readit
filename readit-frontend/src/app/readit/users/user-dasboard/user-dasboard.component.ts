@@ -7,13 +7,21 @@ import {AuthService} from "../../../core/auth.service";
   styleUrls: ['./user-dasboard.component.css']
 })
 export class UserDasboardComponent implements OnInit {
-  isSelected: string = "stories";
+  selected: string = "account";
 
   activeUser:number
   constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
     this.activeUser = this.authService.getAuthenticatedUserId();
+  }
+
+  isSelected($event: string) {
+    if (this.selected == $event){
+      this.selected = 'account';
+    }else{
+      this.selected = $event
+    }
   }
 
 }

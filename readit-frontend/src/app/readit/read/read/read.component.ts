@@ -29,11 +29,11 @@ export class ReadComponent implements OnInit {
 
   ngOnInit(): void {
     this.filterService.findByGenre(Utils.getEnumKeyByValue(Genre, Genre.ROMANCE)).subscribe(stories => {
-      this.horrorStories = stories;
+      this.horrorStories = stories.slice(0,5);
     });
 
     this.filterService.findByGenre(Utils.getEnumKeyByValue(Genre, Genre.ROMANCE)).subscribe(stories => {
-      this.fantasyStories = stories;
+      this.fantasyStories = stories.slice(0,5);
     });
 
     this.filterService.findByNewness().subscribe(stories => {

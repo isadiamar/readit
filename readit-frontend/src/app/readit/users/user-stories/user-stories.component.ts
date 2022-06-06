@@ -17,6 +17,7 @@ export class UserStoriesComponent implements OnInit {
   }
 
   @Input() userId?: number
+  @Input() isDashboard?: boolean;
   userStories:Story[];
   showUserStories:Story[];
 
@@ -29,12 +30,15 @@ export class UserStoriesComponent implements OnInit {
 
     this.userService.findStoryList(this.userId).subscribe(stories =>{
       this.userStories = stories;
-      this.showUserStories = stories.slice(0,3)
+      this.showUserStories = this.isDashboard ? stories : stories.slice(0,3);
     })
   }
 
   sendMessage() {
-    this.isSelected.emit("stories")
+    if(!this.isDashboard) {
+      this.isSelected.emit("stories")
+    }
+
   }
 
   private checkIsUserStory(input: string) {
@@ -43,6 +47,5 @@ export class UserStoriesComponent implements OnInit {
     } else if (this.userStories){
       this.showUserStories = this.userStories.slice(0, 3);
     }
-
   }
 }
