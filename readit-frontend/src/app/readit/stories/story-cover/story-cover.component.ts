@@ -54,10 +54,13 @@ export class StoryCoverComponent implements OnInit {
   }
 
   updateGenres(stories:Story[]):Story[]{
-    for(let i =0; i< stories.length; i++){
-      // @ts-ignore
-      stories[i].genre1 = Genre[stories[i].genre1];
+    if(stories) {
+      for(let i =0; i< stories.length; i++){
+        // @ts-ignore
+        stories[i].genre1 = Genre[stories[i].genre1];
+      }
     }
+
     return stories;
   }
 }

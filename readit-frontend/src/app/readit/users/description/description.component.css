@@ -1,0 +1,11 @@
+.description{
+  height: 60%;
+  width: 80%;
+  margin-top: 1rem;
+  margin-right: 4rem;
+}
+.title{
+  font-family: Mako, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+}

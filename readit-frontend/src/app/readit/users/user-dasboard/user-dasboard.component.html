@@ -1,0 +1,12 @@
+<section class="wrap">
+  <app-user-header class="header"></app-user-header>
+  <div class="profile-wrap">
+    <div class="profile">
+      <app-description></app-description>
+      <div class="stories">
+        <app-user-stories [userId]="activeUser" [isUserStory]="isSelected"></app-user-stories>
+      </div>
+    </div>
+  </div>
+</section>
+

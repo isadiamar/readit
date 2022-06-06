@@ -11,6 +11,7 @@ import {EpisodeComponent} from "./episodes/episode/episode.component";
 import {GenreComponent} from "./genres/genres/genre.component";
 import {ReadComponent} from "./read/read/read.component";
 import {UserComponent} from "./users/user/user.component";
+import {UserDasboardComponent} from "./users/user-dasboard/user-dasboard.component";
 
 
 const routes: Routes = [
@@ -23,7 +24,7 @@ const routes: Routes = [
       {path:'read', component:ReadComponent, canActivate:[AuthGuardService]},
       {path: 'stories/new', component: StoryFormComponent,canActivate:[AuthGuardService] },
       {path:'stories/edit/:id', component:StoryFormComponent, canActivate:[AuthGuardService]},
-      {path: 'stories/dashboard', component: StoryCoverComponent, canActivate:[AuthGuardService]},
+      {path: 'stories/dashboard', component: UserDasboardComponent, canActivate:[AuthGuardService]},
       {path: 'stories/:id', component:StoryComponent, canActivate:[AuthGuardService]},
       {path:'stories/:id/episodes/new', component:EpisodeFormComponent, canActivate:[AuthGuardService]},
       {path: 'stories/:story_id/episodes/:episode_id', component:EpisodeComponent, canActivate:[AuthGuardService]},

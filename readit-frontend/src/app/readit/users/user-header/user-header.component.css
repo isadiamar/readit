@@ -1,0 +1,26 @@
+.header{
+  height: 10rem;
+  width: 100%;
+}
+
+.header img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.nav-wrap{
+  background-color: white;
+  height: 3rem;
+  width: 100%;
+  border: 2px solid #EAEAEA;
+  display: flex;
+  justify-content: center;
+}
+
+.nav{
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 90%;
+}

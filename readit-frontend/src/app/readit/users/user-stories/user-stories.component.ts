@@ -15,16 +15,19 @@ export class UserStoriesComponent implements OnInit {
   @Input() set isUserStory(isUserStory:string){
     this.checkIsUserStory(isUserStory)
   }
-  userId:string;
+
+  @Input() userId?: number
   userStories:Story[];
   showUserStories:Story[];
 
   constructor(private authService:AuthService, private activeRouter:ActivatedRoute, private filterService:FilterService, private userService:UserService) { }
 
   ngOnInit(): void {
-    this.userId = this.activeRouter.snapshot.paramMap.get('id')!;
+    if (!this.userId) {
+      this.userId = parseInt( this.activeRouter.snapshot.paramMap.get('id')!);
+    }
 
-    this.userService.findStoryList(+this.userId).subscribe(stories =>{
+    this.userService.findStoryList(this.userId).subscribe(stories =>{
       this.userStories = stories;
       this.showUserStories = stories.slice(0,3)
     })

@@ -28,6 +28,9 @@ import { ReadComponent } from './read/read/read.component';
 import { UserComponent } from './users/user/user.component';
 import { UserFavouritesComponent } from './users/user-favourites/user-favourites.component';
 import { UserStoriesComponent } from './users/user-stories/user-stories.component';
+import { DescriptionComponent } from './users/description/description.component';
+import { UserDasboardComponent } from './users/user-dasboard/user-dasboard.component';
+import { UserHeaderComponent } from './users/user-header/user-header.component';
 
 
 @NgModule({
@@ -53,6 +56,9 @@ import { UserStoriesComponent } from './users/user-stories/user-stories.componen
     UserComponent,
     UserFavouritesComponent,
     UserStoriesComponent,
+    DescriptionComponent,
+    UserDasboardComponent,
+    UserHeaderComponent,
   ],
   entryComponents: [],
   imports: [
