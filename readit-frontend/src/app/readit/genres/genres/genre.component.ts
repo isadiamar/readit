@@ -5,6 +5,7 @@ import {Story} from "../../shared/models/story.model";
 import {Subscription} from "rxjs";
 import {Utils} from "../../shared/utils/Utils";
 import {Status} from "../../shared/models/status.enum";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-genre',
@@ -20,11 +21,17 @@ export class GenreComponent implements OnInit {
   subscriber:Subscription;
 
 
-  constructor(private filterService:FilterService) { }
+  constructor(private filterService:FilterService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.selectedGenre = Genre.ROMANCE
-    this.filterService.findByGenre(Utils.getEnumKeyByValue(Genre,Genre.ROMANCE)).subscribe(stories => {
+    let genreMessage = this.route.snapshot.paramMap.get('genre')
+    if(genreMessage){
+      // @ts-ignore
+      this.selectedGenre = Genre[genreMessage];
+    }else{
+      this.selectedGenre = Genre.ROMANCE
+    }
+    this.filterService.findByGenre(Utils.getEnumKeyByValue(Genre,this.selectedGenre)).subscribe(stories => {
       this.stories = stories;
     });
   }

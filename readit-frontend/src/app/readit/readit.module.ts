@@ -25,6 +25,9 @@ import { CommentComponent } from './comments/comment/comment.component';
 import { GenreComponent } from './genres/genres/genre.component';
 import { GenreCoverComponent } from './genres/genre-cover/genre-cover.component';
 import { ReadComponent } from './read/read/read.component';
+import { UserComponent } from './users/user/user.component';
+import { UserFavouritesComponent } from './users/user-favourites/user-favourites.component';
+import { UserStoriesComponent } from './users/user-stories/user-stories.component';
 
 
 @NgModule({
@@ -47,6 +50,9 @@ import { ReadComponent } from './read/read/read.component';
     GenreComponent,
     GenreCoverComponent,
     ReadComponent,
+    UserComponent,
+    UserFavouritesComponent,
+    UserStoriesComponent,
   ],
   entryComponents: [],
   imports: [

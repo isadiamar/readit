@@ -10,6 +10,7 @@ import {EpisodeFormComponent} from "./episodes/episode-form/episode-form.compone
 import {EpisodeComponent} from "./episodes/episode/episode.component";
 import {GenreComponent} from "./genres/genres/genre.component";
 import {ReadComponent} from "./read/read/read.component";
+import {UserComponent} from "./users/user/user.component";
 
 
 const routes: Routes = [
@@ -27,6 +28,7 @@ const routes: Routes = [
       {path:'stories/:id/episodes/new', component:EpisodeFormComponent, canActivate:[AuthGuardService]},
       {path: 'stories/:story_id/episodes/:episode_id', component:EpisodeComponent, canActivate:[AuthGuardService]},
       {path:'stories/:story_id/episodes/edit/:episode_id', component:EpisodeFormComponent, canActivate:[AuthGuardService]},
+      {path:'users/:id', component:UserComponent, canActivate:[AuthGuardService]}
     ]
   }
 ];

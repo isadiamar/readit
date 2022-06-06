@@ -1,0 +1,9 @@
+<div class="mystories">
+  <div class="title-div" (click)="sendMessage()">
+    <h3 class="title">My Stories</h3>
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </div>
+  <div class="story-list" style="margin-top: 2.1rem">
+    <app-story-cover [storiesInput]="showUserStories"></app-story-cover>
+  </div>
+</div>

@@ -18,8 +18,8 @@ export class StoryCoverComponent implements OnInit {
   isInput:boolean;
 
   @Input() set storiesInput(storiesInput:Story[]){
-    this.stories = storiesInput;
     this.isInput = true;
+    this.stories = this.updateGenres(storiesInput);
   }
 
   constructor(private storyService:StoryService, private dialog: MatDialog, private route:Router, private authService:AuthService ) { }
@@ -51,5 +51,13 @@ export class StoryCoverComponent implements OnInit {
 
   isActiveUser(story:Story):boolean{
     return this.authService.getAuthenticatedUserId() === story.userId;
+  }
+
+  updateGenres(stories:Story[]):Story[]{
+    for(let i =0; i< stories.length; i++){
+      // @ts-ignore
+      stories[i].genre1 = Genre[stories[i].genre1];
+    }
+    return stories;
   }
 }

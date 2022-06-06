@@ -13,9 +13,9 @@
   <section class="genres align-center">
     <h3 class="title">Genres</h3>
     <div class="story-list">
-      <div class="cover pink">
+      <div class="cover pink" (click)="search('HORROR')">
         <div class="story-title">
-          <p class="title">Terror</p>
+          <p class="title">Horror</p>
           <mat-icon>keyboard_arrow_right</mat-icon>
         </div>
         <div class="description">
@@ -25,7 +25,7 @@
       <app-genre-cover [stories]="horrorStories" [title]="false" class="stories"></app-genre-cover>
     </div>
     <div class="story-list">
-      <div class="cover blue">
+      <div class="cover blue" (click)="search('FANTASY')">
         <div class="story-title">
           <p class="title">Fantasy</p>
           <mat-icon>keyboard_arrow_right</mat-icon>

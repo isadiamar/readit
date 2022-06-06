@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Router, RouterEvent} from "@angular/router";
+import {Router} from "@angular/router";
 import {AuthService} from "../../core/auth.service";
 
 @Component({
@@ -9,14 +9,22 @@ import {AuthService} from "../../core/auth.service";
 })
 export class MainMenuComponent implements OnInit {
 
+  authenticatedUser:number;
+
   constructor(private router:Router, private authService:AuthService) {
   }
 
   ngOnInit(): void {
+    this.authenticatedUser = this.authService.getAuthenticatedUserId()
+    console.log(this.authenticatedUser)
   }
 
   redirect(route: string) {
     this.router.navigate([route]);
+  }
+
+  redirectWithObject(route:string, object:string){
+    this.router.navigate([route,{page: object}])
   }
 
   logout() {

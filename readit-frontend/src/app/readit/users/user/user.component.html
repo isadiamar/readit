@@ -1,0 +1,22 @@
+<section class="wrap">
+  <div class="header">
+    <img src="assets/img/profile-header.png" alt="header" />
+  </div>
+  <div class="nav-wrap">
+    <div class="nav" *ngIf="activeUser">
+      <button mat-flat-button color="accent">Edit your profile</button>
+    </div>
+  </div>
+  <div class="profile-wrap">
+    <div class="profile">
+      <mat-card class="description">
+        <p class="title">Describe yourself</p>
+        <mat-card-content>xxxxxxxxxxxxxxxxxxxxxxx</mat-card-content>
+      </mat-card>
+      <div class="stories">
+        <app-user-favourites *ngIf="selected == 'favourites' || selected == 'account'" (isSelected)="isSelected($event)" [isFavourite]="selected"></app-user-favourites>
+        <app-user-stories *ngIf="selected == 'stories' || selected == 'account'"   (isSelected)="isSelected($event)" [isUserStory] = "selected"></app-user-stories>
+      </div>
+    </div>
+  </div>
+</section>

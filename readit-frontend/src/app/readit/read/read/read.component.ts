@@ -3,6 +3,8 @@ import {Story} from "../../shared/models/story.model";
 import {FilterService} from "../../shared/services/filter.service";
 import {Genre} from "../../shared/models/genre.enum";
 import {Utils} from "../../shared/utils/Utils";
+import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-read',
@@ -19,7 +21,10 @@ export class ReadComponent implements OnInit {
   selectedGenre: Genre;
   genres: Genre[] = [Genre.COMEDY, Genre.ROMANCE, Genre.DRAMA, Genre.HISTORICAL, Genre.HORROR, Genre.SLICE_OF_LIFE, Genre.FANTASY];
 
-  constructor(private filterService: FilterService) {
+  subscriber:Subscription;
+
+
+  constructor(private filterService: FilterService, private router:Router) {
   }
 
   ngOnInit(): void {
@@ -47,6 +52,11 @@ export class ReadComponent implements OnInit {
     this.filterService.findByPopularity().subscribe(stories =>{
       this.mostLikedStories = stories.slice(0,3);
     })
+
+  }
+
+  search(genre: string) {
+    this.router.navigate(["/genres",{genre:genre}])
   }
 
   selectGenre(genre:Genre) {
