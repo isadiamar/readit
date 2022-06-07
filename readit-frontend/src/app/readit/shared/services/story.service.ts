@@ -40,5 +40,10 @@ export class StoryService{
      .successful()
      .put(EndPoints.STORIES + '/' + story.id, {...story})
   }
+
+  getSize(storyId:number):Observable<number>{
+    return this.httpService
+      .get(EndPoints.STORIES + "/size?storyId=" + storyId)
+  }
 }
 

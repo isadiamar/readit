@@ -1,5 +1,6 @@
 package com.isabel.readit.data.daos;
 
+import com.isabel.readit.api.dtos.EpisodeDto;
 import com.isabel.readit.data.model.Episode;
 import com.isabel.readit.data.model.Story;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,4 +12,5 @@ public interface EpisodeRepository extends JpaRepository<Episode, Integer> {
     Optional<Episode> findByStoryAndTitle(Story story, String title);
     void deleteByStoryAndId(Story story, Integer id);
     Optional<Episode> findByTitle(String title);
+    Optional<Episode> findFirstByStoryAndNumberEpisode(Story story, Integer numberEpisode);
 }

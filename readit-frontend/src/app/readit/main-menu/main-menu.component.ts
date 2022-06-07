@@ -16,7 +16,6 @@ export class MainMenuComponent implements OnInit {
 
   ngOnInit(): void {
     this.authenticatedUser = this.authService.getAuthenticatedUserId()
-    console.log(this.authenticatedUser)
   }
 
   redirect(route: string) {

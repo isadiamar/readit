@@ -42,4 +42,10 @@ public class EpisodeController {
     public EpisodeDto update(@RequestParam Integer storyId, @RequestParam Integer episodeId, @RequestBody EpisodeDto episodeDto) {
         return this.episodeService.update(storyId, episodeId, episodeDto);
     }
+
+    @GetMapping("/numberEpisode")
+    public EpisodeDto findEpisodeByStoryAndNumberEpisode(@RequestParam Integer storyId, @RequestParam Integer numberEpisode){
+        return this.episodeService.findEpisodeByStoryAndNumberEpisode(storyId, numberEpisode);
+    }
+
 }

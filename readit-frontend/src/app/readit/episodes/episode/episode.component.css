@@ -59,6 +59,8 @@
   height: 100%;
   display: flex;
   flex-direction: row;
+}
+.comments{
   color: white;
 }
 
@@ -70,7 +72,10 @@
   margin-left: .5rem;
   margin-right: .5rem;
 }
-
+.navigation-buttons button{
+  background-color: transparent;
+  border: none;
+}
 .navigation-buttons mat-icon, .comments  mat-icon{
   color: white;
   cursor:pointer;
