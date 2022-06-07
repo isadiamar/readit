@@ -45,7 +45,6 @@ export class ReadComponent implements OnInit {
     this.filterService
       .sortByPopularity(Utils.getEnumKeyByValue(Genre,this.selectedGenre))
       .subscribe(stories => {
-        console.log(stories.slice(0,3))
         this.popularGenreStories = stories.slice(0,3);
       })
 

@@ -76,4 +76,9 @@ public class EpisodeService {
         this.episodeRepository.save(episode);
         return episode.toEpisodeDto();
     }
+
+    public EpisodeDto findEpisodeByStoryAndNumberEpisode(Integer storyId, Integer numberEpisode) {
+        Story story = this.storyRepository.findById(storyId).orElseThrow(() -> new NotFoundException("Episode not found"));
+        return this.episodeRepository.findFirstByStoryAndNumberEpisode(story, numberEpisode).map(Episode::toEpisodeDto).get();
+    }
 }

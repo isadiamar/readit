@@ -37,4 +37,10 @@ export class EpisodeService {
     return this.httpService
       .successful()
       .put(EndPoints.EPISODES + '?storyId=' + storyId + '&'+ 'episodeId=' + episode.id,  {...episode})
-  }}
+  }
+
+  findEpisodeByStoryAndNumberEpisode(storyId:number, numberEpisode:number):Observable<Episode>{
+    return this.httpService
+      .get(EndPoints.EPISODES + "/numberEpisode?storyId="+storyId+"&numberEpisode="+numberEpisode)
+  }
+}

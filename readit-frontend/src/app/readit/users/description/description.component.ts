@@ -22,9 +22,11 @@ export class DescriptionComponent implements OnInit, OnDestroy {
 
     this.subscription = this.dataService.descriptionMessage.subscribe(description => this.description = description);
 
-    this.userService.get(+this.userId).subscribe(res =>{
-      this.description = res.description;
-    })
+    if(this.userId) {
+      this.userService.get(+this.userId).subscribe(res => {
+        this.description = res.description;
+      })
+    }
   }
 
   ngOnDestroy(): void {

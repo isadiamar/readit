@@ -1,5 +1,14 @@
 beforeEach(() => {
   // GET STORIES REQUEST
+  cy.intercept('GET', Cypress.env("API_URL") + '/private/users?id=*', {
+    statusCode: 200,
+    fixture:"users.json"
+  })
+
+  cy.intercept('GET', Cypress.env('API_URL') + 'private/users/storyList?userId=*', {
+    fixture:'stories.json'
+  })
+  // GET STORIES REQUEST
   cy.intercept('GET', Cypress.env("API_URL") + '/private/stories', {
     statusCode: 200,
     fixture: 'stories.json'
@@ -7,8 +16,9 @@ beforeEach(() => {
 
   //Navigate
   cy.login()
+
   cy.wait(500)
-  cy.navigateToStories('My stories')
+  cy.navigateToStories()
 
 })
 

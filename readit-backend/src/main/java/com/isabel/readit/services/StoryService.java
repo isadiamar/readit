@@ -119,4 +119,8 @@ public class StoryService {
                 .sorted((s1,s2)-> Integer.compare(s2.getLikeList().size(), s1.getLikeList().size()))
                 .map(Story::toStoryDto).collect(Collectors.toList());
     }
+
+    public Integer getSize(Integer storyId) {
+        return this.storyRepository.findById(storyId).get().getEpisodeList().size();
+    }
 }

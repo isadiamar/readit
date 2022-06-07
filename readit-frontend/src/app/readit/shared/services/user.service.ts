@@ -32,4 +32,10 @@ export class UserService {
     return this.httpService
       .get(EndPoints.USERS + "?id=" + userId);
   }
+
+  isStoryFromUser(userId: number, story_id: string):Observable<boolean>{
+    return this.httpService
+      .get(EndPoints.USERS + "/isStoryFromUser?userId="+ userId + "&storyId=" +story_id)
+
+  }
 }

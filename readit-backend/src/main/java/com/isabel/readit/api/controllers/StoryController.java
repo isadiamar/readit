@@ -72,4 +72,9 @@ public class StoryController {
     public List<StoryDto> findByPopularity(){
         return this.storyService.findByPopularity();
     }
+
+    @GetMapping("/size")
+    public Integer getSize(@RequestParam Integer storyId){
+        return this.storyService.getSize(storyId);
+    }
 }

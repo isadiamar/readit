@@ -9,7 +9,7 @@ describe('ListStories Test', ()=> {
 
     cy.login()
     cy.wait(500)
-    cy.navigateToStories('My stories')
+    cy.navigateToStories()
 
     _assertTextExists('Open')
     _assertTextExists('New Chapter')

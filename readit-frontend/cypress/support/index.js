@@ -90,4 +90,26 @@ function _setupDefaultApiResponses(){
     statusCode:200
   })
 
+  //USERS
+  cy.intercept('GET', Cypress.env('API_URL') + '/private/users?id=*', {
+    statusCode:200,
+    fixture:'users.json'
+  })
+
+  cy.intercept('GET', Cypress.env('API_URL') + '/private/users/storyList?userId=*', {
+    fixture:'stories.json'
+  })
+
+  cy.intercept('GET', Cypress.env('API_URL') + '/private/users/favouriteStories?userId=*',{
+    fixture:'stories.json'
+  })
+
+  //FILTERS
+  cy.intercept('GET', Cypress.env('API_URL') + '/private/stories/filter/popularity',{
+    fixture:'stories.json'
+  })
+
+  cy.intercept('GET', Cypress.env('API_URL')+ '/private/users/isStoryFromUser?userId=*&storyId=*', {
+    body:true
+  })
 }

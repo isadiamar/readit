@@ -49,8 +49,12 @@ Cypress.Commands.add('completeStoryForm',()=>{
 })
 
 
-Cypress.Commands.add('navigateToStories', (navigate)=>{
+Cypress.Commands.add('createStory', (navigate)=>{
   cy.get("button").contains('WRITE').click().get("button").contains(navigate).click();
+})
+
+Cypress.Commands.add('navigateToStories', ()=>{
+  cy.get("button").contains('USER').click().get("button").contains("Account").click().get("div").contains("My Stories").click()
 })
 
 Cypress.Commands.add('completeEpisodeForm', ()=>{

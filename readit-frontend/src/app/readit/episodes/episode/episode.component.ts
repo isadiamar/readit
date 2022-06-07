@@ -3,7 +3,6 @@ import {EpisodeService} from "../../shared/services/episode.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PDFDocumentProxy, PdfViewerComponent} from "ng2-pdf-viewer";
 import {StoryService} from "../../shared/services/story.service";
-import {AuthService} from "../../../core/auth.service";
 
 @Component({
   selector: 'app-episode',
@@ -11,51 +10,68 @@ import {AuthService} from "../../../core/auth.service";
   styleUrls: ['./episode.component.css']
 })
 export class EpisodeComponent implements OnInit {
+  @ViewChild(PdfViewerComponent, { static: false })
+  private pdfComponent: PdfViewerComponent;
+
   pdfSrc:string;
   story_id:string;
   episode_id:string;
 
   story_name:string;
   episode_name:string;
-
+  numberEpisode:number;
   openComments:boolean = false;
+  size:number;
 
   constructor(private  episodeService:EpisodeService,
               private storyService:StoryService,
               private activeRoute:ActivatedRoute,
-              private router:Router,
-              private authService:AuthService) { }
+              private router:Router) { }
 
   ngOnInit(): void {
     this.story_id = this.activeRoute.snapshot.paramMap.get('story_id')!;
     this.episode_id = this.activeRoute.snapshot.paramMap.get('episode_id')!;
 
     this.storyService.get(+this.story_id).subscribe(res =>{
-      this.story_name = res.title
-    })
+      this.story_name = res.title;
+    });
+
     this.episodeService.get(+this.story_id, +this.episode_id).subscribe(res =>{
      this.pdfSrc = res.pdf ? res.pdf : "";
      this.episode_name = res.title;
-    })
-  }
+     this.numberEpisode = res.numberEpisode;
+    });
 
-  @ViewChild(PdfViewerComponent, { static: false })
-  private pdfComponent: PdfViewerComponent;
+    this.storyService.getSize(+this.story_id).subscribe(res =>{
+      this.size = res;
+    });
+
+  }
 
   initLoadCompleted(pdf: PDFDocumentProxy): void {
     this.pdfComponent.pdfViewer.scroll.d
   }
 
   nextEpisode() {
-    console.log('NEXT')
+    this.numberEpisode = this.numberEpisode + 1;
+    this.getEpisode(this.numberEpisode)
   }
 
   previousEpisode() {
-    console.log('PREV')
+    this.numberEpisode = this.numberEpisode - 1;
+    this.getEpisode(this.numberEpisode)
+  }
+
+  getEpisode(numberEpisode:number){
+    console.log(numberEpisode)
+    this.episodeService.findEpisodeByStoryAndNumberEpisode(+this.story_id, this.numberEpisode).subscribe(res =>{
+      this.pdfSrc = res.pdf ? res.pdf : "";
+      this.episode_name = res.title;
+      this.numberEpisode = res.numberEpisode!;
+    })
   }
 
   showComments() {
-    console.log('COMMENTS')
     this.openComments = !this.openComments;
   }
 

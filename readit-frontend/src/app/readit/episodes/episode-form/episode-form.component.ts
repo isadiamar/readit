@@ -3,6 +3,8 @@ import {Episode} from "../../shared/models/episode.model";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {EpisodeService} from "../../shared/services/episode.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {AuthService} from "../../../core/auth.service";
+import {UserService} from "../../shared/services/user.service";
 
 @Component({
   selector: 'app-episode-form',
@@ -32,24 +34,40 @@ export class EpisodeFormComponent implements OnInit {
     private episodeService: EpisodeService,
     private activeRoute:ActivatedRoute,
     private router:Router,
+    private authService:AuthService,
+    private userService:UserService
   ) {
     this.createForm("")
   }
 
    ngOnInit() {
-     if (this.search("new")){
-      this.storyId = this.activeRoute.snapshot.paramMap.get('id')!;
-       this.createForm("");
+     let userId = this.authService.getAuthenticatedUserId();
+     this.storyId = this.activeRoute.snapshot.paramMap.get('id')!;
+     this.userService.isStoryFromUser(userId, this.storyId).subscribe(res =>{
+       (res) ? this.episodeForm(): this.router.navigate(["/genres"])
+     })
+  }
+
+  private episodeForm() {
+      if (this.search("new")){
+        this.initCreateEpisode()
+      }else{
+        this.initUpdateEpisode()
+      }
+  }
+
+  initCreateEpisode(){
+    this.createForm("");
       this.create = true
-    }else{
-       this.storyId = this.activeRoute.snapshot.paramMap.get('story_id')!;
-      this.episodeId = this.activeRoute.snapshot.paramMap.get('episode_id')!;
-      this.episodeService.get(+this.storyId, +this.episodeId).subscribe(res=>{
-        this.createForm(res.title)
-        this.episode = res;
-      })
-       this.create = false
-    }
+  }
+
+  initUpdateEpisode(){
+    this.episodeId = this.activeRoute.snapshot.paramMap.get('episode_id')!;
+    this.episodeService.get(+this.storyId, +this.episodeId).subscribe(res=>{
+      this.createForm(res.title)
+      this.episode = res;
+    })
+    this.create = false
   }
 
   private checkDisabled() {
@@ -97,7 +115,6 @@ export class EpisodeFormComponent implements OnInit {
 
   onFileDropped($event: any) {
     this.file = $event[0];
-    console.log(this.file)
     this.prepareFilesList(this.file);
   }
 
@@ -168,4 +185,6 @@ export class EpisodeFormComponent implements OnInit {
       this.clearFields()
     }
   }
+
+
 }

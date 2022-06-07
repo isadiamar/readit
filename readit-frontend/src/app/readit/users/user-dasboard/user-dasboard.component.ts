@@ -8,8 +8,8 @@ import {AuthService} from "../../../core/auth.service";
 })
 export class UserDasboardComponent implements OnInit {
   selected: string = "account";
-
   activeUser:number
+
   constructor(private authService:AuthService) { }
 
   ngOnInit(): void {

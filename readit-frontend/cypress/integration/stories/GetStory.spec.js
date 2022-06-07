@@ -11,7 +11,7 @@ beforeEach(()=>{
 
 describe('StoryTest',()=>{
   it('should load',  () => {
-    cy.navigateToStories('Create a new story')
+    cy.createStory('Create a new story')
 
     cy.completeStoryForm()
 
