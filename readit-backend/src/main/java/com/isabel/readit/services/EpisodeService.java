@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,7 +50,9 @@ public class EpisodeService {
 
     public List<EpisodeDto> getAll(Integer storyId) {
         Story story = this.storyRepository.findById(storyId).orElseThrow(() -> new ForbiddenException("Story not found"));
-        for (int i = 0; i < story.getEpisodeList().size(); i++) { story.getEpisodeList().get(i).setNumberEpisode(i +1);}
+        for (int i = 0; i < story.getEpisodeList().size(); i++) {
+            story.getEpisodeList().get(i).setNumberEpisode(i + 1);
+        }
         return story.getEpisodeList().stream().map(Episode::toEpisodeDto).collect(Collectors.toList());
     }
 

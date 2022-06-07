@@ -1,7 +1,6 @@
 package com.isabel.readit.data.model;
 
 import com.isabel.readit.api.dtos.CommentDto;
-import com.isabel.readit.api.dtos.EpisodeDto;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
 
@@ -42,11 +41,11 @@ public class Comment {
             commentDto.setUsername(this.getUser().getNickname());
             commentDto.setEpisodeId(this.getEpisode().getId());
         }
-        if (Objects.nonNull(this.getUser())){
+        if (Objects.nonNull(this.getUser())) {
             commentDto.setUsername(this.getUser().getNickname());
             commentDto.setUserId(this.getUser().getId());
         }
-        if(Objects.nonNull(this.getEpisode())){
+        if (Objects.nonNull(this.getEpisode())) {
             commentDto.setEpisodeId(this.getEpisode().getId());
         }
         return commentDto;

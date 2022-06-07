@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -100,23 +99,23 @@ public class StoryService {
                 .map(Story::toStoryDto).collect(Collectors.toList());
     }
 
-    public List<StoryDto> sortByGenre1AndPopularity(String genre){
+    public List<StoryDto> sortByGenre1AndPopularity(String genre) {
         Genre genreEnum = Genre.valueOf(genre);
         return this.storyRepository.findAll().stream()
                 .filter(story -> story.getGenre1().equals(genreEnum))
-                .sorted((s1,s2)-> Integer.compare(s2.getLikeList().size(), s1.getLikeList().size()))
+                .sorted((s1, s2) -> Integer.compare(s2.getLikeList().size(), s1.getLikeList().size()))
                 .map(Story::toStoryDto).collect(Collectors.toList());
     }
 
     public List<StoryDto> findByNewness() {
         return this.storyRepository.findAll().stream()
-                .sorted((s1,s2)-> Integer.compare(s2.getId(), s1.getId()))
+                .sorted((s1, s2) -> Integer.compare(s2.getId(), s1.getId()))
                 .map(Story::toStoryDto).collect(Collectors.toList());
     }
 
     public List<StoryDto> findByPopularity() {
         return this.storyRepository.findAll().stream()
-                .sorted((s1,s2)-> Integer.compare(s2.getLikeList().size(), s1.getLikeList().size()))
+                .sorted((s1, s2) -> Integer.compare(s2.getLikeList().size(), s1.getLikeList().size()))
                 .map(Story::toStoryDto).collect(Collectors.toList());
     }
 

@@ -5,6 +5,7 @@ import com.isabel.readit.data.model.*;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 @Repository
@@ -17,7 +18,7 @@ public class DatabaseSeeder {
 
     @Autowired
     public DatabaseSeeder(UserRepository userRepository, StoryRepository storyRepository, EpisodeRepository episodeRepository,
-                          CommentRepository commentRepository, LikeRepository likeRepository){
+                          CommentRepository commentRepository, LikeRepository likeRepository) {
         this.storyRepository = storyRepository;
         this.userRepository = userRepository;
         this.episodeRepository = episodeRepository;
@@ -31,7 +32,7 @@ public class DatabaseSeeder {
         this.seedDataBaseJava();
     }
 
-    private void deleteAllAndInitialize(){
+    private void deleteAllAndInitialize() {
         this.episodeRepository.deleteAll();
         this.userRepository.deleteAll();
         this.storyRepository.deleteAll();
@@ -59,7 +60,7 @@ public class DatabaseSeeder {
         this.userRepository.saveAll(List.of(users));
         LogManager.getLogger(this.getClass()).warn("         ------- users");
 
-        Story[]stories = {
+        Story[] stories = {
                 Story.builder().title("Title1")
                         .description("description1")
                         .privacy(Privacy.PRIVATE)
@@ -89,14 +90,14 @@ public class DatabaseSeeder {
         this.episodeRepository.saveAll(List.of(episodes));
         LogManager.getLogger(this.getClass()).warn("         ------- episodes");
 
-        Comment[]comments = {
+        Comment[] comments = {
                 Comment.builder().description("comment1").episode(episodes[0]).user(users[0]).build(),
                 Comment.builder().description("comment2").episode(episodes[2]).user(users[0]).build(),
         };
         this.commentRepository.saveAll(List.of(comments));
         LogManager.getLogger(this.getClass()).warn("         ------- comments");
 
-        Like[]likes = {
+        Like[] likes = {
                 Like.builder().story(stories[0]).user(users[0]).build(),
                 Like.builder().story(stories[1]).user(users[0]).build(),
                 Like.builder().story(stories[0]).user(users[1]).build(),

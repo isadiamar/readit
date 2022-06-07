@@ -25,14 +25,14 @@ public class UserService {
 
 
     public List<StoryDto> findStoryList(Integer userId) {
-        User user =  this.userRepository.findById(userId).get();
+        User user = this.userRepository.findById(userId).get();
         return user.getStoryList().stream().map(Story::toStoryDto).collect(Collectors.toList());
     }
 
     public List<StoryDto> getFavouriteStories(Integer userId) {
         List<StoryDto> res = new ArrayList<>();
 
-        List<Like> likeList =  this.userRepository.findById(userId).map(User::getLikeList).get();
+        List<Like> likeList = this.userRepository.findById(userId).map(User::getLikeList).get();
         for (Like like : likeList) {
             res.add(like.getStory().toStoryDto());
         }
@@ -40,10 +40,10 @@ public class UserService {
     }
 
     public UserDto update(Integer id, UserDto userDto) {
-        User user =  this.userRepository.findById(id)
+        User user = this.userRepository.findById(id)
                 .map(userEntity -> {
                     userDto.setId(userEntity.getId());
-                    BeanUtils.copyProperties(userDto,userEntity);
+                    BeanUtils.copyProperties(userDto, userEntity);
                     return userEntity;
                 }).orElseThrow(() -> new NotFoundException("User not found"));
         return user.toUserDto();
@@ -56,8 +56,8 @@ public class UserService {
 
     public boolean isStoryFromUser(Integer userId, Integer storyId) {
         boolean res = false;
-        List<Story> storyList =  this.userRepository.findById(userId).map(User::getStoryList).get();
-        for (Story story: storyList){
+        List<Story> storyList = this.userRepository.findById(userId).map(User::getStoryList).get();
+        for (Story story : storyList) {
             if (story.getId().equals(storyId)) {
                 res = true;
                 break;

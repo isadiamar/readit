@@ -2,7 +2,6 @@ package com.isabel.readit.api.controllers;
 
 import com.isabel.readit.api.dtos.EpisodeDto;
 import com.isabel.readit.services.EpisodeService;
-import com.isabel.readit.services.security.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,7 +43,7 @@ public class EpisodeController {
     }
 
     @GetMapping("/numberEpisode")
-    public EpisodeDto findEpisodeByStoryAndNumberEpisode(@RequestParam Integer storyId, @RequestParam Integer numberEpisode){
+    public EpisodeDto findEpisodeByStoryAndNumberEpisode(@RequestParam Integer storyId, @RequestParam Integer numberEpisode) {
         return this.episodeService.findEpisodeByStoryAndNumberEpisode(storyId, numberEpisode);
     }
 

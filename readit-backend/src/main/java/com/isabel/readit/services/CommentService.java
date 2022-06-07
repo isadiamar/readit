@@ -28,7 +28,7 @@ public class CommentService {
     private JWTService jwtService;
 
     @Autowired
-    public CommentService(EpisodeRepository episodeRepository, StoryRepository storyRepository, CommentRepository commentRepository, JWTService jwtService, UserRepository userRepository){
+    public CommentService(EpisodeRepository episodeRepository, StoryRepository storyRepository, CommentRepository commentRepository, JWTService jwtService, UserRepository userRepository) {
         this.episodeRepository = episodeRepository;
         this.commentRepository = commentRepository;
         this.storyRepository = storyRepository;
