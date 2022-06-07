@@ -8,7 +8,7 @@ beforeEach(() => {
   //Navigate
   cy.login()
   cy.wait(500)
-  cy.navigateToStories("My stories")
+  cy.navigateToStories()
   cy.get("button").contains("Open").click();
   cy.intercept('GET', Cypress.env("API_URL") + '/private/stories/*', (req) => {
     req.reply({statusCode: 200, fixture: 'story.json'})

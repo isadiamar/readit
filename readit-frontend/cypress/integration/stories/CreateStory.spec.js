@@ -1,7 +1,7 @@
 beforeEach(()=>{
   cy.login()
   cy.wait(500)
-  cy.navigateToStories('Create a new story')
+  cy.createStory('Create a new story')
 })
 
 describe('Create Story Test', () => {

@@ -1,7 +1,13 @@
 beforeEach(()=>{
   cy.login()
   cy.wait(500)
-  cy.navigateToStories('My stories')
+  cy.navigateToStories()
+  // GET STORIES REQUEST
+  cy.intercept('GET', Cypress.env("API_URL") + 'private/stories', {
+    statusCode: 200,
+    fixture: 'stories.json'
+  })
+
   cy.get('button').contains('New Chapter').click()
 })
 
