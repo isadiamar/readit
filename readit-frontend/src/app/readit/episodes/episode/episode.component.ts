@@ -3,6 +3,7 @@ import {EpisodeService} from "../../shared/services/episode.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PDFDocumentProxy, PdfViewerComponent} from "ng2-pdf-viewer";
 import {StoryService} from "../../shared/services/story.service";
+import {AuthService} from "../../../core/auth.service";
 
 @Component({
   selector: 'app-episode',
@@ -22,7 +23,8 @@ export class EpisodeComponent implements OnInit {
   constructor(private  episodeService:EpisodeService,
               private storyService:StoryService,
               private activeRoute:ActivatedRoute,
-              private router:Router) { }
+              private router:Router,
+              private authService:AuthService) { }
 
   ngOnInit(): void {
     this.story_id = this.activeRoute.snapshot.paramMap.get('story_id')!;

@@ -91,6 +91,7 @@
   cursor: pointer;
   font-size: 20px;
   margin-bottom: .5rem;
+  margin-left: 1rem;
 }
 
 a:hover{
