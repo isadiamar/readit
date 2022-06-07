@@ -10,39 +10,38 @@ import {StoryService} from "../../shared/services/story.service";
   styleUrls: ['./episode.component.css']
 })
 export class EpisodeComponent implements OnInit {
-  @ViewChild(PdfViewerComponent, { static: false })
+  pdfSrc: string;
+  story_id: string;
+  episode_id: string;
+  story_name: string;
+  episode_name: string;
+  numberEpisode: number;
+  openComments: boolean = false;
+  size: number;
+  @ViewChild(PdfViewerComponent, {static: false})
   private pdfComponent: PdfViewerComponent;
 
-  pdfSrc:string;
-  story_id:string;
-  episode_id:string;
-
-  story_name:string;
-  episode_name:string;
-  numberEpisode:number;
-  openComments:boolean = false;
-  size:number;
-
-  constructor(private  episodeService:EpisodeService,
-              private storyService:StoryService,
-              private activeRoute:ActivatedRoute,
-              private router:Router) { }
+  constructor(private episodeService: EpisodeService,
+              private storyService: StoryService,
+              private activeRoute: ActivatedRoute,
+              private router: Router) {
+  }
 
   ngOnInit(): void {
     this.story_id = this.activeRoute.snapshot.paramMap.get('story_id')!;
     this.episode_id = this.activeRoute.snapshot.paramMap.get('episode_id')!;
 
-    this.storyService.get(+this.story_id).subscribe(res =>{
+    this.storyService.get(+this.story_id).subscribe(res => {
       this.story_name = res.title;
     });
 
-    this.episodeService.get(+this.story_id, +this.episode_id).subscribe(res =>{
-     this.pdfSrc = res.pdf ? res.pdf : "";
-     this.episode_name = res.title;
-     this.numberEpisode = res.numberEpisode;
+    this.episodeService.get(+this.story_id, +this.episode_id).subscribe(res => {
+      this.pdfSrc = res.pdf ? res.pdf : "";
+      this.episode_name = res.title;
+      this.numberEpisode = res.numberEpisode;
     });
 
-    this.storyService.getSize(+this.story_id).subscribe(res =>{
+    this.storyService.getSize(+this.story_id).subscribe(res => {
       this.size = res;
     });
 
@@ -62,9 +61,9 @@ export class EpisodeComponent implements OnInit {
     this.getEpisode(this.numberEpisode)
   }
 
-  getEpisode(numberEpisode:number){
+  getEpisode(numberEpisode: number) {
     console.log(numberEpisode)
-    this.episodeService.findEpisodeByStoryAndNumberEpisode(+this.story_id, this.numberEpisode).subscribe(res =>{
+    this.episodeService.findEpisodeByStoryAndNumberEpisode(+this.story_id, this.numberEpisode).subscribe(res => {
       this.pdfSrc = res.pdf ? res.pdf : "";
       this.episode_name = res.title;
       this.numberEpisode = res.numberEpisode!;

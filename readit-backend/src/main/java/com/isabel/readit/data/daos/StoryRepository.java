@@ -7,5 +7,6 @@ import java.util.Optional;
 
 public interface StoryRepository extends JpaRepository<Story, Integer> {
     Optional<Story> findById(Integer id);
+
     Optional<Story> findByTitle(String title);
 }

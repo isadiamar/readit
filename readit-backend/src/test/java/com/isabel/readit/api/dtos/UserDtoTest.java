@@ -19,7 +19,6 @@ class UserDtoTest {
     }
 
 
-
     @Test
     void testGetSetDescription() {
         User user = User.builder().nickname("Maria").email("maria@email.com").description("description").build();

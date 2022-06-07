@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
 
 @Component({
@@ -8,9 +8,9 @@ import {Subscription} from "rxjs";
 })
 export class UserComponent implements OnInit {
 
-  selected:string = 'account'
+  selected: string = 'account'
 
-  routeChange:Subscription;
+  routeChange: Subscription;
 
   constructor() {
   }
@@ -19,9 +19,9 @@ export class UserComponent implements OnInit {
   }
 
   isSelected($event: string) {
-    if (this.selected == $event){
+    if (this.selected == $event) {
       this.selected = 'account';
-    }else{
+    } else {
       this.selected = $event
     }
   }

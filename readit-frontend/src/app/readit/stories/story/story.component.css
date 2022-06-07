@@ -1,4 +1,4 @@
-.wrap{
+.wrap {
   width: 70%;
   height: 80%;
   display: flex;
@@ -8,7 +8,7 @@
   align-items: center;
 }
 
-.story{
+.story {
   width: 70%;
   height: 100%;
   margin-right: 2rem;
@@ -16,7 +16,7 @@
   overflow: hidden;
 }
 
-.header{
+.header {
   display: flex;
   height: 3rem;
   width: 100%;
@@ -24,7 +24,7 @@
   align-items: center;
 }
 
-.header-info{
+.header-info {
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -32,16 +32,17 @@
   margin-left: 3rem;
 }
 
-.header-info >p{
+.header-info > p {
   color: #ffffff;
   font-family: Lato, sans-serif;
   margin-right: .5rem;
 }
 
-.chapters > p{
+.chapters > p {
   font-weight: bold;
 }
-.favorite{
+
+.favorite {
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -50,7 +51,7 @@
   justify-content: center;
 }
 
-.favorite > mat-icon{
+.favorite > mat-icon {
   color: #e0081a;
   margin-right: 1rem;
 }
@@ -66,13 +67,13 @@
   color: #e0081a;
 }
 
-.story-info{
+.story-info {
   width: 30%;
   height: 100%;
   border: 1px solid #E5E5E5;
 }
 
-.status{
+.status {
   display: flex;
   align-items: end;
   justify-content: right;
@@ -80,13 +81,13 @@
   border-bottom: 1px solid #E5E5E5;
 }
 
-.status > p{
+.status > p {
   margin-right: 2rem;
   margin-left: 2rem;
   color: #989696;
 }
 
-.status mat-icon{
+.status mat-icon {
   color: #39BA46;
   cursor: pointer;
   font-size: 20px;
@@ -94,11 +95,11 @@
   margin-left: 1rem;
 }
 
-a:hover{
+a:hover {
   color: #D74D7A;
 }
 
-.info{
+.info {
   display: flex;
   height: 80%;
   flex-direction: column;
@@ -106,7 +107,7 @@ a:hover{
   margin: 2rem;
 }
 
-.cover{
+.cover {
   display: flex;
   width: 90%;
   height: 35%;
@@ -117,13 +118,13 @@ a:hover{
   border-radius: 2%;
 }
 
-.cover>img {
+.cover > img {
   width: 90%;
   height: 90%;
   object-fit: cover;
 }
 
-.title{
+.title {
   font-size: 18px;
   font-weight: bold;
   letter-spacing: 1px;
@@ -131,7 +132,7 @@ a:hover{
   margin-bottom: 1rem;
 }
 
-.author{
+.author {
   font-family: Lato, sans-serif;
   margin-top: .5rem;
   font-size: 12px;
@@ -139,17 +140,17 @@ a:hover{
   cursor: pointer;
 }
 
-.description{
+.description {
   overflow: auto;
   min-height: 10rem;
   word-wrap: break-word;
   width: 100%;
 }
 
-.description > p{
+.description > p {
   text-align: justify;
   font-size: 14px;
-  padding-right:10px;
+  padding-right: 10px;
 }
 
 *::-webkit-scrollbar {
@@ -166,9 +167,9 @@ a:hover{
   border: 3px solid white;
 }
 
-.episodes{
+.episodes {
   height: 93%;
-  margin:1.5rem;
+  margin: 1.5rem;
   overflow: scroll;
   padding-right: 10px;
 }

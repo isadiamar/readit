@@ -20,8 +20,8 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private data: DataService,
-    private authService:AuthService,
-    private router:Router,
+    private authService: AuthService,
+    private router: Router,
   ) {
   }
 
@@ -55,9 +55,9 @@ export class LoginFormComponent implements OnInit, OnDestroy {
       let password = this.loginForm.controls['password'].value;
       this.authService.login(email, password).subscribe(
         next => console.log("Success"),
-          error => this.clearFields(),
-          ()=> this.router.navigate(["read"])
-        )
+        error => this.clearFields(),
+        () => this.router.navigate(["read"])
+      )
     }
   }
 

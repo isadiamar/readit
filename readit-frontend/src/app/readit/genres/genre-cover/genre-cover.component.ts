@@ -9,19 +9,20 @@ import {Router} from "@angular/router";
 })
 export class GenreCoverComponent implements OnInit {
 
-  @Input() stories:Story[];
-  @Input() title:boolean;
-  cover:string;
-  numberLikes:number;
+  @Input() stories: Story[];
+  @Input() title: boolean;
+  cover: string;
+  numberLikes: number;
 
-  constructor(private  router:Router) { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
 
   }
 
-  open(story:Story){
-    this.router.navigate(["stories/" +story.id])
+  open(story: Story) {
+    this.router.navigate(["stories/" + story.id])
   }
 
 }

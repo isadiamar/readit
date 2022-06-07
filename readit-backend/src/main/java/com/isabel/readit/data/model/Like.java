@@ -1,13 +1,10 @@
 package com.isabel.readit.data.model;
 
-import com.isabel.readit.api.dtos.CommentDto;
-import com.isabel.readit.api.dtos.EpisodeDto;
 import com.isabel.readit.api.dtos.LikeDto;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @Builder
@@ -38,10 +35,10 @@ public class Like {
             likeDto.setUserId(this.getUser().getId());
             likeDto.setStoryId(this.getStory().getId());
         }
-        if (Objects.nonNull(this.getUser())){
+        if (Objects.nonNull(this.getUser())) {
             likeDto.setUserId(this.getUser().getId());
         }
-        if(Objects.nonNull(this.getStory())){
+        if (Objects.nonNull(this.getStory())) {
             likeDto.setStoryId(this.getStory().getId());
         }
         return likeDto;

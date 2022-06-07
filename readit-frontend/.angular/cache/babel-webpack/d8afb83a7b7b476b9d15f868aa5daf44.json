@@ -1,0 +1,7 @@
+{
+  "ast": null,
+  "code": "import { EndPoints } from \"../../../shared/end-points\";\nimport * as i0 from \"@angular/core\";\nimport * as i1 from \"../../../core/http.service\";\nexport let StoryService = /*#__PURE__*/(() => {\n  class StoryService {\n    constructor(httpService) {\n      this.httpService = httpService;\n    }\n\n    create(story) {\n      return this.httpService.successful().post(EndPoints.STORIES + '/new', Object.assign({}, story));\n    }\n\n  }\n\n  StoryService.ɵfac = function StoryService_Factory(t) {\n    return new (t || StoryService)(i0.ɵɵinject(i1.HttpService));\n  };\n\n  StoryService.ɵprov = /*@__PURE__*/i0.ɵɵdefineInjectable({\n    token: StoryService,\n    factory: StoryService.ɵfac,\n    providedIn: 'root'\n  });\n  return StoryService;\n})();",
+  "map": null,
+  "metadata": {},
+  "sourceType": "module"
+}

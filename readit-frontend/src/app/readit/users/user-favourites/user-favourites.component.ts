@@ -13,21 +13,22 @@ import {UserService} from "../../shared/services/user.service";
 export class UserFavouritesComponent implements OnInit {
 
   @Output() isSelected = new EventEmitter<string>();
-  @Input() set isFavourite(isFavourite:string){
-    this.checkIsFavourite(isFavourite)
+  favouriteStories: Story[];
+  showFavoriteStories: Story[];
+  userId: string;
+  numberStories: number;
+
+  constructor(private authService: AuthService, private activeRouter: ActivatedRoute, private filterService: FilterService, private userService: UserService) {
   }
 
-  favouriteStories:Story[];
-  showFavoriteStories: Story[];
-  userId:string;
-  numberStories:number;
-
-  constructor(private authService:AuthService, private activeRouter:ActivatedRoute, private filterService:FilterService, private userService:UserService) { }
+  @Input() set isFavourite(isFavourite: string) {
+    this.checkIsFavourite(isFavourite)
+  }
 
   ngOnInit(): void {
     this.userId = this.activeRouter.snapshot.paramMap.get('id')!;
 
-    this.userService.findFavouritesByUser(+this.userId).subscribe(stories =>{
+    this.userService.findFavouritesByUser(+this.userId).subscribe(stories => {
       this.favouriteStories = stories;
       this.showFavoriteStories = this.favouriteStories.slice(0, 5);
     })
@@ -37,10 +38,10 @@ export class UserFavouritesComponent implements OnInit {
     this.isSelected.emit("favourites")
   }
 
-  checkIsFavourite(input:string) {
-    if(input == "favourites") {
+  checkIsFavourite(input: string) {
+    if (input == "favourites") {
       this.showFavoriteStories = this.favouriteStories;
-    } else if (this.favouriteStories){
+    } else if (this.favouriteStories) {
       this.showFavoriteStories = this.favouriteStories.slice(0, 5);
     }
   }

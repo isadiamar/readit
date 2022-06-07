@@ -2,11 +2,11 @@ beforeEach(() => {
   // GET STORIES REQUEST
   cy.intercept('GET', Cypress.env("API_URL") + '/private/users?id=*', {
     statusCode: 200,
-    fixture:"users.json"
+    fixture: "users.json"
   })
 
   cy.intercept('GET', Cypress.env('API_URL') + 'private/users/storyList?userId=*', {
-    fixture:'stories.json'
+    fixture: 'stories.json'
   })
   // GET STORIES REQUEST
   cy.intercept('GET', Cypress.env("API_URL") + '/private/stories', {
@@ -22,7 +22,7 @@ beforeEach(() => {
 
 })
 
-describe("Delete Story Test", ()=> {
+describe("Delete Story Test", () => {
   it('Should Delete Story', () => {
 
     // DELETE STORY REQUEST
@@ -45,7 +45,7 @@ describe("Delete Story Test", ()=> {
     cy.contains("Test 2 Title").should('not.exist')
   })
 
-  it('Should Not Delete Story',  () =>{
+  it('Should Not Delete Story', () => {
 
     // DELETE STORY REQUEST
     cy.intercept('DELETE', Cypress.env("API_URL") + '/private/stories/*', (req) => {
@@ -79,16 +79,16 @@ function _assertTextExists(text) {
   cy.contains(text).should('exist')
 }
 
-function _resultBody(){
+function _resultBody() {
   return [{
     "id": 1,
     "title": "Test Title",
     "description": "This is a description for a test",
     "genre1": "ROMANCE",
-    "genre2":"COMEDY",
-    "privacy":"PRIVATE",
-    "status":"COMPLETE",
-    "color":"#139086",
+    "genre2": "COMEDY",
+    "privacy": "PRIVATE",
+    "status": "COMPLETE",
+    "color": "#139086",
     "username": "user"
   }
   ]

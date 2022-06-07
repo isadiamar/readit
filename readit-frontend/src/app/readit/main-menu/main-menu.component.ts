@@ -9,9 +9,9 @@ import {AuthService} from "../../core/auth.service";
 })
 export class MainMenuComponent implements OnInit {
 
-  authenticatedUser:number;
+  authenticatedUser: number;
 
-  constructor(private router:Router, private authService:AuthService) {
+  constructor(private router: Router, private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -22,8 +22,8 @@ export class MainMenuComponent implements OnInit {
     this.router.navigate([route]);
   }
 
-  redirectWithObject(route:string, object:string){
-    this.router.navigate([route,{page: object}])
+  redirectWithObject(route: string, object: string) {
+    this.router.navigate([route, {page: object}])
   }
 
   logout() {

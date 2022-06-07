@@ -1,24 +1,25 @@
 [
-  {  "id": 1,
+  {
+    "id": 1,
     "title": "Test Title",
     "description": "This is a description for a test",
     "genre1": "ROMANCE",
-    "genre2":"COMEDY",
-    "privacy":"PRIVATE",
-    "status":"COMPLETE",
-    "color":"#139086",
+    "genre2": "COMEDY",
+    "privacy": "PRIVATE",
+    "status": "COMPLETE",
+    "color": "#139086",
     "username": "user",
     "userId": 1
   },
-
-  { "id": 2,
+  {
+    "id": 2,
     "title": "Test 2 Title",
     "description": "This is a second description for a test",
     "genre1": "HORROR",
-    "genre2":"DRAMA",
-    "privacy":"PUBLIC",
-    "status":"COMPLETE",
-    "color":"#b2083a",
+    "genre2": "DRAMA",
+    "privacy": "PUBLIC",
+    "status": "COMPLETE",
+    "color": "#b2083a",
     "username": "user",
     "userId": 1
   }

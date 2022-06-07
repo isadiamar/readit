@@ -1,4 +1,4 @@
-beforeEach(()=>{
+beforeEach(() => {
   cy.login()
   cy.wait(500)
   cy.navigateToStories()
@@ -17,12 +17,12 @@ describe('Create Episodes Test', () => {
     _assertTextExists('Upload Chapter')
   });
 
-  it("Submit button should be disabled when title is less than three letters", ()=>{
+  it("Submit button should be disabled when title is less than three letters", () => {
     let titleInput = cy.get("input").eq(0)
     titleInput.clear().type('no')
     cy.get("button").contains('POST EPISODE').parent().should('be.disabled')
   })
-  it("Should create Episode", ()=>{
+  it("Should create Episode", () => {
 
     _fillInputsValid()
     cy.get("button").contains('POST EPISODE').click()
@@ -33,7 +33,8 @@ describe('Create Episodes Test', () => {
 function _assertTextExists(text) {
   cy.contains(text).should('exist')
 }
-function _fillInputsValid(){
+
+function _fillInputsValid() {
   const fixture_pdf = 'lorem-ipsum.pdf';
   cy.get("input").eq(0).type("Episodio de prueba");
   cy.get('input[type=file]').attachFile(fixture_pdf);

@@ -17,25 +17,25 @@ public class LikeController {
     private JWTService jwtService;
 
     @PostMapping("/new")
-    public LikeDto create(@RequestBody LikeDto likeDto){
+    public LikeDto create(@RequestBody LikeDto likeDto) {
         String email = this.jwtService.getTokenEmailFromContext();
 
         return this.likeService.create(likeDto, email);
     }
 
     @DeleteMapping
-    public void delete(@RequestParam Integer storyId, @RequestParam Integer userId){
-         this.likeService.delete(storyId, userId);
+    public void delete(@RequestParam Integer storyId, @RequestParam Integer userId) {
+        this.likeService.delete(storyId, userId);
     }
 
     @GetMapping
-    public LikeDto getAll(@RequestParam Integer storyId){
+    public LikeDto getAll(@RequestParam Integer storyId) {
         String email = this.jwtService.getTokenEmailFromContext();
         return this.likeService.getAll(storyId, email);
     }
 
     @GetMapping("/isliked")
-    public boolean isLiked(@RequestParam Integer storyId, @RequestParam Integer userId){
+    public boolean isLiked(@RequestParam Integer storyId, @RequestParam Integer userId) {
         return this.likeService.isLiked(storyId, userId);
     }
 }

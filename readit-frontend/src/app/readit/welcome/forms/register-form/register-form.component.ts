@@ -21,8 +21,8 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private data: DataService,
-    private authService:AuthService,
-    private router:Router
+    private authService: AuthService,
+    private router: Router
   ) {
   }
 
@@ -67,17 +67,17 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
   submit() {
     this.validatePassword();
     if (this.registerForm.valid) {
-      let registerDto:RegisterDto = this.createUser();
+      let registerDto: RegisterDto = this.createUser();
       this.authService.register(registerDto).subscribe(
         next => console.log("Success"),
         error => this.clearFields(),
-        ()=> this.router.navigate(["read"])
+        () => this.router.navigate(["read"])
       );
       this.clearFields()
     }
   }
 
-  createUser():RegisterDto{
+  createUser(): RegisterDto {
     let username = this.registerForm.controls['username'].value;
     let email = this.registerForm.controls['email'].value;
     let password = this.registerForm.controls['password'].value;
@@ -97,9 +97,9 @@ export class RegisterFormComponent implements OnInit, OnDestroy {
     this.data.changeMessage(message);
   }
 
-  showErrorMessage(){
+  showErrorMessage() {
     let pswField = this.registerForm.controls["password"];
-    this.errorMsg = pswField.dirty&&pswField.invalid;
+    this.errorMsg = pswField.dirty && pswField.invalid;
 
   }
 }

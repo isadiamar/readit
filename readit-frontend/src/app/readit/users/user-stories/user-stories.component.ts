@@ -12,39 +12,40 @@ import {Story} from "../../shared/models/story.model";
 })
 export class UserStoriesComponent implements OnInit {
   @Output() isSelected = new EventEmitter<string>();
-  @Input() set isUserStory(isUserStory:string){
+  @Input() userId?: number
+  @Input() isDashboard?: boolean;
+  userStories: Story[];
+  showUserStories: Story[];
+
+  constructor(private authService: AuthService, private activeRouter: ActivatedRoute, private filterService: FilterService, private userService: UserService) {
+  }
+
+  @Input() set isUserStory(isUserStory: string) {
     this.checkIsUserStory(isUserStory)
   }
 
-  @Input() userId?: number
-  @Input() isDashboard?: boolean;
-  userStories:Story[];
-  showUserStories:Story[];
-
-  constructor(private authService:AuthService, private activeRouter:ActivatedRoute, private filterService:FilterService, private userService:UserService) { }
-
   ngOnInit(): void {
     if (!this.userId) {
-      this.userId = parseInt( this.activeRouter.snapshot.paramMap.get('id')!);
+      this.userId = parseInt(this.activeRouter.snapshot.paramMap.get('id')!);
     }
 
-    this.userService.findStoryList(this.userId).subscribe(stories =>{
+    this.userService.findStoryList(this.userId).subscribe(stories => {
       this.userStories = stories;
-      this.showUserStories = this.isDashboard ? stories : stories.slice(0,3);
+      this.showUserStories = this.isDashboard ? stories : stories.slice(0, 3);
     })
   }
 
   sendMessage() {
-    if(!this.isDashboard) {
+    if (!this.isDashboard) {
       this.isSelected.emit("stories")
     }
 
   }
 
   private checkIsUserStory(input: string) {
-    if(input == "stories") {
+    if (input == "stories") {
       this.showUserStories = this.userStories;
-    } else if (this.userStories){
+    } else if (this.userStories) {
       this.showUserStories = this.userStories.slice(0, 3);
     }
   }

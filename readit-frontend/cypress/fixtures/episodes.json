@@ -1,15 +1,18 @@
-[{
-  "id": 5,
-  "title": "Episodio de prueba",
-  "pdf":"pdf",
-  "storyId":1,
-  "date": "31-10-2002",
-  "numberEpisode":1
-},{
-  "id": 8,
-  "title": "Episodio de prueba 2",
-  "pdf":"pdf",
-  "storyId":1,
-  "date": "12-3-2004",
-  "numberEpisode":2
-}]
+[
+  {
+    "id": 5,
+    "title": "Episodio de prueba",
+    "pdf": "pdf",
+    "storyId": 1,
+    "date": "31-10-2002",
+    "numberEpisode": 1
+  },
+  {
+    "id": 8,
+    "title": "Episodio de prueba 2",
+    "pdf": "pdf",
+    "storyId": 1,
+    "date": "12-3-2004",
+    "numberEpisode": 2
+  }
+]

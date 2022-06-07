@@ -2,14 +2,12 @@ package com.isabel.readit.data.model;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.isabel.readit.api.dtos.StoryDto;
 import com.isabel.readit.api.dtos.UserDto;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Objects;
 
 @ToString
 @Builder
@@ -32,13 +30,13 @@ public class User {
     private String password;
     private String description;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,  cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Story> storyList;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,  cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Comment> commentList;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,  cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private List<Like> likeList;
 
     public UserDto toUserDto() {

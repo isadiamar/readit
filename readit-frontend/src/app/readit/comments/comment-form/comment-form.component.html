@@ -4,11 +4,11 @@
     <form [formGroup]="commentForm">
       <mat-form-field appearance="outline">
         <mat-label>Leave a comment</mat-label>
-        <textarea matInput  formControlName="description" placeholder="Ex. It makes me feel..."></textarea>
+        <textarea formControlName="description" matInput placeholder="Ex. It makes me feel..."></textarea>
       </mat-form-field>
     </form>
     <mat-card-actions class="actions">
-      <button mat-stroked-button color="accent" [disabled]="submitDisabled" (click)="submit()">Send</button>
+      <button (click)="submit()" [disabled]="submitDisabled" color="accent" mat-stroked-button>Send</button>
     </mat-card-actions>
   </mat-card>
 </div>

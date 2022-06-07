@@ -4,7 +4,8 @@
     <div class="profile">
       <app-description></app-description>
       <div class="stories">
-        <app-user-stories [userId]="activeUser"  (isSelected)="isSelected($event)" [isUserStory] = "selected" [isDashboard]="true"></app-user-stories>
+        <app-user-stories (isSelected)="isSelected($event)" [isDashboard]="true" [isUserStory]="selected"
+                          [userId]="activeUser"></app-user-stories>
       </div>
     </div>
   </div>

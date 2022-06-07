@@ -17,27 +17,27 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/storyList")
-    public List<StoryDto> findStoryList(@RequestParam Integer userId){
+    public List<StoryDto> findStoryList(@RequestParam Integer userId) {
         return this.userService.findStoryList(userId);
     }
 
     @GetMapping("/favouriteStories")
-    public List<StoryDto> getFavouriteStories(@RequestParam Integer userId){
+    public List<StoryDto> getFavouriteStories(@RequestParam Integer userId) {
         return this.userService.getFavouriteStories(userId);
     }
 
     @PutMapping("/update")
-    public UserDto update(@RequestParam Integer id, @RequestBody UserDto userDto){
+    public UserDto update(@RequestParam Integer id, @RequestBody UserDto userDto) {
         return this.userService.update(id, userDto);
     }
 
     @GetMapping
-    public UserDto get(@RequestParam Integer id){
+    public UserDto get(@RequestParam Integer id) {
         return this.userService.get(id);
     }
 
     @GetMapping("/isStoryFromUser")
-    public boolean isStoryFromUser(@RequestParam Integer userId, @RequestParam Integer storyId){
+    public boolean isStoryFromUser(@RequestParam Integer userId, @RequestParam Integer storyId) {
         return this.userService.isStoryFromUser(userId, storyId);
     }
 }

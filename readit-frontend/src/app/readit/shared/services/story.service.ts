@@ -7,41 +7,41 @@ import {EndPoints} from "../../../shared/end-points";
 @Injectable({
   providedIn: 'root',
 })
-export class StoryService{
+export class StoryService {
 
-  constructor(private httpService:HttpService) {
+  constructor(private httpService: HttpService) {
   }
 
-  create(story:Story):Observable<Story>{
+  create(story: Story): Observable<Story> {
     return this.httpService
       .successful()
       .post(EndPoints.STORIES + '/new', {...story})
   }
 
-  get(id:number):Observable<Story>{
+  get(id: number): Observable<Story> {
     return this.httpService
       .successful()
       .get(EndPoints.STORIES + '/' + id);
   }
 
-  getAll():Observable<Story[]>{
+  getAll(): Observable<Story[]> {
     return this.httpService
       .get(EndPoints.STORIES);
   }
 
-  delete(id:number):Observable<void>{
+  delete(id: number): Observable<void> {
     return this.httpService
       .successful()
       .delete(EndPoints.STORIES + '/' + id);
   }
 
-  update(story:Story):Observable<Story>{
-   return this.httpService
-     .successful()
-     .put(EndPoints.STORIES + '/' + story.id, {...story})
+  update(story: Story): Observable<Story> {
+    return this.httpService
+      .successful()
+      .put(EndPoints.STORIES + '/' + story.id, {...story})
   }
 
-  getSize(storyId:number):Observable<number>{
+  getSize(storyId: number): Observable<number> {
     return this.httpService
       .get(EndPoints.STORIES + "/size?storyId=" + storyId)
   }

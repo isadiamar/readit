@@ -13,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.transaction.Transactional;
-
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -170,7 +169,7 @@ class StoryServiceTest {
     }
 
     @Test
-    void testFilterByGenre(){
+    void testFilterByGenre() {
         String romance = Genre.ROMANCE.toString();
         String comedy = Genre.COMEDY.toString();
         String historical = Genre.HISTORICAL.toString();
@@ -186,7 +185,7 @@ class StoryServiceTest {
     }
 
     @Test
-    void testFilterByGenreAndStatus(){
+    void testFilterByGenreAndStatus() {
         String romance = Genre.ROMANCE.toString();
         String historical = Genre.HISTORICAL.toString();
 
@@ -201,7 +200,7 @@ class StoryServiceTest {
     }
 
     @Test
-    void testSortByGenre1AndPopularity(){
+    void testSortByGenre1AndPopularity() {
         String romance = Genre.ROMANCE.toString();
 
         List<StoryDto> storyDto = this.storyService.sortByGenre1AndPopularity(romance);
@@ -209,13 +208,13 @@ class StoryServiceTest {
     }
 
     @Test
-    void testFindByNewness(){
+    void testFindByNewness() {
         List<StoryDto> storyDto = this.storyService.findByNewness();
         assertEquals("Title2", storyDto.get(0).getTitle());
     }
 
     @Test
-    void testFindByPopularity(){
+    void testFindByPopularity() {
         List<StoryDto> storyDto = this.storyService.findByPopularity();
         assertEquals("Title1", storyDto.get(0).getTitle());
     }

@@ -34,32 +34,32 @@ Cypress.Commands.add('login', () => {
 })
 
 
-Cypress.Commands.add('completeStoryForm',()=>{
+Cypress.Commands.add('completeStoryForm', () => {
   cy.get('input[id=title]').clear().type("Test Title")
-    cy.get('textarea').eq(0).clear().type('This is a description. And it is working')
-    cy.get('mat-select').eq(0).click().get('mat-option').contains('Romance').click()
-    cy.get('mat-select').eq(1).click().get('mat-option').contains('Comedy').click()
-    cy.get('mat-select').eq(2).click().get('mat-option').first().click()
-    cy.get('mat-select').eq(3).click().get('mat-option').first().click()
-    cy.get('input[type=color]')
-      .invoke('val', '#d77c79')
-      .trigger('input')
-    cy.get("button").contains('Create').click()
+  cy.get('textarea').eq(0).clear().type('This is a description. And it is working')
+  cy.get('mat-select').eq(0).click().get('mat-option').contains('Romance').click()
+  cy.get('mat-select').eq(1).click().get('mat-option').contains('Comedy').click()
+  cy.get('mat-select').eq(2).click().get('mat-option').first().click()
+  cy.get('mat-select').eq(3).click().get('mat-option').first().click()
+  cy.get('input[type=color]')
+    .invoke('val', '#d77c79')
+    .trigger('input')
+  cy.get("button").contains('Create').click()
 
 })
 
 
-Cypress.Commands.add('createStory', (navigate)=>{
+Cypress.Commands.add('createStory', (navigate) => {
   cy.get("button").contains('WRITE').click().get("button").contains(navigate).click();
 })
 
-Cypress.Commands.add('navigateToStories', ()=>{
+Cypress.Commands.add('navigateToStories', () => {
   cy.get("button").contains('USER').click().get("button").contains("Account").click().get("div").contains("My Stories").click()
 })
 
-Cypress.Commands.add('completeEpisodeForm', ()=>{
-    const fixture_pdf = 'lorem-ipsum.pdf';
-    cy.get("input").eq(0).type("Episodio de prueba");
-    cy.get('input[type=file]').attachFile(fixture_pdf);
-    cy.get("button").contains("POST EPISODE").click();
+Cypress.Commands.add('completeEpisodeForm', () => {
+  const fixture_pdf = 'lorem-ipsum.pdf';
+  cy.get("input").eq(0).type("Episodio de prueba");
+  cy.get('input[type=file]').attachFile(fixture_pdf);
+  cy.get("button").contains("POST EPISODE").click();
 })

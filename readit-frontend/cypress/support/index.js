@@ -16,7 +16,7 @@
 // Import commands.js using ES2015 syntax:
 import './commands'
 
-beforeEach(()=>{
+beforeEach(() => {
 
   _setupDefaultApiResponses();
   cy.viewport(1920, 1080)
@@ -24,7 +24,7 @@ beforeEach(()=>{
   cy.visit("/welcome")
 })
 
-function _setupDefaultApiResponses(){
+function _setupDefaultApiResponses() {
 
   // LOGIN
   cy.intercept('POST', Cypress.env("API_URL") + '/auth/login', {
@@ -41,19 +41,19 @@ function _setupDefaultApiResponses(){
   //CREATE STORIES
   cy.intercept('POST', Cypress.env("API_URL") + '/private/stories/new', {
     statusCode: 200,
-    fixture:'story.json'
+    fixture: 'story.json'
   })
 
   //GET STORY
   cy.intercept('GET', Cypress.env("API_URL") + '/private/stories/*', {
     statusCode: 200,
-    fixture:'story.json'
+    fixture: 'story.json'
   })
 
   //GET ALL STORIES
   cy.intercept('GET', Cypress.env("API_URL") + '/private/stories', {
     statusCode: 200,
-    fixture:'stories.json'
+    fixture: 'stories.json'
   })
 
   //DELETE STORY
@@ -64,52 +64,52 @@ function _setupDefaultApiResponses(){
   //UPDATE STORY
   cy.intercept('PUT', Cypress.env("API_URL") + '/private/stories/*', {
     statusCode: 200,
-    fixture:'story.json'
+    fixture: 'story.json'
   })
 
   //CREATE EPISODE
   cy.intercept('POST', Cypress.env("API_URL") + '/private/episodes/new', {
-    statusCode:200,
-    fixture:'episode.json'
+    statusCode: 200,
+    fixture: 'episode.json'
   })
 
   //GET EPISODE
   cy.intercept('GET', Cypress.env("API_URL") + '/private/episodes/*/from/*', {
-    statusCode:200,
-    fixture:'episode.json'
+    statusCode: 200,
+    fixture: 'episode.json'
   })
 
   //GET ALL EPISODES
-  cy.intercept('GET', Cypress.env("API_URL") + '/private/episodes?storyId=*',{
-    statusCode:200,
-    fixture:'episodes.json'
+  cy.intercept('GET', Cypress.env("API_URL") + '/private/episodes?storyId=*', {
+    statusCode: 200,
+    fixture: 'episodes.json'
   })
 
   //DELETE EPISODE
-  cy.intercept('DELETE', Cypress.env("API_URL") + '/private/episodes?storyId=*&episode_id=*',{
-    statusCode:200
+  cy.intercept('DELETE', Cypress.env("API_URL") + '/private/episodes?storyId=*&episode_id=*', {
+    statusCode: 200
   })
 
   //USERS
   cy.intercept('GET', Cypress.env('API_URL') + '/private/users?id=*', {
-    statusCode:200,
-    fixture:'users.json'
+    statusCode: 200,
+    fixture: 'users.json'
   })
 
   cy.intercept('GET', Cypress.env('API_URL') + '/private/users/storyList?userId=*', {
-    fixture:'stories.json'
+    fixture: 'stories.json'
   })
 
-  cy.intercept('GET', Cypress.env('API_URL') + '/private/users/favouriteStories?userId=*',{
-    fixture:'stories.json'
+  cy.intercept('GET', Cypress.env('API_URL') + '/private/users/favouriteStories?userId=*', {
+    fixture: 'stories.json'
   })
 
   //FILTERS
-  cy.intercept('GET', Cypress.env('API_URL') + '/private/stories/filter/popularity',{
-    fixture:'stories.json'
+  cy.intercept('GET', Cypress.env('API_URL') + '/private/stories/filter/popularity', {
+    fixture: 'stories.json'
   })
 
-  cy.intercept('GET', Cypress.env('API_URL')+ '/private/users/isStoryFromUser?userId=*&storyId=*', {
-    body:true
+  cy.intercept('GET', Cypress.env('API_URL') + '/private/users/isStoryFromUser?userId=*&storyId=*', {
+    body: true
   })
 }

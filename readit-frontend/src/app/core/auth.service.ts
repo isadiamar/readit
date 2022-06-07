@@ -8,12 +8,13 @@ import {EndPoints} from "../shared/end-points";
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService{
+export class AuthService {
 
   static LOGIN = "/auth/login";
-  static REGISTER="/auth/register";
+  static REGISTER = "/auth/register";
 
-  constructor(private httpService: HttpService) {}
+  constructor(private httpService: HttpService) {
+  }
 
   login(email: string, password: string): Observable<Token> {
     return this.httpService
@@ -24,7 +25,7 @@ export class AuthService{
       }))
   }
 
-  register(user:RegisterDto): Observable<Token> {
+  register(user: RegisterDto): Observable<Token> {
     return this.httpService
       .successful()
       .post(EndPoints.PUBLIC + AuthService.REGISTER, {...user}).pipe(map(res => {
@@ -33,11 +34,11 @@ export class AuthService{
       }));
   }
 
-  isAuthenticated():boolean{
+  isAuthenticated(): boolean {
     let res = false;
     const token = localStorage.getItem("token");
 
-    if ((token !== null && token !== undefined && token!=='')) {
+    if ((token !== null && token !== undefined && token !== '')) {
       const expireAt = JSON.parse(window.atob(token.split('.')[1])).exp;
       if (expireAt <= (Date.now() / 1000)) {
         localStorage.removeItem("token");
@@ -54,14 +55,14 @@ export class AuthService{
     let res = null;
     const token = localStorage.getItem("token");
 
-    if ((token !== null && token !== undefined && token!=='')) {
+    if ((token !== null && token !== undefined && token !== '')) {
       res = JSON.parse(window.atob(token.split('.')[1])).userId;
     }
 
     return res;
   }
 
-  logout():void{
-    localStorage.setItem('token',"");
+  logout(): void {
+    localStorage.setItem('token', "");
   }
 }

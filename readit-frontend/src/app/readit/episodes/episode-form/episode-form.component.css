@@ -1,4 +1,4 @@
-.wrap{
+.wrap {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -8,7 +8,7 @@
   align-content: center;
 }
 
-form{
+form {
   display: flex;
   width: 70%;
   flex-direction: row;
@@ -23,21 +23,21 @@ form{
   border: 1px solid #989696;
 }
 
-.column{
+.column {
   display: flex;
   flex-direction: column;
   width: 70%;
 }
 
-.title{
+.title {
   font-weight: bold;
   text-transform: uppercase;
-  font-family: Roboto,sans-serif;
+  font-family: Roboto, sans-serif;
   letter-spacing: 1px;
   margin-left: 5px;
 }
 
-.input-title{
+.input-title {
   width: 90%;
   display: flex;
   flex-direction: column;
@@ -48,7 +48,7 @@ form{
   width: 100%;
 }
 
-.container{
+.container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -60,18 +60,18 @@ form{
   justify-content: center;
 }
 
-.container input{
+.container input {
   opacity: 0;
   position: absolute;
 }
 
-.container >p{
+.container > p {
   color: #858383;
   font-size: 12px;
   font-weight: bold;
 }
 
-.container label{
+.container label {
   display: flex;
   justify-content: center;
   cursor: pointer;
@@ -87,7 +87,7 @@ form{
 }
 
 
-.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent{
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
   background-color: #14AF23;
 }
 
@@ -106,8 +106,8 @@ form{
   margin-top: 1rem;
 }
 
-.disabled{
-  background-color: rgba(0,0,0,.12) !important;
+.disabled {
+  background-color: rgba(0, 0, 0, .12) !important;
 }
 
 .fileover {
@@ -115,7 +115,7 @@ form{
   animation-iteration-count: infinite;
 }
 
-.files{
+.files {
   margin-top: 1rem;
   display: flex;
   align-items: center;
@@ -133,6 +133,7 @@ form{
   margin-bottom: 1rem;
 
 }
+
 .single-file img.delete {
   margin-left: 0.5rem;
   cursor: pointer;

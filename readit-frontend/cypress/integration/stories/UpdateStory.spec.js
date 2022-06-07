@@ -19,9 +19,8 @@ beforeEach(() => {
 })
 
 
-describe("Update Story Test", ()=> {
+describe("Update Story Test", () => {
   it('Should Open Story', () => {
-
 
 
     cy.get('input[id=title]').clear().type("Test Edited Title")
@@ -56,10 +55,10 @@ function updatedStory() {
     "title": "Test Edited Title",
     "description": "This is a description for a test",
     "genre1": "HORROR",
-    "genre2":"COMEDY",
-    "privacy":"PRIVATE",
-    "status":"COMPLETE",
-    "color":"#139086",
+    "genre2": "COMEDY",
+    "privacy": "PRIVATE",
+    "status": "COMPLETE",
+    "color": "#139086",
     "username": "user"
   }
 

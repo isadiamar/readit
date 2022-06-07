@@ -1,9 +1,9 @@
-.favourites{
+.favourites {
   height: 15rem;
   margin-bottom: 4rem;
 }
 
-.title-div{
+.title-div {
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -12,18 +12,18 @@
   margin-left: .5rem;
 }
 
-.title-div h3{
+.title-div h3 {
   margin-right: 1rem;
   margin-top: .8rem;
 }
 
-.story-list{
+.story-list {
   height: 80%;
   width: 100%;
 }
 
 
-.title{
+.title {
   font-family: Mako, sans-serif;
   font-weight: bold;
   text-transform: uppercase;

@@ -1,0 +1,7 @@
+{
+  "ast": null,
+  "code": "export class Utils {\n  static getEnumKeyByValue(e, value) {\n    return Object.keys(e)[Object.values(e).indexOf(value)];\n  }\n\n}",
+  "map": null,
+  "metadata": {},
+  "sourceType": "module"
+}

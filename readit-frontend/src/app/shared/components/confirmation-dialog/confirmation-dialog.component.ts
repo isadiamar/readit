@@ -7,21 +7,21 @@ import {EpisodeService} from "../../../readit/shared/services/episode.service";
   selector: 'app-confirmation-dialog',
   templateUrl: './confirmation-dialog.component.html',
 })
-export class ConfirmationDialogComponent{
+export class ConfirmationDialogComponent {
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: {storyId:number, episodeId?:number, type:string},
+    @Inject(MAT_DIALOG_DATA) public data: { storyId: number, episodeId?: number, type: string },
     private dialog: MatDialog,
     private storyService: StoryService,
-    private episodeServoce:EpisodeService
-  ) { }
+    private episodeServoce: EpisodeService
+  ) {
+  }
 
-  delete(){
-    if (this.data.type == 'story'){
+  delete() {
+    if (this.data.type == 'story') {
       this.storyService.delete(this.data.storyId).subscribe(() => window.location.reload());
-    }
-    else if (this.data.type == 'episode'){
-      this.episodeServoce.delete(this.data.storyId, this.data.episodeId!).subscribe(()=> window.location.reload())
+    } else if (this.data.type == 'episode') {
+      this.episodeServoce.delete(this.data.storyId, this.data.episodeId!).subscribe(() => window.location.reload())
     }
 
   }

@@ -1,20 +1,20 @@
 beforeEach(() => {
   // CLEAR INPUTS
-  for(let i = 0; i < 2; i++){
+  for (let i = 0; i < 2; i++) {
     _getInput(i).clear()
   }
 })
 
-describe('LoginForm Test', () =>{
-  it("Should load", () =>{
+describe('LoginForm Test', () => {
+  it("Should load", () => {
     cy.get('h1').contains('Welcome back!').should('exist')
   })
 
-  it("Submit button should be disabled when inputs are empty", ()=>{
+  it("Submit button should be disabled when inputs are empty", () => {
     cy.get("button").contains('Log in').parent().should('be.disabled')
   })
 
-  it("Submit button should be disabled when email format is wrong", ()=>{
+  it("Submit button should be disabled when email format is wrong", () => {
     _fillInputsValid()
     let emailInput = _getInput(0)
     emailInput.clear().type('badEmail@bad')
@@ -22,9 +22,9 @@ describe('LoginForm Test', () =>{
   })
 
   it('Should give server error when email dont exists', () => {
-    cy.intercept('POST',  Cypress.env("API_URL") + '/auth/login', {
+    cy.intercept('POST', Cypress.env("API_URL") + '/auth/login', {
       statusCode: 403,
-      body: {error: "ForbiddenException", message: "Forbidden Exception: Email or password are wrong", code:403}
+      body: {error: "ForbiddenException", message: "Forbidden Exception: Email or password are wrong", code: 403}
     })
     _fillInputsValid()
 
@@ -37,7 +37,7 @@ describe('LoginForm Test', () =>{
   it('Should give server error when password dont exists', () => {
     cy.intercept('POST', Cypress.env("API_URL") + '/auth/login', {
       statusCode: 403,
-      body: {error: "ForbiddenException", message: "Forbidden Exception: Email or password are wrong", code:403}
+      body: {error: "ForbiddenException", message: "Forbidden Exception: Email or password are wrong", code: 403}
     })
     _fillInputsValid()
 
@@ -47,7 +47,7 @@ describe('LoginForm Test', () =>{
     _assertTextExists('Email or password are wrong')
   })
 
-  it ('Should login', ()=>{
+  it('Should login', () => {
     _fillInputsValid()
     _clickSubmitButton()
     _assertTextExists('USER')
@@ -55,7 +55,7 @@ describe('LoginForm Test', () =>{
 
 })
 
-function _getInput(inputNumber){
+function _getInput(inputNumber) {
   return cy.get('input').eq(inputNumber);
 }
 

@@ -8,12 +8,12 @@
   width: 100%;
 }
 
-.actions{
+.actions {
   display: flex;
   justify-content: end;
 }
 
-.title{
+.title {
   font-weight: bold;
   font-family: Mako, sans-serif;
 }

@@ -1,13 +1,13 @@
-<div id="outerContainer" class="wrap">
+<div class="wrap" id="outerContainer">
   <div class="header">
     <div class="header-info">
-      <p class="story-info" (click)="backToStory()">{{story_name}} > {{episode_name}}</p>
+      <p (click)="backToStory()" class="story-info">{{story_name}} > {{episode_name}}</p>
       <div class="navigation-buttons center">
         <button (click)="previousEpisode()" [disabled]="this.numberEpisode == 1">
           <mat-icon>navigate_before</mat-icon>
         </button>
         <p>{{numberEpisode}}</p>
-        <button (click)="nextEpisode()" [disabled] = "this.numberEpisode == this.size">
+        <button (click)="nextEpisode()" [disabled]="this.numberEpisode == this.size">
           <mat-icon>navigate_next</mat-icon>
         </button>
       </div>
@@ -27,16 +27,16 @@
     <mat-sidenav-content class="sidenav-content">
       <div class="pdf-wrapper">
         <pdf-viewer
-          [src]="pdfSrc"
-          [rotation]="0"
-          [original-size]="false"
-          [fit-to-page]="true"
-          [zoom]="1"
-          [zoom-scale]="'page-width'"
-          [stick-to-page]="false"
-          [external-link-target]="'blank'"
-          [autoresize]="true"
           (after-load-complete)="initLoadCompleted($event)"
+          [autoresize]="true"
+          [external-link-target]="'blank'"
+          [fit-to-page]="true"
+          [original-size]="false"
+          [rotation]="0"
+          [src]="pdfSrc"
+          [stick-to-page]="false"
+          [zoom-scale]="'page-width'"
+          [zoom]="1"
           style=" height: 100%; width: 100%;"
         ></pdf-viewer>
       </div>

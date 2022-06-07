@@ -25,12 +25,12 @@ public class CommentController {
     }
 
     @GetMapping
-    public List<CommentDto> getAll(@RequestParam Integer episodeId){
+    public List<CommentDto> getAll(@RequestParam Integer episodeId) {
         return this.commentService.getAll(episodeId);
     }
 
     @DeleteMapping
-    public void delete(@RequestParam Integer commentId){
-         this.commentService.delete(commentId);
+    public void delete(@RequestParam Integer commentId) {
+        this.commentService.delete(commentId);
     }
 }

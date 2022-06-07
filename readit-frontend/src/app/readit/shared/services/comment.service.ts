@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpService} from "../../../core/http.service";
-import { Observable, of, Subject} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {Comment} from "../models/comment.model";
 import {EndPoints} from "../../../shared/end-points";
 
@@ -15,18 +15,18 @@ export class CommentService {
     this.episodeCommentsUpdate = new Subject<void>();
   }
 
-  create(comment: Comment) :Observable<Comment>{
+  create(comment: Comment): Observable<Comment> {
     return this.httpService
       .post(EndPoints.COMMENTS + "/new", {...comment})
   }
 
-  getAll(episodeId:number):Observable<Comment[]>{
+  getAll(episodeId: number): Observable<Comment[]> {
     return this.httpService
       .get(EndPoints.COMMENTS + '?episodeId=' + episodeId)
   }
 
-  delete(id: number):Observable<void> {
-      return this.httpService
-        .delete(EndPoints.COMMENTS + '?commentId=' + id)
+  delete(id: number): Observable<void> {
+    return this.httpService
+      .delete(EndPoints.COMMENTS + '?commentId=' + id)
   }
 }

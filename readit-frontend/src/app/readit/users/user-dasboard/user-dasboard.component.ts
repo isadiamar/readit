@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../core/auth.service";
 
 @Component({
@@ -8,18 +8,19 @@ import {AuthService} from "../../../core/auth.service";
 })
 export class UserDasboardComponent implements OnInit {
   selected: string = "account";
-  activeUser:number
+  activeUser: number
 
-  constructor(private authService:AuthService) { }
+  constructor(private authService: AuthService) {
+  }
 
   ngOnInit(): void {
     this.activeUser = this.authService.getAuthenticatedUserId();
   }
 
   isSelected($event: string) {
-    if (this.selected == $event){
+    if (this.selected == $event) {
       this.selected = 'account';
-    }else{
+    } else {
       this.selected = $event
     }
   }

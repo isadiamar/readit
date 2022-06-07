@@ -18,17 +18,17 @@ const routes: Routes = [
     path: '',
     component: ReaditComponent,
     children: [
-      {path: 'welcome', component: WelcomeComponent },
-      {path:'genres', component:GenreComponent, canActivate:[AuthGuardService]},
-      {path:'read', component:ReadComponent, canActivate:[AuthGuardService]},
-      {path: 'stories/new', component: StoryFormComponent,canActivate:[AuthGuardService] },
-      {path:'stories/edit/:id', component:StoryFormComponent, canActivate:[AuthGuardService]},
-      {path: 'stories/dashboard', component: UserDasboardComponent, canActivate:[AuthGuardService]},
-      {path: 'stories/:id', component:StoryComponent, canActivate:[AuthGuardService]},
-      {path:'stories/:id/episodes/new', component:EpisodeFormComponent, canActivate:[AuthGuardService]},
-      {path: 'stories/:story_id/episodes/:episode_id', component:EpisodeComponent, canActivate:[AuthGuardService]},
-      {path:'stories/:id/episodes/edit/:episode_id', component:EpisodeFormComponent, canActivate:[AuthGuardService]},
-      {path:'users/:id', component:UserComponent, canActivate:[AuthGuardService]}
+      {path: 'welcome', component: WelcomeComponent},
+      {path: 'genres', component: GenreComponent, canActivate: [AuthGuardService]},
+      {path: 'read', component: ReadComponent, canActivate: [AuthGuardService]},
+      {path: 'stories/new', component: StoryFormComponent, canActivate: [AuthGuardService]},
+      {path: 'stories/edit/:id', component: StoryFormComponent, canActivate: [AuthGuardService]},
+      {path: 'stories/dashboard', component: UserDasboardComponent, canActivate: [AuthGuardService]},
+      {path: 'stories/:id', component: StoryComponent, canActivate: [AuthGuardService]},
+      {path: 'stories/:id/episodes/new', component: EpisodeFormComponent, canActivate: [AuthGuardService]},
+      {path: 'stories/:story_id/episodes/:episode_id', component: EpisodeComponent, canActivate: [AuthGuardService]},
+      {path: 'stories/:id/episodes/edit/:episode_id', component: EpisodeFormComponent, canActivate: [AuthGuardService]},
+      {path: 'users/:id', component: UserComponent, canActivate: [AuthGuardService]}
     ]
   }
 ];

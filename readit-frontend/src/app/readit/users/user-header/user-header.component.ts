@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../core/auth.service";
 import {ActivatedRoute} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
@@ -14,20 +14,21 @@ import {UserService} from "../../shared/services/user.service";
 })
 export class UserHeaderComponent implements OnInit {
 
-  nickname:string | undefined;
-  description:string | undefined;
+  nickname: string | undefined;
+  description: string | undefined;
 
-  activeUser:boolean;
-  userId:string;
+  activeUser: boolean;
+  userId: string;
 
-  constructor(private authService:AuthService, private activeRouter:ActivatedRoute,  private dialog: MatDialog, private dataService:DataService, private userService:UserService) { }
+  constructor(private authService: AuthService, private activeRouter: ActivatedRoute, private dialog: MatDialog, private dataService: DataService, private userService: UserService) {
+  }
 
   ngOnInit(): void {
     this.userId = this.activeRouter.snapshot.paramMap.get('id')!;
     this.activeUser = this.authService.getAuthenticatedUserId() == +this.userId;
 
-    if(this.userId) {
-      this.userService.get(+this.userId).subscribe(res =>{
+    if (this.userId) {
+      this.userService.get(+this.userId).subscribe(res => {
         this.nickname = res.nickname;
       })
     }
@@ -35,10 +36,10 @@ export class UserHeaderComponent implements OnInit {
   }
 
   edit() {
-    this.dialog.open(UserFormComponent, {data:{userId:this.userId}})
+    this.dialog.open(UserFormComponent, {data: {userId: this.userId}})
       .afterClosed().subscribe(res => {
-        this.nickname = res.data.nickname;
-        this.dataService.saveDescription(res.data.description);
+      this.nickname = res.data.nickname;
+      this.dataService.saveDescription(res.data.description);
     })
   }
 }

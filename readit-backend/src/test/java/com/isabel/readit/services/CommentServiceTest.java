@@ -3,9 +3,9 @@ package com.isabel.readit.services;
 import com.isabel.readit.api.dtos.CommentDto;
 import com.isabel.readit.data.daos.CommentRepository;
 import com.isabel.readit.data.daos.EpisodeRepository;
-import com.isabel.readit.data.daos.StoryRepository;
 import com.isabel.readit.data.daos.UserRepository;
-import com.isabel.readit.data.model.*;
+import com.isabel.readit.data.model.Episode;
+import com.isabel.readit.data.model.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +28,8 @@ public class CommentServiceTest {
     private CommentRepository commentRepository;
 
     @Autowired
-    private CommentServiceTest(UserRepository userRepository,CommentService commentService,
-                                EpisodeRepository episodeRepository, CommentRepository commentRepository) {
+    private CommentServiceTest(UserRepository userRepository, CommentService commentService,
+                               EpisodeRepository episodeRepository, CommentRepository commentRepository) {
         this.userRepository = userRepository;
         this.episodeRepository = episodeRepository;
         this.commentRepository = commentRepository;
@@ -54,7 +54,7 @@ public class CommentServiceTest {
     }
 
     @Test
-    void testGetAllOk(){
+    void testGetAllOk() {
         Episode episode = this.episodeRepository.findByTitle("title3").get();
         Integer episodeId = episode.getId();
         this.commentService.getAll(episodeId);
@@ -62,10 +62,10 @@ public class CommentServiceTest {
     }
 
     @Test
-    void testDeleteOk(){
+    void testDeleteOk() {
         User user = this.userRepository.findByEmail("1@email.com").get();
 
-        assertEquals(2,user.getCommentList().size() );
+        assertEquals(2, user.getCommentList().size());
 
         Integer commentId = this.commentRepository.findByDescription("comment2").get().getId();
         this.commentService.delete(commentId);
@@ -73,7 +73,7 @@ public class CommentServiceTest {
             @Override
             public void afterCommit() {
                 User user = userRepository.findByEmail("1@email.com").get();
-                assertEquals(1,user.getCommentList().size() );
+                assertEquals(1, user.getCommentList().size());
 
             }
         });
