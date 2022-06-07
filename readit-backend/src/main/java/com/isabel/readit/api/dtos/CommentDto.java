@@ -20,4 +20,5 @@ public class CommentDto {
     private Integer episodeId;
     @NotBlank
     private String username;
+    private Integer userId;
 }

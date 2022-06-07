@@ -4,4 +4,5 @@ export interface Comment{
   description:string,
   date?: string,
   episodeId:number,
+  userId?:number
 }

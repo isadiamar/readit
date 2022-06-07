@@ -44,6 +44,7 @@ public class Comment {
         }
         if (Objects.nonNull(this.getUser())){
             commentDto.setUsername(this.getUser().getNickname());
+            commentDto.setUserId(this.getUser().getId());
         }
         if(Objects.nonNull(this.getEpisode())){
             commentDto.setEpisodeId(this.getEpisode().getId());
