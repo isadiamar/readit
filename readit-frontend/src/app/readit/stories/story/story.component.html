@@ -28,7 +28,7 @@
       <div class="cover" >
         <img [src]="cover" alt="cover">
       </div>
-      <p class="author">{{author}}</p>
+      <p class="author" (click)="redirect('/users/' + userId)">{{author}}</p>
       <div class="description">
         <p>{{description}}</p>
       </div>

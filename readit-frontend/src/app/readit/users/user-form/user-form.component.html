@@ -1,0 +1,16 @@
+<form [formGroup]="userForm" class="form-wrap">
+  <h3 class="title">Edit</h3>
+  <p class="title">Username</p>
+  <mat-form-field class="input" appearance="outline">
+    <mat-label>Username</mat-label>
+    <input formControlName="nickname" matInput placeholder="Ex. Pizza">
+  </mat-form-field>
+  <p class="title">Description</p>
+  <mat-form-field class="input" appearance="outline">
+    <mat-label>Description</mat-label>
+    <textarea formControlName="description" matInput placeholder="Ex. It makes me feel..."></textarea>
+  </mat-form-field>
+  <div class="actions">
+    <button mat-flat-button color="accent" (click)="submit()" [disabled]="submitDisabled">Edit</button>
+  </div>
+</form>

@@ -10,7 +10,7 @@ import {MainMenuComponent} from "./main-menu/main-menu.component";
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {WelcomeMenuComponent} from "./welcome/components/welcome-menu/welcome-menu.component";
 
-import {WelcomeService} from "./shared/services/data.service";
+import {DataService} from "./shared/services/data.service";
 import {ReaditComponent} from "./readit.component";
 import {StoryFormComponent} from './stories/story-form/story-form.component';
 import {StoryComponent} from './stories/story/story.component';
@@ -31,6 +31,11 @@ import { UserStoriesComponent } from './users/user-stories/user-stories.componen
 import { DescriptionComponent } from './users/description/description.component';
 import { UserDasboardComponent } from './users/user-dasboard/user-dasboard.component';
 import { UserHeaderComponent } from './users/user-header/user-header.component';
+import { UserFormComponent } from './users/user-form/user-form.component';
+import {EpisodeService} from "./shared/services/episode.service";
+import {LikeService} from "./shared/services/like.service";
+import {CommentService} from "./shared/services/comment.service";
+import {UserService} from "./shared/services/user.service";
 
 
 @NgModule({
@@ -59,6 +64,7 @@ import { UserHeaderComponent } from './users/user-header/user-header.component';
     DescriptionComponent,
     UserDasboardComponent,
     UserHeaderComponent,
+    UserFormComponent,
   ],
   entryComponents: [],
   imports: [
@@ -67,7 +73,7 @@ import { UserHeaderComponent } from './users/user-header/user-header.component';
     PdfViewerModule,
   ],
 
-  providers: [WelcomeService, StoryService],
+  providers: [DataService, StoryService, EpisodeService, LikeService, CommentService, UserService],
 })
 
 export class ReaditModule {

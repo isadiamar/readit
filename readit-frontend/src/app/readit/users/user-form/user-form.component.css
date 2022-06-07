@@ -1,0 +1,19 @@
+.form-wrap {
+  min-width: 25rem;
+  max-width: 50rem;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+}
+
+.actions{
+  display: flex;
+  justify-content: end;
+}
+
+.title{
+  font-weight: bold;
+  font-family: Mako, sans-serif;
+}

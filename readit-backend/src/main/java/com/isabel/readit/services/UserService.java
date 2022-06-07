@@ -2,10 +2,13 @@ package com.isabel.readit.services;
 
 
 import com.isabel.readit.api.dtos.StoryDto;
+import com.isabel.readit.api.dtos.UserDto;
 import com.isabel.readit.data.daos.UserRepository;
 import com.isabel.readit.data.model.Like;
 import com.isabel.readit.data.model.Story;
 import com.isabel.readit.data.model.User;
+import com.isabel.readit.services.exceptions.NotFoundException;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +37,20 @@ public class UserService {
             res.add(like.getStory().toStoryDto());
         }
         return res;
+    }
+
+    public UserDto update(Integer id, UserDto userDto) {
+        User user =  this.userRepository.findById(id)
+                .map(userEntity -> {
+                    userDto.setId(userEntity.getId());
+                    BeanUtils.copyProperties(userDto,userEntity);
+                    return userEntity;
+                }).orElseThrow(() -> new NotFoundException("User not found"));
+        return user.toUserDto();
+
+    }
+
+    public UserDto get(Integer id) {
+        return this.userRepository.findById(id).map(User::toUserDto).orElseThrow(() -> new NotFoundException("User not found"));
     }
 }

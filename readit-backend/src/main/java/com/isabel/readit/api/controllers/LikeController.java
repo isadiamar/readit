@@ -24,13 +24,18 @@ public class LikeController {
     }
 
     @DeleteMapping
-    public void delete(@RequestParam Integer likeId){
-         this.likeService.delete(likeId);
+    public void delete(@RequestParam Integer storyId, @RequestParam Integer userId){
+         this.likeService.delete(storyId, userId);
     }
 
     @GetMapping
     public LikeDto getAll(@RequestParam Integer storyId){
         String email = this.jwtService.getTokenEmailFromContext();
         return this.likeService.getAll(storyId, email);
+    }
+
+    @GetMapping("/isliked")
+    public boolean isLiked(@RequestParam Integer storyId, @RequestParam Integer userId){
+        return this.likeService.isLiked(storyId, userId);
     }
 }

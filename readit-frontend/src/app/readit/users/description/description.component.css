@@ -1,6 +1,8 @@
 .description{
+  word-break: break-word;
+  text-align: justify;
   height: 60%;
-  width: 80%;
+  width: 15rem;
   margin-top: 1rem;
   margin-right: 4rem;
 }
@@ -8,4 +10,9 @@
   font-family: Mako, sans-serif;
   font-weight: bold;
   text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.mat-card>:first-child, .mat-card-content>:first-child{
+  margin-top: .5rem;
 }

@@ -2,10 +2,14 @@ package com.isabel.readit.data.model;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.isabel.readit.api.dtos.StoryDto;
+import com.isabel.readit.api.dtos.UserDto;
 import lombok.*;
+import org.springframework.beans.BeanUtils;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @ToString
 @Builder
@@ -37,4 +41,10 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY,  cascade = CascadeType.REMOVE)
     private List<Like> likeList;
 
+    public UserDto toUserDto() {
+        UserDto userDto = new UserDto();
+        BeanUtils.copyProperties(this, userDto);
+
+        return userDto;
+    }
 }

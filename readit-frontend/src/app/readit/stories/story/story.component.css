@@ -135,6 +135,7 @@ a:hover{
   margin-top: .5rem;
   font-size: 12px;
   color: #989696;
+  cursor: pointer;
 }
 
 .description{
