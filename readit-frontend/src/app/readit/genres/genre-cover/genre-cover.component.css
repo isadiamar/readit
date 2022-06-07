@@ -13,6 +13,7 @@
   height: 10rem;
   width: 3rem;
   flex: 0 1 calc(20% - 8px); /* <-- adjusting for margin */
+  margin-bottom: 1rem;
 }
 
 .img{

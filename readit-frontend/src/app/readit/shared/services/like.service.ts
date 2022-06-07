@@ -19,13 +19,18 @@ export class LikeService {
       .post(EndPoints.LIKES + "/new", {...like})
   }
 
-  delete(likeId: number):Observable<void> {
+  delete(storyId: number, userId: number):Observable<void> {
     return this.httpService
-      .delete(EndPoints.LIKES + "?likeId=" + likeId)
+      .delete(EndPoints.LIKES + "?storyId=" + storyId + "&userId=" + userId)
   }
 
   getAll(storyId: number):Observable<Like> {
     return this.httpService
       .get(EndPoints.LIKES + "?storyId=" + storyId)
+  }
+
+  isLiked(storyId: number, userId: number):Observable<boolean> {
+    return this.httpService
+      .get(EndPoints.LIKES + "/isliked?storyId=" + storyId + "&userId=" + userId)
   }
 }

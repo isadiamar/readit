@@ -18,16 +18,6 @@ class UserDtoTest {
         assertEquals("Frida", userDto.getNickname());
     }
 
-    @Test
-    void testGetSetEmail() {
-        User user = User.builder().nickname("Maria").email("maria@email.com").password("maria123").build();
-        UserDto userDto = new UserDto(user);
-
-        assertEquals("maria@email.com", userDto.getEmail());
-
-        userDto.setEmail("juan@email.com");
-        assertEquals("juan@email.com", userDto.getEmail());
-    }
 
 
     @Test
@@ -41,17 +31,5 @@ class UserDtoTest {
         assertEquals("description updated", userDto.getDescription());
     }
 
-    @Test
-    void testConstructorNotArg() {
-        UserDto user = new UserDto();
-        user.setEmail("hola@email");
-        assertEquals("hola@email", user.getEmail());
-    }
-
-    @Test
-    void testConstructorAllArg() {
-        UserDto user = new UserDto("12", "nickname", "email@email.com", "password", "description");
-        assertEquals("nickname", user.getNickname());
-    }
 }
 

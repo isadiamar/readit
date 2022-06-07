@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
-import {WelcomeService} from "../../../shared/services/data.service";
+import {DataService} from "../../../shared/services/data.service";
 import {AuthService} from "../../../../core/auth.service";
 import {Router} from "@angular/router";
 
@@ -19,7 +19,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
-    private data: WelcomeService,
+    private data: DataService,
     private authService:AuthService,
     private router:Router,
   ) {

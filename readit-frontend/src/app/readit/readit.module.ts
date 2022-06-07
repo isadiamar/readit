@@ -10,7 +10,7 @@ import {MainMenuComponent} from "./main-menu/main-menu.component";
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {WelcomeMenuComponent} from "./welcome/components/welcome-menu/welcome-menu.component";
 
-import {WelcomeService} from "./shared/services/data.service";
+import {DataService} from "./shared/services/data.service";
 import {ReaditComponent} from "./readit.component";
 import {StoryFormComponent} from './stories/story-form/story-form.component';
 import {StoryComponent} from './stories/story/story.component';
@@ -25,6 +25,17 @@ import { CommentComponent } from './comments/comment/comment.component';
 import { GenreComponent } from './genres/genres/genre.component';
 import { GenreCoverComponent } from './genres/genre-cover/genre-cover.component';
 import { ReadComponent } from './read/read/read.component';
+import { UserComponent } from './users/user/user.component';
+import { UserFavouritesComponent } from './users/user-favourites/user-favourites.component';
+import { UserStoriesComponent } from './users/user-stories/user-stories.component';
+import { DescriptionComponent } from './users/description/description.component';
+import { UserDasboardComponent } from './users/user-dasboard/user-dasboard.component';
+import { UserHeaderComponent } from './users/user-header/user-header.component';
+import { UserFormComponent } from './users/user-form/user-form.component';
+import {EpisodeService} from "./shared/services/episode.service";
+import {LikeService} from "./shared/services/like.service";
+import {CommentService} from "./shared/services/comment.service";
+import {UserService} from "./shared/services/user.service";
 
 
 @NgModule({
@@ -47,6 +58,13 @@ import { ReadComponent } from './read/read/read.component';
     GenreComponent,
     GenreCoverComponent,
     ReadComponent,
+    UserComponent,
+    UserFavouritesComponent,
+    UserStoriesComponent,
+    DescriptionComponent,
+    UserDasboardComponent,
+    UserHeaderComponent,
+    UserFormComponent,
   ],
   entryComponents: [],
   imports: [
@@ -55,7 +73,7 @@ import { ReadComponent } from './read/read/read.component';
     PdfViewerModule,
   ],
 
-  providers: [WelcomeService, StoryService],
+  providers: [DataService, StoryService, EpisodeService, LikeService, CommentService, UserService],
 })
 
 export class ReaditModule {

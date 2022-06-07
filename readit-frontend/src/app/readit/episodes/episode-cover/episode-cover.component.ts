@@ -25,7 +25,7 @@ export class EpisodeCoverComponent implements OnInit {
 
     this.episodeService.getAll(+this.pathId).subscribe(res =>{
       this.episodes = res;
-      this.activeUser = this.authService.getAuthenticatedUserId() === this.episodes[0].userId;
+      this.activeUser = this.episodes.length > 0 && this.authService.getAuthenticatedUserId() === this.episodes[0].userId;
     })
   }
 

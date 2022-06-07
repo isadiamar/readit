@@ -1,0 +1,9 @@
+<div class="favourites">
+  <div class="title-div" (click)="sendMessage()">
+    <h3 class="title">Favourites</h3>
+    <mat-icon>keyboard_arrow_right</mat-icon>
+  </div>
+  <div class="story-list" style="margin-top: 2.1rem;">
+    <app-genre-cover [stories]="showFavoriteStories"></app-genre-cover>
+  </div>
+</div>

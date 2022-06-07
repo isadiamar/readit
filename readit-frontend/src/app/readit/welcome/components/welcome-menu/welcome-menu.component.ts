@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {WelcomeService} from "../../../shared/services/data.service";
+import {DataService} from "../../../shared/services/data.service";
 import {Subscription} from "rxjs";
 
 @Component({
@@ -11,7 +11,7 @@ export class WelcomeMenuComponent implements OnInit, OnDestroy {
   message: string;
   subscription: Subscription;
 
-  constructor(private data: WelcomeService) {
+  constructor(private data: DataService) {
   }
 
   ngOnInit(): void {

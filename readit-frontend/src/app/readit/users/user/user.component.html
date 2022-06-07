@@ -1,0 +1,12 @@
+<section class="wrap">
+  <app-user-header class="header"></app-user-header>
+  <div class="profile-wrap">
+    <div class="profile">
+      <app-description></app-description>
+      <div class="stories">
+        <app-user-favourites *ngIf="selected == 'favourites' || selected == 'account'" (isSelected)="isSelected($event)" [isFavourite]="selected"></app-user-favourites>
+        <app-user-stories *ngIf="selected == 'stories' || selected == 'account'"   (isSelected)="isSelected($event)" [isUserStory] = "selected"></app-user-stories>
+      </div>
+    </div>
+  </div>
+</section>

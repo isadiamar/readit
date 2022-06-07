@@ -1,0 +1,9 @@
+<div class="header">
+  <img src="assets/img/profile-header.png" alt="header" />
+</div>
+<div class="nav-wrap">
+  <div class="username title">{{nickname}}</div>
+  <div class="nav" >
+    <button mat-flat-button color="accent" (click)="edit()" *ngIf="activeUser">Edit your profile</button>
+  </div>
+</div>

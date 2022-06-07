@@ -16,14 +16,14 @@
         <mat-icon>add</mat-icon>
         Create a new story
       </button>
-      <button  mat-menu-item (click)="redirect('/stories/dashboard')">
+      <button  mat-menu-item (click)="redirect('stories/dashboard')">
         <mat-icon>folder_open</mat-icon>
         My stories
       </button>
     </mat-menu>
     <button [matMenuTriggerFor]="user" mat-button>USER</button>
     <mat-menu #user="matMenu">
-      <button mat-menu-item>
+      <button mat-menu-item (click)="redirect('/users/'+ authenticatedUser)">
         <mat-icon>face</mat-icon>
         Account
       </button>

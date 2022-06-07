@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpService} from "../../../core/http.service";
-import {Observable, of, Subject} from "rxjs";
+import {Observable,  Subject} from "rxjs";
 import {Story} from "../models/story.model";
 import {EndPoints} from "../../../shared/end-points";
 
@@ -9,10 +9,7 @@ import {EndPoints} from "../../../shared/end-points";
 })
 export class FilterService {
 
-  storyFiltersUpdate: Subject<void>;
-
   constructor(private httpService: HttpService) {
-    this.storyFiltersUpdate = new Subject<void>();
   }
 
     findByGenre(genre: string):Observable<Story[]>{
@@ -39,4 +36,5 @@ export class FilterService {
         return this.httpService
           .get(EndPoints.STORIES + "/filter/popularity");
     }
+
 }

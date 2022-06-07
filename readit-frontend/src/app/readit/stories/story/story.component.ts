@@ -25,11 +25,11 @@ export class StoryComponent implements OnInit {
   genre1:Genre;
   genre2:Genre;
   activeUser:boolean;
+  userId:number | undefined;
 
   stories: Story[] = [];
 
   likes:number;
-  likeId:number;
 
   constructor(private storyService:StoryService, private route: ActivatedRoute,
               private router:Router,  private authService:AuthService, private likeService:LikeService) { }
@@ -39,7 +39,7 @@ export class StoryComponent implements OnInit {
 
     this.storyService.get(+this.id).subscribe(res =>{
       this.activeUser = this.authService.getAuthenticatedUserId() === res.userId;
-
+      this.userId = res.userId;
       this.title = res.title
       this.description = res.description
       this.color = res.color ? res.color : "#51c96a"
@@ -63,7 +63,9 @@ export class StoryComponent implements OnInit {
       });
     });
 
-
+    this.likeService.isLiked(parseInt(this.id), this.authService.getAuthenticatedUserId()).subscribe((isLiked) => {
+      this.isFavorite = isLiked;
+    })
   }
 
   setFavorite() {
@@ -71,11 +73,10 @@ export class StoryComponent implements OnInit {
     let like:Like = this.createLike();
     if (this.isFavorite){
       this.likeService.create(like).subscribe(res => {
-        this.likeId = res.id!;
         this.likeService.storyLikesUpdate.next();
       })
     }else{
-      this.likeService.delete(this.likeId).subscribe(_ => this.likeService.storyLikesUpdate.next())
+      this.likeService.delete(parseInt(this.id), this.authService.getAuthenticatedUserId()).subscribe(_ => this.likeService.storyLikesUpdate.next())
     }
   }
 
@@ -85,5 +86,9 @@ export class StoryComponent implements OnInit {
 
   private createLike(){
     return {storyId: +this.id}
+  }
+
+  redirect(route: string) {
+    this.router.navigate([route])
   }
 }

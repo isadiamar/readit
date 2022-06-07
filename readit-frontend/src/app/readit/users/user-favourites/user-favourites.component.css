@@ -1,0 +1,30 @@
+.favourites{
+  height: 15rem;
+  margin-bottom: 4rem;
+}
+
+.title-div{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  height: 15%;
+  flex-direction: row;
+  margin-left: .5rem;
+}
+
+.title-div h3{
+  margin-right: 1rem;
+  margin-top: .8rem;
+}
+
+.story-list{
+  height: 80%;
+  width: 100%;
+}
+
+
+.title{
+  font-family: Mako, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+}

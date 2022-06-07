@@ -20,6 +20,7 @@
   </div>
   <div class="story-info">
     <div class="status">
+      <mat-icon *ngIf="activeUser" (click)="redirect('stories/' + id + '/episodes/new')">add</mat-icon>
       <mat-icon id="edit" *ngIf="activeUser" (click)="update()">edit</mat-icon>
       <p>Status: {{status}}</p>
     </div>
@@ -28,7 +29,7 @@
       <div class="cover" >
         <img [src]="cover" alt="cover">
       </div>
-      <p class="author">{{author}}</p>
+      <p class="author" (click)="redirect('/users/' + userId)">{{author}}</p>
       <div class="description">
         <p>{{description}}</p>
       </div>

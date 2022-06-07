@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -38,8 +39,10 @@ public class LikeService {
         return likeDto;
     }
 
-    public void delete(Integer likeId) {
-        this.likeRepository.deleteById(likeId);
+    public void delete(Integer storyId, Integer userId) {
+        Story story = this.storyRepository.findById(storyId).get();
+        User user = this.userRepository.findById(userId).get();
+        this.likeRepository.deleteByUserAndStory(user, story);
     }
 
     public LikeDto getAll(Integer storyId, String email) {
@@ -53,5 +56,12 @@ public class LikeService {
                 .build();
 
         return likeDto;
+    }
+
+    public boolean isLiked(Integer storyId, Integer userId) {
+        Story story = this.storyRepository.findById(storyId).get();
+        User user = this.userRepository.findById(userId).get();
+
+        return this.likeRepository.findFirstByUserAndStory(user, story).isPresent();
     }
 }

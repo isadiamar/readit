@@ -1,0 +1,30 @@
+.wrap{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  align-items: center;
+  align-content: center;
+}
+
+.profile-wrap{
+  display: flex;
+  justify-content: center;
+  min-height: 80vh;
+  width: 100%;
+}
+
+.profile{
+  display: flex;
+  margin-top: 2rem;
+  width: 70%;
+}
+
+.stories{
+  min-height: 80vh;
+  width: 75%;
+}
+
+.header{
+  width: 100%;
+}
