@@ -1,6 +1,6 @@
 <div class="wrapper" *ngFor="let comment of comments">
   <mat-card class="card">
-    <div class="delete" *ngIf="isActiveUser" (click)="delete(comment.id!)">
+    <div class="delete" *ngIf="userId == comment.userId" (click)="delete(comment.id!)">
         <mat-icon >delete_outline</mat-icon>
     </div>
     <mat-card-title class="card-header">
