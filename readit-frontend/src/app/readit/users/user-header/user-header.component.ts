@@ -26,9 +26,11 @@ export class UserHeaderComponent implements OnInit {
     this.userId = this.activeRouter.snapshot.paramMap.get('id')!;
     this.activeUser = this.authService.getAuthenticatedUserId() == +this.userId;
 
-    this.userService.get(+this.userId).subscribe(res =>{
-      this.nickname = res.nickname;
-    })
+    if(this.userId) {
+      this.userService.get(+this.userId).subscribe(res =>{
+        this.nickname = res.nickname;
+      })
+    }
 
   }
 

@@ -35,4 +35,9 @@ public class UserController {
     public UserDto get(@RequestParam Integer id){
         return this.userService.get(id);
     }
+
+    @GetMapping("/isStoryFromUser")
+    public boolean isStoryFromUser(@RequestParam Integer userId, @RequestParam Integer storyId){
+        return this.userService.isStoryFromUser(userId, storyId);
+    }
 }

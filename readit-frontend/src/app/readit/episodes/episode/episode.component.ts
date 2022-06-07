@@ -3,7 +3,6 @@ import {EpisodeService} from "../../shared/services/episode.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PDFDocumentProxy, PdfViewerComponent} from "ng2-pdf-viewer";
 import {StoryService} from "../../shared/services/story.service";
-import {AuthService} from "../../../core/auth.service";
 
 @Component({
   selector: 'app-episode',
@@ -17,14 +16,13 @@ export class EpisodeComponent implements OnInit {
 
   story_name:string;
   episode_name:string;
-
+  numberEpisode:number;
   openComments:boolean = false;
 
   constructor(private  episodeService:EpisodeService,
               private storyService:StoryService,
               private activeRoute:ActivatedRoute,
-              private router:Router,
-              private authService:AuthService) { }
+              private router:Router) { }
 
   ngOnInit(): void {
     this.story_id = this.activeRoute.snapshot.paramMap.get('story_id')!;
@@ -36,6 +34,7 @@ export class EpisodeComponent implements OnInit {
     this.episodeService.get(+this.story_id, +this.episode_id).subscribe(res =>{
      this.pdfSrc = res.pdf ? res.pdf : "";
      this.episode_name = res.title;
+     this.numberEpisode = res.numberEpisode;
     })
   }
 
@@ -47,15 +46,16 @@ export class EpisodeComponent implements OnInit {
   }
 
   nextEpisode() {
+    //num episode + 1 - busar episodio por numbero de episodio y por historia
     console.log('NEXT')
   }
 
   previousEpisode() {
+    //num episode -1 - busar episodio por numbero de episodio y por historia
     console.log('PREV')
   }
 
   showComments() {
-    console.log('COMMENTS')
     this.openComments = !this.openComments;
   }
 

@@ -53,4 +53,16 @@ public class UserService {
     public UserDto get(Integer id) {
         return this.userRepository.findById(id).map(User::toUserDto).orElseThrow(() -> new NotFoundException("User not found"));
     }
+
+    public boolean isStoryFromUser(Integer userId, Integer storyId) {
+        boolean res = false;
+        List<Story> storyList =  this.userRepository.findById(userId).map(User::getStoryList).get();
+        for (Story story: storyList){
+            if (story.getId().equals(storyId)) {
+                res = true;
+                break;
+            }
+        }
+        return res;
+    }
 }
