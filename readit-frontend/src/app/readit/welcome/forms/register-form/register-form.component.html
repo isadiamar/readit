@@ -4,34 +4,38 @@
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Username</mat-label>
-        <input formControlName="username" matInput placeholder="username" required type="text" ngModel="user">
+        <input formControlName="username" matInput ngModel="user" placeholder="username" required type="text">
       </mat-form-field>
     </div>
 
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input formControlName="email" matInput placeholder="email@email.com" required type="email" ngModel="user@user.com">
+        <input formControlName="email" matInput ngModel="user@user.com" placeholder="email@email.com" required
+               type="email">
       </mat-form-field>
     </div>
 
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input formControlName="password" matInput placeholder="password" required type="password" ngModel="user!Password1">
+        <input formControlName="password" matInput ngModel="user!Password1" placeholder="password" required
+               type="password">
       </mat-form-field>
     </div>
-    <p  class="sub" *ngIf = "errorMsg">The password must be at least eight characters including one uppercase letter, one lowercase letter, and one number or special character.</p>
+    <p *ngIf="errorMsg" class="sub">The password must be at least eight characters including one uppercase letter, one
+      lowercase letter, and one number or special character.</p>
 
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Repeat password</mat-label>
-        <input formControlName="confirmPassword" matInput placeholder="password" required type="password" ngModel="user!Password1">
+        <input formControlName="confirmPassword" matInput ngModel="user!Password1" placeholder="password" required
+               type="password">
       </mat-form-field>
     </div>
 
     <div class="actions">
-      <button mat-flat-button color="accent" (click)="submit()" [disabled]="submitDisabled" type="button">
+      <button (click)="submit()" [disabled]="submitDisabled" color="accent" mat-flat-button type="button">
         Sign up
       </button>
     </div>

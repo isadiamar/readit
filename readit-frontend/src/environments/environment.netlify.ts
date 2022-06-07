@@ -5,7 +5,7 @@
 
 export const environment = {
   production: false,
-  REST_CORE:'https://ri-readit-app.herokuapp.com'
+  REST_CORE: 'https://ri-readit-app.herokuapp.com'
 };
 
 /*

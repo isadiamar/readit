@@ -1,35 +1,35 @@
-<div class = "wrap">
+<div class="wrap">
   <div class="story">
-    <div class="header" [ngStyle]="{'background-color': color}">
+    <div [ngStyle]="{'background-color': color}" class="header">
       <div class="genres header-info">
         <p>{{genre1}}</p>
         <p>|</p>
         <p>{{genre2}}</p>
       </div>
-        <div class="favorite">
-          <mat-icon *ngIf="!isFavorite" (click)="setFavorite()">favorite_border</mat-icon>
-          <mat-icon *ngIf="isFavorite" (click)="setFavorite()">favorite</mat-icon>
-          <div class="likes">
-            <p>{{likes}}</p>
-          </div>
+      <div class="favorite">
+        <mat-icon (click)="setFavorite()" *ngIf="!isFavorite">favorite_border</mat-icon>
+        <mat-icon (click)="setFavorite()" *ngIf="isFavorite">favorite</mat-icon>
+        <div class="likes">
+          <p>{{likes}}</p>
         </div>
+      </div>
     </div>
     <div class="episodes">
-      <app-episode-cover [cover] = cover></app-episode-cover>
+      <app-episode-cover [cover]=cover></app-episode-cover>
     </div>
   </div>
   <div class="story-info">
     <div class="status">
-      <mat-icon *ngIf="activeUser" (click)="redirect('stories/' + id + '/episodes/new')">add</mat-icon>
-      <mat-icon id="edit" *ngIf="activeUser" (click)="update()">edit</mat-icon>
+      <mat-icon (click)="redirect('stories/' + id + '/episodes/new')" *ngIf="activeUser">add</mat-icon>
+      <mat-icon (click)="update()" *ngIf="activeUser" id="edit">edit</mat-icon>
       <p>Status: {{status}}</p>
     </div>
     <div class="info">
       <p class="title">{{title}}</p>
-      <div class="cover" >
+      <div class="cover">
         <img [src]="cover" alt="cover">
       </div>
-      <p class="author" (click)="redirect('/users/' + userId)">{{author}}</p>
+      <p (click)="redirect('/users/' + userId)" class="author">{{author}}</p>
       <div class="description">
         <p>{{description}}</p>
       </div>

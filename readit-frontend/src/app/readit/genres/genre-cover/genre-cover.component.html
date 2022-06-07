@@ -1,12 +1,12 @@
 <div class="stories">
-  <div class="cover" *ngFor="let story of stories" (click)="open(story)">
+  <div (click)="open(story)" *ngFor="let story of stories" class="cover">
     <div class="img">
-      <img  src = "{{story.cover ? story.cover : '../../../../assets/img/cover-story.png '}}" alt="cover"/>
+      <img alt="cover" src="{{story.cover ? story.cover : '../../../../assets/img/cover-story.png '}}"/>
       <div class="likes">
         <mat-icon>favorite</mat-icon>
         {{story.numberLikes}}
       </div>
-      <div class="label" *ngIf="title">
+      <div *ngIf="title" class="label">
         <p>{{story.title}}</p>
       </div>
     </div>

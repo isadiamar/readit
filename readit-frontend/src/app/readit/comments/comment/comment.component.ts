@@ -10,16 +10,17 @@ import {AuthService} from "../../../core/auth.service";
   templateUrl: './comment.component.html',
   styleUrls: ['./comment.component.css']
 })
-export class CommentComponent implements OnInit , OnDestroy{
+export class CommentComponent implements OnInit, OnDestroy {
 
-  comments:Comment[] = [];
-  episode_id:string;
+  comments: Comment[] = [];
+  episode_id: string;
   isActiveUser: boolean = true;
 
-  userId:number;
-  subscriber:Subscription;
+  userId: number;
+  subscriber: Subscription;
 
-  constructor(private commentService:CommentService, private activatedRoute:ActivatedRoute, private authService:AuthService) { }
+  constructor(private commentService: CommentService, private activatedRoute: ActivatedRoute, private authService: AuthService) {
+  }
 
   ngOnInit(): void {
     let storyId = this.activatedRoute.snapshot.paramMap.get('story_id')!;
@@ -28,8 +29,8 @@ export class CommentComponent implements OnInit , OnDestroy{
 
     console.log("activeUser - ", this.userId)
     this.commentService.getAll(+this.episode_id).subscribe(comments => {
-        this.comments = comments;
-        console.log(comments)
+      this.comments = comments;
+      console.log(comments)
     });
 
     this.subscriber = this.commentService.episodeCommentsUpdate.subscribe(() => {
@@ -43,7 +44,7 @@ export class CommentComponent implements OnInit , OnDestroy{
     this.subscriber.unsubscribe();
   }
 
-  delete(id:number) {
+  delete(id: number) {
     this.commentService.delete(id).subscribe(_ => this.commentService.episodeCommentsUpdate.next(),
     )
   }

@@ -8,21 +8,23 @@ export class DndDirective {
   @Output() fileDropped = new EventEmitter<any>();
 
   // Dragover listener
-  @HostListener('dragover', ['$event']) onDragOver(evt:any) {
+  @HostListener('dragover', ['$event']) onDragOver(evt: any) {
     evt.preventDefault();
     evt.stopPropagation();
     this.fileOver = true;
   }
 
   // Dragleave listener
-  @HostListener('dragleave', ['$event']) public onDragLeave(evt:any) {
+  @HostListener('dragleave', ['$event'])
+  public onDragLeave(evt: any) {
     evt.preventDefault();
     evt.stopPropagation();
     this.fileOver = false;
   }
 
   // Drop listener
-  @HostListener('drop', ['$event']) public ondrop(evt:any) {
+  @HostListener('drop', ['$event'])
+  public ondrop(evt: any) {
     evt.preventDefault();
     evt.stopPropagation();
     this.fileOver = false;

@@ -8,7 +8,7 @@ import {TokenInterceptor} from "./token.interceptor";
     CommonModule,
     HttpClientModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
 })
 export class CoreModule {
 }

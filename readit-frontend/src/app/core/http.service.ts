@@ -9,7 +9,7 @@ import {Error} from "./error.model";
   providedIn: 'root',
 })
 
-export class HttpService{
+export class HttpService {
   static CONNECTION_REFUSE = 0;
   static UNAUTHORIZED = 401;
 
@@ -19,7 +19,7 @@ export class HttpService{
   private successfulNotification = undefined;
   private errorNotification = undefined;
 
-  constructor(private http: HttpClient, private snackBar: MatSnackBar, private router:Router) {
+  constructor(private http: HttpClient, private snackBar: MatSnackBar, private router: Router) {
 
   }
 
@@ -101,7 +101,7 @@ export class HttpService{
     return options;
   }
 
-  private extractData(response:any): any {
+  private extractData(response: any): any {
     if (this.successfulNotification) {
       this.snackBar.open(this.successfulNotification, '', {
         duration: 2000
@@ -130,7 +130,7 @@ export class HttpService{
     }
   }
 
-  private handleError(response:any): any {
+  private handleError(response: any): any {
     let error: Error;
     if (response.status === HttpService.UNAUTHORIZED) {
       this.showError('Unauthorized');

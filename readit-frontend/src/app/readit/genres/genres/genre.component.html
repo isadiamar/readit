@@ -1,24 +1,25 @@
 <section class="wrapForm">
   <nav class="nav-wrap">
     <div class="nav">
-      <button *ngFor="let genre of genres" mat-button (click)="searchByGenre(genre)" [ngClass] ="{'selected':(selectedGenre === genre)}">{{genre}}</button>
-      <button mat-flat-button color="accent" [matMenuTriggerFor]="filter">
+      <button (click)="searchByGenre(genre)" *ngFor="let genre of genres" [ngClass]="{'selected':(selectedGenre === genre)}"
+              mat-button>{{genre}}</button>
+      <button [matMenuTriggerFor]="filter" color="accent" mat-flat-button>
         Filter by
       </button>
       <mat-menu #filter="matMenu">
-        <button mat-menu-item [mat-menu-trigger-for]="statusMenu">Status</button>
-        <button mat-menu-item (click)="sortByPopularity()">Popularity</button>
+        <button [mat-menu-trigger-for]="statusMenu" mat-menu-item>Status</button>
+        <button (click)="sortByPopularity()" mat-menu-item>Popularity</button>
       </mat-menu>
 
-      <mat-menu #statusMenu = "matMenu">
-        <button mat-menu-item *ngFor="let state of status" (click)="searchByStatus(state)">{{state}}</button>
+      <mat-menu #statusMenu="matMenu">
+        <button (click)="searchByStatus(state)" *ngFor="let state of status" mat-menu-item>{{state}}</button>
       </mat-menu>
 
     </div>
   </nav>
   <div class="story-wrap">
     <div class="story-list">
-      <app-genre-cover [stories] = "stories" [title]="true"></app-genre-cover>
+      <app-genre-cover [stories]="stories" [title]="true"></app-genre-cover>
     </div>
   </div>
 </section>

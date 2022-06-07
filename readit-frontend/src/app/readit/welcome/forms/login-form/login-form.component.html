@@ -7,19 +7,21 @@
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
-        <input formControlName="email" matInput placeholder="email@email.com" required type="email" ngModel="user@user.com">
+        <input formControlName="email" matInput ngModel="user@user.com" placeholder="email@email.com" required
+               type="email">
       </mat-form-field>
     </div>
 
     <div class="control">
       <mat-form-field appearance="outline">
         <mat-label>Password</mat-label>
-        <input formControlName="password" matInput placeholder="password" required type="password" ngModel="user!Password1">
+        <input formControlName="password" matInput ngModel="user!Password1" placeholder="password" required
+               type="password">
       </mat-form-field>
     </div>
 
     <div class="actions">
-      <button mat-flat-button color="accent" (click)="submit()" [disabled]="submitDisabled">Log in</button>
+      <button (click)="submit()" [disabled]="submitDisabled" color="accent" mat-flat-button>Log in</button>
     </div>
 
     <div class="formLink">

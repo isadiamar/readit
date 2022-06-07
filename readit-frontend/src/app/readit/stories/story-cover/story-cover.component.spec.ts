@@ -8,9 +8,9 @@ describe('StoryCoverComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StoryCoverComponent ]
+      declarations: [StoryCoverComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

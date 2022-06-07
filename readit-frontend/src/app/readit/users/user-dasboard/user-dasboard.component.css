@@ -1,4 +1,4 @@
-.wrap{
+.wrap {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -7,24 +7,24 @@
   align-content: center;
 }
 
-.profile-wrap{
+.profile-wrap {
   display: flex;
   justify-content: center;
   min-height: 80vh;
   width: 100%;
 }
 
-.profile{
+.profile {
   display: flex;
   margin-top: 2rem;
   width: 70%;
 }
 
-.stories{
+.stories {
   min-height: 80vh;
   width: 75%;
 }
 
-.header{
+.header {
   width: 100%;
 }

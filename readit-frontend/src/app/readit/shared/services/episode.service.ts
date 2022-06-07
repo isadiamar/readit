@@ -9,38 +9,39 @@ import {EndPoints} from "../../../shared/end-points";
 })
 export class EpisodeService {
 
-  constructor(private httpService: HttpService) {}
+  constructor(private httpService: HttpService) {
+  }
 
-  create(episode:Episode):Observable<Episode>{
+  create(episode: Episode): Observable<Episode> {
     return this.httpService
       .successful()
       .post(EndPoints.EPISODES + '/new', {...episode})
   }
 
-  get(story_id:number, episode_id:number){
+  get(story_id: number, episode_id: number) {
     return this.httpService
       .successful()
-      .get(EndPoints.EPISODES +'/' + episode_id + '/from/' + story_id)
+      .get(EndPoints.EPISODES + '/' + episode_id + '/from/' + story_id)
   }
 
-  getAll(story_id:number):Observable<Episode[]>{
+  getAll(story_id: number): Observable<Episode[]> {
     return this.httpService
       .get(EndPoints.EPISODES + '?storyId=' + story_id)
   }
 
-  delete(story_id:number, episode_id: number):Observable<void> {
+  delete(story_id: number, episode_id: number): Observable<void> {
     return this.httpService
-      .delete(EndPoints.EPISODES + '?storyId=' + story_id + '&'+ 'episodeId=' + episode_id)
+      .delete(EndPoints.EPISODES + '?storyId=' + story_id + '&' + 'episodeId=' + episode_id)
   }
 
-  update(storyId:number, episode:Episode):Observable<Episode>{
+  update(storyId: number, episode: Episode): Observable<Episode> {
     return this.httpService
       .successful()
-      .put(EndPoints.EPISODES + '?storyId=' + storyId + '&'+ 'episodeId=' + episode.id,  {...episode})
+      .put(EndPoints.EPISODES + '?storyId=' + storyId + '&' + 'episodeId=' + episode.id, {...episode})
   }
 
-  findEpisodeByStoryAndNumberEpisode(storyId:number, numberEpisode:number):Observable<Episode>{
+  findEpisodeByStoryAndNumberEpisode(storyId: number, numberEpisode: number): Observable<Episode> {
     return this.httpService
-      .get(EndPoints.EPISODES + "/numberEpisode?storyId="+storyId+"&numberEpisode="+numberEpisode)
+      .get(EndPoints.EPISODES + "/numberEpisode?storyId=" + storyId + "&numberEpisode=" + numberEpisode)
   }
 }

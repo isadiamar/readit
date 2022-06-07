@@ -1,9 +1,9 @@
-export interface Episode{
-  id?:number,
+export interface Episode {
+  id?: number,
   title: string,
-  pdf:string,
+  pdf: string,
   date?: string,
-  storyId:number,
-  numberEpisode?:number,
-  userId?:number
+  storyId: number,
+  numberEpisode?: number,
+  userId?: number
 }

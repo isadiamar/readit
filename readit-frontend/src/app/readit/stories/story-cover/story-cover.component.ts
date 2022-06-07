@@ -15,20 +15,21 @@ import {AuthService} from "../../../core/auth.service";
 export class StoryCoverComponent implements OnInit {
 
   stories: Story[] = [];
-  isInput:boolean;
+  isInput: boolean;
 
-  @Input() set storiesInput(storiesInput:Story[]){
+  constructor(private storyService: StoryService, private dialog: MatDialog, private route: Router, private authService: AuthService) {
+  }
+
+  @Input() set storiesInput(storiesInput: Story[]) {
     this.isInput = true;
     this.stories = this.updateGenres(storiesInput);
   }
 
-  constructor(private storyService:StoryService, private dialog: MatDialog, private route:Router, private authService:AuthService ) { }
-
   ngOnInit(): void {
-    if(!this.isInput){
-      this.storyService.getAll().subscribe(res =>{
+    if (!this.isInput) {
+      this.storyService.getAll().subscribe(res => {
         this.stories = res;
-        this.stories.forEach(story=>{
+        this.stories.forEach(story => {
           // @ts-ignore
           story.genre1 = Genre[story.genre1]
         })
@@ -38,24 +39,24 @@ export class StoryCoverComponent implements OnInit {
   }
 
   delete(id: number) {
-      this.dialog.open(ConfirmationDialogComponent, {data: {storyId:id, type:'story'}});
+    this.dialog.open(ConfirmationDialogComponent, {data: {storyId: id, type: 'story'}});
   }
 
-  open(id:number) {
-      this.route.navigate(['stories/' + id]);
+  open(id: number) {
+    this.route.navigate(['stories/' + id]);
   }
 
-  redirect(id:number) {
+  redirect(id: number) {
     this.route.navigate(['stories/' + id + '/episodes/new'])
   }
 
-  isActiveUser(story:Story):boolean{
+  isActiveUser(story: Story): boolean {
     return this.authService.getAuthenticatedUserId() === story.userId;
   }
 
-  updateGenres(stories:Story[]):Story[]{
-    if(stories) {
-      for(let i =0; i< stories.length; i++){
+  updateGenres(stories: Story[]): Story[] {
+    if (stories) {
+      for (let i = 0; i < stories.length; i++) {
         // @ts-ignore
         stories[i].genre1 = Genre[stories[i].genre1];
       }

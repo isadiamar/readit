@@ -1,4 +1,4 @@
-describe('ListStories Test', ()=> {
+describe('ListStories Test', () => {
 
   it("Should load", () => {
     // GET STORIES REQUEST

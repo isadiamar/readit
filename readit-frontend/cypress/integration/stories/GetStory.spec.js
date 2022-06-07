@@ -1,16 +1,16 @@
-beforeEach(()=>{
+beforeEach(() => {
   cy.login()
   cy.wait(500)
 
   //CREATE STORIES
   cy.intercept('POST', Cypress.env("API_URL") + '/private/stories/new', {
     statusCode: 200,
-    fixture:'story.json'
+    fixture: 'story.json'
   })
 })
 
-describe('StoryTest',()=>{
-  it('should load',  () => {
+describe('StoryTest', () => {
+  it('should load', () => {
     cy.createStory('Create a new story')
 
     cy.completeStoryForm()
@@ -20,7 +20,7 @@ describe('StoryTest',()=>{
     //GET STORY
     cy.intercept('GET', Cypress.env("API_URL") + '/private/stories/*', {
       statusCode: 200,
-      fixture:'story.json'
+      fixture: 'story.json'
     })
 
     _assertTextExists('Test Title')

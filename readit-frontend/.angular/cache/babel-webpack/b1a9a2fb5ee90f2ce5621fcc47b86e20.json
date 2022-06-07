@@ -1,0 +1,7 @@
+{
+  "ast": null,
+  "code": "import { map } from \"rxjs\";\nimport * as i0 from \"@angular/core\";\nimport * as i1 from \"./http.service\";\nexport let AuthService = /*#__PURE__*/(() => {\n  class AuthService {\n    constructor(httpService) {\n      this.httpService = httpService;\n    }\n\n    login(email, password) {\n      return this.httpService.successful().post(AuthService.REST_BACK + AuthService.LOGIN, {\n        email,\n        password\n      }).pipe(map(res => {\n        localStorage.setItem('token', res.token);\n        return res;\n      }));\n    }\n\n    register(user) {\n      return this.httpService.successful().post(AuthService.REST_BACK + AuthService.REGISTER, Object.assign({}, user)).pipe(map(res => {\n        localStorage.setItem('token', res.token);\n        return res;\n      }));\n    }\n\n    isAuthenticated() {\n      const token = localStorage.getItem(\"token\");\n      return token !== null && token !== undefined && token !== '';\n    }\n\n  }\n\n  AuthService.REST_BACK = \"http://localhost:8080\";\n  AuthService.LOGIN = \"/api/auth/login\";\n  AuthService.REGISTER = \"/api/auth/register\";\n\n  AuthService.ɵfac = function AuthService_Factory(t) {\n    return new (t || AuthService)(i0.ɵɵinject(i1.HttpService));\n  };\n\n  AuthService.ɵprov = /*@__PURE__*/i0.ɵɵdefineInjectable({\n    token: AuthService,\n    factory: AuthService.ɵfac,\n    providedIn: 'root'\n  });\n  return AuthService;\n})();",
+  "map": null,
+  "metadata": {},
+  "sourceType": "module"
+}

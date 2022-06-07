@@ -13,31 +13,32 @@ import {AuthService} from "../../../core/auth.service";
 })
 export class EpisodeCoverComponent implements OnInit {
 
-  @Input() cover:string;
-  activeUser:boolean;
+  @Input() cover: string;
+  activeUser: boolean;
   episodes: Episode[] = [];
-  pathId:string;
+  pathId: string;
 
-  constructor(private episodeService:EpisodeService, private activatedRoute:ActivatedRoute, private router:Router, private dialog: MatDialog, private authService:AuthService) {}
+  constructor(private episodeService: EpisodeService, private activatedRoute: ActivatedRoute, private router: Router, private dialog: MatDialog, private authService: AuthService) {
+  }
 
   ngOnInit(): void {
     this.pathId = this.activatedRoute.snapshot.paramMap.get('id')!;
 
-    this.episodeService.getAll(+this.pathId).subscribe(res =>{
+    this.episodeService.getAll(+this.pathId).subscribe(res => {
       this.episodes = res;
       this.activeUser = this.episodes.length > 0 && this.authService.getAuthenticatedUserId() === this.episodes[0].userId;
     })
   }
 
-  update(id:number) {
-    this.router.navigate(["/stories/"+ this.pathId + "/episodes/edit/"+ id])
+  update(id: number) {
+    this.router.navigate(["/stories/" + this.pathId + "/episodes/edit/" + id])
   }
 
-  delete(id:number) {
-    this.dialog.open(ConfirmationDialogComponent, {data: {storyId:+this.pathId, episodeId:id, type:'episode'}});
+  delete(id: number) {
+    this.dialog.open(ConfirmationDialogComponent, {data: {storyId: +this.pathId, episodeId: id, type: 'episode'}});
   }
 
-  open(id:number) {
-    this.episodeService.get(+this.pathId, id).subscribe(()=> this.router.navigate(['stories/'+this.pathId+'/episodes/'+ id]));
+  open(id: number) {
+    this.episodeService.get(+this.pathId, id).subscribe(() => this.router.navigate(['stories/' + this.pathId + '/episodes/' + id]));
   }
 }

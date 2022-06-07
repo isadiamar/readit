@@ -15,29 +15,30 @@ import {Like} from "../../shared/models/like.model";
 })
 export class StoryComponent implements OnInit {
   isFavorite: boolean = false;
-  title:string;
-  description:string;
-  color:string;
-  status:Status;
-  id:string;
-  author:string | undefined
+  title: string;
+  description: string;
+  color: string;
+  status: Status;
+  id: string;
+  author: string | undefined
   cover: string;
-  genre1:Genre;
-  genre2:Genre;
-  activeUser:boolean;
-  userId:number | undefined;
+  genre1: Genre;
+  genre2: Genre;
+  activeUser: boolean;
+  userId: number | undefined;
 
   stories: Story[] = [];
 
-  likes:number;
+  likes: number;
 
-  constructor(private storyService:StoryService, private route: ActivatedRoute,
-              private router:Router,  private authService:AuthService, private likeService:LikeService) { }
+  constructor(private storyService: StoryService, private route: ActivatedRoute,
+              private router: Router, private authService: AuthService, private likeService: LikeService) {
+  }
 
   ngOnInit(): void {
     this.id = <string>this.route.snapshot.paramMap.get('id')
 
-    this.storyService.get(+this.id).subscribe(res =>{
+    this.storyService.get(+this.id).subscribe(res => {
       this.activeUser = this.authService.getAuthenticatedUserId() === res.userId;
       this.userId = res.userId;
       this.title = res.title
@@ -53,8 +54,8 @@ export class StoryComponent implements OnInit {
       this.genre2 = Genre[res.genre2]
     })
 
-    this.likeService.getAll(+this.id).subscribe(res =>{
-      this.likes = res.numberLikes!
+    this.likeService.getAll(+this.id).subscribe(res => {
+        this.likes = res.numberLikes!
       }
     )
     this.likeService.storyLikesUpdate.subscribe(() => {
@@ -70,25 +71,25 @@ export class StoryComponent implements OnInit {
 
   setFavorite() {
     this.isFavorite = !this.isFavorite;
-    let like:Like = this.createLike();
-    if (this.isFavorite){
+    let like: Like = this.createLike();
+    if (this.isFavorite) {
       this.likeService.create(like).subscribe(res => {
         this.likeService.storyLikesUpdate.next();
       })
-    }else{
+    } else {
       this.likeService.delete(parseInt(this.id), this.authService.getAuthenticatedUserId()).subscribe(_ => this.likeService.storyLikesUpdate.next())
     }
   }
 
   update() {
-    this.router.navigate(['stories/edit/'+ +this.id]).then(r => console.log(r));
-  }
-
-  private createLike(){
-    return {storyId: +this.id}
+    this.router.navigate(['stories/edit/' + +this.id]).then(r => console.log(r));
   }
 
   redirect(route: string) {
     this.router.navigate([route])
+  }
+
+  private createLike() {
+    return {storyId: +this.id}
   }
 }

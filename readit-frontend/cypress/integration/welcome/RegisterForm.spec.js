@@ -1,22 +1,22 @@
-beforeEach(()=>{
+beforeEach(() => {
   //Navigate
   cy.contains("Not register? Do it here").click();
   // Clear inputs
-  for(let i = 0; i < 4; i++){
+  for (let i = 0; i < 4; i++) {
     _getInput(i).clear()
   }
 })
 
-describe('RegisterForm Test', ()=>{
+describe('RegisterForm Test', () => {
   it('Should load', () => {
     cy.get('h1').contains('Sign up here').should('exist')
   })
 
-  it("Submit button should be disabled when inputs are empty", ()=>{
+  it("Submit button should be disabled when inputs are empty", () => {
     cy.get("button").contains('Sign up').parent().should('be.disabled')
   })
 
-  it("Submit button should be disabled when email format is wrong", ()=>{
+  it("Submit button should be disabled when email format is wrong", () => {
     _fillInputsValid()
     let emailInput = _getInput(1)
     emailInput.clear().type('badEmail@bad')
@@ -26,7 +26,7 @@ describe('RegisterForm Test', ()=>{
   it('Should give server error when email is in use', () => {
     cy.intercept('POST', Cypress.env("API_URL") + '/auth/register', {
       statusCode: 400,
-      body: {code: "AU000", error: "BadRequestException", message:"Bad Request Exception. Invalid data input"}
+      body: {code: "AU000", error: "BadRequestException", message: "Bad Request Exception. Invalid data input"}
     })
     _fillInputsValid()
 
@@ -36,7 +36,7 @@ describe('RegisterForm Test', ()=>{
     _assertTextExists('Invalid data input')
   })
 
-  it ('Should REGISTER', ()=>{
+  it('Should REGISTER', () => {
     _fillInputsValid()
     _clickSubmitButton()
     _assertTextExists('USER')
@@ -44,7 +44,7 @@ describe('RegisterForm Test', ()=>{
 })
 
 
-function _getInput(inputNumber){
+function _getInput(inputNumber) {
   return cy.get('input').eq(inputNumber);
 }
 

@@ -36,7 +36,8 @@ export class StoryFormComponent implements OnInit {
       Utils.getEnumKeyByValue(Genre, Genre.COMEDY),
       Utils.getEnumKeyByValue(Privacy, Privacy.PUBLIC),
       Utils.getEnumKeyByValue(Status, Status.IN_PROGRESS),
-      '')  }
+      '')
+  }
 
   ngOnInit(): void {
     this.createForm(

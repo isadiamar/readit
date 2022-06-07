@@ -2,8 +2,8 @@
   <div class="wrappedGeneral">
     <img alt="logo" class="logo" src="../../../assets/img/logo.png">
     <div class="general">
-      <button mat-button (click)="redirect('/read')">READ</button>
-      <button mat-button (click)="redirect('/genres')">GENRES</button>
+      <button (click)="redirect('/read')" mat-button>READ</button>
+      <button (click)="redirect('/genres')" mat-button>GENRES</button>
       <button mat-button>COMMUNITY</button>
     </div>
   </div>
@@ -12,22 +12,22 @@
       <mat-icon>keyboard_arrow_down</mat-icon>
     </button>
     <mat-menu #write="matMenu">
-      <button mat-menu-item (click)="redirect('/stories/new')">
+      <button (click)="redirect('/stories/new')" mat-menu-item>
         <mat-icon>add</mat-icon>
         Create a new story
       </button>
-      <button  mat-menu-item (click)="redirect('stories/dashboard')">
+      <button (click)="redirect('stories/dashboard')" mat-menu-item>
         <mat-icon>folder_open</mat-icon>
         My stories
       </button>
     </mat-menu>
     <button [matMenuTriggerFor]="user" mat-button>USER</button>
     <mat-menu #user="matMenu">
-      <button mat-menu-item (click)="redirect('/users/'+ authenticatedUser)">
+      <button (click)="redirect('/users/'+ authenticatedUser)" mat-menu-item>
         <mat-icon>face</mat-icon>
         Account
       </button>
-      <button mat-menu-item (click)="logout()">
+      <button (click)="logout()" mat-menu-item>
         <mat-icon>power_settings_new</mat-icon>
         Log out
       </button>

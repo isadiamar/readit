@@ -12,71 +12,57 @@ import {UserService} from "../../shared/services/user.service";
   styleUrls: ['./episode-form.component.css']
 })
 export class EpisodeFormComponent implements OnInit {
-  @ViewChild("fileDropRef", { static: false }) fileDropEl: ElementRef;
+  @ViewChild("fileDropRef", {static: false}) fileDropEl: ElementRef;
 
   formNewEpisode: FormGroup;
   submitDisabled: boolean = true;
 
-  fileToUpload:string;
-  showFile:boolean = false;
+  fileToUpload: string;
+  showFile: boolean = false;
   file_name: string;
 
   id: number | undefined;
   file: any;
   pdf: any;
-  storyId:string;
-  episodeId:string;
-  create:boolean;
-  episode:Episode;
+  storyId: string;
+  episodeId: string;
+  create: boolean;
+  episode: Episode;
 
   constructor(
     private formBuilder: FormBuilder,
     private episodeService: EpisodeService,
-    private activeRoute:ActivatedRoute,
-    private router:Router,
-    private authService:AuthService,
-    private userService:UserService
+    private activeRoute: ActivatedRoute,
+    private router: Router,
+    private authService: AuthService,
+    private userService: UserService
   ) {
     this.createForm("")
   }
 
-   ngOnInit() {
-     let userId = this.authService.getAuthenticatedUserId();
-     this.storyId = this.activeRoute.snapshot.paramMap.get('id')!;
-     this.userService.isStoryFromUser(userId, this.storyId).subscribe(res =>{
-       (res) ? this.episodeForm(): this.router.navigate(["/genres"])
-     })
+  ngOnInit() {
+    let userId = this.authService.getAuthenticatedUserId();
+    this.storyId = this.activeRoute.snapshot.paramMap.get('id')!;
+    this.userService.isStoryFromUser(userId, this.storyId).subscribe(res => {
+      (res) ? this.episodeForm() : this.router.navigate(["/genres"])
+    })
   }
 
-  private episodeForm() {
-      if (this.search("new")){
-        this.initCreateEpisode()
-      }else{
-        this.initUpdateEpisode()
-      }
-  }
-
-  initCreateEpisode(){
+  initCreateEpisode() {
     this.createForm("");
-      this.create = true
+    this.create = true
   }
 
-  initUpdateEpisode(){
+  initUpdateEpisode() {
     this.episodeId = this.activeRoute.snapshot.paramMap.get('episode_id')!;
-    this.episodeService.get(+this.storyId, +this.episodeId).subscribe(res=>{
+    this.episodeService.get(+this.storyId, +this.episodeId).subscribe(res => {
       this.createForm(res.title)
       this.episode = res;
     })
     this.create = false
   }
 
-  private checkDisabled() {
-    let title = this.formNewEpisode.controls['title'].value;
-
-    this.submitDisabled = !title || this.formNewEpisode.invalid || !this.file;
-  }
-
-  createForm(title:string){
+  createForm(title: string) {
     this.formNewEpisode = this.formBuilder.group({
       title: new FormControl(title, [Validators.minLength(3)]),
     });
@@ -86,24 +72,24 @@ export class EpisodeFormComponent implements OnInit {
   submit() {
     if (this.formNewEpisode.valid) {
       let episode: Episode = this.createEpisode();
-      console.log( episode)
+      console.log(episode)
       this.episodeService.create(episode).subscribe(
         next => this.id = next.id,
         error => this.clearFields(),
-        ()=> this.router.navigate(['stories/'+this.storyId+'/episodes/'+ this.id])
+        () => this.router.navigate(['stories/' + this.storyId + '/episodes/' + this.id])
       )
       this.clearFields()
     }
   }
 
-  createEpisode():Episode{
-      return {
-        id:(this.create)? undefined : +this.episodeId,
-        title:this.formNewEpisode.controls['title'].value,
-        pdf:this.pdf,
-        storyId:+this.storyId,
-        numberEpisode: (this.create)? undefined : this.episode.numberEpisode
-      }
+  createEpisode(): Episode {
+    return {
+      id: (this.create) ? undefined : +this.episodeId,
+      title: this.formNewEpisode.controls['title'].value,
+      pdf: this.pdf,
+      storyId: +this.storyId,
+      numberEpisode: (this.create) ? undefined : this.episode.numberEpisode
+    }
   }
 
   clearFields() {
@@ -166,24 +152,38 @@ export class EpisodeFormComponent implements OnInit {
   }
 
   deleteFile() {
-      this.file = null;
-      this.checkDisabled()
+    this.file = null;
+    this.checkDisabled()
   }
 
-  search(word:string):boolean{
+  search(word: string): boolean {
     return window.location.toString().includes(word)
   }
 
   edit() {
     if (this.formNewEpisode.valid) {
       let episode: Episode = this.createEpisode();
-      this.episodeService.update(+this.storyId,episode).subscribe(
+      this.episodeService.update(+this.storyId, episode).subscribe(
         next => this.id = next.id,
         error => this.clearFields(),
-        () => this.router.navigate(["stories/" + this.storyId + '/episodes/'+ this.id])
+        () => this.router.navigate(["stories/" + this.storyId + '/episodes/' + this.id])
       );
       this.clearFields()
     }
+  }
+
+  private episodeForm() {
+    if (this.search("new")) {
+      this.initCreateEpisode()
+    } else {
+      this.initUpdateEpisode()
+    }
+  }
+
+  private checkDisabled() {
+    let title = this.formNewEpisode.controls['title'].value;
+
+    this.submitDisabled = !title || this.formNewEpisode.invalid || !this.file;
   }
 
 

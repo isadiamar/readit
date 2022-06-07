@@ -1,0 +1,7 @@
+{
+  "ast": null,
+  "code": "import { environment } from \"../../environments/environment\";\nexport class EndPoints {}\nEndPoints.BASE = environment.REST_CORE + '/api/private';\nEndPoints.STORIES = EndPoints.BASE + '/story';",
+  "map": null,
+  "metadata": {},
+  "sourceType": "module"
+}

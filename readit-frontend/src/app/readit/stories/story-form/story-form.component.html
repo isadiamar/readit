@@ -4,9 +4,10 @@
     <div class="left">
       <div class="vertical cover">
         <p class="title">Story cover image</p>
-        <img *ngIf="image" class="preview-image" [src]="image">
-        <button mat-raised-button color="accent" (click)="uploadFile.click()" >Choose File</button>
-        <input #uploadFile (change)="upload($event)" type='file' style="display:none" accept = "image/jpeg, image/png, image/jpg"/>
+        <img *ngIf="image" [src]="image" class="preview-image">
+        <button (click)="uploadFile.click()" color="accent" mat-raised-button>Choose File</button>
+        <input #uploadFile (change)="upload($event)" accept="image/jpeg, image/png, image/jpg" style="display:none"
+               type='file'/>
       </div>
       <div class="vertical">
         <p class="title">Color</p>
@@ -20,7 +21,7 @@
       <p class="title">Title</p>
       <mat-form-field appearance="outline">
         <mat-label>Title</mat-label>
-        <input id = "title" formControlName="title" matInput type="text">
+        <input formControlName="title" id="title" matInput type="text">
       </mat-form-field>
       <p class="title">Description</p>
       <mat-form-field appearance="outline">
@@ -53,7 +54,8 @@
           <mat-form-field appearance="outline">
             <mat-label>Privacy</mat-label>
             <mat-select [formControlName]="'privacy'">
-              <mat-option *ngFor="let privacy of privacies | enumToArray" [value]="privacy[0]">{{privacy[1]}}</mat-option>
+              <mat-option *ngFor="let privacy of privacies | enumToArray"
+                          [value]="privacy[0]">{{privacy[1]}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -68,8 +70,12 @@
         </div>
       </div>
       <div class="actions">
-        <button *ngIf = "!pathId" mat-flat-button color="accent" (click)="submit()" [disabled] = "submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' ">Create</button>
-        <button *ngIf="pathId" mat-flat-button color="accent" (click)="edit()" [disabled] = "submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' ">Edit</button>
+        <button (click)="submit()" *ngIf="!pathId" [disabled]="submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' " color="accent"
+                mat-flat-button>Create
+        </button>
+        <button (click)="edit()" *ngIf="pathId" [disabled]="submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' " color="accent"
+                mat-flat-button>Edit
+        </button>
       </div>
     </div>
 

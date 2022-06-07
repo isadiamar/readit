@@ -1,4 +1,4 @@
-.stories{
+.stories {
   display: flex;
   justify-content: space-evenly;
   flex-flow: row wrap;
@@ -6,7 +6,7 @@
   height: 100%;
 }
 
-.cover{
+.cover {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -16,7 +16,7 @@
   margin-bottom: 1rem;
 }
 
-.img{
+.img {
   word-wrap: break-word;
   width: 80%;
   height: 100%;
@@ -26,7 +26,7 @@
   left: 0;
 }
 
-.img>img{
+.img > img {
   position: relative;
   top: 0;
   left: 0;
@@ -35,22 +35,22 @@
   object-fit: cover;
 }
 
-.likes{
+.likes {
   display: flex;
   align-items: center;
   position: absolute;
   top: 5px;
   left: 8px;
-  color:red;
+  color: red;
   font-weight: bold;
 }
 
-.likes mat-icon{
+.likes mat-icon {
   font-size: 20px;
   color: red;
 }
 
-.label{
+.label {
   display: flex;
   align-items: center;
   height: 2rem;
@@ -59,7 +59,7 @@
   flex-wrap: wrap;
 }
 
-.label p{
+.label p {
   word-break: break-word;
   font-family: Mako, sans-serif;
   font-weight: bold;

@@ -1,5 +1,5 @@
 <div class="mystories">
-  <div class="title-div" (click)="sendMessage()" [ngClass]="isDashboard ? 'no-cursor' : 'cursor'">
+  <div (click)="sendMessage()" [ngClass]="isDashboard ? 'no-cursor' : 'cursor'" class="title-div">
     <h3 class="title">My Stories</h3>
     <mat-icon *ngIf="!isDashboard">keyboard_arrow_right</mat-icon>
   </div>

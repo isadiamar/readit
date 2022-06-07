@@ -14,39 +14,40 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class GenreComponent implements OnInit {
   genres: Genre[] = [Genre.COMEDY, Genre.ROMANCE, Genre.DRAMA, Genre.HISTORICAL, Genre.HORROR, Genre.SLICE_OF_LIFE, Genre.FANTASY];
-  status:Status[] = [Status.IN_PROGRESS, Status.COMPLETE, Status.DROPPED];
-  selectedGenre:Genre;
-  stories:Story[];
+  status: Status[] = [Status.IN_PROGRESS, Status.COMPLETE, Status.DROPPED];
+  selectedGenre: Genre;
+  stories: Story[];
 
-  subscriber:Subscription;
+  subscriber: Subscription;
 
 
-  constructor(private filterService:FilterService, private route:ActivatedRoute) { }
+  constructor(private filterService: FilterService, private route: ActivatedRoute) {
+  }
 
   ngOnInit(): void {
     let genreMessage = this.route.snapshot.paramMap.get('genre')
-    if(genreMessage){
+    if (genreMessage) {
       // @ts-ignore
       this.selectedGenre = Genre[genreMessage];
-    }else{
+    } else {
       this.selectedGenre = Genre.ROMANCE
     }
-    this.filterService.findByGenre(Utils.getEnumKeyByValue(Genre,this.selectedGenre)).subscribe(stories => {
+    this.filterService.findByGenre(Utils.getEnumKeyByValue(Genre, this.selectedGenre)).subscribe(stories => {
       this.stories = stories;
     });
   }
 
 
-  searchByGenre(genre:Genre) {
+  searchByGenre(genre: Genre) {
     this.selectedGenre = genre;
-    this.filterService.findByGenre(Utils.getEnumKeyByValue(Genre,this.selectedGenre)).subscribe(stories => {
+    this.filterService.findByGenre(Utils.getEnumKeyByValue(Genre, this.selectedGenre)).subscribe(stories => {
       this.stories = stories;
     });
   }
 
-  searchByStatus(status: string){
+  searchByStatus(status: string) {
     this.filterService
-      .findByGenreAndStatus(Utils.getEnumKeyByValue(Genre,this.selectedGenre), Utils.getEnumKeyByValue(Status,status))
+      .findByGenreAndStatus(Utils.getEnumKeyByValue(Genre, this.selectedGenre), Utils.getEnumKeyByValue(Status, status))
       .subscribe(stories => {
         this.stories = stories;
       })
@@ -54,7 +55,7 @@ export class GenreComponent implements OnInit {
 
   sortByPopularity() {
     this.filterService
-      .sortByPopularity(Utils.getEnumKeyByValue(Genre,this.selectedGenre))
+      .sortByPopularity(Utils.getEnumKeyByValue(Genre, this.selectedGenre))
       .subscribe(stories => {
         this.stories = stories;
       })

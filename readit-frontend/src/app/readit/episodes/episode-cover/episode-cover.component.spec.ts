@@ -8,9 +8,9 @@ describe('EpisodeCoverComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EpisodeCoverComponent ]
+      declarations: [EpisodeCoverComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

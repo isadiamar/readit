@@ -1,4 +1,4 @@
-.wrapForm{
+.wrapForm {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -8,7 +8,7 @@
   align-content: center;
 }
 
-form{
+form {
   display: flex;
   width: 70%;
   flex-direction: row;
@@ -16,37 +16,38 @@ form{
   margin-top: 2rem;
 }
 
-.right{
+.right {
   display: flex;
   flex-direction: column;
   width: 70%;
   margin-left: 5rem;
 }
 
-.left{
+.left {
   display: flex;
   flex-direction: column;
   width: 25%;
   margin-right: 3rem;
 }
 
-.cover{
+.cover {
   margin-bottom: 1rem;
 }
 
-.horizontal{
+.horizontal {
   width: 100%;
   display: flex;
   flex-direction: row;
   align-content: space-evenly;
 }
 
-.vertical{
+.vertical {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
-.first{
+
+.first {
   margin-right: 5rem;
 }
 
@@ -69,22 +70,22 @@ form{
   border: 1px solid #989696;
 }
 
-.title{
+.title {
   font-weight: bold;
   text-transform: uppercase;
-  font-family: Roboto,sans-serif;
+  font-family: Roboto, sans-serif;
   letter-spacing: 1px;
   margin-left: 5px;
 }
 
-.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent{
+.mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
   background-color: #14AF23;
 }
 
-.disabled{
-  background-color: rgba(0,0,0,.12) !important;
+.disabled {
+  background-color: rgba(0, 0, 0, .12) !important;
 }
 
-.preview-image{
+.preview-image {
   margin-bottom: 0.5rem;
 }

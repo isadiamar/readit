@@ -11,18 +11,20 @@ import {Subscription} from "rxjs";
 })
 export class DescriptionComponent implements OnInit, OnDestroy {
 
-  description:string | undefined;
+  description: string | undefined;
   subscription: Subscription;
 
-  userId:string;
-  constructor(private userService:UserService, private activateRoute:ActivatedRoute, private dataService:DataService) { }
+  userId: string;
+
+  constructor(private userService: UserService, private activateRoute: ActivatedRoute, private dataService: DataService) {
+  }
 
   ngOnInit(): void {
     this.userId = this.activateRoute.snapshot.paramMap.get('id')!;
 
     this.subscription = this.dataService.descriptionMessage.subscribe(description => this.description = description);
 
-    if(this.userId) {
+    if (this.userId) {
       this.userService.get(+this.userId).subscribe(res => {
         this.description = res.description;
       })
