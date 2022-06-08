@@ -44,7 +44,6 @@ export class EpisodeComponent implements OnInit {
     this.storyService.getSize(+this.story_id).subscribe(res => {
       this.size = res;
     });
-
   }
 
   initLoadCompleted(pdf: PDFDocumentProxy): void {

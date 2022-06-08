@@ -30,11 +30,13 @@ export class EpisodeCoverComponent implements OnInit {
     })
   }
 
-  update(id: number) {
+  update($event: MouseEvent,id: number) {
+    $event.stopPropagation()
     this.router.navigate(["/stories/" + this.pathId + "/episodes/edit/" + id])
   }
 
-  delete(id: number) {
+  delete($event: MouseEvent, id: number) {
+    $event.stopPropagation()
     this.dialog.open(ConfirmationDialogComponent, {data: {storyId: +this.pathId, episodeId: id, type: 'episode'}});
   }
 

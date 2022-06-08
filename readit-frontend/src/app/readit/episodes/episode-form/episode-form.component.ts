@@ -72,7 +72,6 @@ export class EpisodeFormComponent implements OnInit {
   submit() {
     if (this.formNewEpisode.valid) {
       let episode: Episode = this.createEpisode();
-      console.log(episode)
       this.episodeService.create(episode).subscribe(
         next => this.id = next.id,
         error => this.clearFields(),

@@ -11,6 +11,9 @@
     <textarea formControlName="description" matInput placeholder="Ex. It makes me feel..."></textarea>
   </mat-form-field>
   <div class="actions">
-    <button (click)="submit()" [disabled]="submitDisabled" color="accent" mat-flat-button>Edit</button>
+    <div class="actions-btn">
+      <button cdkFocusInitial mat-dialog-close mat-flat-button>Cancel</button>
+      <button (click)="submit()" [disabled]="submitDisabled" color="accent" mat-flat-button>Edit</button>
+    </div>
   </div>
 </form>

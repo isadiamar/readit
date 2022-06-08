@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../../shared/services/user.service";
 import {User} from "../../shared/models/user.model";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-user-form',
@@ -15,18 +16,32 @@ export class UserFormComponent implements OnInit {
   submitDisabled: boolean = true;
 
   userId: string;
+  nickname:string;
+  description:string | undefined;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<UserFormComponent>, private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<UserFormComponent>,
+              private formBuilder: FormBuilder, private userService: UserService, private activatedRouter:ActivatedRoute) {
+
+    this.userForm = this.formBuilder.group({
+      nickname: new FormControl(this.nickname, [Validators.required]),
+      description: new FormControl(this.description, [Validators.maxLength(400)])
+    });
   }
 
   ngOnInit(): void {
-    this.userForm = this.formBuilder.group({
-      nickname: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.maxLength(400)])
-    });
-    this.userForm.valueChanges.subscribe(_ => {
-      this.checkDisabled();
-    });
+    this.userService.get(+this.data.userId).subscribe(res=>{
+      this.nickname = res.nickname!;
+      this.description = res.description;
+      this.userForm = this.formBuilder.group({
+        nickname: new FormControl(this.nickname, [Validators.required]),
+        description: new FormControl(this.description, [Validators.maxLength(400)])
+      });
+      this.userForm.valueChanges.subscribe(_ => {
+        this.checkDisabled();
+      });
+    })
+
+
   }
 
   checkDisabled(): void {

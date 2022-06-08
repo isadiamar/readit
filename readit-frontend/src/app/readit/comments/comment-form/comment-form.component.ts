@@ -35,7 +35,7 @@ export class CommentFormComponent implements OnInit {
       this.commentService.create(comment).subscribe(
         next => this.commentService.episodeCommentsUpdate.next(),
         error => this.clearFields(),
-        () => console.log("get all")
+        () => console.log("ok")
       )
       this.clearFields()
     }
