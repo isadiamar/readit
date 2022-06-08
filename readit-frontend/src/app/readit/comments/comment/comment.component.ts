@@ -30,7 +30,6 @@ export class CommentComponent implements OnInit, OnDestroy {
     console.log("activeUser - ", this.userId)
     this.commentService.getAll(+this.episode_id).subscribe(comments => {
       this.comments = comments;
-      console.log(comments)
     });
 
     this.subscriber = this.commentService.episodeCommentsUpdate.subscribe(() => {
