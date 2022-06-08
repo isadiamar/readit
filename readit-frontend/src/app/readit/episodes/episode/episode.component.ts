@@ -61,7 +61,6 @@ export class EpisodeComponent implements OnInit {
   }
 
   getEpisode(numberEpisode: number) {
-    console.log(numberEpisode)
     this.episodeService.findEpisodeByStoryAndNumberEpisode(+this.story_id, this.numberEpisode).subscribe(res => {
       this.pdfSrc = res.pdf ? res.pdf : "";
       this.episode_name = res.title;

@@ -27,7 +27,6 @@ export class CommentComponent implements OnInit, OnDestroy {
     this.episode_id = this.activatedRoute.snapshot.paramMap.get('episode_id')!;
     this.userId = this.authService.getAuthenticatedUserId();
 
-    console.log("activeUser - ", this.userId)
     this.commentService.getAll(+this.episode_id).subscribe(comments => {
       this.comments = comments;
     });
