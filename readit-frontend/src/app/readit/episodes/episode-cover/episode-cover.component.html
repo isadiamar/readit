@@ -13,8 +13,8 @@
       </div>
     </div>
     <div *ngIf="activeUser" class="tools">
-      <mat-icon (click)="update(episode.id!)">edit</mat-icon>
-      <mat-icon (click)="delete(episode.id!)">delete</mat-icon>
+      <mat-icon (click)="update($event, episode.id!)">edit</mat-icon>
+      <mat-icon (click)="delete($event, episode.id!)">delete</mat-icon>
     </div>
   </mat-list-item>
   <mat-divider></mat-divider>

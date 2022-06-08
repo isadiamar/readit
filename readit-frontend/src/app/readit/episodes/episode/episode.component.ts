@@ -39,13 +39,10 @@ export class EpisodeComponent implements OnInit {
       this.pdfSrc = res.pdf ? res.pdf : "";
       this.episode_name = res.title;
       this.numberEpisode = res.numberEpisode;
-
-      console.log(res)
     });
 
     this.storyService.getSize(+this.story_id).subscribe(res => {
       this.size = res;
-      console.log(res)
     });
   }
 
