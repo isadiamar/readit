@@ -9,7 +9,11 @@
           <input formControlName="title" id="title" matInput type="text">
         </mat-form-field>
       </div>
-      <p class="title" style="margin-top: 1rem;">Upload Chapter</p>
+      <div style="display: flex; width: 85%; justify-content: space-between">
+        <p class="title" style="margin-top: 1rem;">Upload Chapter</p>
+        <p class="subtitle" style="margin-top: 1rem;">Only pdf available</p>
+      </div>
+
       <div (fileDropped)="onFileDropped($event)" appDnd class="container">
         <input #fileDropRef (change)="fileBrowseHandler($event)" id="fileDropRef" type="file"/>
         <p>Drag and drop file here</p>
@@ -31,7 +35,6 @@
           </div>
         </div>
       </div>
-
       <div class="actions">
         <button (click)="submit()" *ngIf="create" [disabled]="submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' "
                 color="accent" mat-flat-button>POST EPISODE

@@ -86,7 +86,6 @@ form {
   color: white;
 }
 
-
 .mat-flat-button.mat-accent, .mat-raised-button.mat-accent, .mat-fab.mat-accent, .mat-mini-fab.mat-accent {
   background-color: #14AF23;
 }
@@ -158,6 +157,12 @@ form {
   width: 100%
 }
 
+.subtitle{
+  font-weight: bold;
+  color:#989696;
+  font-family: Roboto, sans-serif;
+  margin-left: 1rem;
+}
 
 @keyframes shake {
   0% {

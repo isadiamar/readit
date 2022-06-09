@@ -40,8 +40,6 @@ export class UserFormComponent implements OnInit {
         this.checkDisabled();
       });
     })
-
-
   }
 
   checkDisabled(): void {
