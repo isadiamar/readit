@@ -23,6 +23,5 @@ export class ConfirmationDialogComponent {
     } else if (this.data.type == 'episode') {
       this.episodeServoce.delete(this.data.storyId, this.data.episodeId!).subscribe(() => window.location.reload())
     }
-
   }
 }
