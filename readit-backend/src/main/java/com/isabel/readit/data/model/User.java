@@ -28,7 +28,7 @@ public class User {
     private String email;
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-    @Column(columnDefinition="text")
+    @Column(columnDefinition = "text")
     private String description;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)

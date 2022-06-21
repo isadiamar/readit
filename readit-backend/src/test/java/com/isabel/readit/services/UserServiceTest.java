@@ -3,12 +3,13 @@ package com.isabel.readit.services;
 import com.isabel.readit.api.dtos.UserDto;
 import com.isabel.readit.data.daos.StoryRepository;
 import com.isabel.readit.data.daos.UserRepository;
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -21,16 +22,16 @@ public class UserServiceTest {
     private StoryRepository storyRepository;
 
     @Test
-    void testIsStoryFromUser(){
+    void testIsStoryFromUser() {
         Integer userId = this.userRepository.findByEmail("1@email.com").get().getId();
         Integer storyId = this.storyRepository.findByTitle("Title1").get().getId();
 
-        boolean res = this.userService.isStoryFromUser(userId,storyId);
+        boolean res = this.userService.isStoryFromUser(userId, storyId);
         assertTrue(res);
     }
 
     @Test
-    void testGetUser(){
+    void testGetUser() {
         Integer userId = this.userRepository.findByEmail("1@email.com").get().getId();
 
         UserDto userDto = this.userService.get(userId);

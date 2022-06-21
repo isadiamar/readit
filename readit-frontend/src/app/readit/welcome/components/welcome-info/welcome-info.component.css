@@ -29,8 +29,8 @@
   margin-bottom: 5rem;
 }
 
-.content > p{
-  font-family: Quicksand,sans-serif;
+.content > p {
+  font-family: Quicksand, sans-serif;
   font-weight: bold;
   font-size: 16px;
 }
@@ -60,7 +60,7 @@
   padding: 0.5rem;
 }
 
-.info p:hover{
+.info p:hover {
   color: #D44171;
 }
 
@@ -92,6 +92,6 @@
   transition: transform .2s; /* Animation */
 }
 
-.circle:hover{
+.circle:hover {
   transform: scale(0.8);
 }

@@ -16,11 +16,11 @@ export class UserFormComponent implements OnInit {
   submitDisabled: boolean = true;
 
   userId: string;
-  nickname:string;
-  description:string | undefined;
+  nickname: string;
+  description: string | undefined;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<UserFormComponent>,
-              private formBuilder: FormBuilder, private userService: UserService, private activatedRouter:ActivatedRoute) {
+              private formBuilder: FormBuilder, private userService: UserService, private activatedRouter: ActivatedRoute) {
 
     this.userForm = this.formBuilder.group({
       nickname: new FormControl(this.nickname, [Validators.required]),
@@ -29,7 +29,7 @@ export class UserFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.get(+this.data.userId).subscribe(res=>{
+    this.userService.get(+this.data.userId).subscribe(res => {
       this.nickname = res.nickname!;
       this.description = res.description;
       this.userForm = this.formBuilder.group({
