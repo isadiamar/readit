@@ -64,7 +64,7 @@ import {UserService} from "./shared/services/user.service";
     DescriptionComponent,
     UserDasboardComponent,
     UserHeaderComponent,
-    UserFormComponent,
+    UserFormComponent
   ],
   entryComponents: [],
   imports: [

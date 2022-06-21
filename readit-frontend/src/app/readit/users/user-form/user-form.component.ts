@@ -24,7 +24,7 @@ export class UserFormComponent implements OnInit {
 
     this.userForm = this.formBuilder.group({
       nickname: new FormControl(this.nickname, [Validators.required]),
-      description: new FormControl(this.description, [Validators.maxLength(400)])
+      description: new FormControl(this.description, [Validators.maxLength(500)])
     });
   }
 
@@ -34,7 +34,7 @@ export class UserFormComponent implements OnInit {
       this.description = res.description;
       this.userForm = this.formBuilder.group({
         nickname: new FormControl(this.nickname, [Validators.required]),
-        description: new FormControl(this.description, [Validators.maxLength(400)])
+        description: new FormControl(this.description, [Validators.maxLength(500)])
       });
       this.userForm.valueChanges.subscribe(_ => {
         this.checkDisabled();

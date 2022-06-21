@@ -105,6 +105,7 @@ export class EpisodeFormComponent implements OnInit {
 
   fileBrowseHandler(event: any) {
     this.file = event.target.files[0];
+    console.log(this.file)
     this.prepareFilesList(this.file);
   }
 

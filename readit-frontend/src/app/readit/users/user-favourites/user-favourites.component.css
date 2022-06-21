@@ -9,12 +9,12 @@
   align-items: center;
   height: 15%;
   flex-direction: row;
-  margin-left: .5rem;
+  margin-left: 0.5rem;
 }
 
 .title-div h3 {
   margin-right: 1rem;
-  margin-top: .8rem;
+  margin-top: 0.8rem;
 }
 
 .story-list {

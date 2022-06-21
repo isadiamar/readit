@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: center;
   margin-top: 1rem;
-
 }
 
 .card {
@@ -37,13 +36,13 @@
   font-family: Mako, sans-serif;
   font-size: 13px;
   font-weight: bold;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .normal {
   font-family: Mako, sans-serif;
   font-size: 13px;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .card-content {
@@ -56,7 +55,7 @@
   display: flex;
   align-items: center;
   justify-content: end;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 .delete mat-icon {
