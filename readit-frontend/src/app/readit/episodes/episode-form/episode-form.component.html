@@ -36,10 +36,12 @@
         </div>
       </div>
       <div class="actions">
-        <button (click)="submit()" *ngIf="create" [disabled]="submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' "
+        <button (click)="submit()" *ngIf="create" [disabled]="submitDisabled"
+                [ngClass]="submitDisabled? 'disabled' : '' "
                 color="accent" mat-flat-button>POST EPISODE
         </button>
-        <button (click)="edit()" *ngIf="!create" [disabled]="submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' "
+        <button (click)="edit()" *ngIf="!create" [disabled]="submitDisabled"
+                [ngClass]="submitDisabled? 'disabled' : '' "
                 color="accent" mat-flat-button>EDIT EPISODE
         </button>
       </div>

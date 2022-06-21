@@ -30,7 +30,7 @@ export class EpisodeCoverComponent implements OnInit {
     })
   }
 
-  update($event: MouseEvent,id: number) {
+  update($event: MouseEvent, id: number) {
     $event.stopPropagation()
     this.router.navigate(["/stories/" + this.pathId + "/episodes/edit/" + id])
   }

@@ -1,7 +1,8 @@
 <section class="wrapForm">
   <nav class="nav-wrap">
     <div class="nav">
-      <button (click)="searchByGenre(genre)" *ngFor="let genre of genres" [ngClass]="{'selected':(selectedGenre === genre)}"
+      <button (click)="searchByGenre(genre)" *ngFor="let genre of genres"
+              [ngClass]="{'selected':(selectedGenre === genre)}"
               mat-button>{{genre}}</button>
       <button [matMenuTriggerFor]="filter" color="accent" mat-flat-button>
         Filter by

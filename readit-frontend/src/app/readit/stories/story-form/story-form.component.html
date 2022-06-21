@@ -70,10 +70,12 @@
         </div>
       </div>
       <div class="actions">
-        <button (click)="submit()" *ngIf="!pathId" [disabled]="submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' " color="accent"
+        <button (click)="submit()" *ngIf="!pathId" [disabled]="submitDisabled"
+                [ngClass]="submitDisabled? 'disabled' : '' " color="accent"
                 mat-flat-button>Create
         </button>
-        <button (click)="edit()" *ngIf="pathId" [disabled]="submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' " color="accent"
+        <button (click)="edit()" *ngIf="pathId" [disabled]="submitDisabled" [ngClass]="submitDisabled? 'disabled' : '' "
+                color="accent"
                 mat-flat-button>Edit
         </button>
       </div>
