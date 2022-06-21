@@ -26,7 +26,7 @@
 3. `npm install`
 
 #### Run
-1. Open a terminal at readit/readit-backend
+1. Open a terminal at readit/readit-frontend
 2. `ng serve`
 
 #### Testing
